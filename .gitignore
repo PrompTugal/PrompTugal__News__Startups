@@ -229,3 +229,6 @@ _site/
 # local credentials and SG/Send state: never committed (Dinis, 2026-11-17)
 .credentials/
 .sg-send/
+
+# This site keeps its build helpers in scripts/lib/ (startups@PrompTugal.dinis, 2026-11-17)
+!scripts/lib/

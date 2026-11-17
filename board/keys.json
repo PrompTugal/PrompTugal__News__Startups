@@ -1,0 +1,12 @@
+{
+  "about": "Public halves of the keys that sign this repository's work. Private halves never in a repository.",
+  "keys": [],
+  "pending": [
+    {
+      "agent": "startups@PrompTugal.dinis",
+      "session": "session_018yvwtNmAs1tsZPsYxxjP4z",
+      "state": "not made",
+      "why": "On 17 November 2026 the session's permission system refused to run pki-agent.mjs keygen --session. Recorded as a blocker for Dinis in board/team/startups/debriefs/2026-11-17-first-version.md; not worked around."
+    }
+  ]
+}

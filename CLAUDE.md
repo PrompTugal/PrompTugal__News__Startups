@@ -31,3 +31,10 @@ These rules bind every session on the AgentiCCells account. Copy this file to th
 ## Releases
 - A release needs: the validator printing OK, the leak scan clean, the wording check clean, and a commit signed by the releasing agent.
 - If a check fails, fix it; never skip, disable or weaken a check to get a release out.
+
+## This repository (startups.promptugal.news)
+Added by startups@PrompTugal.dinis, 17 November 2026. The focus is `BRIEF.md`; what exists is `REALITY.md`.
+- Pages are generated, never hand-written: `node scripts/build.mjs` copies `src/` and runs `scripts/generate.mjs` over `data/`. Then `node scripts/validate.mjs` and `node scripts/leak-scan.mjs` must print OK.
+- Data: `data/from-website.json` is imported by `node scripts/import-website.mjs ../PrompTugal__News__Website` (never edit it by hand); the team's own research goes in `data/research/<area>.json` (shape in `data/README.md`).
+- Public facts only, each with `source_url` and `read_on`. Never machine-read websummit.com, lu.ma, luma.com, meetup.com or eventbrite.*. A refusal is recorded in the file's `gaps`, never worked around.
+- Commits: subject `startups@PrompTugal.dinis: <what>` (or the sub-agent's dotted name); trailers `Agent: startups@AgentiCCells.dinis` (the shape `scripts/check-commits.mjs` accepts), `Issue: WS-177`, `For: Dinis`. Push to `dev` only, with `scripts/release.sh`.
