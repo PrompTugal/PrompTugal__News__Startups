@@ -1,0 +1,678 @@
+{
+ "by": "startups.research@PrompTugal.dinis",
+ "read_on": "2026-11-17",
+ "area": "algarve",
+ "entries": [
+  {
+   "name": "StartUP Portimão",
+   "kind": "incubator",
+   "place": "portimao",
+   "what": "Municipal incubator at the Algarve International Autodrome site, with physical and virtual incubation, a cowork space, mentoring and an acceleration programme. The application page takes early-stage projects in energy, mobility, tourism, governance and quality of life, and states no call dates.",
+   "url": "https://startupportimao.pt",
+   "source_url": "https://startupportimao.pt/index.php/pt/candidaturas/candidata-te",
+   "read_on": "2026-11-17"
+  },
+  {
+   "name": "StartUP Portimão acceleration programme, 7th edition",
+   "kind": "programme",
+   "place": "portimao",
+   "what": "Four days of training, mentoring and networking for entrepreneurs, online on 2 and 3 November and in person in Portimão on 24 and 25 November 2026. Applications closed on 28 October 2026.",
+   "url": "https://startupportimao.pt/index.php/pt/iniciativas/programa-de-aceleracao",
+   "source_url": "https://postal.pt/algarve/startup-portimao-abre-candidaturas-para-programa-de-aceleracao-de-negocios-ate-28-de-outubro/",
+   "read_on": "2026-11-17",
+   "date": "2026-11",
+   "status": "closed (applications closed 2026-10-28)"
+  },
+  {
+   "name": "StartUP Portimão ninth anniversary and Pitch & Match",
+   "kind": "programme",
+   "place": "portimao",
+   "what": "The incubator marked its ninth anniversary with a Pitch & Match session linking entrepreneurs, mentors and potential investors, plus a guided visit and a recognition moment. The article was published before the event, so it reports no results; the year is inferred from the publication date.",
+   "url": "https://startupportimao.pt",
+   "source_url": "https://www.barlavento.pt/startup-portimao-reune-empreendedores-investidores-nono-aniversario/",
+   "read_on": "2026-11-17",
+   "date": "2026-08-10"
+  },
+  {
+   "name": "Portimão Cowork",
+   "kind": "coworking",
+   "place": "portimao",
+   "what": "Council shared workspace for individuals and companies with an idea, project or innovative business that adds value locally. Applications are by form, in a continuous or a daily regime, sent by email to the council; the page states no fees and was last updated on 18 May 2026.",
+   "url": "https://cm-portimao.pt/portimao-cowork",
+   "source_url": "https://cm-portimao.pt/portimao-cowork",
+   "read_on": "2026-11-17"
+  },
+  {
+   "name": "Faro business nest run by ANJE",
+   "kind": "business nest",
+   "place": "faro",
+   "what": "Faro council says the city has a nest for early-stage firms, mostly microenterprises and projects of young entrepreneurs, run by ANJE, with some private incubation spaces too. The page names no open call and points to IEFP and CRIA for next steps.",
+   "url": "https://www.cm-faro.pt/pt/69379/incubacao-de-empresas.aspx",
+   "source_url": "https://www.cm-faro.pt/pt/69379/incubacao-de-empresas.aspx",
+   "read_on": "2026-11-17"
+  },
+  {
+   "name": "Faro Invest (council economic development desk)",
+   "kind": "public desk",
+   "place": "faro",
+   "what": "Council desk that meets entrepreneurs by appointment. It names service-sector founders, tourism activities and University of Algarve spin-offs as its audience, with priority areas in technological and business innovation, logistics, agrifood and Baixa commerce.",
+   "url": "https://www.cm-faro.pt/pt/menu/1922/desenvolvimento-economico.aspx",
+   "source_url": "https://www.cm-faro.pt/pt/menu/1922/desenvolvimento-economico.aspx",
+   "read_on": "2026-11-17"
+  },
+  {
+   "name": "Incubadora de Empresas de Monchique (IEM)",
+   "kind": "incubator",
+   "place": "monchique",
+   "what": "Municipal service next to the parish council that gives information on funding programmes and open calls, plus individual follow-up meetings online. Pre-registration is taken at the Espaço Jovem; no specific call or deadline is listed.",
+   "url": "https://www.cm-monchique.pt/pt/menu/2495/incubadora-de-empresas.aspx",
+   "source_url": "https://www.cm-monchique.pt/pt/menu/2495/incubadora-de-empresas.aspx",
+   "read_on": "2026-11-17"
+  },
+  {
+   "name": "Monchique council entrepreneurship office",
+   "kind": "public desk",
+   "place": "monchique",
+   "what": "Council office that prepares funding applications, helps local firms find financing and follows investment intentions. It is aimed mainly at local entrepreneurs and operators.",
+   "url": "https://www.cm-monchique.pt/pt/menu/260/gabinete-de-empreendedorismo.aspx",
+   "source_url": "https://www.cm-monchique.pt/pt/menu/260/gabinete-de-empreendedorismo.aspx",
+   "read_on": "2026-11-17"
+  },
+  {
+   "name": "GEL, local entrepreneurship office of Silves",
+   "kind": "public desk",
+   "place": "silves",
+   "what": "Council office giving individual support to entrepreneurs, companies and local producers, with guidance on EU funds and introductions to other institutions. The page lists no open call and points to the council's tenders section.",
+   "url": "https://www.cm-silves.pt/pt/menu/67/gel---gabinete-de-empreendedorismo-local.aspx",
+   "source_url": "https://www.cm-silves.pt/pt/menu/67/gel---gabinete-de-empreendedorismo-local.aspx",
+   "read_on": "2026-11-17"
+  },
+  {
+   "name": "Edifício Multifuncional de Empresas (EME)",
+   "kind": "business nest",
+   "place": "castro-marim",
+   "what": "Council building with individual offices, reception, wireless internet, meeting rooms and incubation support for entrepreneurs with innovative, scalable ideas who will base their company in Castro Marim. The page offers an application form and call poster but states no deadline.",
+   "url": "https://cm-castromarim.pt/site/conteudo/apoio-empresas",
+   "source_url": "https://cm-castromarim.pt/site/conteudo/apoio-empresas",
+   "read_on": "2026-11-17",
+   "status": "open (call poster and form published; closing date not stated on the page)"
+  },
+  {
+   "name": "Startup Albufeira (Centro de Acolhimento Empresarial)",
+   "kind": "incubator",
+   "place": "albufeira",
+   "what": "Municipal business incubator for sole traders, liberal professionals and companies with innovative projects, incorporated less than two years before applying, with a preference for creativity and tourism. Applications go through its own site; the article is from 2021 and updated in 2024, so its call dates are not current.",
+   "url": "https://postal.pt/economia/abertas-candidaturas-para-a-incubadora-de-negocios-startup-albufeira/",
+   "source_url": "https://postal.pt/economia/abertas-candidaturas-para-a-incubadora-de-negocios-startup-albufeira/",
+   "read_on": "2026-11-17",
+   "date": "2021-08"
+  },
+  {
+   "name": "Level UP business centre and incubator",
+   "kind": "incubator",
+   "place": "tavira",
+   "what": "Tavira business centre and incubator, accredited under the national incubation voucher scheme in 2016. The source is a 2016 article, so its current status and offer are not confirmed.",
+   "url": "https://postal.pt/economia/level-up-acreditado-para-acolher-startups-no-ambito-do-vale-incubacao/",
+   "source_url": "https://postal.pt/economia/level-up-acreditado-para-acolher-startups-no-ambito-do-vale-incubacao/",
+   "read_on": "2026-11-17",
+   "date": "2016-09"
+  },
+  {
+   "name": "CoLagos municipal coworking",
+   "kind": "coworking",
+   "place": "lagos",
+   "what": "Listed by the BeAlgarve ecosystem directory as the municipal coworking space of Lagos. No council page was read, so offer and fees are unconfirmed.",
+   "url": "https://www.bealgarve.pt/pt/ecossistema/",
+   "source_url": "https://bealgarve.pt/pt/ecossistema/",
+   "read_on": "2026-11-17"
+  },
+  {
+   "name": "Lagos Fábrica do Empreendedor",
+   "kind": "public desk",
+   "place": "lagos",
+   "what": "Municipal entrepreneurship project at the Cultural Centre of Lagos, with the Agência de Empreendedores Sociais, offering free help on recruitment, funding applications, training and business expansion. The article is from 2021; in 2025 the same venue hosted the launch of the Algarve Digital Innovators network.",
+   "url": "https://postal.pt/economia/lagos-cria-fabrica-do-empreendedor-para-apoiar-empresarios-e-empresas/",
+   "source_url": "https://postal.pt/economia/lagos-cria-fabrica-do-empreendedor-para-apoiar-empresarios-e-empresas/",
+   "read_on": "2026-11-17",
+   "date": "2021-02"
+  },
+  {
+   "name": "Ninho de Empresas de Loulé (IEFP)",
+   "kind": "business nest",
+   "place": "loule",
+   "what": "Public nest for business and technology firms in Loulé, listed by the BeAlgarve directory. The directory gives no call or deadline.",
+   "url": "https://www.bealgarve.pt/pt/ecossistema/",
+   "source_url": "https://bealgarve.pt/pt/ecossistema/",
+   "read_on": "2026-11-17"
+  },
+  {
+   "name": "Loulé Design Lab",
+   "kind": "incubator",
+   "place": "loule",
+   "what": "Municipal creative hub. A January 2022 article described residencies with shared work rooms, a workshop, a photography studio, mentoring and promotion for creative people; its application window then ran to 15 February, presumably 2022, and no current call was confirmed.",
+   "url": "https://www.barlavento.pt/loule-design-lab-abre-candidaturas-para-novos-residentes/",
+   "source_url": "https://www.barlavento.pt/loule-design-lab-abre-candidaturas-para-novos-residentes/",
+   "read_on": "2026-11-17",
+   "date": "2022-01"
+  },
+  {
+   "name": "CASULO social innovation incubator",
+   "kind": "incubator",
+   "place": "loule",
+   "what": "Social innovation incubator in Loulé, listed in the BeAlgarve directory and, in 2019, in the first informal meeting of Algarve incubators as run by Associação Poeta Aleixo.",
+   "url": "https://www.bealgarve.pt/pt/ecossistema/",
+   "source_url": "https://bealgarve.pt/pt/ecossistema/",
+   "read_on": "2026-11-17"
+  },
+  {
+   "name": "São Brás de Alportel municipal coworking",
+   "kind": "coworking",
+   "place": "sao-bras-de-alportel",
+   "what": "Council coworking space on Avenida da Liberdade, opened on 12 August 2020 for young entrepreneurs, with five work areas, a meeting room and admin support. Membership is by six-month contract with a free first period; current status not confirmed.",
+   "url": "https://www.barlavento.pt/sao-bras-de-alportel-ja-tem-espaco-coworking-para-jovens/",
+   "source_url": "https://www.barlavento.pt/sao-bras-de-alportel-ja-tem-espaco-coworking-para-jovens/",
+   "read_on": "2026-11-17",
+   "date": "2020-08"
+  },
+  {
+   "name": "NextIn rural coworking",
+   "kind": "coworking",
+   "place": "sao-bras-de-alportel",
+   "what": "Rural coworking in São Brás de Alportel focused on technology and social innovation, as listed by the BeAlgarve directory. No page of its own was read.",
+   "url": "https://www.bealgarve.pt/pt/ecossistema/",
+   "source_url": "https://bealgarve.pt/pt/ecossistema/",
+   "read_on": "2026-11-17"
+  },
+  {
+   "name": "Celeiro de Ideias business and coworking centre",
+   "kind": "business nest",
+   "place": "alcoutim",
+   "what": "Council project to convert the former EPAC granary into a business centre and coworking space for microenterprises, freelancers, startups and artisans. The application was approved on 27 August 2026 and the works are due by 30 September 2028.",
+   "url": "https://www.barlavento.pt/alcoutim-vai-transformar-antigo-celeiro-da-epac-em-centro-empresarial/",
+   "source_url": "https://www.barlavento.pt/alcoutim-vai-transformar-antigo-celeiro-da-epac-em-centro-empresarial/",
+   "read_on": "2026-11-17",
+   "date": "2026-09",
+   "amount": "1,269,828.22 euros eligible investment, with 761,896.94 euros from FEDER (Algarve 2030)",
+   "status": "ongoing"
+  },
+  {
+   "name": "Startup Olhão and ANJE Hub protocol",
+   "kind": "programme",
+   "place": "olhao",
+   "what": "Olhão council and ANJE signed a three-year cooperation agreement on 16 June 2026 that foresees a Startup Olhão project and an ANJE Hub in the municipality, with a focus on the sea economy. No dates or call were given.",
+   "url": "https://www.barlavento.pt/olhao-anje-criar-startup-hub-empresarial/",
+   "source_url": "https://www.barlavento.pt/olhao-anje-criar-startup-hub-empresarial/",
+   "read_on": "2026-11-17",
+   "date": "2026-06-16"
+  },
+  {
+   "name": "Moinho, social innovation incubator of the Sotavento Algarvio",
+   "kind": "incubator",
+   "place": "olhao",
+   "what": "Incubator for social innovation projects and social-sector bodies in the eastern Algarve, presented in Olhão on 14 October 2026. The article names no operator, call or deadline.",
+   "url": "https://postal.pt/algarve/olhao-recebe-nova-incubadora-dedicada-a-inovacao-social-no-sotavento-algarvio/",
+   "source_url": "https://postal.pt/algarve/olhao-recebe-nova-incubadora-dedicada-a-inovacao-social-no-sotavento-algarvio/",
+   "read_on": "2026-11-17",
+   "date": "2026-10-14"
+  },
+  {
+   "name": "Hub Azul de Olhão",
+   "kind": "incubator",
+   "place": "olhao",
+   "what": "Planned rebuilt waterfront building of about 836 square metres with labs for marine biotechnology and food, meant to host 15 companies and create about 90 jobs. The consortium includes the council, UAlg, IPMA, Docapesca and S2AQUAcoLAB; it was reported under construction in April 2025.",
+   "url": "https://postal.pt/economia/vai-nascer-um-polo-hub-azul-com-varios-laboratorios-para-a-biotecnologia-e-alimentacao/",
+   "source_url": "https://postal.pt/economia/vai-nascer-um-polo-hub-azul-com-varios-laboratorios-para-a-biotecnologia-e-alimentacao/",
+   "read_on": "2026-11-17",
+   "date": "2025-04-06",
+   "amount": "4.4 million euros, shared between Fundo Azul and the council"
+  },
+  {
+   "name": "E-Sports Hub, Estádio Algarve",
+   "kind": "tech park",
+   "place": "loule",
+   "what": "Planned 2,235 square metre hub for innovation, incubation and acceleration in the Estádio Algarve, with startup offices, coworking and a living lab for testing technologies. The Loulé/Faro municipal association tendered the works; bids closed on 2 November 2026 (Estádio Algarve is run jointly by Faro and Loulé).",
+   "url": "https://www.barlavento.pt/lancado-concurso-instalar-centro-multitecnologico-estadio-algarve/",
+   "source_url": "https://www.barlavento.pt/lancado-concurso-instalar-centro-multitecnologico-estadio-algarve/",
+   "read_on": "2026-11-17",
+   "date": "2026-09-24",
+   "amount": "about 3 million euros for the works, over 3.5 million euros total project",
+   "status": "closed (bids closed 2026-11-02)"
+  },
+  {
+   "name": "ALGARVE-2026-3, incubators of non-technological business",
+   "kind": "call",
+   "place": "algarve",
+   "what": "Algarve 2030 call, open to municipalities, municipal companies and municipal associations, for creating or upgrading local business nests, social incubators and coworking spaces. It has 2 million euros of FEDER, with phases closing on 30 July 2026, 30 October 2026 and 15 January 2027.",
+   "url": "https://portugal2030.pt/wp-content/uploads/sites/3/2026/05/ALGARVE-2026-3.pdf",
+   "source_url": "https://portugal2030.pt/wp-content/uploads/sites/3/2026/05/ALGARVE-2026-3.pdf",
+   "read_on": "2026-11-17",
+   "date": "2026-05-04",
+   "amount": "2 million euros",
+   "status": "open (phase 3 closes 2027-01-15)"
+  },
+  {
+   "name": "CRIA, University of Algarve entrepreneurship and technology transfer office",
+   "kind": "university office",
+   "place": "faro",
+   "what": "UAlg office that validates business ideas, supports spin-offs and start-ups of staff, researchers, students and alumni, and manages the university's incubation spaces. It offers pre-incubation, incubation, post-incubation and virtual incubation, with a published regulation.",
+   "url": "https://www.cria.pt",
+   "source_url": "https://www.ualg.pt/en/incubation",
+   "read_on": "2026-11-17"
+  },
+  {
+   "name": "UAlg TEC Campus",
+   "kind": "tech park",
+   "place": "faro",
+   "what": "University technology accelerator on the Penha campus, inaugurated on 29 March 2022 with about 4,500 square metres, run by Algarve STP and aimed at information, communication and electronics firms. It held 16 companies at opening and 30 firms and entrepreneurs with over 400 workers by May 2024, when it said it had reached capacity.",
+   "url": "https://www.ualg.pt/en/incubation",
+   "source_url": "https://www.barlavento.pt/ualg-tec-campus-traz-desafios-e-beneficios-para-o-algarve-e-o-pais/",
+   "read_on": "2026-11-17",
+   "date": "2022-03-29",
+   "amount": "7,245,515.60 euros total investment, with 5,868,867.64 euros from FEDER"
+  },
+  {
+   "name": "UAlg TEC Campus capacity and virtual acceleration",
+   "kind": "accelerator",
+   "place": "faro",
+   "what": "In May 2024 the campus said it could not host more firms physically and offered virtual acceleration (consulting, programmes and networking without a desk) to those on its waiting list.",
+   "url": "https://www.ualg.pt/en/incubation",
+   "source_url": "https://postal.pt/economia/ualg-tec-campus-atinge-capacidade-maxima-de-empresas-instaladas-e-desafia-a-novas-parcerias/",
+   "read_on": "2026-11-17",
+   "date": "2024-05-22"
+  },
+  {
+   "name": "UAlg TEC Campus acceleration space call, January 2025",
+   "kind": "call",
+   "place": "faro",
+   "what": "Call for a roughly 37 square metre space for established technology firms with high growth potential that cooperate with the science system. The deadline was 19 January 2025.",
+   "url": "https://www.ualg.pt/en/incubation",
+   "source_url": "https://postal.pt/algarve/ualg-tec-campus-abre-candidaturas-para-espaco-de-aceleracao-de-empresas-tecnologicas/",
+   "read_on": "2026-11-17",
+   "date": "2025-01-07",
+   "status": "closed (closed 2025-01-19)"
+  },
+  {
+   "name": "UAlg TEC Start health incubation",
+   "kind": "incubator",
+   "place": "faro",
+   "what": "A June 2026 opinion piece by UAlg authors studied health startups hosted at UAlg TEC Start and found no clear exit criteria between pre-incubation, incubation and post-incubation. It gives no counts or funding figures and is a sponsored piece.",
+   "url": "https://www.ualg.pt/en/incubation",
+   "source_url": "https://eco.sapo.pt/2026/06/15/processo-de-incubacao-de-empresas-inovadoras-o-caso-da-area-da-saude-no-algarve/",
+   "read_on": "2026-11-17",
+   "date": "2026-06-15"
+  },
+  {
+   "name": "Ideias em Caixa, 8th edition",
+   "kind": "programme",
+   "place": "algarve",
+   "what": "UAlg business-idea contest run by CRIA with NERA, ANJE, AMAL, Algarve Evolution and AlgarveSTP, open to adults and firms under three years old. Cash prizes total 40,000 euros, with 5,000 euros for the best idea in each of eight categories; entries closed on 7 March 2025.",
+   "url": "https://www.cria.pt",
+   "source_url": "https://www.ualg.pt/ualg-lanca-8a-edicao-do-concurso-ideias-em-caixa",
+   "read_on": "2026-11-17",
+   "date": "2024-12-16",
+   "amount": "40,000 euros in cash prizes",
+   "status": "closed (closed 2025-03-07)"
+  },
+  {
+   "name": "UAlg proof-of-concept programme",
+   "kind": "programme",
+   "place": "algarve",
+   "what": "Programme to help early-stage firms validate proofs of concept and mature their technology, part of the Algarve Empreende 2026 project co-financed by Algarve 2030. Applications were by email until 10 July 2026.",
+   "url": "https://www.cria.pt",
+   "source_url": "https://www.barlavento.pt/?p=402933",
+   "read_on": "2026-11-17",
+   "date": "2026-06-24",
+   "status": "closed (closed 2026-07-10)"
+  },
+  {
+   "name": "expressTEC",
+   "kind": "startup",
+   "place": "faro",
+   "what": "Faro company developing diagnostic tests for personalised cancer treatment, one of the 12 firms picked for the first Venture Lab and holder of the Web Summit 'Impact Startup' label in 2025. The pages read do not state that it is a UAlg spin-off.",
+   "url": "https://www.barlavento.pt/?p=404460",
+   "source_url": "https://www.barlavento.pt/?p=404460",
+   "read_on": "2026-11-17",
+   "date": "2026-07-10"
+  },
+  {
+   "name": "Algarve Evolution",
+   "kind": "association",
+   "place": "faro",
+   "what": "Private non-profit association founded in 2018 that, per a third-party summary of its website, has 106 active members and works on education, startups and ecosystem building, including an incubator and the Founder2Founder programme. Its own site returned an error when read, so figures are second-hand.",
+   "url": "https://newsroom.sgit.ai/articles/joining-algarve-evolution.html",
+   "source_url": "https://newsroom.sgit.ai/articles/joining-algarve-evolution.html",
+   "read_on": "2026-11-17",
+   "date": "2026-10-31",
+   "amount": "Start membership 150 euros a year (as stated by the same third-party summary)"
+  },
+  {
+   "name": "Vibathon Algarve 2026",
+   "kind": "programme",
+   "place": "faro",
+   "what": "Sold-out day of building with AI at the University of Algarve in Faro, reported as already held by 31 October 2026. The exact date is not given in the source.",
+   "url": "https://newsroom.sgit.ai/articles/joining-algarve-evolution.html",
+   "source_url": "https://newsroom.sgit.ai/articles/joining-algarve-evolution.html",
+   "read_on": "2026-11-17",
+   "date": "2026-10"
+  },
+  {
+   "name": "Algarve Digital Innovators network launch",
+   "kind": "association",
+   "place": "lagos",
+   "what": "Network of regional digital communities launched in Lagos at the Fábrica do Empreendedor under Algarve Empreende 2026, by UAlg CRIA, AMAL, AlgarveSTP, Algarve Evolution, NERA and ANJE. It aims to link startups, talent, SMEs and academia and has a 2030 community plan for digital nomads.",
+   "url": "https://postal.pt/algarve/lagos-lanca-rede-algarve-digital-innovators-para-impulsionar-inovacao-e-startups/",
+   "source_url": "https://postal.pt/algarve/lagos-lanca-rede-algarve-digital-innovators-para-impulsionar-inovacao-e-startups/",
+   "read_on": "2026-11-17",
+   "date": "2025-09-11"
+  },
+  {
+   "name": "Algarve Tech Hub Summit, third edition",
+   "kind": "programme",
+   "place": "albufeira",
+   "what": "Three-day technology event in Albufeira on 23 to 25 October 2024 with talks, workshops, networking and a startup showcase. The article reports over 400 participants and 100 speakers across 35 panels and names no organiser.",
+   "url": "https://postal.pt/algarve/algarve-tech-hub-summit-colocou-a-regiao-no-mapa-da-tecnologia-inovacao-e-transicao-digital/",
+   "source_url": "https://postal.pt/algarve/algarve-tech-hub-summit-colocou-a-regiao-no-mapa-da-tecnologia-inovacao-e-transicao-digital/",
+   "read_on": "2026-11-17",
+   "date": "2024-10-23"
+  },
+  {
+   "name": "Algarve Smart Destination Digital Innovation Hub",
+   "kind": "association",
+   "place": "faro",
+   "what": "Informal network of public and private bodies in Faro focused on digitalising the regional economy and tourism, led by Algarve STP. The listing is marked outdated by its host.",
+   "url": "https://www.algarvesmartdestination.com",
+   "source_url": "https://www.euacc.ai/knowledge/incubator/algarve-smart-destination-digital-innovation-hub",
+   "read_on": "2026-11-17"
+  },
+  {
+   "name": "Algarve STP (AlgarveSTP)",
+   "kind": "association",
+   "place": "faro",
+   "what": "Non-profit regional technology interface whose members include UAlg, ANJE, the Faro, Loulé and Portimão councils and Algarve Evolution. It manages UAlg TEC Campus and promotes the Venture Lab mentoring programme.",
+   "url": "https://postal.pt/economia/ualg-tec-campus-atinge-capacidade-maxima-de-empresas-instaladas-e-desafia-a-novas-parcerias/",
+   "source_url": "https://postal.pt/economia/ualg-tec-campus-atinge-capacidade-maxima-de-empresas-instaladas-e-desafia-a-novas-parcerias/",
+   "read_on": "2026-11-17"
+  },
+  {
+   "name": "Venture Lab by AlgarveSTP, call",
+   "kind": "call",
+   "place": "algarve",
+   "what": "Free individual mentoring for Algarve-based startups and SMEs with a validated product in RIS3 areas, for 12 companies, within Algarve Empreende 2026 financed by Algarve 2030. Applications closed on 24 June 2026.",
+   "url": "https://www.barlavento.pt/algarvestp-programa-gratuito-12-empresas-algarvias/",
+   "source_url": "https://www.barlavento.pt/algarvestp-programa-gratuito-12-empresas-algarvias/",
+   "read_on": "2026-11-17",
+   "date": "2026-06-19",
+   "status": "closed (closed 2026-06-24)"
+  },
+  {
+   "name": "Venture Lab by AlgarveSTP, first cohort",
+   "kind": "programme",
+   "place": "algarve",
+   "what": "Twelve firms were chosen on 10 July 2026: expressTEC, Phycoferm, Momodoro, DigitalGTPro, Bot Gonçalves, FarmAssist, UNICORE, The Pinch, Ocean Camper, Tertúlia Algarvia, Bio1OneHealth and Estúdio Onze. Mentoring runs over the following months with a pool of eight mentors.",
+   "url": "https://postal.pt/algarve/venture-lab-by-algarvestp-seleciona-12-empresas-para-acelerar-crescimento/",
+   "source_url": "https://postal.pt/algarve/venture-lab-by-algarvestp-seleciona-12-empresas-para-acelerar-crescimento/",
+   "read_on": "2026-11-17",
+   "date": "2026-07-10",
+   "status": "ongoing"
+  },
+  {
+   "name": "Algarve Empreende 2026 at Web Summit Lisbon 2025",
+   "kind": "programme",
+   "place": "algarve",
+   "what": "ANJE-led project co-financed by Algarve 2030 and the EU selected 24 Algarve startups for a shared stand at Web Summit 2025; four got the Impact Startup label (Invisible CFO, AuroraMed, expressTEC, FarmAssist). A call for it ran until 5 September 2025.",
+   "url": "https://www.barlavento.pt/?p=384586",
+   "source_url": "https://www.barlavento.pt/?p=384586",
+   "read_on": "2026-11-17",
+   "date": "2025-10-21"
+  },
+  {
+   "name": "Dengun Founders Program pitch day",
+   "kind": "programme",
+   "place": "albufeira",
+   "what": "Pitch day on 30 January 2025 at Le Club in Albufeira where 12 finalist tech startups, chosen from about 400 applicants, presented to investors for tickets of up to 300,000 euros. Dengun runs the programme with UAlg and PRR co-funding; the article reports no outcome.",
+   "url": "https://postal.pt/economia/startups-tecnologicas-de-sete-paises-apresentam-projetos-a-investidores-em-albufeira/",
+   "source_url": "https://www.barlavento.pt/albufeira-startups-tecnologicas-internacionais-apresentam-projetos-a-potenciais-investidores/",
+   "read_on": "2026-11-17",
+   "date": "2025-01-30",
+   "amount": "up to 300,000 euros per company"
+  },
+  {
+   "name": "First informal meeting of Algarve incubators",
+   "kind": "association",
+   "place": "portimao",
+   "what": "On 18 November 2019 StartUP Portimão hosted CRIA, ANJE, IEFP-CACE, CASULO, Loulé Design Lab, Level UP, NERA, Faro Avenida Business Center and others, with AlgarveSTP and UAlg, to start regional cooperation. A second meeting was set for 28 January 2020.",
+   "url": "https://postal.pt/nacional/startup-portimao-acolheu-o-primeiro-encontro-informal-de-incubadoras-do-algarve/",
+   "source_url": "https://postal.pt/nacional/startup-portimao-acolheu-o-primeiro-encontro-informal-de-incubadoras-do-algarve/",
+   "read_on": "2026-11-17",
+   "date": "2019-11-18"
+  },
+  {
+   "name": "BeAlgarve ecosystem platform",
+   "kind": "programme",
+   "place": "algarve",
+   "what": "Online monitoring platform for the Algarve entrepreneurship ecosystem, with a directory and map of incubators, coworking spaces and public bodies and 12 dashboards. It credits NERA and Algarve Empreende 2026 as partners and names no operator.",
+   "url": "https://bealgarve.pt",
+   "source_url": "https://bealgarve.pt",
+   "read_on": "2026-11-17"
+  },
+  {
+   "name": "ALGARVE-2026-6, qualified entrepreneurship (SIAC)",
+   "kind": "call",
+   "place": "algarve",
+   "what": "Algarve 2030 call for new knowledge-based businesses with research, innovation or technology links, with 1 million euros of FEDER and up to 75% co-financing. Barlavento states it closes on 15 January 2027; another firm's summary gave different phase dates, so confirm on Balcão dos Fundos.",
+   "url": "https://www.barlavento.pt/?p=398853",
+   "source_url": "https://www.barlavento.pt/?p=398853",
+   "read_on": "2026-11-17",
+   "date": "2026-05-06",
+   "amount": "1 million euros",
+   "status": "open (closing 2027-01-15 per Barlavento; unconfirmed)"
+  },
+  {
+   "name": "ALGARVE-2026-5, territorial incentives for micro and small firms",
+   "kind": "call",
+   "place": "algarve",
+   "what": "Algarve 2030 call to create, expand or modernise micro and small businesses, 5 million euros of FEDER with up to 60% co-financing, published alongside circular-economy notice ALGARVE-2026-4 (5 million euros).",
+   "url": "https://www.barlavento.pt/?p=398853",
+   "source_url": "https://www.barlavento.pt/?p=398853",
+   "read_on": "2026-11-17",
+   "date": "2026-05-06",
+   "amount": "5 million euros",
+   "status": "open (closing 2027-01-15)"
+  },
+  {
+   "name": "MPr-2026-6, productive innovation (SICE) for SMEs",
+   "kind": "call",
+   "place": "algarve",
+   "what": "Algarve 2030 call of 11 million euros, 4.4 million euros of it for low-density areas, for SMEs with at least 300,000 euros of eligible investment in new products, services or processes. It closed on 30 September 2026.",
+   "url": "https://www.barlavento.pt/algarve-2030-concurso-11-milhoes-inovacao-empresarial/",
+   "source_url": "https://www.barlavento.pt/algarve-2030-concurso-11-milhoes-inovacao-empresarial/",
+   "read_on": "2026-11-17",
+   "date": "2026-06-17",
+   "amount": "11 million euros",
+   "status": "closed (closed 2026-09-30)"
+  },
+  {
+   "name": "MPr-2026-07, demonstrator R&D projects",
+   "kind": "call",
+   "place": "algarve",
+   "what": "Algarve 2030 call of 2 million euros of FEDER for companies, alone or with research bodies, to demonstrate new technologies, with at least 200,000 euros of eligible investment and up to 18 months. It closes on 29 December 2026 at 17:00.",
+   "url": "https://www.barlavento.pt/?p=405380",
+   "source_url": "https://www.barlavento.pt/?p=405380",
+   "read_on": "2026-11-17",
+   "date": "2026-07-22",
+   "amount": "2 million euros",
+   "status": "open (closes 2026-12-29)"
+  },
+  {
+   "name": "STEP calls for digital technologies and biotechnology",
+   "kind": "call",
+   "place": "algarve",
+   "what": "Two Algarve 2030 calls totalling 454 million euros: 301 million euros for productive investment (MPr-2026-3) and 153 million euros for company-led R&D with research bodies (MPr-2026-2). Both closed on 30 April 2026.",
+   "url": "https://postal.pt/europedirectalgarve/algarve-2030-lanca-avisos-de-454-milhoes-para-tecnologias-digitais-e-biotecnologia/",
+   "source_url": "https://postal.pt/europedirectalgarve/algarve-2030-lanca-avisos-de-454-milhoes-para-tecnologias-digitais-e-biotecnologia/",
+   "read_on": "2026-11-17",
+   "date": "2026-02-06",
+   "amount": "454 million euros",
+   "status": "closed (closed 2026-04-30)"
+  },
+  {
+   "name": "ALGARVE-2025-36, SME qualification and digitalisation",
+   "kind": "call",
+   "place": "algarve",
+   "what": "Algarve 2030 call of 4 million euros for Algarve SMEs investing in at least two intangible competitiveness areas, with up to 50% co-financing and at least 100,000 euros of eligible investment. Phases closed on 31 March and 30 June 2026.",
+   "url": "https://www.barlavento.pt/?p=387262",
+   "source_url": "https://www.barlavento.pt/?p=387262",
+   "read_on": "2026-11-17",
+   "date": "2025-12-02",
+   "amount": "4 million euros",
+   "status": "closed (closed 2026-06-30)"
+  },
+  {
+   "name": "NERA INOVA ALGARVE 3.0 innovation support",
+   "kind": "programme",
+   "place": "algarve",
+   "what": "Personalised NERA support for Algarve firms in agrifood, blue economy, geological resources, plants and tourism, covering a diagnosis of innovation needs and fit with incentive schemes, co-financed by Algarve 2030. Applications were open until 15 April 2026.",
+   "url": "https://nera.pt",
+   "source_url": "https://www.barlavento.pt/nera-lanca-apoio-a-inovacao-para-empresas-do-algarve/",
+   "read_on": "2026-11-17",
+   "date": "2026-03-13",
+   "status": "closed (closed 2026-04-15)"
+  },
+  {
+   "name": "NERA business association",
+   "kind": "association",
+   "place": "loule",
+   "what": "Regional business association with a business centre, legal and project support desk, training and projects including INOVA ALGARVE 2.0 and an employment social incubator. On 13 November 2026 it announced the winner of the Tourism and Sea Economy category of the INOVA ALGARVE + DIVERSIFICAR competition, NaturMaris.",
+   "url": "https://nera.pt",
+   "source_url": "https://nera.pt",
+   "read_on": "2026-11-17",
+   "date": "2026-11-13"
+  },
+  {
+   "name": "Tourism Advance 2026 (Turismo de Portugal FIT 2.0)",
+   "kind": "programme",
+   "place": "algarve",
+   "what": "Open-innovation programme run by Fábrica de Startups with Turismo de Portugal for startups with B2B hotel-sector solutions. Applications closed on 23 August 2026; the page does not mention the Algarve.",
+   "url": "https://business.turismodeportugal.pt/pt/inovar/fit/programas-inovacao/Paginas/tourism-advance.aspx",
+   "source_url": "https://business.turismodeportugal.pt/pt/inovar/fit/candidaturas-programas-inovacao/Paginas/tourism-advance-candidaturas-23-ago-2026.aspx",
+   "read_on": "2026-11-17",
+   "date": "2026-08-23",
+   "status": "closed (closed 2026-08-23)"
+  },
+  {
+   "name": "Vale Incubação, Algarve call of 2016",
+   "kind": "programme",
+   "place": "algarve",
+   "what": "National voucher covering up to 75% of incubation costs, to 5,000 euros per startup, used in the Algarve with accredited incubators ACRAL, UAlg and EMPET (Tavira). CRESC Algarve 2020 set aside 500,000 euros; this is a 2016 source, so the scheme's current form is not confirmed.",
+   "url": "https://postal.pt/nacional/empresas-algarvias-podem-aceder-a-vales-de-incubacao/",
+   "source_url": "https://postal.pt/nacional/empresas-algarvias-podem-aceder-a-vales-de-incubacao/",
+   "read_on": "2026-11-17",
+   "date": "2016-09",
+   "amount": "500,000 euros call; up to 5,000 euros per startup",
+   "status": "closed"
+  },
+  {
+   "name": "Particula funding round",
+   "kind": "round",
+   "place": "algarve",
+   "what": "Algarve-based digital-asset company closed a funding round to expand into the United States, reported on 6 May 2025.",
+   "url": "https://postal.pt/algarve/empresa-algarvia-de-ativos-digitais-garante-investimento-e-leva-tecnologia-aos-estados-unidos/",
+   "source_url": "https://postal.pt/algarve/empresa-algarvia-de-ativos-digitais-garante-investimento-e-leva-tecnologia-aos-estados-unidos/",
+   "read_on": "2026-11-17",
+   "date": "2025-05-06",
+   "amount": "5.5 million US dollars",
+   "company": "Particula",
+   "investors": [
+    "SixThirty Ventures",
+    "Vanagon",
+    "Futury Capital"
+   ]
+  },
+  {
+   "name": "Witflow selected for Unicorn Factory Lisboa",
+   "kind": "programme",
+   "place": "algarve",
+   "what": "Algarve-based marketing and AI content startup, built from Flow Productions and Witfy, was named one of 48 firms incubated at Unicorn Factory Lisboa on 15 April 2026. No funding amount is stated.",
+   "url": "https://postal.pt/algarve/startup-com-base-no-algarve-selecionada-para-incubacao-na-unicorn-factory-lisboa/",
+   "source_url": "https://postal.pt/algarve/startup-com-base-no-algarve-selecionada-para-incubacao-na-unicorn-factory-lisboa/",
+   "read_on": "2026-11-17",
+   "date": "2026-04-15",
+   "company": "Witflow"
+  }
+ ],
+ "gaps": [
+  {
+   "url": "https://algarveevolution.pt",
+   "what": "Own site of Algarve Evolution (members, incubator, events), tried at two paths",
+   "why": "503 both times; the Algarve Evolution entries rest on a third-party summary and need re-checking"
+  },
+  {
+   "url": "https://www.cria.pt",
+   "what": "CRIA's own site (spin-offs, calls, dates)",
+   "why": "503; used ualg.pt pages instead, which name no spin-offs or current calls"
+  },
+  {
+   "url": "https://www.crowe.com/pt/noticias/algarve-2026-6",
+   "what": "Second source for ALGARVE-2026-6 phase dates, which differ from Barlavento (15 January 2027)",
+   "why": "403"
+  },
+  {
+   "url": "https://elreferente.es/inversiones/oceano-fresco-logra-17m-ronda-inversion-liderada-capital-partners/",
+   "what": "Reported 17 million euro round for Oceano Fresco (Lagos clam farm); date and investors unconfirmed",
+   "why": "403"
+  },
+  {
+   "url": "https://www.sulinformacao.pt/en/?p=368804",
+   "what": "Claim that World Talents (Faro, hosted at UAlg incubator) raised 2.8 million euros since 2021",
+   "why": "403"
+  },
+  {
+   "url": "https://www.portugalresident.com/algarve-2030-11-million-business-innovation-funding/",
+   "what": "English-language cross-check of the 11 million euro Algarve 2030 call",
+   "why": "403"
+  },
+  {
+   "url": "https://stg.portugalresident.com/algarve-evolution-to-showcase-regions-most-promising-startups/",
+   "what": "Startup Scale Journey series by Algarve Evolution",
+   "why": "401"
+  },
+  {
+   "url": "https://cm-alcoutim.pt/servicos/parque-empresarial",
+   "what": "Alcoutim Business Park offer and conditions",
+   "why": "page returned only a heading"
+  },
+  {
+   "url": "https://www.bealgarve.pt/pt/ecossistema/",
+   "what": "Council pages for CoLagos (Lagos), Lagoa Business Center, Ninho de Empresas de Loulé, CASULO, NextIn and the Loulé Design Lab current call; only the directory listing was read",
+   "why": "no own page found or read"
+  },
+  {
+   "url": "https://www.cm-vrsa.pt",
+   "what": "No incubator, nest or coworking found for Vila Real de Santo António, Aljezur, Vila do Bispo (only the Vicentina LEADER group already on file) or Quarteira",
+   "why": "not stated / no page found"
+  },
+  {
+   "url": "https://business.turismodeportugal.pt",
+   "what": "Turismo de Portugal FIT 2.0 startup funding and Tourism Explorers current Algarve editions; the 2020 Tourism Explorers article is too old to record",
+   "why": "not read on an official page"
+  },
+  {
+   "url": "https://www.startupportugal.com",
+   "what": "Startup Portugal or IAPMEI vouchers used in the Algarve in 2026, and CCDR Algarve startup programmes",
+   "why": "no 2026 Algarve-specific call found"
+  },
+  {
+   "url": "https://portugal2030.pt/wp-content/uploads/sites/3/2026/06/ALGARVE-2026-8-SIAC-Internacionalizacao.pdf",
+   "what": "ALGARVE-2026-8 SIAC internationalisation notice, seen in search only",
+   "why": "not read"
+  },
+  {
+   "url": "https://www.barlavento.pt",
+   "what": "Funding rounds in 2025 and 2026 for Algarve startups: only one confirmed round (Particula); many searches found none else",
+   "why": "not stated in press read"
+  }
+ ],
+ "notes": [
+  "startups@PrompTugal.dinis, 2026-11-17: for 'url' values the researcher guessed but did not read (algarvestp.pt, anje.pt, cm-olhao.pt, cm-sbras.pt, louledesignlab.pt, cm-alcoutim.pt, algarve.portugal2030.pt, algarveevolution.pt), 'url' was set to the page actually read."
+ ]
+}
