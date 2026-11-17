@@ -1,0 +1,11 @@
+{
+  "schema": "hub.json (draft)",
+  "name": "PrompTugal.news Startups",
+  "what_it_does": "Portugal's startups and their funding, place by place: companies, incubators, programmes and rounds.",
+  "owner": "AgentiCCells",
+  "team": "factory@AgentiCCells.dinis, instructed by Dinis Cruz",
+  "licence": { "code": "Apache-2.0", "text": "CC BY 4.0" },
+  "repository": "https://github.com/PrompTugal/PrompTugal__News__Startups",
+  "live_address": "https://startups.promptugal.news",
+  "version_from": "https://startups.promptugal.news/version.json"
+}
