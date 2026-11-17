@@ -1,0 +1,905 @@
+{
+ "by": "startups.research@PrompTugal.dinis",
+ "read_on": "2026-11-17",
+ "area": "lisbon-porto-national",
+ "entries": [
+  {
+   "name": "Unicorn Factory Lisboa: Incubation Programme",
+   "kind": "incubator",
+   "place": "lisboa",
+   "what": "No-equity support for founders from pre-seed to seed. Applications for the current batch close on 3 December 2026.",
+   "url": "https://unicornfactorylisboa.com/incubation/",
+   "source_url": "https://unicornfactorylisboa.com/active-programs/",
+   "read_on": "2026-11-17",
+   "date": "2026-12-03",
+   "status": "open"
+  },
+  {
+   "name": "Unicorn Factory Lisboa: Mission Carbon 0",
+   "kind": "call",
+   "place": "lisboa",
+   "what": "Pilots of carbon-neutral solutions for Lisbon in mobility tech and cleantech, involving startups, companies and the city. Applications close on 6 December 2026.",
+   "url": "https://unicornfactorylisboa.com/active-programs/",
+   "source_url": "https://unicornfactorylisboa.com/active-programs/",
+   "read_on": "2026-11-17",
+   "date": "2026-12-06",
+   "status": "open"
+  },
+  {
+   "name": "Unicorn Factory Lisboa: Global ScalingUp",
+   "kind": "accelerator",
+   "place": "lisboa",
+   "what": "A six-month cohort across four ecosystems (Europe, MENA, US and Brazil) to help post-seed scaleups expand abroad. Applications close on 13 December 2026.",
+   "url": "https://unicornfactorylisboa.com/active-programs/",
+   "source_url": "https://unicornfactorylisboa.com/active-programs/",
+   "read_on": "2026-11-17",
+   "date": "2026-12-13",
+   "status": "open"
+  },
+  {
+   "name": "Unicorn Factory Lisboa: From Start to Table",
+   "kind": "call",
+   "place": "lisboa",
+   "what": "Acceleration for agritech, food and drink tech and new food products, with partners including Turismo de Portugal, Delta Cafés, Jerónimo Martins and AHRESP. Applications close on 10 January 2027.",
+   "url": "https://unicornfactorylisboa.com/active-programs/",
+   "source_url": "https://unicornfactorylisboa.com/active-programs/",
+   "read_on": "2026-11-17",
+   "date": "2027-01-10",
+   "status": "open"
+  },
+  {
+   "name": "Unicorn Factory Lisboa thematic hubs (AIhub, Greenhub, Healthhub, Engineers Hub, Gaminghub)",
+   "kind": "hub",
+   "place": "lisboa",
+   "what": "Five membership communities for AI, climate tech, health tech, deep-tech engineering and games startups, each with named corporate partners (for example Google, Microsoft, Brisa, AstraZeneca). The page lists no deadlines.",
+   "url": "https://unicornfactorylisboa.com/active-programs/",
+   "source_url": "https://unicornfactorylisboa.com/active-programs/",
+   "read_on": "2026-11-17",
+   "status": "ongoing"
+  },
+  {
+   "name": "Beato Innovation District and Soft Landing Programme",
+   "kind": "hub",
+   "place": "lisboa",
+   "what": "The hub's page lists the Beato campus as a place where technology and creativity meet, and a Soft Landing Programme for founders setting up in Lisbon. No membership details or dates are given.",
+   "url": "https://unicornfactorylisboa.com/active-programs/",
+   "source_url": "https://unicornfactorylisboa.com/active-programs/",
+   "read_on": "2026-11-17",
+   "status": "ongoing"
+  },
+  {
+   "name": "Beta-i",
+   "kind": "accelerator",
+   "place": "lisboa",
+   "what": "A collaborative innovation firm working on strategy, operating models and corporate venturing with startups. Named programmes include Free Electrons (energy, ten editions), AI Ignite (with José de Mello) and Re_source (packaging, 13 companies and 41 pilots). The page lists no open call. Its base city is not stated on the page.",
+   "url": "https://www.beta-i.com",
+   "source_url": "https://www.beta-i.com",
+   "read_on": "2026-11-17",
+   "status": "ongoing"
+  },
+  {
+   "name": "LISPOLIS",
+   "kind": "tech park",
+   "place": "lisboa",
+   "what": "Lisbon's technology hub, with more than 140 companies on campus and more than 400 since 1991. It offers office and lab space, help finding investors and public funds, and networking. Companies apply to install through a form, and no dated call is listed.",
+   "url": "https://www.lispolis.pt",
+   "source_url": "https://www.lispolis.pt",
+   "read_on": "2026-11-17",
+   "status": "ongoing"
+  },
+  {
+   "name": "Fábrica de Startups",
+   "kind": "accelerator",
+   "place": "lisboa",
+   "what": "Runs entrepreneurship programmes (FastIdea, FastStart, Entrepreneurs-in-Residence, Starting, incubation, Erasmus for Young Entrepreneurs) and says it has run more than 70. No call or deadline appears on the page. Its base city is not stated on the page.",
+   "url": "https://www.fabricadestartups.com",
+   "source_url": "https://www.fabricadestartups.com",
+   "read_on": "2026-11-17",
+   "status": "ongoing"
+  },
+  {
+   "name": "ESA BIC Tagus (Técnico Venture Lab, Oeiras)",
+   "kind": "incubator",
+   "place": "lisboa",
+   "what": "The European Space Agency incubation hub run by Técnico Venture Lab at Oeiras, in the Lisbon area. Its second call aimed to pick three more space startups and closed on 5 October 2026.",
+   "url": "https://tecnicoventurelab.pt/esabic-tagus/",
+   "source_url": "https://portugalglobal.pt/noticias/2026/agosto/polo-de-incubacao-da-esa-abre-nova-call-para-startups-espaciais/",
+   "read_on": "2026-11-17",
+   "date": "2026-10-05",
+   "status": "closed"
+  },
+  {
+   "name": "Apollo (JUNITEC, Instituto Superior Técnico)",
+   "kind": "accelerator",
+   "place": "lisboa",
+   "what": "A 15-week acceleration programme for university startups run by Técnico's student consultancy. The fifth edition (2026) focused on AI and dual-use startups, with mentors from OutSystems, Rows and Cloudflare, and applications closed on 6 February 2026.",
+   "url": "https://hrportugal.sapo.pt/programa-de-incubacao-de-startups-do-tecnico-ja-abriu-candidaturas-e-tem-novidades/",
+   "source_url": "https://hrportugal.sapo.pt/programa-de-incubacao-de-startups-do-tecnico-ja-abriu-candidaturas-e-tem-novidades/",
+   "read_on": "2026-11-17",
+   "date": "2026-02-06",
+   "status": "closed"
+  },
+  {
+   "name": "Financial Times Europe's leading start-up hubs 2026",
+   "kind": "statistic",
+   "place": "lisboa",
+   "what": "The February 2026 ranking of 180 hubs put Unicorn Factory Lisboa 24th and LISPOLIS 32nd among Portuguese hubs, with seven Lisbon hubs ranked in all. UPTEC in Porto came 116th and Startup Braga 36th.",
+   "url": "https://eco.sapo.pt/2026/02/19/portugal-com-12-hubs-de-startups-entre-os-melhores-da-europa/",
+   "source_url": "https://eco.sapo.pt/2026/02/19/portugal-com-12-hubs-de-startups-entre-os-melhores-da-europa/",
+   "read_on": "2026-11-17",
+   "date": "2026-02-19"
+  },
+  {
+   "name": "UPTEC",
+   "kind": "tech park",
+   "place": "porto",
+   "what": "The University of Porto's science and technology park. It offers mentoring, incubation (virtual, office, lab or coworking) and accelerators such as School of Startups (September 2026) and ClimateLaunchpad (June 2026). Santander Explorer is listed as open, with no deadline on the page.",
+   "url": "https://uptec.up.pt/en/",
+   "source_url": "https://uptec.up.pt/en/",
+   "read_on": "2026-11-17",
+   "status": "ongoing"
+  },
+  {
+   "name": "UPTEC School of Startups, 14th edition",
+   "kind": "call",
+   "place": "porto",
+   "what": "A free programme for aspiring entrepreneurs with ideas in arts, science, technology, health and cleantech, backed by the Santander Portugal Foundation. Applications closed on 20 September and the programme ends with a Pitch Day on 27 January (2027, by the article date).",
+   "url": "https://uptec.up.pt/en/",
+   "source_url": "https://portugalglobal.pt/en/news/2026/setembro/uptec-opens-applications-for-new-edition-of-school-of-startups/",
+   "read_on": "2026-11-17",
+   "date": "2026-09-20",
+   "status": "closed"
+  },
+  {
+   "name": "ScaleUp Porto",
+   "kind": "public body",
+   "place": "porto",
+   "what": "The Porto startup ecosystem platform backed by the city. It runs Start & Scale Week, masterclasses and a call for activities, and publishes a Porto tech map and investment toolkit. A news item titled Open Calls is dated 20 August 2026, but its details were not on the page read.",
+   "url": "https://scaleupporto.pt",
+   "source_url": "https://scaleupporto.pt",
+   "read_on": "2026-11-17",
+   "date": "2026-08-20",
+   "status": "ongoing"
+  },
+  {
+   "name": "INESC TEC",
+   "kind": "university office",
+   "place": "porto",
+   "what": "Research institute whose site points to a Technological Entrepreneurship section and a list of available technologies for licensing or spin-offs. The page read gave no startup programme or call details.",
+   "url": "https://www.inesctec.pt/en",
+   "source_url": "https://www.inesctec.pt/en",
+   "read_on": "2026-11-17",
+   "status": "ongoing"
+  },
+  {
+   "name": "Porto in the Startup Genome ranking 2026",
+   "kind": "statistic",
+   "place": "porto",
+   "what": "Portugal Global reports that Porto climbed more than 15 places in the Global Startup Ecosystem Report 2026 emerging ecosystems ranking. The page does not give Porto's new position.",
+   "url": "https://portugalglobal.pt/en/news/2026/julho/porto-climbs-over-15-places-in-the-global-startup-ranking/",
+   "source_url": "https://portugalglobal.pt/en/news/2026/julho/porto-climbs-over-15-places-in-the-global-startup-ranking/",
+   "read_on": "2026-11-17",
+   "date": "2026-07"
+  },
+  {
+   "name": "Startup Portugal",
+   "kind": "public body",
+   "place": "portugal (national)",
+   "what": "The national startup agency. Its programmes include Road 2 Web Summit, Business Abroad, Tech Foundry Portugal Deep Tech Edition (four months, lab to market) and monthly Above & Beyond Hangouts in Lisbon, Porto and online. The page read does not mention vouchers or Startup Visa.",
+   "url": "https://www.startupportugal.com",
+   "source_url": "https://www.startupportugal.com",
+   "read_on": "2026-11-17",
+   "status": "ongoing"
+  },
+  {
+   "name": "Startup Portugal 2026 ecosystem report",
+   "kind": "statistic",
+   "place": "portugal (national)",
+   "what": "Reported in November 2026: about 5,495 startups (up 8 percent), almost 2.995 billion euros of revenue, about 30,000 workers, 661 recognised under the Startup Law, and 694 million euros raised across 50 rounds to September 2026, inflated by Tekever. Lisbon holds 45 percent of startups and Porto 16 percent.",
+   "url": "https://www.startupportugal.com",
+   "source_url": "https://business-it.pt/2026/11/13/ecossistema-das-startups-portuguesas-continua-a-crescer-e-tem-facturacao-de-quase-3-mil-milhoes-de-euros/",
+   "read_on": "2026-11-17",
+   "date": "2026-11"
+  },
+  {
+   "name": "Startup Portugal homepage figures",
+   "kind": "statistic",
+   "place": "portugal (national)",
+   "what": "The homepage shows 5,091 startups, 688 recognised startups and 1.5 percent of exports (years not stated), and 470 million euros of capital raised in 2025.",
+   "url": "https://www.startupportugal.com",
+   "source_url": "https://www.startupportugal.com",
+   "read_on": "2026-11-17",
+   "date": "2025"
+  },
+  {
+   "name": "Startup Law (Lei 21/2023) and recognition",
+   "kind": "law",
+   "place": "portugal (national)",
+   "what": "Law 21/2023 of 25 May created the startup and scaleup status. Ordinance 401/2023 sets the procedure from 5 December 2023: a prior notice to Startup Portugal, a certificate within five days, three-year validity with automatic renewal. A startup must meet one of three conditions, such as a venture round or Banco Português de Fomento backing.",
+   "url": "https://www.startupportugal.com",
+   "source_url": "https://www.cuatrecasas.com/pt/portugal/comercial-e-societario/art/regulamentacao-do-estatuto-de-startup-e-scaleup",
+   "read_on": "2026-11-17",
+   "date": "2023-05-25"
+  },
+  {
+   "name": "IAPMEI startup support",
+   "kind": "public body",
+   "place": "portugal (national)",
+   "what": "The SME agency lists StartUP Voucher Innovate 2025-2026, StartUP Boost, StartUP Visa, Tech Visa, a mentor network and incentive systems under PRR and Portugal 2030. No deadlines appear for the voucher or Boost, and Visa pages give no detail.",
+   "url": "https://www.iapmei.pt",
+   "source_url": "https://www.iapmei.pt",
+   "read_on": "2026-11-17",
+   "status": "ongoing"
+  },
+  {
+   "name": "ANI: SIID Internacionalização de I&D (MPR-2026-4)",
+   "kind": "call",
+   "place": "portugal (national)",
+   "what": "A Portugal 2030 call for micro, small and medium firms and small mid-caps doing industrial R&D at European scale. It is open from 30 April to 29 December 2026.",
+   "url": "https://www.ani.pt",
+   "source_url": "https://www.ani.pt",
+   "read_on": "2026-11-17",
+   "date": "2026-12-29",
+   "status": "open"
+  },
+  {
+   "name": "ANI: Deep Tech and Go to EIC Accelerator vouchers",
+   "kind": "programme",
+   "place": "portugal (national)",
+   "what": "ANI supports deep-tech companies with a Go to EIC Accelerator voucher and a Deep Tech voucher, and a Plug In mechanism towards the EIC Accelerator. The page gives no amounts or dates.",
+   "url": "https://www.ani.pt",
+   "source_url": "https://www.ani.pt",
+   "read_on": "2026-11-17",
+   "status": "open"
+  },
+  {
+   "name": "COMPETE 2030 open calls",
+   "kind": "call",
+   "place": "portugal (national)",
+   "what": "The programme site lists open calls including a call to join an innovative suppliers network (31 May 2026), the SIID R&D internationalisation call and a decarbonisation call. The page does not say whether the dates are deadlines or publication dates, and gives no amounts.",
+   "url": "https://www.compete2030.gov.pt",
+   "source_url": "https://www.compete2030.gov.pt",
+   "read_on": "2026-11-17",
+   "status": "open"
+  },
+  {
+   "name": "Banco Português de Fomento: Venture Capital Programme (FdCR)",
+   "kind": "programme",
+   "place": "portugal (national)",
+   "what": "A PRR programme with a 400 million euro endowment that invests in venture funds, as stated in October 2024. FdCR raised its stake in Indico VC Fund II from 35 to 50 million euros and in Oxy Capital's Fundo Juno from 30 to 50 million. By then 12 funds were contracted.",
+   "url": "https://www.bpfomento.pt/pt/",
+   "source_url": "https://www.bpfomento.pt/pt/pt/noticias/programa-de-venture-capital-investe-mais-35m-nos-fundos-da-indico-capital-partners-e-da-oxy-capital/",
+   "read_on": "2026-11-17",
+   "date": "2024-10-16",
+   "amount": "400 million euros"
+  },
+  {
+   "name": "Portugal Ventures",
+   "kind": "public body",
+   "place": "portugal (national)",
+   "what": "State-backed venture capital company investing in tech startups from pre-seed to Series A, with tickets up to 6 million euros. It reports 283 million euros under management and 147 portfolio companies. The page does not state a base city.",
+   "url": "https://www.portugalventures.pt",
+   "source_url": "https://www.portugalventures.pt",
+   "read_on": "2026-11-17",
+   "amount": "283 million euros under management"
+  },
+  {
+   "name": "Portugal Ventures INNOV-ID, fifth call",
+   "kind": "grant",
+   "place": "portugal (national)",
+   "what": "Portugal Ventures put 2.1 million euros into 14 startups, 150,000 euros each, from the fifth call of INNOV-ID, which had 149 applications. Recipients included Fetalix, Glycomatters, Purr.ai and Upwind.",
+   "url": "https://www.portugalventures.pt",
+   "source_url": "https://www.jornaldenegocios.pt/empresas/detalhe/portugal-ventures-investe-2-1-milhoes-em-novas-14-startups",
+   "read_on": "2026-11-17",
+   "date": "2026-07-28",
+   "amount": "2.1 million euros",
+   "investors": [
+    "Portugal Ventures"
+   ]
+  },
+  {
+   "name": "Investors Portugal (APIES)",
+   "kind": "association",
+   "place": "portugal (national)",
+   "what": "The association of early-stage investors, formed by merging the national angels federation and the Portuguese Business Angels association. Its page-read description gives about 425 angels, more than 300 startups and about 500 million euros invested, but the article date on that page is unclear.",
+   "url": "https://executivedigest.sapo.pt/business-angels-ja-investiram-500-milhoes-de-euros-para-levar-startups-portuguesas-ao-ceu/",
+   "source_url": "https://executivedigest.sapo.pt/business-angels-ja-investiram-500-milhoes-de-euros-para-levar-startups-portuguesas-ao-ceu/",
+   "read_on": "2026-11-17"
+  },
+  {
+   "name": "Early Stage Investment Barometer, 4th edition",
+   "kind": "statistic",
+   "place": "portugal (national)",
+   "what": "An Investors Portugal survey published 27 February 2026: 80 percent of domestic early-stage investors were optimistic for the first half of 2026, 65 percent found raising capital easy in the second half of 2025, and 68 percent viewed public policy negatively.",
+   "url": "https://www.essential-business.pt/2026/02/27/80-of-portuguese-investors-in-early-stage-are-optimistic-on-making-investments-in-1h-2026/",
+   "source_url": "https://www.essential-business.pt/2026/02/27/80-of-portuguese-investors-in-early-stage-are-optimistic-on-making-investments-in-1h-2026/",
+   "read_on": "2026-11-17",
+   "date": "2026-02-27"
+  },
+  {
+   "name": "Portugal startup funding 2025 (Tech.eu)",
+   "kind": "statistic",
+   "place": "portugal (national)",
+   "what": "Tech.eu counts 473 million euros of equity across 37 rounds in 2025, down 30 percent on 2024. Indico Capital Partners was the most active investor with nine deals, ahead of Iberis Capital and Lince Capital with six each.",
+   "url": "https://funding.tech.eu/geographies/portugal/2025",
+   "source_url": "https://funding.tech.eu/geographies/portugal/2025",
+   "read_on": "2026-11-17",
+   "date": "2025",
+   "amount": "473 million euros"
+  },
+  {
+   "name": "Portuguese startup rounds in 2025 (ECO)",
+   "kind": "statistic",
+   "place": "portugal (national)",
+   "what": "ECO reported about 577 million euros raised by Portuguese startups and scaleups by mid-July 2025, more than all of 2024, and an average round of 4.5 million euros in the first half against 2.4 million a year earlier.",
+   "url": "https://eco.sapo.pt/especiais/em-ano-de-voo-de-unicornio-startups-ja-levantaram-mais-capital-que-em-todo-o-ano-passado/",
+   "source_url": "https://eco.sapo.pt/especiais/em-ano-de-voo-de-unicornio-startups-ja-levantaram-mais-capital-que-em-todo-o-ano-passado/",
+   "read_on": "2026-11-17",
+   "date": "2025-08-05"
+  },
+  {
+   "name": "Indico Capital Partners",
+   "kind": "investor",
+   "place": "portugal (national)",
+   "what": "Portuguese venture manager. In November 2025 it launched Indico VC Fund III with a 125 million euro target and a 30 million euro anchor from the European Investment Fund, for Portugal, Spain and Italy. It led BIZAY in 2026 and co-led Beyond Vision, and put 5 million euros into PandaDoc in December 2025. Its base city is not stated on the pages read.",
+   "url": "https://tech.eu/2025/11/28/indico-capital-partners-launches-eur125m-fund/",
+   "source_url": "https://www.essential-business.pt/2025/12/02/indico-launches-fund-iii-with-e125-million/",
+   "read_on": "2026-11-17",
+   "date": "2025-12-02",
+   "amount": "125 million euros"
+  },
+  {
+   "name": "Armilar Venture Partners",
+   "kind": "investor",
+   "place": "portugal (national)",
+   "what": "Portuguese venture manager. Armilar IV had a first close above 120 million euros in November 2025, with a goal of double that by end of 2026. Investors include the European Investment Fund, Caixa Capital and Spain's SETT. It backed Sword Health's 2025 round. Base city not stated on the page read.",
+   "url": "https://armilar.com",
+   "source_url": "https://eco.sapo.pt/2025/11/05/armilar-tem-fundo-de-120-milhoes-para-investir-em-startups-na-europa/",
+   "read_on": "2026-11-17",
+   "date": "2025-11-05",
+   "amount": "more than 120 million euros"
+  },
+  {
+   "name": "Lince Capital",
+   "kind": "investor",
+   "place": "portugal (national)",
+   "what": "Portuguese venture manager. In November 2025 it announced Lince Innovation Fund V with a 20 million euro target for technology and health companies. It says it has backed 36 tech companies and invested over 140 million euros. It co-led Beyond Vision in 2026. Base city not stated on the pages read.",
+   "url": "https://eco.sapo.pt/2025/11/17/lince-lanca-novo-fundo-de-20-milhoes-com-foco-nas-startups-de-saude/",
+   "source_url": "https://eco.sapo.pt/2025/11/17/lince-lanca-novo-fundo-de-20-milhoes-com-foco-nas-startups-de-saude/",
+   "read_on": "2026-11-17",
+   "date": "2025-11-17",
+   "amount": "20 million euros (target)"
+  },
+  {
+   "name": "33N Ventures",
+   "kind": "investor",
+   "place": "porto",
+   "what": "Venture fund headquartered in Porto, founded by two former Sonae executives. Per Jornal de Negócios, with Alantra it has raised 115 million euros. In September 2026 it joined Exein's 270 million dollar round through its new growth fund, and in October 2026 its own site says it led Osavul's 8.5 million euro Series A. ECO states no fund size.",
+   "url": "https://www.33n.vc",
+   "source_url": "https://www.jornaldenegocios.pt/empresas/tecnologias/detalhe/portuguesa-33n-investe-numa-ronda-de-234-milhoes-da-startup-de-ciberseguranca-mais-valiosa-da-europa",
+   "read_on": "2026-11-17",
+   "date": "2026-09-17",
+   "amount": "115 million euros (as stated by Jornal de Negócios)"
+  },
+  {
+   "name": "Bynd Venture Capital",
+   "kind": "investor",
+   "place": "portugal (national)",
+   "what": "Venture manager whose site lists offices in Lisbon, Porto, Barcelona and Madrid and five investment vehicles, with no stated fund size. It backed Pollen's 2026 seed round and lists Casafari and Enging among portfolio names.",
+   "url": "https://www.bynd.vc",
+   "source_url": "https://www.bynd.vc",
+   "read_on": "2026-11-17"
+  },
+  {
+   "name": "Shilling VC",
+   "kind": "investor",
+   "place": "portugal (national)",
+   "what": "Early-stage investor with typical cheques of 100,000 to 1 million euros, per its site, which states no base city or fund size. It joined Sword Health's June 2025 round.",
+   "url": "https://www.shilling.vc",
+   "source_url": "https://www.shilling.vc",
+   "read_on": "2026-11-17"
+  },
+  {
+   "name": "Mustard Seed MAZE",
+   "kind": "investor",
+   "place": "lisboa",
+   "what": "Impact venture investor that co-led Pollen's 3.2 million euro seed round in July 2026 with Pale Blue Dot. Base city and fund size were not stated on the page read (the Tech.eu article says Pollen is in Lisbon).",
+   "url": "https://tech.eu/2026/07/15/pollen-is-building-the-battery-swapping-network-electric-motorcycles-have-been-waiting-for/",
+   "source_url": "https://tech.eu/2026/07/15/pollen-is-building-the-battery-swapping-network-electric-motorcycles-have-been-waiting-for/",
+   "read_on": "2026-11-17",
+   "date": "2026-07",
+   "amount": "3.2 million euros"
+  },
+  {
+   "name": "Alea Capital Partners",
+   "kind": "investor",
+   "place": "lisboa",
+   "what": "Lisbon asset manager (founded 2021 per the article) that led a 6 million euro Series A in Czech startup Choice in March 2026, with Reflex Capital, Smartlink and J&T Ventures.",
+   "url": "https://www.jornaldenegocios.pt/empresas/tecnologias/detalhe/lisboeta-alea-lidera-investimento-de-6-milhoes-para-startup-checa-servir-portugal",
+   "source_url": "https://www.jornaldenegocios.pt/empresas/tecnologias/detalhe/lisboeta-alea-lidera-investimento-de-6-milhoes-para-startup-checa-servir-portugal",
+   "read_on": "2026-11-17",
+   "date": "2026-03-17",
+   "amount": "6 million euros",
+   "investors": [
+    "Alea Capital Partners",
+    "Reflex Capital",
+    "Smartlink",
+    "J&T Ventures"
+   ]
+  },
+  {
+   "name": "Iberis Capital",
+   "kind": "investor",
+   "place": "portugal (national)",
+   "what": "Investor that led Hope Care's 6 million euro Series A in September 2026, joined Tryp.com's 1.9 million euro round on 30 September 2026, and is listed as a continuing Tekever backer. Base city not stated on the pages read.",
+   "url": "https://eco.sapo.pt/2026/09/08/iberis-capital-lidera-ronda-de-seis-milhoes-de-euros-na-startup-de-saude-hope-care/",
+   "source_url": "https://eco.sapo.pt/2026/09/08/iberis-capital-lidera-ronda-de-seis-milhoes-de-euros-na-startup-de-saude-hope-care/",
+   "read_on": "2026-11-17",
+   "date": "2026-09-08"
+  },
+  {
+   "name": "3XP Global (Impact Innovation Fund)",
+   "kind": "investor",
+   "place": "portugal (national)",
+   "what": "Led Chrono Health's 2.7 million euro pre-seed in January 2026 and Granter's 1.6 million euro seed in November 2026 under the FdCR venture programme. Base city not stated on the pages read.",
+   "url": "https://observador.pt/2026/11/03/startup-portuguesa-granter-recebe-investimento-de-16-milhoes-para-expansao-na-europa/",
+   "source_url": "https://observador.pt/2026/11/03/startup-portuguesa-granter-recebe-investimento-de-16-milhoes-para-expansao-na-europa/",
+   "read_on": "2026-11-17",
+   "date": "2026-11-03"
+  },
+  {
+   "name": "BY Venture Partners Lisbon office",
+   "kind": "investor",
+   "place": "lisboa",
+   "what": "A Dubai-headquartered fund that closed a 60 million dollar Fund III on 29 October 2026 and opened a Lisbon office as its European hub, with two local investment hires.",
+   "url": "https://tech.eu/2026/10/29/by-venture-partners-closes-60m-fund-iii-and-opens-lisbon-office-to-deepen-european-push",
+   "source_url": "https://tech.eu/2026/10/29/by-venture-partners-closes-60m-fund-iii-and-opens-lisbon-office-to-deepen-european-push",
+   "read_on": "2026-11-17",
+   "date": "2026-10-29",
+   "amount": "60 million dollars"
+  },
+  {
+   "name": "Augusta Labs first round",
+   "kind": "round",
+   "place": "lisboa",
+   "what": "Lisbon applied AI lab closed its first round, valuing it at 50 million euros. The amount raised was not disclosed. Named backers are individual founders such as those of Sword Health and OutSystems.",
+   "url": "https://www.publico.pt/2026/06/02/enter/noticia/augusta-labs-capta-50-milhoes-melhorar-empresas-ia-2176871",
+   "source_url": "https://www.publico.pt/2026/06/02/enter/noticia/augusta-labs-capta-50-milhoes-melhorar-empresas-ia-2176871",
+   "read_on": "2026-11-17",
+   "date": "2026-06-02",
+   "amount": "valuation 50 million euros; round size not disclosed",
+   "company": "Augusta Labs",
+   "investors": [
+    "Virgílio Bento",
+    "Diogo Mónica",
+    "Paulo Rosado",
+    "Nuno Sebastião"
+   ]
+  },
+  {
+   "name": "Chrono Health pre-seed",
+   "kind": "round",
+   "place": "lisboa",
+   "what": "Digital health platform with its office in Lisbon raised a pre-seed round, planning to enter the US from the first day.",
+   "url": "https://www.jornaldenegocios.pt/empresas/tecnologias/detalhe/portuguesa-angaria-2-7-milhoes-em-lisboa-para-operar-desde-o-primeiro-dia-nos-eua",
+   "source_url": "https://www.jornaldenegocios.pt/empresas/tecnologias/detalhe/portuguesa-angaria-2-7-milhoes-em-lisboa-para-operar-desde-o-primeiro-dia-nos-eua",
+   "read_on": "2026-11-17",
+   "date": "2026-01-28",
+   "amount": "2.7 million euros",
+   "company": "Chrono Health",
+   "investors": [
+    "3xP Global (lead)"
+   ]
+  },
+  {
+   "name": "Pollen seed round",
+   "kind": "round",
+   "place": "lisboa",
+   "what": "Lisbon startup building a battery-swapping network for electric mopeds and motorcycles, aiming for 30 to 40 stations by the end of 2026.",
+   "url": "https://tech.eu/2026/07/15/pollen-is-building-the-battery-swapping-network-electric-motorcycles-have-been-waiting-for/",
+   "source_url": "https://tech.eu/2026/07/15/pollen-is-building-the-battery-swapping-network-electric-motorcycles-have-been-waiting-for/",
+   "read_on": "2026-11-17",
+   "date": "2026-07",
+   "amount": "3.2 million euros",
+   "company": "Pollen",
+   "investors": [
+    "Pale Blue Dot (lead)",
+    "Mustard Seed MAZE (lead)",
+    "Kfund",
+    "Bynd Venture Capital",
+    "4P Capital",
+    "Masia"
+   ]
+  },
+  {
+   "name": "Beyond Vision round",
+   "kind": "round",
+   "place": "lisboa",
+   "what": "Drone maker, listed as a Lisbon round in Vestbee's October 2026 roundup, building AI-enabled unmanned aircraft for defence, security and infrastructure monitoring. Tech.eu calls it Portuguese without a city.",
+   "url": "https://vestbee.com/insights/articles/top-european-funding-rounds-closed-in-october-2026",
+   "source_url": "https://vestbee.com/insights/articles/top-european-funding-rounds-closed-in-october-2026",
+   "read_on": "2026-11-17",
+   "date": "2026-10",
+   "amount": "over 28 million euros",
+   "company": "Beyond Vision",
+   "investors": [
+    "Índico Capital Partners (co-lead)",
+    "Lince Capital (co-lead)",
+    "ActiveCap"
+   ]
+  },
+  {
+   "name": "BIZAY Series D",
+   "kind": "round",
+   "place": "lisboa",
+   "what": "Lisbon platform for customised products, using the money to grow in the US, make acquisitions and build AI infrastructure.",
+   "url": "https://www.portugalglobal.pt/en/news/2026/julho/lisbon-based-bizay-raises-487-million-series-d/",
+   "source_url": "https://www.portugalglobal.pt/en/news/2026/julho/lisbon-based-bizay-raises-487-million-series-d/",
+   "read_on": "2026-11-17",
+   "date": "2026-07-08",
+   "amount": "48.75 million euros",
+   "company": "BIZAY",
+   "investors": [
+    "Indico Capital Partners (lead)",
+    "Lince Capital",
+    "Cedrus Capital",
+    "Banco Português de Fomento"
+   ]
+  },
+  {
+   "name": "SkillUp Series A",
+   "kind": "round",
+   "place": "lisboa",
+   "what": "US edtech headquartered in Seattle with an R&D hub in Lisbon (27 staff, 50 more planned by 2028).",
+   "url": "https://www.jornaldenegocios.pt/empresas/tecnologias/detalhe/norte-americana-skillup-capta-seis-milhoes-de-euros-com-hub-de-i-d-em-lisboa",
+   "source_url": "https://www.jornaldenegocios.pt/empresas/tecnologias/detalhe/norte-americana-skillup-capta-seis-milhoes-de-euros-com-hub-de-i-d-em-lisboa",
+   "read_on": "2026-11-17",
+   "date": "2025-07-12",
+   "amount": "6 million euros",
+   "company": "SkillUp",
+   "investors": [
+    "Explorer Investments (lead)",
+    "FundBox"
+   ]
+  },
+  {
+   "name": "PandaDoc investment",
+   "kind": "round",
+   "place": "lisboa",
+   "what": "Document automation company with a Lisbon office as its European hub. The money supports team growth there. Headquarters are elsewhere.",
+   "url": "https://tech.eu/2025/12/16/ndico-capital-partners-invests-5m-in-pandadoc",
+   "source_url": "https://tech.eu/2025/12/16/ndico-capital-partners-invests-5m-in-pandadoc",
+   "read_on": "2026-11-17",
+   "date": "2025-12-16",
+   "amount": "5 million euros",
+   "company": "PandaDoc",
+   "investors": [
+    "Índico Capital Partners"
+   ]
+  },
+  {
+   "name": "MobyFly Series A",
+   "kind": "round",
+   "place": "porto",
+   "what": "Electric hydrofoil boat startup incubated at UPTEC, founded in Switzerland in 2020.",
+   "url": "https://eco.sapo.pt/2025/09/25/startup-do-porto-angaria-11-milhoes-para-produzir-barcos-eletricos/",
+   "source_url": "https://eco.sapo.pt/2025/09/25/startup-do-porto-angaria-11-milhoes-para-produzir-barcos-eletricos/",
+   "read_on": "2026-11-17",
+   "date": "2025-09-25",
+   "amount": "10.8 million euros",
+   "company": "MobyFly",
+   "investors": [
+    "Fonds Révolution Environnementale et Solidaire (lead)"
+   ]
+  },
+  {
+   "name": "Nixar investment",
+   "kind": "round",
+   "place": "porto",
+   "what": "UPTEC-incubated influencer marketing platform for small businesses, founded 2024. The amount was not disclosed.",
+   "url": "https://uptec.up.pt/nixar-secures-investment-to-expand-influencer-marketing-platform-for-smes/",
+   "source_url": "https://uptec.up.pt/nixar-secures-investment-to-expand-influencer-marketing-platform-for-smes/",
+   "read_on": "2026-11-17",
+   "date": "2026-01-09",
+   "amount": "not disclosed",
+   "company": "Nixar",
+   "investors": [
+    "Angels Way (OW Ventures)"
+   ]
+  },
+  {
+   "name": "Granter seed round",
+   "kind": "round",
+   "place": "portugal (national)",
+   "what": "AI startup that helps firms apply for funding. The Observador article states no city; our existing Porto file links it to UPTEC. Round under the FdCR venture programme.",
+   "url": "https://observador.pt/2026/11/03/startup-portuguesa-granter-recebe-investimento-de-16-milhoes-para-expansao-na-europa/",
+   "source_url": "https://observador.pt/2026/11/03/startup-portuguesa-granter-recebe-investimento-de-16-milhoes-para-expansao-na-europa/",
+   "read_on": "2026-11-17",
+   "date": "2026-11-03",
+   "amount": "1.6 million euros",
+   "company": "Granter",
+   "investors": [
+    "3XP Global (lead)",
+    "Celtis Venture Partners",
+    "Gateway Ventures"
+   ]
+  },
+  {
+   "name": "Sword Health round",
+   "kind": "round",
+   "place": "portugal (national)",
+   "what": "Health technology company, about half of roughly 1,000 staff in Portugal, valued at 4 billion dollars. ECO states no headquarters city.",
+   "url": "https://eco.sapo.pt/2025/06/17/unicornio-sword-health-levanta-35-milhoes-de-euros-e-avanca-com-solucao-ia-para-saude-mental/",
+   "source_url": "https://eco.sapo.pt/2025/06/17/unicornio-sword-health-levanta-35-milhoes-de-euros-e-avanca-com-solucao-ia-para-saude-mental/",
+   "read_on": "2026-11-17",
+   "date": "2025-06-17",
+   "amount": "40 million dollars (about 35 million euros)",
+   "company": "Sword Health",
+   "investors": [
+    "General Catalyst (lead)",
+    "Khosla Ventures",
+    "Comcast Ventures",
+    "Lince Capital",
+    "Oxy Capital",
+    "Armilar",
+    "Indico Capital",
+    "Shilling"
+   ]
+  },
+  {
+   "name": "Lyzer round",
+   "kind": "round",
+   "place": "portugal (national)",
+   "what": "Retail logistics software company. ECO states no city.",
+   "url": "https://eco.sapo.pt/2025/07/22/lyzer-capta-10-milhoes-de-euros-com-entrada-de-novo-investidor/",
+   "source_url": "https://eco.sapo.pt/2025/07/22/lyzer-capta-10-milhoes-de-euros-com-entrada-de-novo-investidor/",
+   "read_on": "2026-11-17",
+   "date": "2025-07-22",
+   "amount": "more than 10 million euros",
+   "company": "Lyzer",
+   "investors": [
+    "Indico Capital Partners",
+    "Lince Capital",
+    "LC Ventures",
+    "C2 Capital Partners"
+   ]
+  },
+  {
+   "name": "Tekever round",
+   "kind": "round",
+   "place": "portugal (national)",
+   "what": "Drone maker. Dinheiro Vivo says the Series D is not yet closed. The article states no city.",
+   "url": "https://dinheirovivo.dn.pt/empresas/tekever-capta-mais-de-500-milhes-de-euros-e-avaliao-alcana-56-mil-milhes",
+   "source_url": "https://dinheirovivo.dn.pt/empresas/tekever-capta-mais-de-500-milhes-de-euros-e-avaliao-alcana-56-mil-milhes",
+   "read_on": "2026-11-17",
+   "date": "2026-09-23",
+   "amount": "580 million dollars (more than 500 million euros)",
+   "company": "Tekever",
+   "investors": [
+    "UC Investments",
+    "Merlyn Advisors",
+    "Baillie Gifford",
+    "Crescent Cove",
+    "Ventura Capital",
+    "Iberis Capital"
+   ]
+  },
+  {
+   "name": "Bloq.it Series B",
+   "kind": "round",
+   "place": "portugal (national)",
+   "what": "Smart parcel locker company founded in 2019. No investors or city named.",
+   "url": "https://eco.sapo.pt/2025/05/28/portuguesa-bloq-it-levanta-28-milhoes-e-ja-pensa-em-fusoes-e-aquisicoes/",
+   "source_url": "https://eco.sapo.pt/2025/05/28/portuguesa-bloq-it-levanta-28-milhoes-e-ja-pensa-em-fusoes-e-aquisicoes/",
+   "read_on": "2026-11-17",
+   "date": "2025-05-28",
+   "amount": "28 million euros",
+   "company": "Bloq.it",
+   "investors": []
+  },
+  {
+   "name": "Nutrium round",
+   "kind": "round",
+   "place": "portugal (national)",
+   "what": "Nutrition software company in Minho, northern Portugal. Total raised 16.8 million euros.",
+   "url": "https://eco.sapo.pt/2025/09/16/startup-minhota-nutrium-levanta-10-milhoes-para-consolidar-nos-eua/",
+   "source_url": "https://eco.sapo.pt/2025/09/16/startup-minhota-nutrium-levanta-10-milhoes-para-consolidar-nos-eua/",
+   "read_on": "2026-11-17",
+   "date": "2025-09-16",
+   "amount": "10 million euros",
+   "company": "Nutrium",
+   "investors": [
+    "Vesalius Biocapital (lead)",
+    "Indico Capital Partners",
+    "Lince Capital",
+    "Beta Capital"
+   ]
+  },
+  {
+   "name": "Brainr seed round",
+   "kind": "round",
+   "place": "portugal (national)",
+   "what": "Leiria startup, round paid out as milestones are met.",
+   "url": "https://eco.sapo.pt/2025/09/11/startup-de-leiria-brainr-levanta-ate-11-milhoes-e-aponta-para-eua-e-brasil/",
+   "source_url": "https://eco.sapo.pt/2025/09/11/startup-de-leiria-brainr-levanta-ate-11-milhoes-e-aponta-para-eua-e-brasil/",
+   "read_on": "2026-11-17",
+   "date": "2025-09-11",
+   "amount": "up to 11 million euros",
+   "company": "Brainr",
+   "investors": [
+    "C2 Capital Partners (lead)"
+   ]
+  },
+  {
+   "name": "Hope Care Series A",
+   "kind": "round",
+   "place": "portugal (national)",
+   "what": "Remote patient monitoring software firm based in Óbidos, with a German subsidiary in Erlangen.",
+   "url": "https://eco.sapo.pt/2026/09/08/iberis-capital-lidera-ronda-de-seis-milhoes-de-euros-na-startup-de-saude-hope-care/",
+   "source_url": "https://eco.sapo.pt/2026/09/08/iberis-capital-lidera-ronda-de-seis-milhoes-de-euros-na-startup-de-saude-hope-care/",
+   "read_on": "2026-11-17",
+   "date": "2026-09-08",
+   "amount": "6 million euros",
+   "company": "Hope Care",
+   "investors": [
+    "Iberis Capital (lead)",
+    "VDM Capital",
+    "Buenavista Equity Partners"
+   ]
+  },
+  {
+   "name": "SEAentia round",
+   "kind": "round",
+   "place": "portugal (national)",
+   "what": "Sea bass-type corvina aquaculture company at Peniche.",
+   "url": "https://eco.sapo.pt/2025/02/28/seaentia-levanta-16-milhoes-para-aquacultura-de-corvina-em-peniche/",
+   "source_url": "https://eco.sapo.pt/2025/02/28/seaentia-levanta-16-milhoes-para-aquacultura-de-corvina-em-peniche/",
+   "read_on": "2026-11-17",
+   "date": "2025-02-28",
+   "amount": "16 million euros",
+   "company": "SEAentia",
+   "investors": [
+    "Indico Blue",
+    "Mar2030 programme"
+   ]
+  },
+  {
+   "name": "Exein round (33N)",
+   "kind": "round",
+   "place": "portugal (national)",
+   "what": "Italian device-security company; Porto-based 33N invested through its growth fund. Not a Portuguese startup.",
+   "url": "https://www.jornaldenegocios.pt/empresas/tecnologias/detalhe/portuguesa-33n-investe-numa-ronda-de-234-milhoes-da-startup-de-ciberseguranca-mais-valiosa-da-europa",
+   "source_url": "https://www.jornaldenegocios.pt/empresas/tecnologias/detalhe/portuguesa-33n-investe-numa-ronda-de-234-milhoes-da-startup-de-ciberseguranca-mais-valiosa-da-europa",
+   "read_on": "2026-11-17",
+   "date": "2026-09-17",
+   "amount": "270 million dollars (234.3 million euros)",
+   "company": "Exein",
+   "investors": [
+    "Headline (lead)",
+    "Sofina",
+    "Goldman Sachs",
+    "European Investment Bank",
+    "KfW Capital",
+    "T.Capital",
+    "33N Ventures"
+   ]
+  },
+  {
+   "name": "Choice Series A (Alea)",
+   "kind": "round",
+   "place": "portugal (national)",
+   "what": "Czech startup; the lead investor is Lisbon-based Alea.",
+   "url": "https://www.jornaldenegocios.pt/empresas/tecnologias/detalhe/lisboeta-alea-lidera-investimento-de-6-milhoes-para-startup-checa-servir-portugal",
+   "source_url": "https://www.jornaldenegocios.pt/empresas/tecnologias/detalhe/lisboeta-alea-lidera-investimento-de-6-milhoes-para-startup-checa-servir-portugal",
+   "read_on": "2026-11-17",
+   "date": "2026-03-17",
+   "amount": "6 million euros",
+   "company": "Choice",
+   "investors": [
+    "Alea Capital Partners (lead)",
+    "Reflex Capital",
+    "Smartlink",
+    "J&T Ventures"
+   ]
+  },
+  {
+   "name": "Tryp.com round",
+   "kind": "round",
+   "place": "lisboa",
+   "what": "AI travel platform headquartered in Copenhagen with a licensed travel agency in Lisbon.",
+   "url": "https://jornaleconomico.sapo.pt/noticias/startup-criada-por-portugueses-que-suporta-plataforma-de-ferias-da-wizz-air-capta-19-milhoes/",
+   "source_url": "https://jornaleconomico.sapo.pt/noticias/startup-criada-por-portugueses-que-suporta-plataforma-de-ferias-da-wizz-air-capta-19-milhoes/",
+   "read_on": "2026-11-17",
+   "date": "2026-09-30",
+   "amount": "1.9 million euros",
+   "company": "Tryp.com",
+   "investors": [
+    "Point Capital Partners (lead)",
+    "Iberis Capital"
+   ]
+  },
+  {
+   "name": "BIGhub planned round",
+   "kind": "startup",
+   "place": "lisboa",
+   "what": "Lisbon sales accelerator for online marketplaces planned to open a new round in the first quarter of 2026. The amount and investors were not named. Its 2024 round was 10 million euros led by BlueCrow Capital.",
+   "url": "https://dinheirovivo.dn.pt/empresas/acelerador-de-vendas-portugus-faturou-10-milhes-em-2025-e-quer-disparar-em-2026",
+   "source_url": "https://dinheirovivo.dn.pt/empresas/acelerador-de-vendas-portugus-faturou-10-milhes-em-2025-e-quer-disparar-em-2026",
+   "read_on": "2026-11-17",
+   "date": "2026-01-16",
+   "company": "BIGhub"
+  }
+ ],
+ "gaps": [
+  {
+   "url": "https://noticias.up.pt",
+   "what": "UPTEC and U.Porto news (Intuitivo 1.35 million euros, SeaMoreTech, Granter)",
+   "why": "403 refused; not read"
+  },
+  {
+   "url": "https://www.eu-startups.com",
+   "what": "Humanos, Ekiden, EIGHT, BIZAY pages",
+   "why": "403 refused; not read"
+  },
+  {
+   "url": "https://sifted.eu/articles/humanos-seed-raise",
+   "what": "Humanos seed",
+   "why": "403 refused"
+  },
+  {
+   "url": "https://elreferente.es",
+   "what": "Lince 146 million euro fund headline, Augusta Labs",
+   "why": "403 refused"
+  },
+  {
+   "url": "https://www.portodigital.pt/en",
+   "what": "Porto Digital",
+   "why": "503 unavailable"
+  },
+  {
+   "url": "https://www.apba.pt",
+   "what": "Portuguese angels' association (APBA)",
+   "why": "that domain is an unrelated interior design site; the merged body is Investors Portugal, whose own site was not read"
+  },
+  {
+   "url": "https://www.busyangels.com",
+   "what": "Busy Angels",
+   "why": "returned status 445; not read"
+  },
+  {
+   "url": "https://www.lince.capital",
+   "what": "Lince Capital own site",
+   "why": "host would not resolve"
+  },
+  {
+   "url": "https://www.startuplisboa.com",
+   "what": "Startup Lisboa",
+   "why": "404; distinctness from Unicorn Factory not confirmed"
+  },
+  {
+   "url": "https://www.startupportugal.com/en/programs/startup-visa",
+   "what": "Startup Visa and Tech Visa details",
+   "why": "404; only the IAPMEI list names them"
+  },
+  {
+   "url": "https://www.bpifrance.fr",
+   "what": "none",
+   "why": "accidental request, 403; irrelevant"
+  },
+  {
+   "url": "Porto Business School / Porto Innovation Hub",
+   "what": "Not read",
+   "why": "search gave no first-party page"
+  },
+  {
+   "url": "Nova SBE, ISCTE (Labs Lisboa), Hub Criativo do Beato, Lab2Market@Técnico",
+   "what": "Programmes seen only in search snippets",
+   "why": "not opened, so not recorded"
+  },
+  {
+   "url": "Armilar, Faber, Busy Angels deals 2026",
+   "what": "Named 2026 deals not found on pages read",
+   "why": "not found"
+  }
+ ]
+}
