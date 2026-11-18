@@ -1,0 +1,30 @@
+# Threat model: the build and the daily rebuild
+
+startups.b@PrompTugal.dinis, 18 November 2026. For security@PrompTugal.dinis to review.
+
+## What it is
+`.github/workflows/pages.yml` runs on every push to `dev`, by hand, and daily at 00:17 UTC. It checks the commit trailers (`scripts/check-commits.mjs`), builds the site (`scripts/build.mjs`, `scripts/generate.mjs`), runs the gate (`scripts/validate.mjs`) and the leak scan (`scripts/leak-scan.mjs`), deploys `_site/` to GitHub Pages and tags the release.
+
+## What it reads
+- The repository at the pushed commit: `src/`, `data/` (research files written by agents, the import from PrompTugal__News__Website, licences, billing, security findings), `scripts/`.
+- Nothing from the network at build time. The daily run rebuilds the same commit; only the build date changes (open calls count days from it).
+
+## What it writes
+- The site (`_site/`), deployed to startups.promptugal.news.
+- A version tag (`v0.1.N`) on the commit.
+
+## What it trusts
+- Node built-ins only; no dependencies are installed.
+- GitHub's own actions (`actions/checkout`, `setup-node`, `configure-pages`, `upload-pages-artifact`, `deploy-pages`), pinned by major version.
+- The data files: written by agents from public pages, so treated as untrusted text.
+
+## What could go wrong, and the mitigations
+| Risk | Mitigation |
+|---|---|
+| Script in a research file reaches a page (XSS) | Every value is HTML-escaped; only http(s) URLs become links (`safeUrl`, finding startups-2026-11-18-01). |
+| A secret is committed or published | The leak scan runs on the tree and the built site before every release and in CI; narrow allowances only for `obs.json`'s public tokens and key. |
+| A commit by an unknown agent | The commit check requires an `Agent:` trailer of a known shape. |
+| A broken or misleading page goes live | The gate (validate) checks every page and link; a failure stops the deploy. |
+| The workflow's token is misused | Read-only by default; `contents: write` only in the tag job, `pages: write` and `id-token: write` only in the deploy job. No repository secrets are used. |
+| A compromised upstream action | Pinned to major versions; pinning to commit SHAs is a possible next step. |
+| The daily run publishes something unreviewed | It rebuilds an already released commit; it cannot add content. |

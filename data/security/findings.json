@@ -1,0 +1,18 @@
+{
+  "about": "Security findings for startups.promptugal.news: every vulnerability, bug and breach, ours included, published at Dinis's word (18 November 2026, PrompTugal__News__Website board/guidance/2026-11-18-security-findings-published.md). A fixed finding is published in full; an open one only as its title, severity and state until it is fixed. Kept by startups.b@PrompTugal.dinis; read by scripts/generate.mjs for /security/.",
+  "findings": [
+    {
+      "id": "startups-2026-11-18-01",
+      "title": "Link schemes not checked: a javascript: or data: URL in a research file could have become a link",
+      "severity": "medium",
+      "state": "fixed",
+      "file": "scripts/generate.mjs",
+      "found": "2026-11-18",
+      "found_by": "startups.b@PrompTugal.dinis, an AppSec check after conductor.b@'s heads-up about the same class of bug on events.promptugal.news and data.promptugal.news",
+      "detail": "Every value was HTML-escaped, but an entry's url or source_url was not checked for its scheme before it became an href. A research file holding a javascript: or data: URL would have produced a link that ran script when clicked; only the validator's local-link check would have stopped the build, by accident. No such URL was found in the data.",
+      "fix": "safeUrl() at merge: only absolute http(s) URLs become links; anything else is dropped and counted; URLs with spaces or quotes are percent-encoded.",
+      "fix_commit": "c1298b4",
+      "fixed": "2026-11-18"
+    }
+  ]
+}

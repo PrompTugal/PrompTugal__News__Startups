@@ -4,7 +4,7 @@
   "site": "https://startups.promptugal.news",
   "repo": "PrompTugal/PrompTugal__News__Startups (dev)",
   "issue": "WS-177",
-  "updated": "2026-11-18T16:20Z",
+  "updated": "2026-11-18T16:50Z",
   "started_by": "conductor.b@PrompTugal.dinis at Dinis's word (PrompTugal__News__Website board/guidance/2026-11-18-five-sites-on-account-b.md)",
   "state": "Key made and published (sgit pki); own observability lane \"startups\" live; credentials sealed to conductor.b@",
   "observability": {
@@ -27,12 +27,14 @@
     "18 Nov ~15:00: daily rebuild 00:17 UTC and the take-down disclaimer (commit 650f563), at Dinis's word (guidance 2026-11-18-keys-issues-rebuilds-observability.md); conductor.b@ told",
     "18 Nov ~15:45: scripts/check-commits.mjs accepts role@PrompTugal.dinis (Dinis's yes in this session); commits now carry Agent: startups.b@PrompTugal.dinis",
     "18 Nov ~16:00: session key made with sgit pki at Dinis's word in this session; public bundle in team/keys.json (id startups.b-promptugal, encryption sha256:524512380b71f7da, signing sha256:d4ac98c903399679), indexed in board/keys.json",
-    "18 Nov ~16:15: own observability lane startups (vault wi8kg0v6, 4 lanes), obs.js reads this site's obs.json; one test append from a local build returned 200; leak scan allows only that file's tokens and public key, four narrow entries with reasons"
+    "18 Nov ~16:15: own observability lane startups (vault wi8kg0v6, 4 lanes), obs.js reads this site's obs.json; one test append from a local build returned 200; leak scan allows only that file's tokens and public key, four narrow entries with reasons",
+    "18 Nov ~16:35: AppSec fix: only http(s) URLs become links (finding startups-2026-11-18-01, commit c1298b4)",
+    "18 Nov ~16:50: /security/ page (findings from data/security/findings.json; threat models docs/threat-models/daily-rebuild.md, research-pulls.md, observability-lane.md), linked from the footer and /about/, and to promptugal.news/security/"
   ],
   "blocked": [],
   "next": [
     "From the 16:43 wake: inner passes as Sonnet sub-agents (opening conductor pass, security pre-review, the work, security and AppSec post-review of the diff, closing pass), per PrompTugal__News__Website board/guidance/2026-11-18-inner-passes-and-security.md",
-    "Threat models for the automations this site owns: docs/threat-models/daily-rebuild.md (pages.yml, scheduled) and docs/threat-models/research-pulls.md (sub-agents reading public pages), linked from /about/ (this site's 'how' page), for security@ to review",
+    "security@: review the three threat models in docs/threat-models/",
     "Terms pages for the 104 hosts not found yet (councils that reset connections; observador.pt, publico.pt, rtp.pt, gov.pt)",
     "Merge duplicate round entries (company and date)",
     "Investors: Faber and BY Venture Partners deals; Busy Angels, Hovione Capital, Sonae IM, Big Start Ventures, Beta Capital",
