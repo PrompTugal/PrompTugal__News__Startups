@@ -5,6 +5,7 @@ import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync } from 
 import { join, dirname } from 'node:path';
 import { variants } from './lib/front-variants.mjs';
 import { meterConfig } from './lib/billing.mjs';
+import { loadLicences, sourceLicence, licenceHtml, licenceMd, OWN } from './lib/licence.mjs';
 import { buildInvestors, GROUPS } from './lib/investors.mjs';
 const GROUP_IDX = t => GROUPS.indexOf(t);
 
@@ -39,6 +40,7 @@ export function loadData() {
     }
     for (const g of d.gaps || []) gaps.push({ ...g, file: `data/research/${f}` });
   }
+  const LICENCES = loadLicences();
   // One entry per section, place and name: the first wins and later sources are kept as "also".
   const seen = new Map();
   const entries = [];
@@ -46,7 +48,7 @@ export function loadData() {
     if (!e.name || !e.source_url) continue;
     const key = `${e.section}|${e.place}|${slug(e.name)}`;
     if (seen.has(key)) { const first = seen.get(key); (first.also ||= []).push({ source_url: e.source_url, read_on: e.read_on }); continue; }
-    const x = { ...e, id: slug(`${e.place}-${e.name}`) };
+    const x = { ...e, id: slug(`${e.place}-${e.name}`), license: OWN, source_license: sourceLicence(e, LICENCES) };
     seen.set(key, x); entries.push(x);
   }
   return { web, places, entries, gaps, researchFiles };
@@ -107,7 +109,7 @@ ${body}
 </main>
 <footer><div class="wrap cols">
 <div><h2>How this page was made</h2>${made || MADE_DEFAULT}</div>
-<div><h2>About this site</h2><p>Independent: not an official or government site, and not investment advice. Public facts only, each with its source and the date it was read. Corrections are welcome through the repository's issues.</p><div class="row"><p class="meta small">Version __VERSION__ · Code Apache-2.0, text CC BY 4.0 · <a href="https://github.com/PrompTugal/PrompTugal__News__Startups">source</a> · <a href="/llms.txt">llms.txt</a></p></div></div>
+<div><h2>About this site</h2><p>Independent: not an official or government site, and not investment advice. Public facts only, each with its source and the date it was read. Corrections are welcome through the repository's issues. Our text and data: <a href="https://creativecommons.org/licenses/by/4.0/" rel="license">CC BY 4.0</a>. Facts taken from other sites stay under each source's licence or terms, linked on every item.</p><div class="row"><p class="meta small">Version __VERSION__ · Code Apache-2.0 · <a href="https://github.com/PrompTugal/PrompTugal__News__Startups">source</a> · <a href="/llms.txt">llms.txt</a></p></div></div>
 </div></footer>
 </body>
 </html>
@@ -120,7 +122,7 @@ function write(path, html, md) {
   const dir = join(OUT, path);
   mkdirSync(dir, { recursive: true });
   writeFileSync(join(dir, 'index.html'), html);
-  writeFileSync(join(dir, 'index.md'), md.trim() + '\n\n---\nVersion __VERSION__. Text CC BY 4.0. ' + `${SITE}${path}` + '\n');
+  writeFileSync(join(dir, 'index.md'), md.trim() + '\n\n---\nVersion __VERSION__. Our text and data: CC BY 4.0. Facts from other sites stay under each source\'s licence or terms. ' + `${SITE}${path}` + '\n');
 }
 function page(p) { pages.push(p); write(p.path, frame(p), `# ${p.title}\n\n${p.description}\n\n${p.md}`); }
 
@@ -129,7 +131,7 @@ const isMoney = e => e.section === 'funding' || e.section === 'investors';
 export function sourceLine(e) {
   const host = (() => { try { return new URL(e.source_url).hostname.replace(/^www\./, ''); } catch { return 'source'; } })();
   const also = (e.also || []).length ? ` · ${e.also.length} more source${e.also.length > 1 ? 's' : ''}` : '';
-  return `<p class="src">Source: <a href="${esc(e.source_url)}" rel="nofollow">${esc(host)}</a>, read ${esc(nice(e.read_on))}${also}</p>`;
+  return `<p class="src">Source: <a href="${esc(e.source_url)}" rel="nofollow">${esc(host)}</a>, read ${esc(nice(e.read_on))}${also}${licenceHtml(e, esc)}</p>`;
 }
 export function itemHtml(e, placeName) {
   const tags = `<span class="tag${isMoney(e) ? ' money' : ''}">${esc(e.kind)}</span>${placeName ? `<span class="tag">${esc(placeName)}</span>` : ''}`;
@@ -139,7 +141,7 @@ export function itemHtml(e, placeName) {
 }
 export function itemMd(e, placeName) {
   const facts = [e.kind, placeName, e.amount, e.date && nice(e.date), e.company && `to ${e.company}`, e.investors?.length && `with ${e.investors.join(', ')}`, e.status].filter(Boolean).join(' · ');
-  return `- **${mdEsc(e.name)}**${e.url ? ` (${e.url})` : ''}: ${mdEsc(facts)}. ${mdEsc(e.what || '')} Source: ${e.source_url}, read ${nice(e.read_on)}.`;
+  return `- **${mdEsc(e.name)}**${e.url ? ` (${e.url})` : ''}: ${mdEsc(facts)}. ${mdEsc(e.what || '')} Source: ${e.source_url}, read ${nice(e.read_on)}.${licenceMd(e)}`;
 }
 const byDate = (a, b) => (b.date || '').localeCompare(a.date || '') || a.name.localeCompare(b.name);
 const KIND_ORDER = ['incubator', 'accelerator', 'business nest', 'tech park', 'hub', 'university office', 'coworking', 'space', 'programme', 'call', 'funding programme', 'public desk', 'public body', 'association', 'community', 'mentoring', 'law', 'statistic'];
@@ -197,7 +199,7 @@ export function callMd(c, placeName) {
   const { e, d, left } = c;
   const when = d ? (left >= 0 ? `closes ${closesText(d)} (${leftText(left)})${left <= 14 ? ', closing within 14 days' : ''}` : `closed ${closesText(d)}`) : e.status;
   const facts = [e.kind, placeName[e.place], e.amount, when].filter(Boolean).join(' · ');
-  return `- **${mdEsc(e.name)}**${e.url ? ` (${e.url})` : ''}: ${mdEsc(facts)}. ${mdEsc(e.what || '')} Source: ${e.source_url}, read ${nice(e.read_on)}.`;
+  return `- **${mdEsc(e.name)}**${e.url ? ` (${e.url})` : ''}: ${mdEsc(facts)}. ${mdEsc(e.what || '')} Source: ${e.source_url}, read ${nice(e.read_on)}.${licenceMd(e)}`;
 }
 // A short box: the next closing calls, each linking to the list.
 export function callsBoxMd(list, placeName) {
@@ -287,7 +289,7 @@ ${grp('Closing within 14 days', calls.soon, 'None closing in the next 14 days.')
   const dealHtml = d => `<li><a href="/funding/#${esc(d.id)}">${esc(d.company || d.name)}</a>${d.amount ? ` · ${esc(d.amount)}` : ''}${d.date ? ` · ${esc(nice(d.date))}` : ''}</li>`;
   const dealMd = d => `  - [${mdEsc(d.company || d.name)}](${SITE}/funding/#${d.id})${d.amount ? ` · ${mdEsc(d.amount)}` : ''}${d.date ? ` · ${nice(d.date)}` : ''}`;
   const invCard = r => { const e = r.main; return `<li class="item" id="${esc(e.id)}"><h3>${e.url ? `<a href="${esc(e.url)}" rel="nofollow">${esc(r.name)}</a>` : esc(r.name)}</h3><p><span class="tag money">${esc(e.kind)}</span><span class="tag">${esc(placeName[e.place])}</span></p><p>${esc(e.what || '')}</p>${sourceLine(e)}${r.others.length ? `<p class="meta">Also listed: ${r.others.map(o => `${esc(o.name)} (${esc(placeName[o.place])}), <a href="${esc(o.source_url)}" rel="nofollow">source</a>, read ${esc(nice(o.read_on))}`).join('; ')}</p>` : ''}<p class="meta">Named deals in our data</p>${r.deals.length ? `<ul>${r.deals.map(dealHtml).join('')}</ul>` : `<p>None in our data yet</p>`}</li>`; };
-  const invCardMd = r => { const e = r.main; return `- **${mdEsc(r.name)}**${e.url ? ` (${e.url})` : ''}: ${mdEsc([e.kind, placeName[e.place]].join(' · '))}. ${mdEsc(e.what || '')} Source: ${e.source_url}, read ${nice(e.read_on)}.${r.others.length ? ` Also listed: ${r.others.map(o => `${mdEsc(o.name)} (${placeName[o.place]}), ${o.source_url}, read ${nice(o.read_on)}`).join('; ')}.` : ''}\n  Named deals in our data:${r.deals.length ? `\n${r.deals.map(dealMd).join('\n')}` : ' None in our data yet'}`; };
+  const invCardMd = r => { const e = r.main; return `- **${mdEsc(r.name)}**${e.url ? ` (${e.url})` : ''}: ${mdEsc([e.kind, placeName[e.place]].join(' · '))}. ${mdEsc(e.what || '')} Source: ${e.source_url}, read ${nice(e.read_on)}.${licenceMd(e)}${r.others.length ? ` Also listed: ${r.others.map(o => `${mdEsc(o.name)} (${placeName[o.place]}), ${o.source_url}, read ${nice(o.read_on)}`).join('; ')}.` : ''}\n  Named deals in our data:${r.deals.length ? `\n${r.deals.map(dealMd).join('\n')}` : ' None in our data yet'}`; };
   const tableRows = inv.rows.filter(r => r.deals.length).sort((a, b) => b.deals.length - a.deals.length || a.name.localeCompare(b.name));
   const summary = `${inv.groups.filter(g => g.rows.length).map(g => `${g.title}: ${g.rows.length}`).join('; ')}. ${inv.rows.length} investors in all, with ${inv.dealsLinked} named deals linked (${inv.distinctRounds} different round entries; one round names several investors).`;
   const thin = `The data is thin and growing: investors are listed only where a public page we read names them, and a deal is linked only where our own round entries name the investor. Nothing here is a full list. See the gaps on`;
@@ -302,17 +304,23 @@ ${inv.groups.filter(g => g.rows.length).map(g => `<h2 id="g${GROUP_IDX(g.title)}
 
   // How this is made
   const fromWeb = entries.filter(e => e.from?.repository?.endsWith('Website')).length;
+  const lic = { 'published licence': 0, 'terms page': 0, 'terms page not found yet': 0, 'no source link': 0 };
+  const missing = new Map();
+  for (const e of entries) { lic[e.source_license.status]++; if (e.source_license.status === 'terms page not found yet') { const h = new URL(e.source_license.url).hostname.replace(/^www\./, ''); missing.set(h, (missing.get(h) || 0) + 1); } }
+  const missingList = [...missing].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+  const licText = `Our text and data are CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). Facts taken from other sites stay under each source's published licence or, where none is published, its terms, linked on every item. Of ${entries.length} entries: ${lic['published licence']} with a published source licence, ${lic['terms page']} with a terms page, ${lic['terms page not found yet']} with terms not found yet${lic['no source link'] ? `, ${lic['no source link']} with no source link` : ''}.`;
   const aboutHtml = `<p class="kicker">Provenance</p><h1>How this is made</h1>
 <p class="lede">Every fact on this site is a public one, with the page it came from and the date it was read. Nothing is typed into a page by hand: code builds every page from the data files in the repository.</p>
 <h2>What runs as code</h2><ul><li><code>scripts/import-website.mjs</code> reads the place research of <a href="https://promptugal.news/">PrompTugal.news</a> (its <code>data/by-place/</code> files and the companies it mapped around Web Summit 2026), keeps only the public fields, and writes <code>data/from-website.json</code>. This import is from commit <code>${esc(web.source.commit.slice(0, 7))}</code>, made on ${esc(nice(web.imported_on))}: ${fromWeb} facts.</li><li><code>scripts/generate.mjs</code> merges it with the team's own research (${researchFiles.map(f => `<code>data/research/${esc(f)}</code>`).join(', ') || 'none yet'}) and builds every page, its markdown twin, <code>llms.txt</code> and the sitemap.</li><li><code>scripts/validate.mjs</code> (the gate) and <code>scripts/leak-scan.mjs</code> run on every push; the site does not deploy if either fails.</li></ul>
 <h2>What agents wrote</h2><ul><li>The place agents of PrompTugal.news (place.algarve@, place.faro@ and the others, on Claude) read and summarised the sources imported here.</li><li>startups.research@PrompTugal.dinis (Claude Sonnet) read new sources on 17 November 2026 for the Algarve, Lisbon, Porto and national programmes.</li><li>startups@PrompTugal.dinis (Claude Opus) wrote the first code, the page text and reviewed the research.</li><li>From 18 November 2026 the lead is startups.b@PrompTugal.dinis (Claude Opus), with sub-agents startups.b.dev@PrompTugal.dinis (code, Sonnet) and startups.b.research@PrompTugal.dinis (research, Sonnet).</li></ul>
 <h2>What a person checked</h2><p>Nothing yet. Dinis Cruz started the site; no person has reviewed its facts. Read each fact against its source.</p>
 <h2>Rules we keep</h2><ul><li>Public facts only. People only as public and professional; no personal contacts.</li><li>Sites read politely, with a named agent and pauses. A refusal (403, bot check, robots.txt) is respected and recorded as a gap, never worked around.</li><li>Amounts as the source states them. A place with no entries is a gap in our research, not a finding.</li></ul>
+<h2 id="licences">Licences</h2><p>Our text and data are <a href="https://creativecommons.org/licenses/by/4.0/" rel="license">CC BY 4.0</a>. Facts taken from other sites stay under each source's published licence or, where none is published, its terms, linked on every item. Of ${entries.length} entries: ${lic['published licence']} with a published source licence, ${lic['terms page']} with a terms page, ${lic['terms page not found yet']} with terms not found yet${lic['no source link'] ? `, ${lic['no source link']} with no source link` : ''}.</p>${missingList.length ? `<p class="meta">Gap list, sources whose terms we have not found yet (entries): ${missingList.map(([h, n]) => `${esc(h)} (${n})`).join(', ')}.</p>` : ''}
 <h2>The reading meter</h2><p>Pages here cost a few pence of reading credit, as on <a href="https://promptugal.news/">PrompTugal.news</a>: <em>pay for what you read</em>. The balance, the pages you have read and the reading graph are kept in this browser only (localStorage, under this site's own key). Nothing about them is sent to us or to anyone. Clearing this site's data resets it. See <a href="/account/">your account</a>.</p>
 <h2>Page views are counted</h2><p>This site counts page views and reading time, publicly, to learn what is read. Each count says the page, the referring site (host only), the time to the minute, the site version, a random id that ends with the tab, the screen size class, the browser's language and time zone, and the country, region and city from the browser's own lookup. No IP address, no cookie and no user-agent string is kept. To find the place, your browser asks ipapi.co or ipwho.is, which see your IP address. Do Not Track and Global Privacy Control are respected, and the Pause switch in the footer turns counting off on this device. The lane is called <code>startups</code>. What is counted is explained at <a href="https://promptugal.news/newsroom/observability/index.html">promptugal.news</a>.</p>
 <h2 id="gaps">Gaps we know about</h2>${gaps.length ? `<ul class="list">${gaps.map(g => `<li class="item"><p>${esc(g.what)}</p><p class="src">${/^https?:\/\//.test(g.url || '') ? `<a href="${esc(g.url)}" rel="nofollow">${esc(g.url)}</a> · ` : g.url ? `${esc(g.url)} · ` : ''}${esc(g.why || '')}</p></li>`).join('')}</ul>` : '<p class="meta">None recorded yet.</p>'}
 <h2>Counts</h2><div class="stats"><div><b>${counts.all}</b><span>facts</span></div><div><b>${counts.sources}</b><span>source sites</span></div><div><b>${counts.places}</b><span>places with facts</span></div></div>`;
-  page({ path: '/about/', title: 'How this site is made', description: 'What runs as code, what agents wrote, what a person checked, and the gaps we know about.', body: aboutHtml, md: `## What runs as code\n\n- scripts/import-website.mjs imports PrompTugal__News__Website data (commit ${web.source.commit.slice(0, 7)}, ${fromWeb} facts).\n- scripts/generate.mjs builds the pages from data/.\n- scripts/validate.mjs and scripts/leak-scan.mjs gate every push.\n\n## What agents wrote\n\n- PrompTugal.news place agents (imported research).\n- startups.research@PrompTugal.dinis (Claude Sonnet): new research, 17 November 2026.\n- startups@PrompTugal.dinis (Claude Opus): first code, text, review.\n- startups.b@PrompTugal.dinis (Claude Opus, lead from 18 November 2026) with sub-agents startups.b.dev and startups.b.research (Claude Sonnet).\n\n## The reading meter\n\nPages cost a few pence of reading credit (pay for what you read). The balance and reading graph are kept in this browser only; nothing is sent.\n\n## Page views are counted\n\nPage views and reading time are counted publicly: page, referring host, time to the minute, version, a random id that ends with the tab, screen size class, language, time zone, and country, region and city from the browser's own lookup (ipapi.co or ipwho.is see the IP address). No IP address, cookie or user-agent string is kept. Do Not Track and Global Privacy Control are respected, and a Pause switch in the footer turns it off. Lane: startups.\n\n## What a person checked\n\nNothing yet.\n\n## Gaps\n\n${gaps.map(g => `- ${g.what} (${g.url || ''}; ${g.why || ''})`).join('\n') || 'None recorded yet.'}` });
+  page({ path: '/about/', title: 'How this site is made', description: 'What runs as code, what agents wrote, what a person checked, and the gaps we know about.', body: aboutHtml, md: `## What runs as code\n\n- scripts/import-website.mjs imports PrompTugal__News__Website data (commit ${web.source.commit.slice(0, 7)}, ${fromWeb} facts).\n- scripts/generate.mjs builds the pages from data/.\n- scripts/validate.mjs and scripts/leak-scan.mjs gate every push.\n\n## What agents wrote\n\n- PrompTugal.news place agents (imported research).\n- startups.research@PrompTugal.dinis (Claude Sonnet): new research, 17 November 2026.\n- startups@PrompTugal.dinis (Claude Opus): first code, text, review.\n- startups.b@PrompTugal.dinis (Claude Opus, lead from 18 November 2026) with sub-agents startups.b.dev and startups.b.research (Claude Sonnet).\n\n## Licences\n\n${licText}${missingList.length ? ` Terms not found yet: ${missingList.map(([h, n]) => `${h} (${n})`).join(', ')}.` : ''}\n\n## The reading meter\n\nPages cost a few pence of reading credit (pay for what you read). The balance and reading graph are kept in this browser only; nothing is sent.\n\n## Page views are counted\n\nPage views and reading time are counted publicly: page, referring host, time to the minute, version, a random id that ends with the tab, screen size class, language, time zone, and country, region and city from the browser's own lookup (ipapi.co or ipwho.is see the IP address). No IP address, cookie or user-agent string is kept. Do Not Track and Global Privacy Control are respected, and a Pause switch in the footer turns it off. Lane: startups.\n\n## What a person checked\n\nNothing yet.\n\n## Gaps\n\n${gaps.map(g => `- ${g.what} (${g.url || ''}; ${g.why || ''})`).join('\n') || 'None recorded yet.'}` });
 
   // Account: the reading meter's page. meter.js fills #nr-account (balance, history, reading graph). Not in the main NAV.
   page({ path: '/account/', title: 'Your reading account', description: 'The reading meter for this site: your balance, the pages you have read and your reading graph, kept in this browser only.', body: `<p class="kicker">Pay for what you read</p><h1>Your reading account</h1>
@@ -324,7 +332,7 @@ ${inv.groups.filter(g => g.rows.length).map(g => `<h2 id="g${GROUP_IDX(g.title)}
   // 404, llms.txt, sitemap, data
   write('/404/', frame({ path: '/404/', title: 'Page not found', description: 'This page does not exist.', body: '<h1>Page not found</h1><p><a href="/">Back to the front page</a>.</p>' }), '# Page not found');
   writeFileSync(join(OUT, '404.html'), readFileSync(join(OUT, '404/index.html'), 'utf8').replaceAll('href="../', 'href="/').replaceAll('src="../', 'src="/'));
-  writeFileSync(join(OUT, 'llms.txt'), `# PrompTugal.news Startups\n\n> Portugal's startups and their funding, place by place: incubators, accelerators, public programmes, rounds and grants, companies and investors. Public facts only, each with its source and the date read. Every page has a markdown twin at index.md. Version __VERSION__.\n\n## Pages\n\n${pages.filter(p => !p.path.startsWith('/design/')).map(p => `- [${p.title}](${SITE}${p.path}index.md): ${p.description}`).join('\n')}\n\n## Data\n\n- [All facts as JSON](${SITE}/data/facts.json): every entry with its source, read date and where it came from.\n\n## Optional\n\n${pages.filter(p => p.path.startsWith('/design/')).map(p => `- [${p.title}](${SITE}${p.path}index.md)`).join('\n')}\n`);
+  writeFileSync(join(OUT, 'llms.txt'), `# PrompTugal.news Startups\n\n> Portugal's startups and their funding, place by place: incubators, accelerators, public programmes, rounds and grants, companies and investors. Public facts only, each with its source and the date read. Every page has a markdown twin at index.md. Licences: our text and data are CC BY 4.0; facts taken from other sites stay under each source's licence or terms, linked on every item (fields license and source_license in facts.json). Version __VERSION__.\n\n## Pages\n\n${pages.filter(p => !p.path.startsWith('/design/')).map(p => `- [${p.title}](${SITE}${p.path}index.md): ${p.description}`).join('\n')}\n\n## Data\n\n- [All facts as JSON](${SITE}/data/facts.json): every entry with its source, read date and where it came from.\n\n## Optional\n\n${pages.filter(p => p.path.startsWith('/design/')).map(p => `- [${p.title}](${SITE}${p.path}index.md)`).join('\n')}\n`);
   writeFileSync(join(OUT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${pages.map(p => `<url><loc>${SITE}${p.path}</loc></url>`).join('\n')}\n</urlset>\n`);
   mkdirSync(join(OUT, 'api/v1/billing'), { recursive: true });
   writeFileSync(join(OUT, 'api/v1/billing/meter.json'), JSON.stringify(meterConfig('__VERSION__'), null, 2) + '\n');
