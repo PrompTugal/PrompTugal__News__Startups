@@ -1,0 +1,121 @@
+{
+  "by": "startups.b.research@PrompTugal.dinis",
+  "read_on": "2026-11-18",
+  "area": "open-calls-cities",
+  "notes": "Gathered on 2026-11-18 with WebFetch (page text summarised by a small model; dates and amounts were requested as exact sentences and copied as stated) and WebSearch used only to find URLs. Every entry's source_url is a page that was fetched and read. Facts seen only in search snippets are in gaps, not entries. The yield is low because most calls on the sites named in the brief had already closed or give no closing date; the entries are open calls that are national, EU-wide or in Lisbon. No websummit.com, lu.ma, luma.com, meetup.com or eventbrite pages were fetched. Nothing here is already in open-calls.json or algarve.json. Reviewed by startups.b@PrompTugal.dinis on 18 November 2026: Founder Institute Lisbon removed (a paid commercial programme whose stated deadline is the end of an early price, not a closing date). Santander Explorer's and Rising Up in Spain's years are inferred from their articles' dates (12 November and October 2026).",
+  "entries": [
+    {
+      "name": "Santander Explorer, next edition (applications through Santander X)",
+      "kind": "programme",
+      "place": "portugal",
+      "what": "Free entrepreneurship programme for people with an idea or project with entrepreneurial potential, aimed at young university students and people early in their careers; no registered company needed. The UPTEC news item of 12 November 2026 states \"As candidaturas estão abertas até 10 de dezembro e podem ser feitas através da plataforma Santander X.\" The first 2027 edition is fully online and open to entrepreneurs in 13 countries including Portugal.",
+      "url": "https://uptec.up.pt/noticias-e-media/noticias/santander-abre-candidaturas-mais-uma-edicao-do-programa-explorer",
+      "source_url": "https://uptec.up.pt/noticias-e-media/noticias/santander-abre-candidaturas-mais-uma-edicao-do-programa-explorer",
+      "read_on": "2026-11-18",
+      "date": "2026-12-10",
+      "status": "open"
+    },
+    {
+      "name": "European Prize for Women Innovators 2027",
+      "kind": "competition",
+      "place": "portugal",
+      "what": "EU innovation prize with three categories: Women Innovators (women founders and co-founders from the EU and countries associated to Horizon Europe), EIT Women Leadership (members of the EIT Community) and Rising Innovators (women innovators under 35). The EIC page states applications close on \"1 December 2026, 17:00 CET.\" EU-wide, so open to Portuguese founders; the place is set to portugal for that reason only.",
+      "url": "https://eic.ec.europa.eu/news/2027-european-prize-women-innovators-apply-now-2026-09-02_en",
+      "source_url": "https://eic.ec.europa.eu/news/2027-european-prize-women-innovators-apply-now-2026-09-02_en",
+      "read_on": "2026-11-18",
+      "date": "2026-12-01",
+      "status": "open",
+      "amount": "Women Innovators EUR 100,000 / 70,000 / 50,000; EIT Women Leadership EUR 50,000 / 30,000 / 20,000; Rising Innovators EUR 50,000 / 30,000 / 20,000 (1st / 2nd / 3rd place), as stated by the EIC"
+    },
+    {
+      "name": "Open Innovation Amarsul|Valorsul 2026 (waste management)",
+      "kind": "competition",
+      "place": "portugal",
+      "what": "Open innovation call by the waste operators Amarsul and Valorsul for start-ups, other companies (national and international) and academia with new technologies for waste management operations. Forbes Portugal, 2 November 2026, quotes \"As candidaturas estão abertas entre 2 de novembro de 2026 e 25 de janeiro de 2027\" (deadline 24:00 on the closing day). Selection runs to 15 March 2027 and the pitch day is planned for the second half of April 2027. Source is a press article, not the organisers' own page.",
+      "url": "https://www.forbespt.com/?p=198421",
+      "source_url": "https://www.forbespt.com/?p=198421",
+      "read_on": "2026-11-18",
+      "date": "2027-01-25",
+      "status": "open",
+      "amount": "Each winning project receives a prize of EUR 3,000 (\"3.000 euros\") and can develop a funded pilot; the programme as a whole offers more than EUR 150,000, as stated"
+    },
+    {
+      "name": "Rising Up in Spain (ICEX, via Invest in Spain)",
+      "kind": "programme",
+      "place": "portugal",
+      "what": "Free programme for technology start-ups and scaleups of any country that are considering Spain as an expansion market; 50 places, selected in order of application, so it can close earlier. AICEP's news item states \"As candidaturas decorrem até 31 de dezembro\", with 2026 given in the practical information. Run by ICEX; AICEP published the news.",
+      "url": "https://portugalglobal.pt/noticias/2026/outubro/rising-up-in-spain-tem-candidaturas-abertas-a-startups/",
+      "source_url": "https://portugalglobal.pt/noticias/2026/outubro/rising-up-in-spain-tem-candidaturas-abertas-a-startups/",
+      "read_on": "2026-11-18",
+      "date": "2026-12-31",
+      "status": "open"
+    }
+  ],
+  "gaps": [
+    {
+      "url": "https://www.eurekanetwork.org/programmes-and-calls/innowwide/5th-innowwide-call-for-market-feasibility-projects-autumn-2026/",
+      "what": "Innowwide 5th call for market feasibility projects (listed with a 1 December closing date on the Startup Portugal opportunities page, no year in the page text)",
+      "why": "HTTP 403 Forbidden; not worked around. Not an entry."
+    },
+    {
+      "url": "https://www.agroportal.pt/tech4regenag-lanca-programa-europeu-de-aceleracao-para-startups-em-agricultura-regenerativa/",
+      "what": "Tech4RegenAg accelerator for regenerative-agriculture startups; a search result said applications until 10 January",
+      "why": "HTTP 403 Forbidden on the page, and the agrifood4future page on the same site; seen only in a search snippet, so not an entry."
+    },
+    {
+      "url": "https://www.startupleiria.pt",
+      "what": "Startup Leiria",
+      "why": "Host did not resolve in this session (outside the allowed network domains). Not read."
+    },
+    {
+      "url": "https://www.novasbe.unl.pt/en/entrepreneurship",
+      "what": "Nova SBE Haddad Entrepreneurship Institute",
+      "why": "Page returned no content; a search found no open call."
+    },
+    {
+      "url": "https://startuplisboa.com",
+      "what": "Startup Lisboa home page",
+      "why": "HTTP 404. Only the Founder Institute chapter page on fi.co was read."
+    },
+    {
+      "url": "https://www.ipn.pt/incubadora/",
+      "what": "IPN incubator (INEO START and others) and Acelerador NATO DIANA",
+      "why": "Pages read give no application dates. The NATO DIANA page states Phase 1 EUR 100,000 and Phase 2 up to EUR 300,000 but no closing date. The IPN INEO START news item returned only a template with no text."
+    },
+    {
+      "url": "https://uptec.up.pt/apoio-a-startups/programas",
+      "what": "UPTEC programmes: School of Startups Estudantes and BluAct (tag nov.2026), Empreendedores (set.2026)",
+      "why": "The pages give only month tags, no closing date or whether the month is a deadline or a start. Not entries."
+    },
+    {
+      "url": "https://unicornfactorylisboa.com/thematic-programs/",
+      "what": "Unicorn Factory Lisboa programmes",
+      "why": "Besides the four already recorded, none shows an open call with a closing date (the others are marked Closed or Get Notified)."
+    },
+    {
+      "url": "https://startupportugal.com/events-and-opportunities/",
+      "what": "Startup Portugal opportunities (Startup Matchbox, Startup2ScaleUp, Smart Home Hub, Portugal Community Fund, Apollo/JUNITEC, Sogrape Ventures, LoopOS and others)",
+      "why": "Read, but none states a closing date on its own page: Startup2ScaleUp is rolling (\"Applications are reviewed on a rolling basis\"), Apollo and Matchbox have no date, the Portugal Community Fund is EUR 10,000 in total with up to EUR 250 per community and no date, the LoopOS page shows only 2025 dates, and the Smart Home Hub page returned HTTP 530. Not entries."
+    },
+    {
+      "url": "https://ani.pt/wp-content/uploads/2026/06/Publicacao_Aviso_2026-01_1o-Aviso_Start_From_Knowledge.pdf.pdf",
+      "what": "Start From Knowledge, notice Startup Portugal/FITEC-2026-01 (EUR 30,000 fixed amount per application)",
+      "why": "Read in full: the notice states the window stays open until 30 September 2026, so it is closed. Not an entry. No open COMPETE 2030 or ANI deep tech call with a stated closing date was found."
+    },
+    {
+      "url": "https://portugalventures.pt/en/calls/",
+      "what": "Portugal Ventures calls",
+      "why": "All ten calls listed as closed."
+    },
+    {
+      "url": "https://business.turismodeportugal.pt/pt/inovar/fit/candidaturas-programas-inovacao/Paginas/default.aspx",
+      "what": "Turismo de Portugal FIT innovation programmes",
+      "why": "Only two were listed as accepting applications, with deadlines of 13 September 2026 and 23 August 2026, both closed."
+    },
+    {
+      "url": "",
+      "what": "Porto (Startup Porto, ScaleUp Porto, Porto Innovation Hub, INESC TEC, Porto Business School), ISCTE, Fábrica de Startups, Técnico, Évora, Setúbal, Norte 2030 and Lisboa 2030 avisos",
+      "why": "Searched, not fetched on their own sites; the searches surfaced no call open on 18 November 2026 (Lab2Market 2026 closed 12 February 2026, ScaleUp Porto and StartUP Voucher windows were earlier in 2026), and snippets alone are not recorded as facts."
+    }
+  ]
+}
