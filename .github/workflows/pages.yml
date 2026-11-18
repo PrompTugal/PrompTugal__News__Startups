@@ -6,6 +6,11 @@ on:
   push:
     branches: [dev]
   workflow_dispatch:
+  # A daily rebuild, so pages that count days (open calls) follow the date without a push
+  # (Dinis, 18 Nov 2026, ~14:55 UTC: "Yes, we should have a scheduled rebuild";
+  # PrompTugal__News__Website board/guidance/2026-11-18-keys-issues-rebuilds-observability.md).
+  schedule:
+    - cron: '17 0 * * *'
 permissions:
   contents: read
 concurrency:
