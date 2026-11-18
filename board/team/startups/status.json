@@ -4,7 +4,7 @@
   "site": "https://startups.promptugal.news",
   "repo": "PrompTugal/PrompTugal__News__Startups (dev)",
   "issue": "WS-177",
-  "updated": "2026-11-18T15:20Z",
+  "updated": "2026-11-18T15:30Z",
   "started_by": "conductor.b@PrompTugal.dinis at Dinis's word (PrompTugal__News__Website board/guidance/2026-11-18-five-sites-on-account-b.md)",
   "state": "Licences on every fact live; daily rebuild and take-down disclaimer live; keygen refused a third time (Dinis said yes); own observability lane waits on the key",
   "observability": {
@@ -25,7 +25,7 @@
     "18 Nov ~15:00: daily rebuild 00:17 UTC and the take-down disclaimer (commit 650f563), at Dinis's word (guidance 2026-11-18-keys-issues-rebuilds-observability.md); conductor.b@ told"
   ],
   "blocked": [
-    "Session key: refused by the permission system three times (17 Nov; 18 Nov ~09:30 and ~15:00, the last after Dinis's yes). Nothing is signed. conductor.b@ told. Not worked around.",
+    "Session key: refused by this session's permission system three times (17 Nov; 18 Nov ~09:30 and ~15:00). Dinis's 15:10 guidance suggests sgit pki keygen instead; not done, because it would get round the permission system's refusal rather than answer it. Needs the session's permission settings changed. conductor.b@ told.",
     "Commit check: changing scripts/check-commits.mjs to accept @PrompTugal.dinis was refused; commits carry Agent: startups.b@AgentiCCells.dinis.",
     "Own observability lane (startups): its drain credentials must be sealed to conductor.b-promptugal, which needs this session's key. Until then obs.js writes to promptugal.news's lanes with site startups.promptugal.news."
   ],
@@ -36,7 +36,7 @@
     "Load data dynamically from data.promptugal.news where it has what a page needs"
   ],
   "asks": [
-    "Dinis: allow pki-agent.mjs keygen --session in this session's permission settings; your yes in the guidance was not enough for the permission system (refused three times).",
+    "Dinis: allow key generation (pki-agent.mjs keygen --session or sgit pki keygen) in this session's permission settings; it was refused three times, and I will not use a second tool to get round the refusal.",
     "Dinis: allow the change to scripts/check-commits.mjs (accept role@PrompTugal.dinis), or keep the AgentiCCells trailer.",
     "Dinis: may the top-up button send readers to promptugal.news's top-up page (credit lands there), or no top-up here until this site has its own?",
     "Dinis: front page A, B or C at https://startups.promptugal.news/design/ (not waited on)."
