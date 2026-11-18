@@ -65,7 +65,7 @@ export function orderPlaces(places, entries) {
 }
 
 // ---------- page frame ----------
-const NAV = [['/', 'Front'], ['/places/', 'Places'], ['/support/', 'Incubators and programmes'], ['/funding/', 'Rounds and grants'], ['/companies/', 'Companies'], ['/investors/', 'Investors'], ['/about/', 'How this is made']];
+const NAV = [['/', 'Front'], ['/places/', 'Places'], ['/support/', 'Incubators and programmes'], ['/calls/', 'Open calls'], ['/funding/', 'Rounds and grants'], ['/companies/', 'Companies'], ['/investors/', 'Investors'], ['/about/', 'How this is made']];
 // The reading meter prices a page by its page-type (meta tag): fact listings and place pages are "evidence";
 // the front page, about and design pages are "site"; the meter's own account page is "account" (free).
 const pageType = path => path === '/account/' ? 'account' : (path === '/' || path === '/about/' || path.startsWith('/design/') || path === '/404/') ? 'site' : 'evidence';
@@ -143,6 +143,69 @@ const byDate = (a, b) => (b.date || '').localeCompare(a.date || '') || a.name.lo
 const KIND_ORDER = ['incubator', 'accelerator', 'business nest', 'tech park', 'hub', 'university office', 'coworking', 'space', 'programme', 'call', 'funding programme', 'public desk', 'public body', 'association', 'community', 'mentoring', 'law', 'statistic'];
 const kindRank = k => { const i = KIND_ORDER.indexOf(k); return i < 0 ? 99 : i; };
 
+
+// ---------- open calls ----------
+// Which kinds can carry a closing date. A "round" or a plain "grant" with a past date is something that
+// happened, not a call; an incubator, programme or accelerator only counts when it states a deadline.
+const CALL_KINDS = new Set(['call', 'programme', 'accelerator', 'incubator', 'competition', 'grant call', 'voucher', 'funding programme']);
+const STRICT_CALL_KINDS = new Set(['call', 'competition', 'grant call', 'voucher']);
+const ISO_DAY = /^\d{4}-\d{2}-\d{2}$/;
+// The closing date of an entry as a full ISO day, or null. Rule: only call-like kinds; a date written
+// in the status ("closes 2027-01-15", "closed 2025-01-19") wins, because entry.date is then the
+// publication date; otherwise entry.date counts when it is a full day and the status is not "ongoing".
+// A past date on a bare incubator, programme or accelerator is not a closing date unless the status says "closed".
+export function closingDate(e) {
+  if (!CALL_KINDS.has(e.kind) || e.section === 'funding' && e.kind === 'grant') return null;
+  const st = String(e.status || '');
+  const m = st.match(/clos\w*\s+(?:on\s+)?(\d{4}-\d{2}-\d{2})/i);
+  if (m) return m[1];
+  if (/^ongoing/i.test(st) || !ISO_DAY.test(e.date || '')) return null;
+  if (/^closed/i.test(st) || STRICT_CALL_KINDS.has(e.kind)) return e.date;
+  return e.date >= TODAY_HINT ? e.date : null;
+}
+let TODAY_HINT = '';
+const dayNum = iso => Date.parse(iso + 'T00:00:00Z') / 86400000;
+const WEEKDAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const closesText = iso => `${WEEKDAYS[new Date(iso + 'T00:00:00Z').getUTCDay()]} ${nice(iso)}`;
+export function classifyCalls(entries, today) {
+  TODAY_HINT = today;
+  const soon = [], later = [], opening = [], recent = [];
+  for (const e of entries) {
+    const d = closingDate(e);
+    const closed = /^closed/i.test(e.status || '');
+    if (d && !closed && d >= today) { const left = dayNum(d) - dayNum(today); (left <= 14 ? soon : later).push({ e, d, left }); }
+    else if (d && d < today && dayNum(today) - dayNum(d) <= 30) recent.push({ e, d, left: dayNum(d) - dayNum(today) });
+    else if (/^opens/i.test(e.status || '') && CALL_KINDS.has(e.kind)) opening.push({ e, d: null, left: null });
+  }
+  const bySoonest = (a, b) => a.d.localeCompare(b.d) || a.e.name.localeCompare(b.e.name);
+  soon.sort(bySoonest); later.sort(bySoonest); recent.sort((a, b) => b.d.localeCompare(a.d) || a.e.name.localeCompare(b.e.name));
+  opening.sort((a, b) => a.e.name.localeCompare(b.e.name));
+  return { today, soon, later, opening, recent, open: [...soon, ...later] };
+}
+const leftText = n => n === 0 ? 'closes today' : `${n} day${n === 1 ? '' : 's'} left`;
+export function callHtml(c, placeName) {
+  const { e, d, left } = c;
+  const tags = `<span class="tag">${esc(e.kind)}</span><span class="tag"><a href="/places/${esc(e.place)}/">${esc(placeName[e.place])}</a></span>${d && left >= 0 && left <= 14 ? '<span class="tag money">closing within 14 days</span>' : ''}`;
+  const name = e.url ? `<a href="${esc(e.url)}" rel="nofollow">${esc(e.name)}</a>` : esc(e.name);
+  const when = d ? (left >= 0 ? `closes ${esc(closesText(d))} (${leftText(left)})` : `closed ${esc(closesText(d))}`) : esc(e.status || '');
+  const facts = [e.amount && `<span class="amount">${esc(e.amount)}</span>`, when].filter(Boolean).join(' · ');
+  return `<li class="item" id="${esc(e.id)}"><h3>${name}</h3><p>${tags} ${facts}</p><p>${esc(e.what || '')}</p>${sourceLine(e)}</li>`;
+}
+export function callMd(c, placeName) {
+  const { e, d, left } = c;
+  const when = d ? (left >= 0 ? `closes ${closesText(d)} (${leftText(left)})${left <= 14 ? ', closing within 14 days' : ''}` : `closed ${closesText(d)}`) : e.status;
+  const facts = [e.kind, placeName[e.place], e.amount, when].filter(Boolean).join(' · ');
+  return `- **${mdEsc(e.name)}**${e.url ? ` (${e.url})` : ''}: ${mdEsc(facts)}. ${mdEsc(e.what || '')} Source: ${e.source_url}, read ${nice(e.read_on)}.`;
+}
+// A short box: the next closing calls, each linking to the list.
+export function callsBoxMd(list, placeName) {
+  return list.map(({ e, d, left }) => `- ${mdEsc(e.name)} (${placeName[e.place]}): closes ${closesText(d)}${left <= 14 ? ` (${leftText(left)})` : ''}`).join('\n') + `\n\nAll open calls: ${SITE}/calls/`;
+}
+export function callsBoxHtml(list, heading, placeName, showPlace) {
+  if (!list.length) return '';
+  return `<div class="note"><p><strong>${heading}</strong></p><ul class="list">${list.map(({ e, d, left }) => `<li>${esc(e.name)}${showPlace ? ` (${esc(placeName[e.place])})` : ''}: closes ${esc(closesText(d))}${left <= 14 ? ` (${esc(leftText(left))})` : ''}</li>`).join('')}</ul><p><a href="/calls/">All open calls</a></p></div>`;
+}
+
 // ---------- build ----------
 export function generate() {
   const { web, places, entries, gaps, researchFiles } = loadData();
@@ -151,7 +214,9 @@ export function generate() {
   const sec = s => entries.filter(e => e.section === s);
   const counts = { all: entries.length, support: sec('support').length, funding: sec('funding').length, companies: sec('companies').length, investors: sec('investors').length, places: new Set(entries.map(e => e.place)).size, sources: new Set(entries.map(e => { try { return new URL(e.source_url).hostname; } catch { return ''; } })).size };
   const algarveIds = new Set(['algarve', ...places.filter(p => p.parent === 'algarve').map(p => p.id)]);
-  const ctx = { entries, places, placeName, groups, counts, gaps, esc, nice, itemHtml, itemMd, sourceLine, algarveIds, byDate, web };
+  const today = new Date().toISOString().slice(0, 10);
+  const calls = classifyCalls(entries, today);
+  const ctx = { calls, callsBoxHtml, callsBoxMd, entries, places, placeName, groups, counts, gaps, esc, nice, itemHtml, itemMd, sourceLine, algarveIds, byDate, web };
 
   // Front page: the chosen variation (A until Dinis picks one at /design/).
   const chosen = 'a';
@@ -178,10 +243,13 @@ export function generate() {
     const sorted = s => mine.filter(e => e.section === s).sort(s === 'funding' ? byDate : (a, b) => kindRank(a.kind) - kindRank(b.kind) || a.name.localeCompare(b.name));
     const html = `<p class="kicker">${esc(p.kind || 'place')}${parent ? ` in <a href="/places/${parent.id}/">${esc(parent.name)}</a>` : ''}</p><h1>${esc(p.name)}</h1>
 <p class="lede">${mine.length ? `${mine.length} public facts about starting and funding a company in ${esc(p.name)}: who supports founders, what money has gone where, and the companies and investors named.` : `Nothing collected for ${esc(p.name)} yet. That is a gap in our research, not a finding.`}</p>
+${callsBoxHtml(calls.open.filter(c => c.e.place === p.id), `Open now: ${calls.open.filter(c => c.e.place === p.id).length} call${calls.open.filter(c => c.e.place === p.id).length === 1 ? '' : 's'}`, placeName, false)}
 ${children.length ? `<p class="meta">Places within: ${children.map(c => `<a href="/places/${c.id}/">${esc(c.name)}</a>`).join(' · ')}</p>` : ''}
 ${SECTIONS.map(([s, label]) => { const l = sorted(s); return `<h2>${label}</h2>${l.length ? `<ul class="list">${l.map(e => itemHtml(e)).join('')}</ul>` : '<p class="meta">None collected yet.</p>'}`; }).join('\n')}`;
     const md = SECTIONS.map(([s, label]) => { const l = sorted(s); return `## ${label}\n\n${l.length ? l.map(e => itemMd(e)).join('\n') : 'None collected yet.'}`; }).join('\n\n');
-    page({ path: `/places/${p.id}/`, title: `${p.name}: startups, incubators and funding`, description: `Incubators, programmes, rounds, grants, companies and investors in ${p.name}, each with its source and the date read.`, body: html, md });
+    const myCalls = calls.open.filter(c => c.e.place === p.id);
+    const md2 = (myCalls.length ? `## Open now: ${myCalls.length} call${myCalls.length === 1 ? '' : 's'}\n\n${callsBoxMd(myCalls, placeName)}\n\n` : '') + md;
+    page({ path: `/places/${p.id}/`, title: `${p.name}: startups, incubators and funding`, description: `Incubators, programmes, rounds, grants, companies and investors in ${p.name}, each with its source and the date read.`, body: html, md: md2 });
   }
 
   // Section pages, grouped by place in place order.
@@ -196,6 +264,14 @@ ${SECTIONS.map(([s, label]) => { const l = sorted(s); return `<h2>${label}</h2>$
   const kindSort = (a, b) => kindRank(a.kind) - kindRank(b.kind) || a.name.localeCompare(b.name);
   let s = bySection('support', `<p class="kicker">Support</p><h1>Incubators, accelerators and programmes</h1><p class="lede">Where a founder can get space, mentoring, a programme or a public desk, place by place. Open calls carry their dates; check the organisation's own page before applying.</p>`, kindSort);
   page({ path: '/support/', title: 'Incubators, accelerators and programmes in Portugal', description: 'Council incubators, university offices, accelerators and public programmes for founders across Portugal, starting with the Algarve.', body: s.html, md: s.md });
+
+  // Open calls: what a founder can apply to now, soonest closing first. Built from the same merged entries.
+  const grp = (title, list, empty) => `<h2>${title} <span class="meta">(${list.length})</span></h2>${list.length ? `<ul class="list">${list.map(c => callHtml(c, placeName)).join('')}</ul>` : `<p class="meta">${empty}</p>`}`;
+  const grpMd = (title, list) => `## ${title} (${list.length})\n\n${list.length ? list.map(c => callMd(c, placeName)).join('\n') : 'None.'}`;
+  page({ path: '/calls/', title: 'Open calls for Portuguese startups', description: `${calls.open.length} calls open to applications on ${nice(today)}, soonest closing first, each with its source and the date read.`,
+    body: `<p class="kicker">Apply now</p><h1>Open calls: what you can apply to now</h1><p class="lede">Calls and programmes with a closing date on or after ${esc(nice(today))}, soonest first. Dates are as each source states them on the day we read it; check the source before applying, as dates move.</p>
+${grp('Closing within 14 days', calls.soon, 'None closing in the next 14 days.')}${grp('Closing later', calls.later, 'None.')}${grp('Opening soon', calls.opening, 'None announced in our sources.')}${grp('Recently closed', calls.recent, 'Nothing closed in the last 30 days.')}`,
+    md: `Calls and programmes with a closing date on or after ${nice(today)}, soonest first. Dates are as each source states them on the day we read it; check the source before applying.\n\n${grpMd('Closing within 14 days', calls.soon)}\n\n${grpMd('Closing later', calls.later)}\n\n${grpMd('Opening soon', calls.opening)}\n\n${grpMd('Recently closed', calls.recent)}` });
 
   const funding = sec('funding').sort(byDate);
   s = bySection('funding', `<p class="kicker">Money</p><h1>Rounds, grants and public money</h1><p class="lede">Investment rounds, grants and public programmes as the press or the organisations reported them. Amounts are as the source states them; we do not convert or total them.</p><div class="note">Latest dated: ${funding.filter(e => e.date).slice(0, 3).map(e => `${esc(e.name)} (${esc(nice(e.date))})`).join('; ')}.</div>`, byDate);

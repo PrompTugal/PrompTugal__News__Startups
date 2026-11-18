@@ -9,17 +9,19 @@ const isOpen = e => /open|ongoing/i.test(e.status || '') || /\bopen\b|applicatio
 
 export const variants = {
   a(ctx) {
-    const { entries, counts, esc, itemHtml, itemMd, placeName, algarveIds, byDate } = ctx;
+    const { entries, counts, esc, itemHtml, itemMd, placeName, algarveIds, byDate, calls, callsBoxHtml, callsBoxMd } = ctx;
+    const next5 = calls.open.slice(0, 5);
     const money = entries.filter(e => e.section === 'funding' && e.date).sort(byDate).slice(0, 8);
     const alg = entries.filter(e => algarveIds.has(e.place) && e.section === 'support').slice(0, 8);
     const html = `<p class="kicker">Portugal's startups and their funding, place by place</p>
 <h1>Who backs founders in Portugal, and with what money</h1>
 <p class="lede">Incubators, accelerators, public programmes, rounds and grants, town by town, starting with the Algarve. Every fact links to the page it came from, with the date we read it.</p>
 ${statsHtml(counts, esc)}
+${callsBoxHtml(next5, 'Closing soon', placeName, true)}
 <div class="cols"><section><h2>Latest money</h2><ul class="list">${money.map(e => itemHtml(e, placeName[e.place])).join('')}</ul><p><a href="/funding/">All rounds and grants</a></p></section>
 <section><h2>Start with the Algarve</h2><ul class="list">${alg.map(e => itemHtml(e, placeName[e.place])).join('')}</ul><p><a href="/places/algarve/">The Algarve</a> · <a href="/support/">all incubators and programmes</a></p></section></div>
 <h2>Investors</h2><p>A section for now: the funds and angel networks seen in Portuguese rounds. <a href="/investors/">${counts.investors} investors so far</a>.</p>`;
-    const md = `## Who backs founders in Portugal, and with what money\n\n${statsMd(counts)}\n\n## Latest money\n\n${money.map(e => itemMd(e, placeName[e.place])).join('\n')}\n\n## Start with the Algarve\n\n${alg.map(e => itemMd(e, placeName[e.place])).join('\n')}\n\nMore: ${SITE}/funding/ · ${SITE}/support/ · ${SITE}/investors/`;
+    const md = `## Who backs founders in Portugal, and with what money\n\n${statsMd(counts)}\n\n${next5.length ? `## Closing soon\n\n${callsBoxMd(next5, placeName)}\n\n` : ''}## Latest money\n\n${money.map(e => itemMd(e, placeName[e.place])).join('\n')}\n\n## Start with the Algarve\n\n${alg.map(e => itemMd(e, placeName[e.place])).join('\n')}\n\nMore: ${SITE}/funding/ · ${SITE}/support/ · ${SITE}/investors/`;
     return { name: 'The ledger', idea: 'Leads with numbers and the latest money, then the Algarve. For readers who want news first.', html, md };
   },
 
