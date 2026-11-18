@@ -6,7 +6,8 @@ import { join, dirname } from 'node:path';
 import { variants } from './lib/front-variants.mjs';
 import { meterConfig } from './lib/billing.mjs';
 import { loadLicences, sourceLicence, licenceHtml, licenceMd, OWN } from './lib/licence.mjs';
-import { mergeRounds } from './lib/rounds.mjs';
+import { mergeRounds, dedupeAlso } from './lib/rounds.mjs';
+import { fileMeta, makeProvenance, howHtml, howMd, WEBSITE_FILE } from './lib/provenance.mjs';
 import { buildInvestors, GROUPS } from './lib/investors.mjs';
 const GROUP_IDX = t => GROUPS.indexOf(t);
 
@@ -34,13 +35,15 @@ export function loadData() {
   const alias = { lisbon: 'lisboa', 'lisboa-city': 'lisboa', national: 'portugal' };
   const research = [];
   const gaps = [];
+  const metaOf = new Map([[WEBSITE_FILE, fileMeta(WEBSITE_FILE, web)]]);
   const researchFiles = existsSync('data/research') ? readdirSync('data/research').filter(f => f.endsWith('.json')).sort() : [];
   for (const f of researchFiles) {
     const d = JSON.parse(readFileSync(join('data/research', f), 'utf8'));
+    metaOf.set(`data/research/${f}`, fileMeta(`data/research/${f}`, d));
     for (const e of d.entries || []) {
       let place = alias[e.place] || e.place;
       if (!known.has(place)) place = 'portugal';
-      research.push({ ...e, place, section: e.section || SECTION_OF[e.kind] || 'support', from: { repository: 'PrompTugal/PrompTugal__News__Startups', path: `data/research/${f}`, by: d.by } });
+      research.push({ ...e, place, section: e.section || SECTION_OF[e.kind] || 'support', file: `data/research/${f}`, from: { repository: 'PrompTugal/PrompTugal__News__Startups', path: `data/research/${f}`, by: d.by } });
     }
     for (const g of d.gaps || []) gaps.push({ ...g, file: `data/research/${f}` });
   }
@@ -51,18 +54,20 @@ export function loadData() {
   // Links from research files and imports become hrefs on every page: only http(s) URLs are kept (no javascript:,
   // data: or other schemes), so an entry whose source is not http(s) is dropped and counted (AppSec, 18 Nov 2026).
   let unsafeLinks = 0;
-  for (const raw of [...research, ...web.entries]) {
+  for (const raw of [...research, ...web.entries.map(w => ({ ...w, file: WEBSITE_FILE }))]) {
     const e = { ...raw, url: safeUrl(raw.url), source_url: safeUrl(raw.source_url) };
     if ((raw.url && !e.url) || (raw.source_url && !e.source_url)) unsafeLinks++;
     if (!e.name || !e.source_url) continue;
     const key = `${e.section}|${e.place}|${slug(e.name)}`;
-    if (seen.has(key)) { const first = seen.get(key); (first.also ||= []).push({ name: e.name, source_url: e.source_url, read_on: e.read_on, source_license: sourceLicence(e, LICENCES) }); continue; }
+    if (seen.has(key)) { const first = seen.get(key); const sl = sourceLicence(e, LICENCES); (first.also ||= []).push({ name: e.name, source_url: e.source_url, read_on: e.read_on, source_license: sl, file: e.file, provenance: makeProvenance({ ...e, license: OWN, source_license: sl }, metaOf.get(e.file)) }); continue; }
     const x = { ...e, id: slug(`${e.place}-${e.name}`), license: OWN, source_license: sourceLicence(e, LICENCES) };
+    x.provenance = makeProvenance(x, metaOf.get(e.file));
     seen.set(key, x); entries.push(x);
   }
   if (unsafeLinks) console.log(`links dropped (not http or https): ${unsafeLinks}`);
   // Second merge: the same funding round reported under different names or places (see scripts/lib/rounds.mjs).
   const placeNames = Object.fromEntries(places.map(p => [p.id, p.id === 'portugal' ? 'National' : p.name]));
+  for (const e of entries) dedupeAlso(e);
   const merged = mergeRounds(entries, placeNames);
   return { web, places, entries: merged.entries, gaps, researchFiles, roundMerges: merged.merges, roundsBefore: merged.before };
 }
@@ -145,8 +150,8 @@ export function sourceLine(e) {
   const host = (() => { try { return new URL(e.source_url).hostname.replace(/^www\./, ''); } catch { return 'source'; } })();
   const also = (e.also || []).length ? ` · ${e.also.length} more source${e.also.length > 1 ? 's' : ''}` : '';
   const alsoList = (e.also || []).filter(a => safeUrl(a.source_url));
-  const alsoHtml = alsoList.length ? `<p class="meta">Also reported by: ${alsoList.map(a => `<a href="${esc(safeUrl(a.source_url))}" rel="nofollow">${esc(a.name || safeUrl(a.source_url))}</a>, read ${esc(nice(a.read_on))}${licenceHtml({ source_license: a.source_license && { ...a.source_license, url: safeUrl(a.source_license.url) } }, esc)}`).join('; ')}</p>` : '';
-  return `<p class="src">Source: <a href="${esc(e.source_url)}" rel="nofollow">${esc(host)}</a>, read ${esc(nice(e.read_on))}${also}${licenceHtml(e, esc)}</p>${alsoHtml}${e.differs ? `<p class="meta">${esc(e.differs)}</p>` : ''}`;
+  const alsoHtml = alsoList.length ? `<p class="meta">Also reported by: ${alsoList.map(a => `<a href="${esc(safeUrl(a.source_url))}" rel="nofollow">${esc(a.name || safeUrl(a.source_url))}</a>, read ${esc(nice(a.read_on))}${licenceHtml({ source_license: a.source_license && { ...a.source_license, url: safeUrl(a.source_license.url) } }, esc)}${a.provenance ? `<br>${howHtml(a.provenance, esc, nice, safeUrl, true)}` : ''}`).join('</p><p class="meta">')}</p>` : '';
+  return `<p class="src">Source: <a href="${esc(e.source_url)}" rel="nofollow">${esc(host)}</a>, read ${esc(nice(e.read_on))}${also}${licenceHtml(e, esc)}</p>${e.provenance ? `<p class="meta">${howHtml(e.provenance, esc, nice, safeUrl)}</p>` : ''}${alsoHtml}${e.differs ? `<p class="meta">${esc(e.differs)}</p>` : ''}`;
 }
 export function itemHtml(e, placeName) {
   const tags = `<span class="tag${isMoney(e) ? ' money' : ''}">${esc(e.kind)}</span>${placeName ? `<span class="tag">${esc(placeName)}</span>` : ''}`;
@@ -156,12 +161,12 @@ export function itemHtml(e, placeName) {
 }
 export function itemMd(e, placeName) {
   const facts = [e.kind, placeName, e.amount, e.date && nice(e.date), e.company && `to ${e.company}`, e.investors?.length && `with ${e.investors.join(', ')}`, e.status].filter(Boolean).join(' · ');
-  return `- **${mdEsc(e.name)}**${e.url ? ` (${e.url})` : ''}: ${mdEsc(facts)}. ${mdEsc(e.what || '')} Source: ${e.source_url}, read ${nice(e.read_on)}.${licenceMd(e)}${alsoMd(e)}${e.differs ? ` ${mdEsc(e.differs)}.` : ''}`;
+  return `- **${mdEsc(e.name)}**${e.url ? ` (${e.url})` : ''}: ${mdEsc(facts)}. ${mdEsc(e.what || '')} Source: ${e.source_url}, read ${nice(e.read_on)}.${licenceMd(e)}${howMd(e.provenance, mdEsc, nice, safeUrl)}${alsoMd(e)}${e.differs ? ` ${mdEsc(e.differs)}.` : ''}`;
 }
 // Other sources of the same fact, each with its own licence or terms link; every URL passes safeUrl().
 function alsoMd(e) {
   const l = (e.also || []).filter(a => safeUrl(a.source_url));
-  return l.length ? ` Also reported by: ${l.map(a => `${mdEsc(a.name || '')} ${safeUrl(a.source_url)}, read ${nice(a.read_on)}.${licenceMd({ source_license: a.source_license && { ...a.source_license, url: safeUrl(a.source_license.url) } })}`.replace(/\s+/g, ' ').trim()).join(' ')}` : '';
+  return l.length ? ` Also reported by: ${l.map(a => `${mdEsc(a.name || '')} ${safeUrl(a.source_url)}, read ${nice(a.read_on)}.${licenceMd({ source_license: a.source_license && { ...a.source_license, url: safeUrl(a.source_license.url) } })}${howMd(a.provenance, mdEsc, nice, safeUrl, true)}`.replace(/\s+/g, ' ').trim()).join(' ')}` : '';
 }
 const byDate = (a, b) => (b.date || '').localeCompare(a.date || '') || a.name.localeCompare(b.name);
 const KIND_ORDER = ['incubator', 'accelerator', 'business nest', 'tech park', 'hub', 'university office', 'coworking', 'space', 'programme', 'call', 'funding programme', 'public desk', 'public body', 'association', 'community', 'mentoring', 'law', 'statistic'];
@@ -219,7 +224,7 @@ export function callMd(c, placeName) {
   const { e, d, left } = c;
   const when = d ? (left >= 0 ? `closes ${closesText(d)} (${leftText(left)})${left <= 14 ? ', closing within 14 days' : ''}` : `closed ${closesText(d)}`) : e.status;
   const facts = [e.kind, placeName[e.place], e.amount, when].filter(Boolean).join(' · ');
-  return `- **${mdEsc(e.name)}**${e.url ? ` (${e.url})` : ''}: ${mdEsc(facts)}. ${mdEsc(e.what || '')} Source: ${e.source_url}, read ${nice(e.read_on)}.${licenceMd(e)}`;
+  return `- **${mdEsc(e.name)}**${e.url ? ` (${e.url})` : ''}: ${mdEsc(facts)}. ${mdEsc(e.what || '')} Source: ${e.source_url}, read ${nice(e.read_on)}.${licenceMd(e)}${howMd(e.provenance, mdEsc, nice, safeUrl)}`;
 }
 // A short box: the next closing calls, each linking to the list.
 export function callsBoxMd(list, placeName) {
@@ -312,7 +317,7 @@ ${grp('Closing within 14 days', calls.soon, 'None closing in the next 14 days.')
   const dealHtml = d => `<li><a href="/funding/#${esc(d.id)}">${esc(d.company || d.name)}</a>${d.amount ? ` · ${esc(d.amount)}` : ''}${d.date ? ` · ${esc(nice(d.date))}` : ''}</li>`;
   const dealMd = d => `  - [${mdEsc(d.company || d.name)}](${SITE}/funding/#${d.id})${d.amount ? ` · ${mdEsc(d.amount)}` : ''}${d.date ? ` · ${nice(d.date)}` : ''}`;
   const invCard = r => { const e = r.main; return `<li class="item" id="${esc(e.id)}"><h3>${e.url ? `<a href="${esc(e.url)}" rel="nofollow">${esc(r.name)}</a>` : esc(r.name)}</h3><p><span class="tag money">${esc(e.kind)}</span><span class="tag">${esc(placeName[e.place])}</span></p><p>${esc(e.what || '')}</p>${sourceLine(e)}${r.others.length ? `<p class="meta">Also listed: ${r.others.map(o => `${esc(o.name)} (${esc(placeName[o.place])}), <a href="${esc(o.source_url)}" rel="nofollow">source</a>, read ${esc(nice(o.read_on))}`).join('; ')}</p>` : ''}<p class="meta">Named deals in our data</p>${r.deals.length ? `<ul>${r.deals.map(dealHtml).join('')}</ul>` : `<p>None in our data yet</p>`}</li>`; };
-  const invCardMd = r => { const e = r.main; return `- **${mdEsc(r.name)}**${e.url ? ` (${e.url})` : ''}: ${mdEsc([e.kind, placeName[e.place]].join(' · '))}. ${mdEsc(e.what || '')} Source: ${e.source_url}, read ${nice(e.read_on)}.${licenceMd(e)}${r.others.length ? ` Also listed: ${r.others.map(o => `${mdEsc(o.name)} (${placeName[o.place]}), ${o.source_url}, read ${nice(o.read_on)}`).join('; ')}.` : ''}\n  Named deals in our data:${r.deals.length ? `\n${r.deals.map(dealMd).join('\n')}` : ' None in our data yet'}`; };
+  const invCardMd = r => { const e = r.main; return `- **${mdEsc(r.name)}**${e.url ? ` (${e.url})` : ''}: ${mdEsc([e.kind, placeName[e.place]].join(' · '))}. ${mdEsc(e.what || '')} Source: ${e.source_url}, read ${nice(e.read_on)}.${licenceMd(e)}${howMd(e.provenance, mdEsc, nice, safeUrl)}${r.others.length ? ` Also listed: ${r.others.map(o => `${mdEsc(o.name)} (${placeName[o.place]}), ${o.source_url}, read ${nice(o.read_on)}`).join('; ')}.` : ''}\n  Named deals in our data:${r.deals.length ? `\n${r.deals.map(dealMd).join('\n')}` : ' None in our data yet'}`; };
   const tableRows = inv.rows.filter(r => r.deals.length).sort((a, b) => b.deals.length - a.deals.length || a.name.localeCompare(b.name));
   const summary = `${inv.groups.filter(g => g.rows.length).map(g => `${g.title}: ${g.rows.length}`).join('; ')}. ${inv.rows.length} investors in all, with ${inv.dealsLinked} named deals linked (${inv.distinctRounds} different round entries; one round names several investors).`;
   const thin = `The data is thin and growing: investors are listed only where a public page we read names them, and a deal is linked only where our own round entries name the investor. Nothing here is a full list. See the gaps on`;
@@ -337,6 +342,7 @@ ${inv.groups.filter(g => g.rows.length).map(g => `<h2 id="g${GROUP_IDX(g.title)}
 <h2>What runs as code</h2><ul><li><code>scripts/import-website.mjs</code> reads the place research of <a href="https://promptugal.news/">PrompTugal.news</a> (its <code>data/by-place/</code> files and the companies it mapped around Web Summit 2026), keeps only the public fields, and writes <code>data/from-website.json</code>. This import is from commit <code>${esc(web.source.commit.slice(0, 7))}</code>, made on ${esc(nice(web.imported_on))}: ${fromWeb} facts.</li><li><code>scripts/generate.mjs</code> merges it with the team's own research (${researchFiles.map(f => `<code>data/research/${esc(f)}</code>`).join(', ') || 'none yet'}) and builds every page, its markdown twin, <code>llms.txt</code> and the sitemap.</li><li><code>scripts/validate.mjs</code> (the gate) and <code>scripts/leak-scan.mjs</code> run on every push; the site does not deploy if either fails.</li></ul>
 <h2>What agents wrote</h2><ul><li>The place agents of PrompTugal.news (place.algarve@, place.faro@ and the others, on Claude) read and summarised the sources imported here.</li><li>startups.research@PrompTugal.dinis (Claude Sonnet) read new sources on 17 November 2026 for the Algarve, Lisbon, Porto and national programmes.</li><li>startups@PrompTugal.dinis (Claude Opus) wrote the first code, the page text and reviewed the research.</li><li>From 18 November 2026 the lead is startups.b@PrompTugal.dinis (Claude Opus), with sub-agents startups.b.dev@PrompTugal.dinis (code, Sonnet) and startups.b.research@PrompTugal.dinis (research, Sonnet).</li></ul>
 <h2>What a person checked</h2><p>Nothing yet. Dinis Cruz started the site; no person has reviewed its facts. Read each fact against its source.</p>
+<h2>Provenance</h2><p>Every item shows how we know it: who read it, how, when, in which file, and under which licence. <code>data/facts.json</code> carries the same in a <code>provenance</code> field on every entry and every other source of it.</p>
 <h2>Security</h2><p>Security findings, ours included, and the threat models of what runs on its own here (the build and daily rebuild, the research pulls, the page-view lane) are on <a href="/security/">the security page</a>.</p>
 <h2>Taking data down</h2><p>Everything here is public and linked to its source. If you think we should not show your data, open a public issue on <a href="https://github.com/PrompTugal/PrompTugal__News__Startups/issues">the site's repository</a>: we take it down while we talk.</p>
 <h2>Rules we keep</h2><ul><li>Public facts only. People only as public and professional; no personal contacts.</li><li>Sites read politely, with a named agent and pauses. A refusal (403, bot check, robots.txt) is respected and recorded as a gap, never worked around.</li><li>Amounts as the source states them. A place with no entries is a gap in our research, not a finding.</li></ul>

@@ -52,3 +52,10 @@ startups.b@PrompTugal.dinis (Opus), started by conductor.b@PrompTugal.dinis at D
 - Work (startups.b.dev@): duplicate rounds merged: Granter (3 into 1), Neuraspace (2 into 1). 527 to 524 facts; investor deal links 52 to 47; no investor lost its last link.
 - Security post-review (Sonnet): clean; notes: Porto lists one eco.sapo.pt source twice (low), licence names in markdown not escaped but from our own table (info).
 - Not caught yet: Beyond Vision and Brainr duplicates (month-only dates, unparsed amounts).
+
+## 19:43 wake (scheduled), with the inner passes
+- No hold; library requests: none for this site; new guidance (19:00): provenance on every piece of information.
+- Opening pass: go, with four changes (machine-readable fields, file on merged sources, how-read only from each file's notes, model only from our own records). Pre-review: clean.
+- Work (startups.b.dev@): provenance on all 524 items and every also-source; "How we know" on pages and twins; duplicate also-sources removed.
+- Post-review: clean; low notes: reader name is free text from the file (escaped); the tool-detection regex would match a negation (no file has one).
+- Learnt: the first research files did not record how pages were read; every research brief now asks for the method in the file's notes.

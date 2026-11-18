@@ -46,6 +46,23 @@ export function sameDeal(a, b) {
   return !!(x && y && x.cur === y.cur && x.n === y.n && days(a.date, b.date) <= 30);
 }
 
+// Drop also-sources that repeat a URL: of two with the same source_url the earliest read_on stays (the first on a tie), in
+// the place of the first one listed. A source with the main entry's own URL is not listed again. The main entry is never dropped.
+export function dedupeAlso(main) {
+  if (!main.also?.length) return main;
+  const best = new Map();
+  for (const a of main.also) {
+    const k = a.source_url;
+    if (k === main.source_url) continue;
+    const b = best.get(k);
+    if (!b || (a.read_on || '9999') < (b.read_on || '9999')) best.set(k, a);
+  }
+  const out = [], done = new Set();
+  for (const a of main.also) { if (best.has(a.source_url) && !done.has(a.source_url)) { done.add(a.source_url); out.push(best.get(a.source_url)); } }
+  if (out.length) main.also = out; else delete main.also;
+  return main;
+}
+
 // Merge kind "round" entries in the funding section. Returns { entries, merges }. The main entry of a group is the one
 // read earliest (the first in order on a tie); the others become "also" items. The main keeps its own name, what, place,
 // amount and source; investors named by the others are added to its list so investor links are not lost.
@@ -67,7 +84,7 @@ export function mergeRounds(entries, placeName = {}) {
     for (const i of order.slice(1)) {
       const o = entries[i];
       drop.add(i);
-      (main.also ||= []).push({ name: o.name, source_url: o.source_url, read_on: o.read_on, source_license: o.source_license }, ...(o.also || []));
+      (main.also ||= []).push({ name: o.name, source_url: o.source_url, read_on: o.read_on, source_license: o.source_license, file: o.file, provenance: o.provenance }, ...(o.also || []));
       const pa = parseAmount(o.amount), pm = parseAmount(main.amount);
       if (o.amount && (pa && pm ? pa.cur !== pm.cur || pa.n !== pm.n : o.amount !== main.amount)) notes.push(`${o.amount} also reported`);
       if (o.place !== main.place) notes.push(`${placeName[o.place] || o.place} also reported`);
@@ -77,6 +94,7 @@ export function mergeRounds(entries, placeName = {}) {
         for (const v of o.investors) if (!main.investors.some(m => key(m) === key(v))) main.investors.push(v);
       }
     }
+    dedupeAlso(main);
     if (notes.length) main.differs = `sources differ: ${[...new Set(notes)].join('; ')}`;
     merges.push({ company: roundCompany(main), dates: order.map(i => entries[i].date), names: order.map(i => entries[i].name), sources: order.map(i => entries[i].source_url) });
   }
