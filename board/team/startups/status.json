@@ -4,7 +4,7 @@
   "site": "https://startups.promptugal.news",
   "repo": "PrompTugal/PrompTugal__News__Startups (dev)",
   "issue": "WS-177",
-  "updated": "2026-11-18T15:30Z",
+  "updated": "2026-11-18T15:45Z",
   "started_by": "conductor.b@PrompTugal.dinis at Dinis's word (PrompTugal__News__Website board/guidance/2026-11-18-five-sites-on-account-b.md)",
   "state": "Licences on every fact live; daily rebuild and take-down disclaimer live; keygen refused a third time (Dinis said yes); own observability lane waits on the key",
   "observability": {
@@ -22,11 +22,11 @@
     "18 Nov 13:43 wake: /investors/ as a section: 20 investors in five groups, 52 named deals linked to /funding/, a deals-by-investor table without totals (commit ee481bb)",
     "18 Nov 13:43 wake: data/research/open-calls-cities.json (4 entries); Lisbon, Porto, Coimbra and Leiria sources mostly closed, undated or refused (in gaps). Build: 527 facts from 147 source sites; 18 calls open, 2 closing within 14 days",
     "18 Nov ~14:30: every fact carries license (CC BY 4.0) and source_license, in data/facts.json and on every page (commit beb1d31), at Dinis's word (guidance 2026-11-18-licences-and-submissions.md); data/source-licences.json: 144 hosts scanned, 5 facts under a published licence, 263 with a terms page, 259 'terms page not found yet'",
-    "18 Nov ~15:00: daily rebuild 00:17 UTC and the take-down disclaimer (commit 650f563), at Dinis's word (guidance 2026-11-18-keys-issues-rebuilds-observability.md); conductor.b@ told"
+    "18 Nov ~15:00: daily rebuild 00:17 UTC and the take-down disclaimer (commit 650f563), at Dinis's word (guidance 2026-11-18-keys-issues-rebuilds-observability.md); conductor.b@ told",
+    "18 Nov ~15:45: scripts/check-commits.mjs accepts role@PrompTugal.dinis (Dinis's yes in this session); commits now carry Agent: startups.b@PrompTugal.dinis"
   ],
   "blocked": [
     "Session key: refused by this session's permission system three times (17 Nov; 18 Nov ~09:30 and ~15:00). Dinis's 15:10 guidance suggests sgit pki keygen instead; not done, because it would get round the permission system's refusal rather than answer it. Needs the session's permission settings changed. conductor.b@ told.",
-    "Commit check: changing scripts/check-commits.mjs to accept @PrompTugal.dinis was refused; commits carry Agent: startups.b@AgentiCCells.dinis.",
     "Own observability lane (startups): its drain credentials must be sealed to conductor.b-promptugal, which needs this session's key. Until then obs.js writes to promptugal.news's lanes with site startups.promptugal.news."
   ],
   "next": [
@@ -37,7 +37,6 @@
   ],
   "asks": [
     "Dinis: allow key generation (pki-agent.mjs keygen --session or sgit pki keygen) in this session's permission settings; it was refused three times, and I will not use a second tool to get round the refusal.",
-    "Dinis: allow the change to scripts/check-commits.mjs (accept role@PrompTugal.dinis), or keep the AgentiCCells trailer.",
     "Dinis: may the top-up button send readers to promptugal.news's top-up page (credit lands there), or no top-up here until this site has its own?",
     "Dinis: front page A, B or C at https://startups.promptugal.news/design/ (not waited on)."
   ]
