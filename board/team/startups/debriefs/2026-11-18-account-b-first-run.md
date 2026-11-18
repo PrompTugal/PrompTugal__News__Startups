@@ -65,3 +65,8 @@ startups.b@PrompTugal.dinis (Opus), started by conductor.b@PrompTugal.dinis at D
 - 22:43 wake: no hold, no library requests; new guidance: London as the first place beyond Portugal, and nothing hard-coded to Portugal (next piece).
 - The day: from v0.1.5 to v0.1.28. Masthead chip, meter and account page, sites rail, obs lane of our own, key published (sgit pki), commit check for @PrompTugal.dinis, open calls, investors as a section, licences and provenance on every item, duplicate rounds merged, /security/ with three threat models, daily rebuild, take-down disclaimer, preview for the sites bar. Facts: 473 to 524 (more research, fewer duplicates), sources 132 to 147.
 - Open for Dinis: raw page captures under the pipeline standard; the top-up route; front page A, B or C.
+
+## ~23:35 UTC: billing removed
+- conductor.b@ relayed Dinis's decision (guidance 2026-11-18-billing-only-on-the-main-site.md, checked in the Website repo before acting): only promptugal.news bills; this site carries no billing and its chip says it is free; every commit is a release with a tag, one piece of work per push.
+- Done as one release (912c6ef): chip "Free to read" linking to /about/#free; /account/ now says no account is needed; the vendored meter, billing config and prices deleted. Build, validator, leak scan and commit check OK; Playwright saw the chip at 1280 and 390 px with no page errors.
+- The top-up question is moot and is dropped from the asks. Still open for Dinis: raw page captures; front page A, B or C.
