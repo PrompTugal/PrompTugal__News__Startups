@@ -12,6 +12,9 @@ const GROUP_IDX = t => GROUPS.indexOf(t);
 const SITE = 'https://startups.promptugal.news';
 const OUT = '_site';
 export const esc = s => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+// Only absolute http(s) URLs may become links; anything else (javascript:, data:, relative, prose) becomes ''.
+// A URL with spaces, quotes or angle brackets is percent-encoded (new URL().href); others are kept as written.
+export const safeUrl = u => { const t = String(u ?? '').trim(); if (!/^https?:\/\//i.test(t)) return ''; try { const x = new URL(t); return /^https?:$/.test(x.protocol) ? (/[\s"<>]/.test(t) ? x.href : t) : ''; } catch { return ''; } };
 const mdEsc = s => String(s ?? '').replace(/([\\`*_[\]|])/g, '\\$1');
 const slug = s => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 80);
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -44,13 +47,19 @@ export function loadData() {
   // One entry per section, place and name: the first wins and later sources are kept as "also".
   const seen = new Map();
   const entries = [];
-  for (const e of [...research, ...web.entries]) {
+  // Links from research files and imports become hrefs on every page: only http(s) URLs are kept (no javascript:,
+  // data: or other schemes), so an entry whose source is not http(s) is dropped and counted (AppSec, 18 Nov 2026).
+  let unsafeLinks = 0;
+  for (const raw of [...research, ...web.entries]) {
+    const e = { ...raw, url: safeUrl(raw.url), source_url: safeUrl(raw.source_url) };
+    if ((raw.url && !e.url) || (raw.source_url && !e.source_url)) unsafeLinks++;
     if (!e.name || !e.source_url) continue;
     const key = `${e.section}|${e.place}|${slug(e.name)}`;
     if (seen.has(key)) { const first = seen.get(key); (first.also ||= []).push({ source_url: e.source_url, read_on: e.read_on }); continue; }
     const x = { ...e, id: slug(`${e.place}-${e.name}`), license: OWN, source_license: sourceLicence(e, LICENCES) };
     seen.set(key, x); entries.push(x);
   }
+  if (unsafeLinks) console.log(`links dropped (not http or https): ${unsafeLinks}`);
   return { web, places, entries, gaps, researchFiles };
 }
 
