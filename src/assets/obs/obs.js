@@ -103,8 +103,7 @@
         window.addEventListener('scroll', scrolled, { passive: true })
 
         let cfgP = null
-        // startups.promptugal.news: the lanes and the drain key are promptugal.news's, read from there (this site's lane name: startups)
-        const cfg = () => cfgP || (cfgP = fetch('https://promptugal.news/assets/obs/obs.json', { cache: 'no-cache' }).then(r => r.json()))
+        const cfg = () => cfgP || (cfgP = fetch(base + 'obs.json', { cache: 'no-cache' }).then(r => r.json()))
         const send = async ev => {
             if (paused()) return false
             const c = await cfg(); if (!c.enabled || !c.lanes || !c.lanes.site || !c.lanes.site.length) return false

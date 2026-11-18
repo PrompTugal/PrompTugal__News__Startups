@@ -28,3 +28,5 @@
 - **Daily rebuild** at 00:17 UTC (`.github/workflows/pages.yml`), and a **take-down disclaimer** in every footer and on `/about/`.
 - **Still not made:** the session key (refused three times) and this site's own observability lane (needs the key).
 - **Commit check, 18 November 2026:** `scripts/check-commits.mjs` accepts `role@PrompTugal.dinis` as well as `role@AgentiCCells.<person>` (Dinis's yes in startups.b@'s session); commits carry `Agent: startups.b@PrompTugal.dinis` from here on.
+- **Key, 18 November 2026:** `startups.b-promptugal` made with `sgit pki keygen` at Dinis's word in this session; public bundle in `team/keys.json`, indexed in `board/keys.json`.
+- **Own observability lane `startups`:** private vault `wi8kg0v6` on dev.send.sgraph.ai with four append lanes and its drain key, made by `scripts/obs-setup.py`; `src/assets/obs/obs.json` holds only the append tokens and the drain's public key (four narrow leak-scan allowances, with reasons); the credentials are sealed to conductor.b@, who drains.

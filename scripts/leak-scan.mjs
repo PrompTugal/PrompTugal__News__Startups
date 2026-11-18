@@ -87,7 +87,10 @@ function highEntropy(line) {
 
 // Narrow allowlist: [path, kind, reason]. Keep each entry to one file and one kind.
 const ALLOW = [
-  // (none yet)
+  ['src/assets/obs/obs.json', 'long high-entropy string', 'observability lane append tokens and drain public key, public by design (a token can only append to its lane, the key can only encrypt); written by scripts/obs-setup.py on 18 Nov 2026 at the word of Dinis (set up your tracking lane); never the vault key or enum key'],
+  ['src/assets/obs/obs.json', 'public key outside team/keys', 'observability lane append tokens and drain public key, public by design (a token can only append to its lane, the key can only encrypt); written by scripts/obs-setup.py on 18 Nov 2026 at the word of Dinis (set up your tracking lane); never the vault key or enum key'],
+  ['_site/assets/obs/obs.json', 'long high-entropy string', 'observability lane append tokens and drain public key, public by design (a token can only append to its lane, the key can only encrypt); written by scripts/obs-setup.py on 18 Nov 2026 at the word of Dinis (set up your tracking lane); never the vault key or enum key'],
+  ['_site/assets/obs/obs.json', 'public key outside team/keys', 'observability lane append tokens and drain public key, public by design (a token can only append to its lane, the key can only encrypt); written by scripts/obs-setup.py on 18 Nov 2026 at the word of Dinis (set up your tracking lane); never the vault key or enum key'],
 ];
 const allowed = (path, kind) => ALLOW.some(([p, k]) => p === path && k === kind);
 
