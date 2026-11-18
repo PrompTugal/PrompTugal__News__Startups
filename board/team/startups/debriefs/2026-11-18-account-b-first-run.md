@@ -38,3 +38,8 @@ startups.b@PrompTugal.dinis (Opus), started by conductor.b@PrompTugal.dinis at D
 - `/investors/` as a section (startups.b.dev@): five groups, named deals linked. I removed its totals column: the same round appears as several entries (Granter three times), so totals overstated.
 - Open calls in the cities (startups.b.research@): only 4 with a stated closing date; most city programmes are closed, undated or refused (startuplisboa.com 404, startupleiria.pt does not resolve from this session). Founder Institute removed (paid; its date is a price deadline).
 - Learnt: duplicate round entries now matter, because pages link and count them; merging rounds by company and date is the next data fix.
+
+## Between wakes (~14:25 to 15:20 UTC), at Dinis's word relayed by conductor.b@ (checked in the guidance)
+- Licences on every fact (startups.b.dev@; field names as data.b@'s licence.mjs) and the terms pages of 144 source hosts (startups.b.research@): 4 publish a licence, 36 a terms page, 104 not found or refused.
+- Daily rebuild and the take-down disclaimer.
+- Keygen refused a third time, after Dinis's yes; conductor.b@ told. Own observability lane waits on the key.

@@ -1,0 +1,630 @@
+{
+  "about": "Licences and terms pages of the sites our facts come from, found by startups.b.research@PrompTugal.dinis on 18 November 2026. A licence is recorded only where the site states one for its content; otherwise its terms page. Read by scripts/generate.mjs.",
+  "hosts": {
+    "cordis.europa.eu": {
+      "licence_name": "Creative Commons Attribution 4.0 International (CC BY 4.0), under Commission Decision 2011/833/EU on the reuse of Commission documents",
+      "licence_url": "https://creativecommons.org/licenses/by/4.0/",
+      "terms_url": "https://cordis.europa.eu/about/legal",
+      "read_on": "2026-11-18",
+      "how": "fetched https://cordis.europa.eu/about/legal; its copyright notice says: \"Unless otherwise noted (e.g. in individual copyright notices), the reuse of the editorial content on this website owned by the EU is authorized under the Creative Commons Attribution 4.0 International (CC BY 4.0) licence.\""
+    },
+    "eic.ec.europa.eu": {
+      "licence_name": "Creative Commons Attribution 4.0 International (CC BY 4.0), under Commission Decision 2011/833/EU on the reuse of Commission documents",
+      "licence_url": "https://creativecommons.org/licenses/by/4.0/",
+      "terms_url": "https://commission.europa.eu/legal-notice_en",
+      "read_on": "2026-11-18",
+      "how": "linked from the eic.ec.europa.eu page (footer legal notice link); fetched https://commission.europa.eu/legal-notice_en, which says: \"Unless otherwise indicated (e.g. in individual copyright notices), content owned by the EU on this website is licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) licence.\""
+    },
+    "funding.tech.eu": {
+      "licence_name": "CC BY 4.0",
+      "licence_url": "https://creativecommons.org/licenses/by/4.0/",
+      "read_on": "2026-11-18",
+      "how": "fetched https://funding.tech.eu/; the page footer says \"Data: CC BY 4.0\" and links the licence. This is the Funding Explorer data only; tech.eu itself has its own terms."
+    },
+    "newsroom.sgit.ai": {
+      "licence_name": "CC BY 4.0",
+      "licence_url": "https://creativecommons.org/licenses/by/4.0/",
+      "terms_url": "https://newsroom.sgit.ai/about/imprint.html",
+      "read_on": "2026-11-18",
+      "how": "fetched https://newsroom.sgit.ai/about/imprint.html; it says \"Articles are published under CC BY 4.0; code under Apache 2.0.\" and links the licence"
+    },
+    "barlavento.pt": {
+      "terms_url": "https://www.barlavento.pt/termos-e-condicoes/",
+      "read_on": "2026-11-18",
+      "how": "fetched; linked from the home page footer"
+    },
+    "uptec.up.pt": {
+      "terms_url": "https://uptec.up.pt/termos-e-condicoes",
+      "read_on": "2026-11-18",
+      "how": "fetched; linked from the home page footer"
+    },
+    "postal.pt": {
+      "terms_url": "https://postal.pt/legal/politica-de-privacidade/",
+      "read_on": "2026-11-18",
+      "how": "fetched; linked from the home page footer. One combined page titled Politica de Privacidade, Termos e Condicoes, Estatuto Editorial e Lei da Transparencia"
+    },
+    "eco.sapo.pt": {
+      "terms_url": "https://eco.sapo.pt/termos-e-condicoes/",
+      "read_on": "2026-11-18",
+      "how": "fetched; linked from the home page footer"
+    },
+    "aihub.unicornfactorylisboa.com": {
+      "terms_url": "https://unicornfactorylisboa.com/terms-and-conditions/",
+      "read_on": "2026-11-18",
+      "how": "linked from the aihub.unicornfactorylisboa.com home page as /terms/ on unicornfactorylisboa.com; fetched (redirects to this URL)"
+    },
+    "unicornfactorylisboa.com": {
+      "terms_url": "https://unicornfactorylisboa.com/terms-and-conditions/",
+      "read_on": "2026-11-18",
+      "how": "fetched; linked from the home page"
+    },
+    "portugalglobal.pt": {
+      "terms_url": "https://portugalglobal.pt/termos-e-condicoes/",
+      "read_on": "2026-11-18",
+      "how": "fetched; linked from the home page footer"
+    },
+    "startupleiria.com": {
+      "terms_url": "https://startupleiria.com/termos-e-condicoes/",
+      "read_on": "2026-11-18",
+      "how": "fetched; linked from the home page footer"
+    },
+    "startupbraga.com": {
+      "terms_url": "https://startupbraga.com/termsandconditions",
+      "read_on": "2026-11-18",
+      "how": "fetched; linked from the home page footer"
+    },
+    "tech.eu": {
+      "terms_url": "https://tech.eu/terms-conditions/",
+      "read_on": "2026-11-18",
+      "how": "fetched; linked from the home page footer. Written mainly for Premium Membership but also bars copying or reselling site material"
+    },
+    "jornaldenegocios.pt": {
+      "terms_url": "https://www.jornaldenegocios.pt/institucional/detalhe/20150902-1659-33jn-1-3-disclaimer",
+      "read_on": "2026-11-18",
+      "how": "fetched; linked from the home page footer as Disclaimer"
+    },
+    "hrportugal.sapo.pt": {
+      "terms_url": "https://hrportugal.sapo.pt/termos-e-condicoes/",
+      "read_on": "2026-11-18",
+      "how": "fetched; linked from the home page footer"
+    },
+    "forbespt.com": {
+      "terms_url": "https://www.forbespt.com/termos-e-condicoes/",
+      "read_on": "2026-11-18",
+      "how": "fetched; linked from the home page footer"
+    },
+    "dnbrasil.dn.pt": {
+      "terms_url": "https://www.dn.pt/termos-de-utilizacao",
+      "read_on": "2026-11-18",
+      "how": "fetched; linked from the dnbrasil.dn.pt home page footer (shared Global Media Group terms)"
+    },
+    "dinheirovivo.dn.pt": {
+      "terms_url": "https://www.dn.pt/termos-de-utilizacao",
+      "read_on": "2026-11-18",
+      "how": "fetched; linked from the dinheirovivo.dn.pt home page footer (shared Global Media Group terms)"
+    },
+    "portugalventures.pt": {
+      "terms_url": "https://www.portugalventures.pt/termos-e-condicoes-de-utilizacao/",
+      "read_on": "2026-11-18",
+      "how": "fetched; linked from the home page footer"
+    },
+    "pulse2.com": {
+      "terms_url": "https://pulse2.com/terms-of-service/",
+      "read_on": "2026-11-18",
+      "how": "fetched; linked from the home page footer as TOS"
+    },
+    "portugal2030.pt": {
+      "terms_url": "https://portugal2030.pt/termos-e-condicoes/",
+      "read_on": "2026-11-18",
+      "how": "fetched; linked from the home page footer"
+    },
+    "business.turismodeportugal.pt": {
+      "terms_url": "https://www.turismodeportugal.pt/Paginas/termos-e-condicoes.aspx",
+      "read_on": "2026-11-18",
+      "how": "linked from the business.turismodeportugal.pt home page (http address); fetched over https"
+    },
+    "empreendedor.com": {
+      "terms_url": "https://empreendedor.com/termos-de-utilizacao",
+      "read_on": "2026-11-18",
+      "how": "fetched; linked from the home page footer"
+    },
+    "executivedigest.sapo.pt": {
+      "terms_url": "https://executivedigest.sapo.pt/termos-de-utilizacao/",
+      "read_on": "2026-11-18",
+      "how": "fetched; linked from the home page footer"
+    },
+    "essential-business.pt": {
+      "terms_url": "https://www.essential-business.pt/terms-and-conditions/",
+      "read_on": "2026-11-18",
+      "how": "fetched; linked from the home page"
+    },
+    "jornaleconomico.sapo.pt": {
+      "terms_url": "https://jornaleconomico.sapo.pt/sobre-nos/o-jornal/termos-e-condicoes/",
+      "read_on": "2026-11-18",
+      "how": "fetched; linked from the home page footer"
+    },
+    "justica.gov.pt": {
+      "terms_url": "https://justica.gov.pt/Termos-e-Condicoes",
+      "read_on": "2026-11-18",
+      "how": "fetched; linked from the home page footer (the Avisos Legais link leads here)"
+    },
+    "inpi.justica.gov.pt": {
+      "terms_url": "https://inpi.justica.gov.pt/Avisos-Legais",
+      "read_on": "2026-11-18",
+      "how": "fetched; linked from the home page footer as Termos e Condicoes"
+    },
+    "compete2030.gov.pt": {
+      "terms_url": "https://www.compete2030.gov.pt/termos-e-condicoes/",
+      "read_on": "2026-11-18",
+      "how": "fetched; linked from the home page footer"
+    },
+    "portugalstartupnews.com": {
+      "terms_url": "https://portugalstartupnews.com/terms-conditions/",
+      "read_on": "2026-11-18",
+      "how": "fetched; linked from the home page footer"
+    },
+    "euacc.ai": {
+      "terms_url": "https://www.euacc.ai/terms",
+      "read_on": "2026-11-18",
+      "how": "fetched; linked from the home page footer. These are platform terms of service"
+    },
+    "edp.com": {
+      "terms_url": "https://edp.com/en/terms-and-conditions-use",
+      "read_on": "2026-11-18",
+      "how": "fetched; linked from the home page footer"
+    },
+    "cuatrecasas.com": {
+      "terms_url": "https://www.cuatrecasas.com/en/global/general/condiciones-de-uso-1",
+      "read_on": "2026-11-18",
+      "how": "fetched; linked from the home page footer as Terms of Use"
+    },
+    "newinbraga.nit.pt": {
+      "terms_url": "https://newinbraga.nit.pt/termos-e-condicoes",
+      "read_on": "2026-11-18",
+      "how": "fetched; linked from the home page footer"
+    },
+    "mun-guarda.pt": {
+      "terms_url": "https://www.mun-guarda.pt/termos-e-condicoes-de-utilizacao/",
+      "read_on": "2026-11-18",
+      "how": "fetched; linked from the home page footer"
+    },
+    "starinstitute.pt": {
+      "terms_url": "https://starinstitute.pt/termos-e-condicoes/",
+      "read_on": "2026-11-18",
+      "how": "fetched; linked from the home page footer. Short page; it states copyright only"
+    },
+    "uevora.pt": {
+      "terms_url": "https://www.uevora.pt/termos-e-condicoes-e-politica-de-privacidade/politica-de-privacidade",
+      "read_on": "2026-11-18",
+      "how": "fetched; linked from the home page (combined Termos e Condicoes e Politica de Privacidade section)"
+    },
+    "leigpt.pt": {
+      "terms_url": "https://leigpt.pt/oferta_pt",
+      "read_on": "2026-11-18",
+      "how": "fetched; linked from the home page. These are the service's public offer terms"
+    },
+    "chatplace.io": {
+      "terms_url": "https://chatplace.io/terms-of-service",
+      "read_on": "2026-11-18",
+      "how": "fetched; linked from the home page. These are service terms"
+    }
+  },
+  "gaps": [
+    {
+      "host": "bealgarve.pt",
+      "why": "home page links only a privacy policy; no terms of use found, so no terms_url given"
+    },
+    {
+      "host": "startupportugal.com",
+      "why": "the Legal Information page fetched links only a privacy policy and a cookie policy; no terms of use found"
+    },
+    {
+      "host": "jornaldeleiria.pt",
+      "why": "the Termos e Condicoes link fetched is titled Politica de Privacidade, so not used as terms"
+    },
+    {
+      "host": "tomorrowalgarve.com",
+      "why": "only a Disclaimer page found (https://tomorrowalgarve.com/disclaimer/); it says nothing about use of content, so not used as terms"
+    },
+    {
+      "host": "feedzai.com",
+      "why": "https://www.feedzai.com/legal/ is a hub of legal documents with no content-use terms seen; not used"
+    },
+    {
+      "host": "vtex.com",
+      "why": "https://www.vtex.com/en-us/trust/agreements lists software agreements, not terms for use of the site's content; not used"
+    },
+    {
+      "host": "noticias.up.pt",
+      "why": "only a comments usage policy found (https://noticias.up.pt/politica-de-comentarios/), which is not terms for the content"
+    },
+    {
+      "host": "comercioenoticias.pt",
+      "why": "REFUSED: HTTP 403 on the home page; not worked around"
+    },
+    {
+      "host": "cm-coimbra.pt",
+      "why": "REFUSED: HTTP 403 on the home page; not worked around"
+    },
+    {
+      "host": "dealroom.co",
+      "why": "REFUSED: HTTP 429 (rate limit or bot check) on the home page; not worked around"
+    },
+    {
+      "host": "cm-silves.pt",
+      "why": "REFUSED: connection reset or no response from the server on the home page; not worked around"
+    },
+    {
+      "host": "cm-braganca.pt",
+      "why": "REFUSED: connection reset or no response from the server on the home page; not worked around"
+    },
+    {
+      "host": "cm-faro.pt",
+      "why": "REFUSED: connection reset or no response from the server on the home page; not worked around"
+    },
+    {
+      "host": "cm-monchique.pt",
+      "why": "REFUSED: connection reset or no response from the server on the home page; not worked around"
+    },
+    {
+      "host": "cm-aveiro.pt",
+      "why": "REFUSED: connection reset or no response from the server on the home page; not worked around"
+    },
+    {
+      "host": "cm-lagoa.pt",
+      "why": "REFUSED: connection reset or no response from the server on the home page; not worked around"
+    },
+    {
+      "host": "cm-beja.pt",
+      "why": "REFUSED: connection reset or no response from the server on the home page; not worked around"
+    },
+    {
+      "host": "cm-vrsa.pt",
+      "why": "REFUSED: connection reset or no response from the server on the home page; not worked around"
+    },
+    {
+      "host": "cm-aljezur.pt",
+      "why": "REFUSED: connection reset or no response from the server on the home page; not worked around"
+    },
+    {
+      "host": "cm-evora.pt",
+      "why": "REFUSED: connection reset or no response from the server on the home page; not worked around"
+    },
+    {
+      "host": "iapmei.pt",
+      "why": "REFUSED: connection reset or no response from the server on the home page; not worked around"
+    },
+    {
+      "host": "fct.pt",
+      "why": "REFUSED: connection reset or no response from the server on the home page; not worked around"
+    },
+    {
+      "host": "inov.utad.pt",
+      "why": "REFUSED: connection reset or no response from the server on the home page; not worked around"
+    },
+    {
+      "host": "ipn.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "transparencia.gov.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "cm-viana-castelo.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "ualg.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "observador.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "noticias.utad.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "ipcb.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "startupportimao.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "cm-castromarim.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "vestbee.com",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "gov.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "eportugal.gov.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "vmtv.sapo.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "pact.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "cm-castelobranco.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "politecnicoguarda.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "scaleupporto.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "canaln.tv",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "diariodominho.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "cm-viseu.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "diarioleiria.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "mun-setubal.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "ipstartup.ips.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "nerbe.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "cm-tavira.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "cm-portimao.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "nera.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "bpfomento.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "ani.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "bragatv.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "rtp.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "cm-viladobispo.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "cm-alcoutim.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "startupgenome.com",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "coimbra.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "brainr.com",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "linktoleaders.com",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "biobip.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "gii.ipportalegre.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "startupcoimbra.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "caixacapital.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "faber.vc",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "musicbusinessworldwide.com",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "beta-i.com",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "lispolis.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "fabricadestartups.com",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "inesctec.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "business-it.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "bynd.vc",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "shilling.vc",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "publico.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "ipressjournal.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "algarveprimeiro.com",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "oalgarve.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "economia.cm-porto.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "portoinnovationhub.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "portodigital.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "registo.justica.gov.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "aman-alliance.org",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "indico.fccn.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "cedri.ipb.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "web-4ui.pages.dev",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "echoboomer.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "altominho.tv",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "gocoimbra.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "space.ipn.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "vitebtestbed.com",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "univiseu.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "airv.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "ipv.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "diarioviseu.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "cm-leiria.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "ipleiria.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "cm-portalegre.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "osetubalense.com",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "adral.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "odigital.sapo.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "sapo.pt",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "dig-in.io",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "itrtechgroup.com",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    },
+    {
+      "host": "sheerme.com",
+      "why": "no terms or licence page found by scanning the home page links (no page fetched with terms content)"
+    }
+  ]
+}
