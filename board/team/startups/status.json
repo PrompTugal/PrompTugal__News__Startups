@@ -4,7 +4,7 @@
   "site": "https://startups.promptugal.news",
   "repo": "PrompTugal/PrompTugal__News__Startups (dev)",
   "issue": "WS-177",
-  "updated": "2026-11-18T22:55Z",
+  "updated": "2026-11-18T23:38Z",
   "started_by": "conductor.b@PrompTugal.dinis at Dinis's word (PrompTugal__News__Website board/guidance/2026-11-18-five-sites-on-account-b.md)",
   "state": "Day closed (22:43 wake, last of 18 Nov): live v0.1.28; no hold; no library requests; next wake 07:43 Lisbon",
   "observability": {
@@ -15,7 +15,7 @@
     "made_by": "scripts/obs-setup.py"
   },
   "done": [
-    "18 Nov: masthead chip 'Pay for what you read · £balance' (this site's own meter, sg-meter v1.5.0 vendored), /account/ with the reading graph, the sites rail at the right edge, page-view counting with the lane startups (commit cda5ed8)",
+    "18 Nov: masthead chip 'Pay for what you read · £balance' (removed later that night: this site carries no billing) (this site's own meter, sg-meter v1.5.0 vendored), /account/ with the reading graph, the sites rail at the right edge, page-view counting with the lane startups (commit cda5ed8)",
     "18 Nov: IPMA checked: no page here is built on IPMA data, so none is kept outside the meter",
     "18 Nov: board/keys.json records the session key as not made (refused again)",
     "18 Nov: new research by startups.b.research@ (Sonnet), reviewed by startups.b@: data/research/investors.json (13 entries, 17 gaps) and data/research/centre-north.json (12 entries, 12 gaps; Braga, Coimbra, Aveiro, Leiria, Viseu, Covilhã, Guarda). The site now shows 497 facts from 138 source sites (23 investors, 114 rounds and grants)",
@@ -32,7 +32,8 @@
     "18 Nov ~16:50: /security/ page (findings from data/security/findings.json; threat models docs/threat-models/daily-rebuild.md, research-pulls.md, observability-lane.md), linked from the footer and /about/, and to promptugal.news/security/",
     "18 Nov 16:43 wake: duplicate funding rounds merged (scripts/lib/rounds.mjs): Granter 3 entries into 1, Neuraspace 2 into 1; every source kept as 'Also reported by' with its licence; build count 524 facts (was 527), 113 funding, 47 investor deal links (was 52). Inner passes: opening go, pre-review clean with 5 mitigations, post-review clean",
     "18 Nov 19:43 wake: provenance on every item (Dinis 19:00, guidance 2026-11-18-cameras-provenance-and-bulletins.md): data/facts.json carries a provenance field on all 524 entries and every also-source (file, reader, model where our records state it, how read, read date, licences); pages and twins show 'How we know'; duplicate also-sources removed (Porto). How read: 53 from the file's notes, 121 'not recorded' (the 17 Nov files), 350 import. Inner passes: opening go with 4 changes applied; post-review clean (2 low notes)",
-    "18 Nov ~22:20: /preview.svg and /preview.json at every build (our live counts, with provenance and licence), /preview.png made in CI by headless Chrome, og:image on every page, for the shared sites bar (Dinis ~22:00, guidance 2026-11-18-the-sites-bar.md); /version.json already current"
+    "18 Nov ~22:20: /preview.svg and /preview.json at every build (our live counts, with provenance and licence), /preview.png made in CI by headless Chrome, og:image on every page, for the shared sites bar (Dinis ~22:00, guidance 2026-11-18-the-sites-bar.md); /version.json already current",
+    "18 Nov (after 23:35 UTC): billing removed at Dinis's word (guidance 2026-11-18-billing-only-on-the-main-site.md): masthead chip 'Free to read', /about/#free, /account/ says no account is needed; meter, billing config and prices deleted"
   ],
   "blocked": [],
   "next": [
@@ -49,7 +50,6 @@
     "Pipeline standard (same guidance) for this site's own sources: today a research pull keeps our summary, the source URL and the read date, not the page as received. Proposal for Dinis: keep the raw capture of each page read (timestamped, never overwritten) in a vault, and give each research area a source page and an OpenAPI description of data/facts.json; or leave raw capture to data.b@'s collectors where a source becomes a feed"
   ],
   "asks": [
-    "Dinis: may the top-up button send readers to promptugal.news's top-up page (credit lands there), or no top-up here until this site has its own?",
     "Dinis: front page A, B or C at https://startups.promptugal.news/design/ (not waited on).",
     "Dinis: should this site keep a raw, timestamped capture of every page its research agents read (the pipeline standard), or does the standard apply only to data.b@'s collected feeds, with our research files citing source URL and read date as now?"
   ],

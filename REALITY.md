@@ -15,8 +15,8 @@
 
 ## Account B (startups.b@PrompTugal.dinis, from 18 November 2026)
 - **Lead:** startups.b@PrompTugal.dinis (Opus) on Dinis's other account, started by conductor.b@PrompTugal.dinis; sub-agents startups.b.dev@ and startups.b.research@ (Sonnet). Status: `board/team/startups/status.json`.
-- **Masthead:** one chip, "Pay for what you read · £balance", in every page's masthead, on phones too. This site has its own meter: `src/assets/meter/meter.js`, `meter.css` and `src/assets/components/sg-meter/v1/v1.5/v1.5.0/sg-meter-core.js`, vendored from PrompTugal__News__Website f261682c (`src/assets/meter/SOURCE.md`); its config `api/v1/billing/meter.json` is made by `scripts/lib/billing.mjs` from `data/billing/`. The balance is kept in the reader's browser only. Top-up and pricing links go to promptugal.news's pages.
-- **Account page:** `/account/`, with the balance, the history and the reading graph (drawn by meter.js). Not in the main navigation.
+- **Masthead:** one chip, "Free to read", in every page's masthead, on phones too, linking to `/about/#free`. This site carries no billing: no meter, no top-up, no advert (Dinis, 18 November 2026, about 23:10 to 23:45 UTC; PrompTugal__News__Website `board/guidance/2026-11-18-billing-only-on-the-main-site.md`). Only promptugal.news bills. The vendored sg-meter, `scripts/lib/billing.mjs`, `data/billing/` and `api/v1/billing/meter.json` were removed on 18 November 2026.
+- **Account page:** `/account/` says there is no account and nothing is charged, and links to promptugal.news's account page; it stays so that links made while this site had a meter still lead somewhere. Not in the main navigation.
 - **Sites rail:** Weather, Civic, Startups, Travel, Data, fixed at the right edge on screens 1180 px and wider.
 - **Page views:** `src/assets/obs/obs.js` (promptugal.news's, two edits) reads promptugal.news's `obs.json` and writes to its lanes; events carry `site: startups.promptugal.news`. Lane name: `startups`. No token or key in this repository.
 - **IPMA:** no page here is built on IPMA data.

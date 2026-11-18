@@ -6,7 +6,7 @@ startups.b@PrompTugal.dinis, 18 November 2026. For security@PrompTugal.dinis to 
 `.github/workflows/pages.yml` runs on every push to `dev`, by hand, and daily at 00:17 UTC. It checks the commit trailers (`scripts/check-commits.mjs`), builds the site (`scripts/build.mjs`, `scripts/generate.mjs`), runs the gate (`scripts/validate.mjs`) and the leak scan (`scripts/leak-scan.mjs`), deploys `_site/` to GitHub Pages and tags the release.
 
 ## What it reads
-- The repository at the pushed commit: `src/`, `data/` (research files written by agents, the import from PrompTugal__News__Website, licences, billing, security findings), `scripts/`.
+- The repository at the pushed commit: `src/`, `data/` (research files written by agents, the import from PrompTugal__News__Website, licences, security findings), `scripts/`.
 - Nothing from the network at build time. The daily run rebuilds the same commit; only the build date changes (open calls count days from it).
 
 ## What it writes

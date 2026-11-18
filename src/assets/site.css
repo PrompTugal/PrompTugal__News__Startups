@@ -66,7 +66,7 @@ footer ul{margin:.3rem 0;padding-left:1.1rem}
 .em-net a:hover,.em-net a:focus-visible{background:var(--card,#e8f3e8)}
 .em-net a[aria-current]{color:var(--green,#006600);background:var(--card,#e8f3e8)}
 @media (max-width:1180px){.em-net{display:none}}
-/* The reading meter chip sits in the masthead row, to the right */
+/* The "Free to read" chip sits in the masthead row, to the right, on phones too (only promptugal.news bills: Dinis, 18 Nov 2026) */
 .mast .tools{margin-left:auto}
-/* The balance stays in view on a phone too (Dinis, 17 Nov 2026: "I need to see the value of my budget, always"); meter.css hides it under 768px because promptugal.news moves it into its own top bar. */
-@media (max-width: 767px) { .mast .tools .tool.meter { display: inline-flex !important; } .mast .tools .tool.meter .meter-label { display: inline; } }
+.mast .tools .tool.free{display:inline-flex;align-items:center;padding:4px 10px;border:1px solid var(--rule,#d8d4cb);border-radius:999px;font:600 13px var(--sans);color:var(--green,#006600);text-decoration:none;white-space:nowrap}
+.mast .tools .tool.free:hover,.mast .tools .tool.free:focus-visible{background:var(--card,#e8f3e8)}
