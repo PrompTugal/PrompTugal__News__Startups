@@ -6,6 +6,7 @@ import { join, dirname } from 'node:path';
 import { variants } from './lib/front-variants.mjs';
 import { meterConfig } from './lib/billing.mjs';
 import { loadLicences, sourceLicence, licenceHtml, licenceMd, OWN } from './lib/licence.mjs';
+import { mergeRounds } from './lib/rounds.mjs';
 import { buildInvestors, GROUPS } from './lib/investors.mjs';
 const GROUP_IDX = t => GROUPS.indexOf(t);
 
@@ -55,12 +56,15 @@ export function loadData() {
     if ((raw.url && !e.url) || (raw.source_url && !e.source_url)) unsafeLinks++;
     if (!e.name || !e.source_url) continue;
     const key = `${e.section}|${e.place}|${slug(e.name)}`;
-    if (seen.has(key)) { const first = seen.get(key); (first.also ||= []).push({ source_url: e.source_url, read_on: e.read_on }); continue; }
+    if (seen.has(key)) { const first = seen.get(key); (first.also ||= []).push({ name: e.name, source_url: e.source_url, read_on: e.read_on, source_license: sourceLicence(e, LICENCES) }); continue; }
     const x = { ...e, id: slug(`${e.place}-${e.name}`), license: OWN, source_license: sourceLicence(e, LICENCES) };
     seen.set(key, x); entries.push(x);
   }
   if (unsafeLinks) console.log(`links dropped (not http or https): ${unsafeLinks}`);
-  return { web, places, entries, gaps, researchFiles };
+  // Second merge: the same funding round reported under different names or places (see scripts/lib/rounds.mjs).
+  const placeNames = Object.fromEntries(places.map(p => [p.id, p.id === 'portugal' ? 'National' : p.name]));
+  const merged = mergeRounds(entries, placeNames);
+  return { web, places, entries: merged.entries, gaps, researchFiles, roundMerges: merged.merges, roundsBefore: merged.before };
 }
 
 // Place order: the Algarve and its towns first, then Lisbon, Porto, the other places, then national.
@@ -140,7 +144,9 @@ const isMoney = e => e.section === 'funding' || e.section === 'investors';
 export function sourceLine(e) {
   const host = (() => { try { return new URL(e.source_url).hostname.replace(/^www\./, ''); } catch { return 'source'; } })();
   const also = (e.also || []).length ? ` · ${e.also.length} more source${e.also.length > 1 ? 's' : ''}` : '';
-  return `<p class="src">Source: <a href="${esc(e.source_url)}" rel="nofollow">${esc(host)}</a>, read ${esc(nice(e.read_on))}${also}${licenceHtml(e, esc)}</p>`;
+  const alsoList = (e.also || []).filter(a => safeUrl(a.source_url));
+  const alsoHtml = alsoList.length ? `<p class="meta">Also reported by: ${alsoList.map(a => `<a href="${esc(safeUrl(a.source_url))}" rel="nofollow">${esc(a.name || safeUrl(a.source_url))}</a>, read ${esc(nice(a.read_on))}${licenceHtml({ source_license: a.source_license && { ...a.source_license, url: safeUrl(a.source_license.url) } }, esc)}`).join('; ')}</p>` : '';
+  return `<p class="src">Source: <a href="${esc(e.source_url)}" rel="nofollow">${esc(host)}</a>, read ${esc(nice(e.read_on))}${also}${licenceHtml(e, esc)}</p>${alsoHtml}${e.differs ? `<p class="meta">${esc(e.differs)}</p>` : ''}`;
 }
 export function itemHtml(e, placeName) {
   const tags = `<span class="tag${isMoney(e) ? ' money' : ''}">${esc(e.kind)}</span>${placeName ? `<span class="tag">${esc(placeName)}</span>` : ''}`;
@@ -150,7 +156,12 @@ export function itemHtml(e, placeName) {
 }
 export function itemMd(e, placeName) {
   const facts = [e.kind, placeName, e.amount, e.date && nice(e.date), e.company && `to ${e.company}`, e.investors?.length && `with ${e.investors.join(', ')}`, e.status].filter(Boolean).join(' · ');
-  return `- **${mdEsc(e.name)}**${e.url ? ` (${e.url})` : ''}: ${mdEsc(facts)}. ${mdEsc(e.what || '')} Source: ${e.source_url}, read ${nice(e.read_on)}.${licenceMd(e)}`;
+  return `- **${mdEsc(e.name)}**${e.url ? ` (${e.url})` : ''}: ${mdEsc(facts)}. ${mdEsc(e.what || '')} Source: ${e.source_url}, read ${nice(e.read_on)}.${licenceMd(e)}${alsoMd(e)}${e.differs ? ` ${mdEsc(e.differs)}.` : ''}`;
+}
+// Other sources of the same fact, each with its own licence or terms link; every URL passes safeUrl().
+function alsoMd(e) {
+  const l = (e.also || []).filter(a => safeUrl(a.source_url));
+  return l.length ? ` Also reported by: ${l.map(a => `${mdEsc(a.name || '')} ${safeUrl(a.source_url)}, read ${nice(a.read_on)}.${licenceMd({ source_license: a.source_license && { ...a.source_license, url: safeUrl(a.source_license.url) } })}`.replace(/\s+/g, ' ').trim()).join(' ')}` : '';
 }
 const byDate = (a, b) => (b.date || '').localeCompare(a.date || '') || a.name.localeCompare(b.name);
 const KIND_ORDER = ['incubator', 'accelerator', 'business nest', 'tech park', 'hub', 'university office', 'coworking', 'space', 'programme', 'call', 'funding programme', 'public desk', 'public body', 'association', 'community', 'mentoring', 'law', 'statistic'];
@@ -221,7 +232,10 @@ export function callsBoxHtml(list, heading, placeName, showPlace) {
 
 // ---------- build ----------
 export function generate() {
-  const { web, places, entries, gaps, researchFiles } = loadData();
+  const { web, places, entries, gaps, researchFiles, roundMerges, roundsBefore } = loadData();
+  const dropped = roundMerges.reduce((n, m) => n + m.names.length - 1, 0);
+  console.log(`rounds merged: ${roundMerges.reduce((n, m) => n + m.names.length, 0)} entries into ${roundMerges.length} (${roundsBefore} round entries before, ${roundsBefore - dropped} after)`);
+  for (const m of roundMerges) console.log(`  merge: ${m.company} | dates ${m.dates.map(d => d || 'none').join(', ')} | ${m.names.join(' + ')} | ${m.sources.join(' ')}`);
   const placeName = Object.fromEntries(places.map(p => [p.id, p.id === 'portugal' ? 'National' : p.name]));
   const groups = orderPlaces(places, entries);
   const sec = s => entries.filter(e => e.section === s);
@@ -302,7 +316,7 @@ ${grp('Closing within 14 days', calls.soon, 'None closing in the next 14 days.')
   const tableRows = inv.rows.filter(r => r.deals.length).sort((a, b) => b.deals.length - a.deals.length || a.name.localeCompare(b.name));
   const summary = `${inv.groups.filter(g => g.rows.length).map(g => `${g.title}: ${g.rows.length}`).join('; ')}. ${inv.rows.length} investors in all, with ${inv.dealsLinked} named deals linked (${inv.distinctRounds} different round entries; one round names several investors).`;
   const thin = `The data is thin and growing: investors are listed only where a public page we read names them, and a deal is linked only where our own round entries name the investor. Nothing here is a full list. See the gaps on`;
-  const tblNote = `Counts are round entries in our data that name the investor; one round counts for each investor it names, and two entries can describe the same round. We do not total the amounts: the same round can appear more than once, and a round's size is not the investor's own share.`;
+  const tblNote = `Counts are round entries in our data that name the investor; one round counts for each investor it names. Entries for the same deal are merged when the company and the date, or the company and the amount within 30 days, match; a duplicate we could not match may remain. We do not total the amounts: a round's size is not the investor's own share.`;
   s = { html: `<p class="kicker">Investors · a section for now</p><h1>Investors</h1><p class="lede">Venture funds, angel networks and public investors seen in Portuguese rounds. This data is still thin: we are collecting more, and it may get a site of its own.</p>
 <div class="note"><p>${esc(summary)}</p><p>${esc(thin)} <a href="/about/#gaps">How this is made</a>.</p></div>
 <p class="meta">Jump to: ${inv.groups.filter(g => g.rows.length).map((g, i) => `<a href="#g${GROUP_IDX(g.title)}">${esc(g.title)}</a>`).join(' · ')} · <a href="#by-investor">Deals by investor</a></p>

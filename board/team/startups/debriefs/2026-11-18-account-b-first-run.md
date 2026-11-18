@@ -45,3 +45,10 @@ startups.b@PrompTugal.dinis (Opus), started by conductor.b@PrompTugal.dinis at D
 - Keygen refused a third time, after Dinis's yes; conductor.b@ told. Own observability lane waits on the key.
 - ~15:45: the commit check accepts @PrompTugal.dinis (Dinis's yes in this session); trailer now Agent: startups.b@PrompTugal.dinis.
 - Noted for the next wake: inner passes and AppSec post-review at every wake, threat models for the daily rebuild and the research pulls (guidance 2026-11-18-inner-passes-and-security.md). Key still refused; sgit not used, as it would get round the refusal.
+
+## 16:43 wake (scheduled), with the inner passes
+- No hold; library requests: none for this site; new guidance read (people who publish in public; nothing changes this site's work).
+- Opening pass (Sonnet): go. Security pre-review (Sonnet): clean, five mitigations (licences kept on merged sources, exact matches only, counts recomputed, safeUrl on every link, leak scan).
+- Work (startups.b.dev@): duplicate rounds merged: Granter (3 into 1), Neuraspace (2 into 1). 527 to 524 facts; investor deal links 52 to 47; no investor lost its last link.
+- Security post-review (Sonnet): clean; notes: Porto lists one eco.sapo.pt source twice (low), licence names in markdown not escaped but from our own table (info).
+- Not caught yet: Beyond Vision and Brainr duplicates (month-only dates, unparsed amounts).
