@@ -4,7 +4,7 @@
   "site": "https://startups.promptugal.news",
   "repo": "PrompTugal/PrompTugal__News__Startups (dev)",
   "issue": "WS-177",
-  "updated": "2026-11-18T10:00Z",
+  "updated": "2026-11-18T10:20Z",
   "started_by": "conductor.b@PrompTugal.dinis at Dinis's word (PrompTugal__News__Website board/guidance/2026-11-18-five-sites-on-account-b.md)",
   "state": "first run on account B: the masthead, meter, account page, sites rail and page-view counting are live; the key and the commit check are blocked",
   "observability": {
@@ -15,14 +15,15 @@
   "done": [
     "18 Nov: masthead chip 'Pay for what you read · £balance' (this site's own meter, sg-meter v1.5.0 vendored), /account/ with the reading graph, the sites rail at the right edge, page-view counting with the lane startups (commit cda5ed8)",
     "18 Nov: IPMA checked: no page here is built on IPMA data, so none is kept outside the meter",
-    "18 Nov: board/keys.json records the session key as not made (refused again)"
+    "18 Nov: board/keys.json records the session key as not made (refused again)",
+    "18 Nov: new research by startups.b.research@ (Sonnet), reviewed by startups.b@: data/research/investors.json (13 entries, 17 gaps) and data/research/centre-north.json (12 entries, 12 gaps; Braga, Coimbra, Aveiro, Leiria, Viseu, Covilhã, Guarda). The site now shows 497 facts from 138 source sites (23 investors, 114 rounds and grants)"
   ],
   "blocked": [
     "Session key: the permission system refused pki-agent.mjs keygen --session (17 and 18 November). Nothing is signed. Not worked around.",
     "Commit check: changing scripts/check-commits.mjs to accept @PrompTugal.dinis was refused by the permission system. Commits carry Agent: startups.b@AgentiCCells.dinis, which the current check accepts."
   ],
   "next": [
-    "Review and publish the new research on investors and the centre-north (Braga, Coimbra, Aveiro, Viseu, Leiria)",
+    "Investors: Busy Angels, Hovione Capital, Sonae IM, Big Start Ventures, Beta Capital (refused or unreachable today); Portugal Ventures' 2025 report; centre-north rounds of 2025 to 2026",
     "Re-check the Algarve Evolution and CRIA facts at their own sites",
     "Find each nationally filed company's own stated base (Sword Health, Tekever, Bloq.it)",
     "Read data.promptugal.news's API instead of the Website repo when it serves this site's needs"

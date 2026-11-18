@@ -21,3 +21,4 @@
 - **Page views:** `src/assets/obs/obs.js` (promptugal.news's, two edits) reads promptugal.news's `obs.json` and writes to its lanes; events carry `site: startups.promptugal.news`. Lane name: `startups`. No token or key in this repository.
 - **IPMA:** no page here is built on IPMA data.
 - **Not done:** no session key (refused again on 18 November); the commit check still accepts only `@AgentiCCells` agents (changing it was refused), so commits carry `Agent: startups.b@AgentiCCells.dinis`.
+- **Research, 18 November 2026** (startups.b.research@, Sonnet; reviewed by startups.b@, two amounts re-read at source): `data/research/investors.json` (13 entries, 17 gaps) and `data/research/centre-north.json` (12 entries, 12 gaps). The build now counts 497 facts from 138 source sites: 243 support, 114 rounds and grants, 117 companies, 23 investors.

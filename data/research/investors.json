@@ -1,0 +1,263 @@
+{
+  "by": "startups.b.research@PrompTugal.dinis",
+  "read_on": "2026-11-18",
+  "area": "investors",
+  "notes": "Gathered on 2026-11-18 with WebFetch (page text summarised by a small model, so figures are as that summary reported them) and WebSearch used only to find URLs. Every entry's source_url is a page that was fetched and read; facts seen only in search snippets are in gaps. No websummit.com, lu.ma, luma.com, meetup.com or eventbrite pages were fetched. Several hosts refused or failed and are recorded in gaps. Reviewed by startups.b@PrompTugal.dinis on 18 November 2026: the Granter and Neuraspace amounts, dates and investors re-read at their source pages and confirmed; Granter's round type is not stated there, so it is not called a seed round; the Ponda round was removed because Ponda is a British company.",
+  "entries": [
+    {
+      "name": "Portugal Ventures",
+      "kind": "fund",
+      "place": "portugal",
+      "what": "Venture capital investor in technology-based startups headquartered in Portugal, at pre-seed, seed and Series A, with tickets of up to EUR 6 million. The home page states EUR 283 million under management and, since 2012, 256 new companies and EUR 233.2 million invested. The page names no specific 2025 to 2026 investments.",
+      "url": "https://www.portugalventures.pt/",
+      "source_url": "https://www.portugalventures.pt/",
+      "read_on": "2026-11-18",
+      "status": "active"
+    },
+    {
+      "name": "INEYE Therapeutics follow-on (Portugal Ventures)",
+      "kind": "round",
+      "place": "portugal",
+      "what": "Portugal Ventures' news page reports a follow-on of EUR 250,000, co-invested with Insight Venture, bringing the total invested in the round to EUR 600,000. The initial EUR 100,000 was made in 2023 through Call INNOV-ID. The page does not state the company's base.",
+      "url": "https://www.portugalventures.pt/en/news/",
+      "source_url": "https://www.portugalventures.pt/en/news/",
+      "read_on": "2026-11-18",
+      "date": "2025-07-02",
+      "amount": "EUR 600,000 (round total; Portugal Ventures EUR 250,000)",
+      "company": "INEYE Therapeutics",
+      "investors": [
+        "Portugal Ventures",
+        "Insight Venture"
+      ]
+    },
+    {
+      "name": "Caixa Capital",
+      "kind": "fund",
+      "place": "portugal",
+      "what": "Venture capital and private equity manager. Direct investments are preferably in Series A and B rounds, in innovative, technologically differentiated companies. Indirectly it invests through a fund of funds, mainly in venture funds based in Portugal or run by Portuguese teams, plus international funds. The page states about EUR 360 million under management and does not disclose ticket sizes or deal counts.",
+      "url": "https://www.caixacapital.pt/",
+      "source_url": "https://www.caixacapital.pt/",
+      "read_on": "2026-11-18",
+      "status": "active"
+    },
+    {
+      "name": "EDP Ventures",
+      "kind": "fund",
+      "place": "portugal",
+      "what": "Corporate venture arm of EDP investing in early-stage technology startups in the energy sector, as a minority investor from seed to Series B. The page states EUR 150 million under management, tickets of EUR 1 million to EUR 10 million and around 5 to 8 investments a year. It shows portfolio logos but no dated deals.",
+      "url": "https://www.edp.com/en/innovation/edp-ventures",
+      "source_url": "https://www.edp.com/en/innovation/edp-ventures",
+      "read_on": "2026-11-18",
+      "status": "active"
+    },
+    {
+      "name": "Faber",
+      "kind": "fund",
+      "place": "portugal",
+      "what": "Early-stage venture firm investing from pre-seed to Series A, with a first ticket of up to EUR 2.5 million, in Southern Europe with selective investments elsewhere in Europe. Focus areas stated: deep tech (applied science and digital transformation) and climate and ocean tech. The page lists deals including ATMOS (EUR 25.7 million Series A, participating), ISPTech (EUR 5.5 million seed, participating) and Zymvol (EUR 3 million seed, led), without dates; fund size is not stated on the page.",
+      "url": "https://www.faber.vc/",
+      "source_url": "https://www.faber.vc/",
+      "read_on": "2026-11-18",
+      "status": "active"
+    },
+    {
+      "name": "Faber Tech III",
+      "kind": "fund",
+      "place": "portugal",
+      "what": "Fund announced on 4 November 2024 with a EUR 60 million target and an initial close of EUR 31 million, backed by the NATO Innovation Fund, the European Investment Fund and Caixa Capital. It invests at pre-seed and seed, primarily in Southern Europe. First investments were in undisclosed startups in Portugal, Spain and the Netherlands (photonic chips, analog chip design, synthetic biology).",
+      "url": "https://www.vestbee.com/blog/articles/faber-launches-60-m-deeptech-fund",
+      "source_url": "https://www.vestbee.com/blog/articles/faber-launches-60-m-deeptech-fund",
+      "read_on": "2026-11-18",
+      "date": "2024-11-04",
+      "amount": "EUR 60 million target; EUR 31 million initial close"
+    },
+    {
+      "name": "Angels Way",
+      "kind": "angel network",
+      "place": "portugal",
+      "what": "Community-run fund managed collectively by 436 small investors and regulated by the CMVM, investing in early-stage Portuguese technology startups. On 3 September 2026 the article reports 15 companies in the portfolio valued together at EUR 79.5 million, a target of 20 startups and a focus on AI solutions built for international markets. A 6 October 2025 article gives a maximum ticket of EUR 50,000 per startup and says the fund is one of those managed by OW Ventures.",
+      "url": "https://eco.sapo.pt/2025/10/06/fundo-de-business-angels-angels-way-investe-em-mais-tres-startups-com-foco-em-ia/",
+      "source_url": "https://eco.sapo.pt/2025/10/06/fundo-de-business-angels-angels-way-investe-em-mais-tres-startups-com-foco-em-ia/",
+      "read_on": "2026-11-18",
+      "status": "active"
+    },
+    {
+      "name": "Angels Way: Courtmaster, Curiouz and WiseWorld",
+      "kind": "round",
+      "place": "portugal",
+      "what": "Three AI startups added to the Angels Way portfolio, reported on 6 October 2025: Courtmaster (padel sports tech), Curiouz (AI for the vintage furniture market) and WiseWorld (AI soft-skills training and certification). Amounts per company are not given; the community's total rose to EUR 350,000 across seven startups in nine months.",
+      "url": "https://eco.sapo.pt/2025/10/06/fundo-de-business-angels-angels-way-investe-em-mais-tres-startups-com-foco-em-ia/",
+      "source_url": "https://eco.sapo.pt/2025/10/06/fundo-de-business-angels-angels-way-investe-em-mais-tres-startups-com-foco-em-ia/",
+      "read_on": "2026-11-18",
+      "date": "2025-10-06",
+      "amount": "not disclosed per company",
+      "company": "Courtmaster; Curiouz; WiseWorld",
+      "investors": [
+        "Angels Way"
+      ]
+    },
+    {
+      "name": "Angels Way: Lampsy, Intuitivo, Smashpro and UpSpeech",
+      "kind": "round",
+      "place": "portugal",
+      "what": "Four new investments reported on 3 September 2026, taking the portfolio to 15 companies: Lampsy (AI lamp detecting epilepsy seizures, from Instituto Superior Tecnico), Intuitivo (teachers' administration platform, founded in Porto in 2021), Smashpro (SaaS for padel, tennis and pickleball clubs) and UpSpeech (multimodal AI for speech therapy). Amounts are not disclosed.",
+      "url": "https://dealroom.co/news/148587-angels-way-backs-four-startups-reaching-75-of-its-20-company-target/",
+      "source_url": "https://dealroom.co/news/148587-angels-way-backs-four-startups-reaching-75-of-its-20-company-target/",
+      "read_on": "2026-11-18",
+      "date": "2026-09-03",
+      "amount": "not disclosed",
+      "company": "Lampsy; Intuitivo; Smashpro; UpSpeech",
+      "investors": [
+        "Angels Way"
+      ]
+    },
+    {
+      "name": "Granter funding round",
+      "kind": "round",
+      "place": "portugal",
+      "what": "Portuguese startup Granter raised EUR 1.6 million (total funding EUR 2 million) for an AI platform that helps SMEs and startups find public funding, prepare applications and manage funded projects. Led by 3XP Global's Impact Innovation Fund, under the Capitalisation and Resilience Fund managed by Banco Português de Fomento. The article does not state Granter's base city.",
+      "url": "https://tech.eu/2026/11/03/portuguese-ai-startup-granter-bags-eur16m-to-expand-across-europe/",
+      "source_url": "https://tech.eu/2026/11/03/portuguese-ai-startup-granter-bags-eur16m-to-expand-across-europe/",
+      "read_on": "2026-11-18",
+      "date": "2026-11-03",
+      "amount": "EUR 1.6 million",
+      "company": "Granter",
+      "investors": [
+        "3XP Global",
+        "Celtis Venture Partners",
+        "Gateway Ventures",
+        "Deel"
+      ]
+    },
+    {
+      "name": "Neuraspace financing",
+      "kind": "round",
+      "place": "portugal",
+      "what": "Neuraspace, a Portuguese space technology company founded in 2020, secured EUR 15.6 million. Its AI platform helps satellite operators track space conditions and avoid collisions; it monitors more than 600 satellites. Investors named: Lince Capital, Explorer Investments and Armilar Venture Partners, plus funding under the Recovery and Resilience Plan. Article dated 5 August 2026; base city not stated.",
+      "url": "https://vestbee.com/insights/articles/neuraspace-lands-15-6-m",
+      "source_url": "https://vestbee.com/insights/articles/neuraspace-lands-15-6-m",
+      "read_on": "2026-11-18",
+      "date": "2026-08-05",
+      "amount": "EUR 15.6 million",
+      "company": "Neuraspace",
+      "investors": [
+        "Lince Capital",
+        "Explorer Investments",
+        "Armilar Venture Partners"
+      ]
+    },
+    {
+      "name": "Musiversal Series A",
+      "kind": "round",
+      "place": "lisboa",
+      "what": "Music Business Worldwide reports a USD 6 million Series A for Musiversal, based in Lisbon, bringing total funding to USD 10 million. Led by Iberis Capital with Lince Capital participating; earlier seed investors named are Shilling Capital, Intersection Ventures, SBS Braga and LC Ventures. Funds are for expansion into the US.",
+      "url": "https://www.musicbusinessworldwide.com/portugal-based-music-collab-platform-musiversal-raises-6m-as-it-prepares-us-entry",
+      "source_url": "https://www.musicbusinessworldwide.com/portugal-based-music-collab-platform-musiversal-raises-6m-as-it-prepares-us-entry",
+      "read_on": "2026-11-18",
+      "date": "2025-09-11",
+      "amount": "USD 6 million",
+      "company": "Musiversal",
+      "investors": [
+        "Iberis Capital",
+        "Lince Capital"
+      ]
+    },
+    {
+      "name": "Banco Português de Fomento (group)",
+      "kind": "investor",
+      "place": "portugal",
+      "what": "State development bank. Its home page states EUR 13.4 billion mobilised for the economy and more than 35 thousand companies supported over 22 months of the mandate, and lists Portugal Ventures and Fomento FEI (linked to InvestEU) among group entities, with a 'Fundos sob Gestao' section. The page gives no figures for any venture or co-investment programme.",
+      "url": "https://www.bpfomento.pt/",
+      "source_url": "https://www.bpfomento.pt/",
+      "read_on": "2026-11-18",
+      "status": "active"
+    }
+  ],
+  "gaps": [
+    {
+      "url": "https://www.hovionecapital.com/",
+      "what": "Hovione Capital: stage, ticket, fund size",
+      "why": "HTTP 503 Service Unavailable; not retried"
+    },
+    {
+      "url": "https://www.sonaeim.com/",
+      "what": "Sonae IM: stage, ticket, fund size, deals",
+      "why": "HTTP 503 Service Unavailable; not retried"
+    },
+    {
+      "url": "https://www.busyangels.com/",
+      "what": "Busy Angels: stage, ticket, deals",
+      "why": "Server returned HTTP 445 (unknown status); not worked around"
+    },
+    {
+      "url": "https://bigstartventures.com/",
+      "what": "Big Start Ventures",
+      "why": "Host did not resolve from the session network; not read"
+    },
+    {
+      "url": "https://www.apba.pt/",
+      "what": "APBA (Associacao Portuguesa de Business Angels)",
+      "why": "The domain serves an unrelated interior design blog. A search snippet only says APBA merged with FNABA into Investors Portugal (APIES); not confirmed on a page read"
+    },
+    {
+      "url": "https://elreferente.es/portugal/venture-capital/lince-capital-lanza-fondo-146m-invertir-startups-portuguesas/",
+      "what": "Lince Capital EUR 146 million fund (already recorded fund; details unconfirmed)",
+      "why": "HTTP 403 Forbidden; respected"
+    },
+    {
+      "url": "https://www.startbase.com/news/armilar-schliesst-ersten-closing-des-vierten-fonds-mit-120-mio-euro-ab/",
+      "what": "Armilar fourth fund first close, a search snippet said over EUR 120 million",
+      "why": "HTTP 403 Forbidden; respected"
+    },
+    {
+      "url": "https://elreferente.es/portugal/venture-capital/indico-vc-fund-ii-suma-76m-gracias-aumento-inversion-banco-portugues-de-fomento/",
+      "what": "Indico VC Fund II, a snippet said EUR 76 million with BPF raising its stake from EUR 35 million to EUR 50 million",
+      "why": "HTTP 403 Forbidden; respected"
+    },
+    {
+      "url": "https://www.portugalresident.com/portugal-joins-e15-billion-european-tech-fund-to-keep-unicorns-from-moving-to-u-s/",
+      "what": "European tech fund of EUR 15 billion with Portuguese participation",
+      "why": "HTTP 403 Forbidden; respected"
+    },
+    {
+      "url": "https://rr.pt/noticia/economia/2025/10/29/governo-prepara-criacao-de-fundo-de-fundos-para-apoiar-investimento-empresarial/445671/",
+      "what": "Government fund of funds; a snippet said BPF would launch a EUR 1.5 billion fund of funds from 2026",
+      "why": "HTTP 403 Forbidden; respected"
+    },
+    {
+      "url": "https://elreferente.es/?p=169089",
+      "what": "Portugal Ventures EUR 4.8 million in 48 startups",
+      "why": "HTTP 403 Forbidden; respected (the figure also appears, as of 2023, on the Portugal Ventures news page)"
+    },
+    {
+      "url": "https://elreferente.es/?p=171267",
+      "what": "Faber led B'ZEOS seed of more than EUR 5 million",
+      "why": "HTTP 403 Forbidden; respected; seen only in a search snippet"
+    },
+    {
+      "url": "https://elreferente.es/?p=168967",
+      "what": "Faber led Bairro EUR 1.2 million round",
+      "why": "HTTP 403 Forbidden; respected; seen only in a search snippet"
+    },
+    {
+      "url": "https://www.portugalventures.pt/wp-content/uploads/2026/08/RGC2025_PortugalVentures_web.pdf",
+      "what": "Portugal Ventures 2025 annual report",
+      "why": "Not fetched; seen only in search results. Worth reading for 2025 deal lists"
+    },
+    {
+      "url": "https://dealroom.co/news/130785-augusta-labs-raises-seed-round-at-50m-valuation/",
+      "what": "Augusta Labs seed at a EUR 50 million valuation, June 2026; Feel Sampa seed by Portugal Ventures, January 2026",
+      "why": "Seen only in search snippets and aggregator listings; not read"
+    },
+    {
+      "url": "https://www.faber.vc/",
+      "what": "Faber deal dates and any fund size",
+      "why": "The Faber page gives deals without dates and no fund size; a snippet said Faber Tech III had a target of EUR 60 million (read on Vestbee). Other Faber deals not dated on a read page"
+    },
+    {
+      "url": "",
+      "what": "Beta Capital, Olisipo Way (own site), Startup Lisboa angel clubs, Banco de Fomento co-investment and IFIC Deep Tech call",
+      "why": "No page on these was fetched and read; a snippet said IFIC Deep Tech Phase II offered up to EUR 750,000 per project, EUR 15 million in total, applications to 4 February, but that is unconfirmed"
+    }
+  ]
+}

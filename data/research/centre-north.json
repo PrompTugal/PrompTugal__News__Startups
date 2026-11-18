@@ -1,0 +1,198 @@
+{
+  "by": "startups.b.research@PrompTugal.dinis",
+  "read_on": "2026-11-18",
+  "area": "centre-north",
+  "notes": "Gathered on 2026-11-18 with WebFetch (page text summarised by a small model) and WebSearch used only to find URLs. Every entry's source_url is a page that was fetched and read. Many local hosts did not resolve from the session network or returned 503; they are in gaps. No websummit.com, lu.ma, luma.com, meetup.com or eventbrite pages were fetched.",
+  "entries": [
+    {
+      "name": "Startup Braga: Acceleration Programme (10th edition)",
+      "kind": "accelerator",
+      "place": "braga",
+      "what": "The 10th acceleration programme. Applications were extended to 31 March 2026 (originally 18 March). The programme has now closed; the site lists a second Global Health Accelerator for 2026 without dates.",
+      "url": "https://www.startupbraga.com/",
+      "source_url": "https://www.startupbraga.com/",
+      "read_on": "2026-11-18",
+      "date": "2026-03-31",
+      "status": "closed"
+    },
+    {
+      "name": "Startup Braga: Incubation and Startup Point",
+      "kind": "incubator",
+      "place": "braga",
+      "what": "Incubation for early-stage startups needing workspace, resources and value-added services, plus Startup Point, a pre-acceleration training programme for tech-based business ideas from academia. The page lists verticals of biotechnology, digital economy, digital health, nanotechnology and sustainability. No open call or closing date is listed for either.",
+      "url": "https://www.startupbraga.com/",
+      "source_url": "https://www.startupbraga.com/",
+      "read_on": "2026-11-18",
+      "status": "ongoing"
+    },
+    {
+      "name": "IPN Incubadora (Instituto Pedro Nunes)",
+      "kind": "incubator",
+      "place": "coimbra",
+      "what": "Incubator of Instituto Pedro Nunes, Coimbra, for early-stage technology-based and advanced-services companies. Priority goes to spin-offs from the University of Coimbra. Figures stated by IPN: over 560 companies incubated (1996 to 2024), 55 percent still active, EUR 775 million aggregated turnover (2024), 80 percent export rate (2024) and 8,550 highly qualified jobs (2024). The page lists no open call or deadline.",
+      "url": "https://www.ipn.pt/incubadora/",
+      "source_url": "https://www.ipn.pt/incubadora/",
+      "read_on": "2026-11-18",
+      "status": "ongoing"
+    },
+    {
+      "name": "IPN Aceleradora, Incubadora do Espaço and NATO DIANA accelerator",
+      "kind": "accelerator",
+      "place": "coimbra",
+      "what": "IPN's home page menu lists an accelerator, a space-focused incubator and an accelerator for NATO DIANA alongside territory-based entrepreneurship support, under 'Incubacao e Aceleracao de Empresas de Base Tecnologica'. The home page gives no dates or figures for these; details sit on pages not read.",
+      "url": "https://www.ipn.pt/",
+      "source_url": "https://www.ipn.pt/",
+      "read_on": "2026-11-18",
+      "status": "ongoing"
+    },
+    {
+      "name": "Startup Coimbra (CETEC, Novotecna)",
+      "kind": "incubator",
+      "place": "coimbra",
+      "what": "Multisector incubator and coworking space run by Novotecna at the Polo Tecnologico de Coimbra, with FabLab Coimbra, laboratories, a digital nomad programme, Startup Visa support and an investor office. The page lists an 'AWS Startup Loft Accelerator' call dated 30 Nov, shown as open, with no year or deadline given, so the date is unverified. It also says CETEC was accredited as an incubator in the new national incubator network (dated 07 Dec, year not shown).",
+      "url": "https://www.startupcoimbra.pt/",
+      "source_url": "https://www.startupcoimbra.pt/",
+      "read_on": "2026-11-18",
+      "status": "ongoing"
+    },
+    {
+      "name": "Rocket Booster Acceleration (Parque de Ciência e Inovação, University of Aveiro)",
+      "kind": "accelerator",
+      "place": "aveiro",
+      "what": "Programme run by the University of Aveiro's Parque de Ciência e Inovação with startUP 23, supported by Turismo de Portugal under FIT 2.0. Mentoring for 15 startups, an investor network, an online bootcamp (15 April to 13 May 2026), an in-person Demo Day (20 May 2026) and investment-readiness coaching (27 May to 12 June 2026). Applications closed on 31 March 2026.",
+      "url": "https://business.turismodeportugal.pt/pt/inovar/fit/programas-inovacao/Paginas/rocket-booster-acceleration.aspx",
+      "source_url": "https://business.turismodeportugal.pt/pt/inovar/fit/programas-inovacao/Paginas/rocket-booster-acceleration.aspx",
+      "read_on": "2026-11-18",
+      "date": "2026-03-31",
+      "status": "closed"
+    },
+    {
+      "name": "Startup Leiria",
+      "kind": "incubator",
+      "place": "leiria",
+      "what": "Hub and incubator in Leiria, about two decades old, managing a 3,500 square metre space. An August 2024 interview says it has incubated more than 150 projects, 30 of them international, and runs acceleration programmes and investor events. An April 2025 article gives 160 startups hosted, representing more than 1,000 jobs.",
+      "url": "https://www.empreendedor.com/news/vitor-ferreira-a-startup-leiria-e-um-hub-de-inovacao-em-crescimento",
+      "source_url": "https://www.empreendedor.com/news/vitor-ferreira-a-startup-leiria-e-um-hub-de-inovacao-em-crescimento",
+      "read_on": "2026-11-18",
+      "date": "2024-08-29",
+      "status": "ongoing"
+    },
+    {
+      "name": "Startup Leiria: Tear Alcanena",
+      "kind": "incubator",
+      "place": "santarem",
+      "what": "A new incubation space opened by Startup Leiria in Alcanena (Santarem district), planned to open at the end of May 2025 with room for about 20 startups across logistics, circular economy (including leather), agri-food, Industry 4.0, tourism, creative industries, sports and health. Later presences were planned in Alcobaca and Porto de Mos. Listed under santarem because that is where Alcanena is; run by a Leiria organisation.",
+      "url": "https://eco.sapo.pt/2025/04/15/startup-leiria-abre-tear-de-incubacao-em-alcanena-em-maio/",
+      "source_url": "https://eco.sapo.pt/2025/04/15/startup-leiria-abre-tear-de-incubacao-em-alcanena-em-maio/",
+      "read_on": "2026-11-18",
+      "date": "2025-05-28",
+      "status": "opened (planned date as reported)"
+    },
+    {
+      "name": "Call Leiria Crescimento (Portugal Ventures)",
+      "kind": "call",
+      "place": "leiria",
+      "what": "Portugal Ventures call to invest in projects in the Leiria region (CIMRL), at seed, startup and Series A to C stages, with tickets of EUR 250,000 to EUR 1.5 million, for SMEs and mid caps in digital, industry, health tech and tourism. Partners: CIMRL, Nerlei CCI, Startup Leiria and the Polytechnic of Leiria. The page states 'Applications are closed' and gives no dates.",
+      "url": "https://www.portugalventures.pt/en/calls/call-leiria-crescimento/",
+      "source_url": "https://www.portugalventures.pt/en/calls/call-leiria-crescimento/",
+      "read_on": "2026-11-18",
+      "amount": "EUR 250,000 to EUR 1.5 million per project",
+      "status": "closed"
+    },
+    {
+      "name": "AIRV Business Incubator",
+      "kind": "incubator",
+      "place": "viseu",
+      "what": "Incubator run by AIRV, the business association of the Viseu region, in the Coimbroes Industrial Park. An interview of 14 August 2025 states more than 20 years of activity, 34 equipped offices, virtual and physical incubation, regional IAPMEI and AICEP offices on site, and a second Acceleration Programme starting in September 2025.",
+      "url": "https://startupportugal.com/we-offer-a-complete-ecosystem-straight-from-airv-business-incubator/",
+      "source_url": "https://startupportugal.com/we-offer-a-complete-ecosystem-straight-from-airv-business-incubator/",
+      "read_on": "2026-11-18",
+      "date": "2025-08-14",
+      "status": "ongoing"
+    },
+    {
+      "name": "UBImedical (University of Beira Interior incubator)",
+      "kind": "incubator",
+      "place": "castelo-branco",
+      "what": "Incubator of the University of Beira Interior in Covilha (Castelo Branco district, the closest place on the list) for life sciences, medtech, digital health, AI and deeptech. Offers virtual, coworking and private office or laboratory incubation, a Clinical Trials Support Centre and acceleration programmes. HealthCup is a seed capital competition whose winners receive capital and a year of pre-incubation. An interview of 27 March 2026 said HealthCup 2026 was being prepared and Innov Summit'26 would be held in April; no current deadline was found.",
+      "url": "https://startupportugal.com/the-problem-as-an-opportunity-the-thesis-of-ubimedical/",
+      "source_url": "https://startupportugal.com/the-problem-as-an-opportunity-the-thesis-of-ubimedical/",
+      "read_on": "2026-11-18",
+      "date": "2026-03-27",
+      "status": "ongoing"
+    },
+    {
+      "name": "IPG Incubadora Desnuclearizada (Polytechnic Institute of Guarda)",
+      "kind": "incubator",
+      "place": "guarda",
+      "what": "Decentralised incubator network of the Polytechnic Institute of Guarda with poles in Guarda and Meda. In August 2025 it added poles in Vouzela and Sao Pedro do Sul (with AEL Startup and the Associacao Empresarial de Lafoes) and in Sao Joao da Pesqueira (with Douro Startup Incubadora and Capital Douro), and the Guarda pole took in eight new companies.",
+      "url": "https://www.forbespt.com/?p=168719",
+      "source_url": "https://www.forbespt.com/?p=168719",
+      "read_on": "2026-11-18",
+      "date": "2025-08-10",
+      "status": "ongoing"
+    }
+  ],
+  "gaps": [
+    {
+      "url": "https://www.uaincubator.pt/",
+      "what": "UA Incubator (Aveiro)",
+      "why": "Host did not resolve from the session network; not read"
+    },
+    {
+      "url": "https://www.startupleiria.pt/",
+      "what": "Startup Leiria own site",
+      "why": "Host did not resolve from the session network; entry rests on third-party articles"
+    },
+    {
+      "url": "https://www.startupguimaraes.pt/",
+      "what": "Startup Guimaraes",
+      "why": "Host did not resolve from the session network; not read"
+    },
+    {
+      "url": "https://www.startupviseu.pt/",
+      "what": "Startup Viseu",
+      "why": "Host did not resolve from the session network; the name may not exist (a search found AIRV and V21 instead)"
+    },
+    {
+      "url": "https://www.pci.pt/",
+      "what": "PCI Creative Science Park, Aveiro",
+      "why": "HTTP 503 Service Unavailable; not retried"
+    },
+    {
+      "url": "https://www.avepark.pt/tecpark-continues-to-drive-innovation-supporting-30-companies-and-projects-since-2018/?lang=en",
+      "what": "TecPark and the StartUP Voucher 2025-2026 (Avepark, Guimaraes)",
+      "why": "HTTP 503 and fetch timeouts; seen only in search snippets (StartUP Voucher 4th edition, TecPark part of Set.Up Guimaraes), so not recorded as entries"
+    },
+    {
+      "url": "https://www.uc.pt/site/assets/files/743577/brochura_seed_tech_transfer.pdf",
+      "what": "Seed Tech Transfer (University of Coimbra with UA and UBI)",
+      "why": "HTTP 403 Forbidden; respected. A snippet said applications ran from 5 December 2025 to 30 January 2026"
+    },
+    {
+      "url": "https://www.ipcb.pt/media/mvxbaxkz/regipcb0701_regulamento-da-incubadora_ipcb_mar25.pdf",
+      "what": "Startup Castelo Branco (IPCB incubator, poles at Castelo Branco and Idanha-a-Nova)",
+      "why": "The PDF text could not be extracted; only seen in search snippets, so not recorded"
+    },
+    {
+      "url": "https://ppr.transparencia.gov.pt/en/fundos-europeus/prr/beneficiarios-projetos/projeto/11/C16-i02/2023.P5279",
+      "what": "PRR project sheet for a Leiria incubator project",
+      "why": "HTTP 401 Unauthorized; respected"
+    },
+    {
+      "url": "https://www.startupbraga.com/aceleracao/",
+      "what": "Startup Braga acceleration programme detail",
+      "why": "Page returned only a form error message"
+    },
+    {
+      "url": "",
+      "what": "2025 to 2026 funding rounds of companies based in Braga, Coimbra, Aveiro, Viseu, Leiria, Guimaraes, Castelo Branco or Guarda",
+      "why": "No round was confirmed on a page read. Musiversal's Series A (September 2025) was checked and is Lisbon-based, so it is recorded in investors.json. Snippets from aggregators mentioned Coalex.ai (Coimbra, USD 60,000 seed, June 2026) but nothing fetched confirmed it"
+    },
+    {
+      "url": "",
+      "what": "Habitat Viseu, Brigantia-Ecopark (Braganca), Startup Guimaraes, Guarda council programmes",
+      "why": "Not found or not reached; Braganca is outside this file's brief area but was named in the instructions"
+    }
+  ]
+}
