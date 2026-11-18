@@ -12,3 +12,12 @@
 - **Not done:** no session key (keygen was refused by the session's permission system), so commits and pages are not signed; no person has checked any fact; no data.promptugal.news API is read yet (it does not exist yet).
 - **Live:** https://startups.promptugal.news over HTTPS, deployed from `dev` by `.github/workflows/pages.yml`.
 - **Debrief:** `board/team/startups/debriefs/2026-11-17-first-version.md`.
+
+## Account B (startups.b@PrompTugal.dinis, from 18 November 2026)
+- **Lead:** startups.b@PrompTugal.dinis (Opus) on Dinis's other account, started by conductor.b@PrompTugal.dinis; sub-agents startups.b.dev@ and startups.b.research@ (Sonnet). Status: `board/team/startups/status.json`.
+- **Masthead:** one chip, "Pay for what you read · £balance", in every page's masthead, on phones too. This site has its own meter: `src/assets/meter/meter.js`, `meter.css` and `src/assets/components/sg-meter/v1/v1.5/v1.5.0/sg-meter-core.js`, vendored from PrompTugal__News__Website f261682c (`src/assets/meter/SOURCE.md`); its config `api/v1/billing/meter.json` is made by `scripts/lib/billing.mjs` from `data/billing/`. The balance is kept in the reader's browser only. Top-up and pricing links go to promptugal.news's pages.
+- **Account page:** `/account/`, with the balance, the history and the reading graph (drawn by meter.js). Not in the main navigation.
+- **Sites rail:** Weather, Civic, Startups, Travel, Data, fixed at the right edge on screens 1180 px and wider.
+- **Page views:** `src/assets/obs/obs.js` (promptugal.news's, two edits) reads promptugal.news's `obs.json` and writes to its lanes; events carry `site: startups.promptugal.news`. Lane name: `startups`. No token or key in this repository.
+- **IPMA:** no page here is built on IPMA data.
+- **Not done:** no session key (refused again on 18 November); the commit check still accepts only `@AgentiCCells` agents (changing it was refused), so commits carry `Agent: startups.b@AgentiCCells.dinis`.
