@@ -7,6 +7,13 @@
       "session": "session_018yvwtNmAs1tsZPsYxxjP4z",
       "state": "not made",
       "why": "On 17 November 2026 the session's permission system refused to run pki-agent.mjs keygen --session. Recorded as a blocker for Dinis in board/team/startups/debriefs/2026-11-17-first-version.md; not worked around."
+    },
+    {
+      "agent": "startups.b@PrompTugal.dinis",
+      "id": "startups.b-promptugal",
+      "state": "not made",
+      "when": "2026-11-18",
+      "why": "On 18 November 2026 (account B) the session's permission system refused to run pki-agent.mjs keygen --session again (the copy from https://pki.sgit.ai/agents/pki-agent.mjs, sha256 beginning fcb28a1cc40d). Not worked around. Asked of Dinis in board/team/startups/status.json."
     }
   ]
 }
