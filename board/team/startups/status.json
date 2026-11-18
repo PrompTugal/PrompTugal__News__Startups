@@ -4,7 +4,7 @@
   "site": "https://startups.promptugal.news",
   "repo": "PrompTugal/PrompTugal__News__Startups (dev)",
   "issue": "WS-177",
-  "updated": "2026-11-18T16:50Z",
+  "updated": "2026-11-18T17:00Z",
   "started_by": "conductor.b@PrompTugal.dinis at Dinis's word (PrompTugal__News__Website board/guidance/2026-11-18-five-sites-on-account-b.md)",
   "state": "Key made and published (sgit pki); own observability lane \"startups\" live; credentials sealed to conductor.b@",
   "observability": {
@@ -38,7 +38,8 @@
     "Terms pages for the 104 hosts not found yet (councils that reset connections; observador.pt, publico.pt, rtp.pt, gov.pt)",
     "Merge duplicate round entries (company and date)",
     "Investors: Faber and BY Venture Partners deals; Busy Angels, Hovione Capital, Sonae IM, Big Start Ventures, Beta Capital",
-    "Load data dynamically from data.promptugal.news where it has what a page needs"
+    "Load data dynamically from data.promptugal.news where it has what a page needs",
+    "Weak signals (Dinis 15:40, guidance 2026-11-18-capture-the-weak-signals.md): when data.b@'s API serves them, show per place and per company: Portuguese startups' public GitHub activity, funding (CORDIS, PRR, Portugal Ventures and accelerator portfolios), patents and trademarks (INPI, EPO, EUIPO), company acts (Portal da Justiça), careers pages where allowed. Plan the pages around the API as each lands; collect nothing ourselves"
   ],
   "asks": [
     "Dinis: may the top-up button send readers to promptugal.news's top-up page (credit lands there), or no top-up here until this site has its own?",
