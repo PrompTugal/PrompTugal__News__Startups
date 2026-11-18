@@ -4,6 +4,7 @@
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { variants } from './lib/front-variants.mjs';
+import { meterConfig } from './lib/billing.mjs';
 
 const SITE = 'https://startups.promptugal.news';
 const OUT = '_site';
@@ -65,6 +66,12 @@ export function orderPlaces(places, entries) {
 
 // ---------- page frame ----------
 const NAV = [['/', 'Front'], ['/places/', 'Places'], ['/support/', 'Incubators and programmes'], ['/funding/', 'Rounds and grants'], ['/companies/', 'Companies'], ['/investors/', 'Investors'], ['/about/', 'How this is made']];
+// The reading meter prices a page by its page-type (meta tag): fact listings and place pages are "evidence";
+// the front page, about and design pages are "site"; the meter's own account page is "account" (free).
+const pageType = path => path === '/account/' ? 'account' : (path === '/' || path === '/about/' || path.startsWith('/design/') || path === '/404/') ? 'site' : 'evidence';
+// The PrompTugal.news sites rail (as in PrompTugal__News__Website assets/top/top.tmpl), this site marked as current.
+const NET = [['Weather', 'weather'], ['Civic', 'civic'], ['Startups', 'startups'], ['Travel', 'travel'], ['Data', 'data']];
+const netRail = `<nav class="em-net" aria-label="The PrompTugal.news sites"><span>Also from PrompTugal.news</span>${NET.map(([n, h]) => h === 'startups' ? `<a href="https://${h}.promptugal.news/" aria-current="page">${n}</a>` : `<a href="https://${h}.promptugal.news/" target="_blank" rel="noopener">${n}</a>`).join('')}</nav>`;
 function frame({ path, title, description, body, made }) {
   const depth = path.split('/').filter(Boolean).length;
   const up = depth ? '../'.repeat(depth) : './';
@@ -80,26 +87,31 @@ function frame({ path, title, description, body, made }) {
 <link rel="alternate" type="text/markdown" href="${path}index.md">
 <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
+<meta name="page-type" content="${pageType(path)}">
 <link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/meter/meter.css">
+<script defer src="/assets/meter/meter.js"></script>
+<script defer src="/assets/obs/obs.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
-<div class="strip"><span>Portugal, town by town · <a href="https://promptugal.news/">PrompTugal.news</a></span><span>Pay for what you read: <a href="https://promptugal.news/account/">your account</a> · version __VERSION__ · <a href="${path}index.md">markdown</a></span></div>
-<div class="mast"><a href="/" aria-label="PrompTugal.news Startups, front page"><img class="wm-light" src="/assets/brand/promptugal-wordmark-light.svg" alt="PrompTugal.news" width="240" height="40"><img class="wm-dark" src="/assets/brand/promptugal-wordmark-dark.svg" alt="" width="240" height="40"></a><span class="sub">Startups</span></div>
+<div class="strip"><span>Portugal, town by town · <a href="https://promptugal.news/">PrompTugal.news</a></span><span>version __VERSION__ · <a href="${path}index.md">markdown</a></span></div>
+<div class="mast"><a href="/" aria-label="PrompTugal.news Startups, front page"><img class="wm-light" src="/assets/brand/promptugal-wordmark-light.svg" alt="PrompTugal.news" width="240" height="40"><img class="wm-dark" src="/assets/brand/promptugal-wordmark-dark.svg" alt="" width="240" height="40"></a><span class="sub">Startups</span><div class="tools" id="nr-tools"><a class="tool meter" id="nr-meter-chip" href="/account/"><span class="meter-label">Pay for what you read</span></a></div></div>
 <nav class="main" aria-label="Sections">${nav}</nav>
 </div></header>
+${netRail}
 <main class="wrap">
 ${body}
 </main>
 <footer><div class="wrap cols">
 <div><h2>How this page was made</h2>${made || MADE_DEFAULT}</div>
-<div><h2>About this site</h2><p>Independent: not an official or government site, and not investment advice. Public facts only, each with its source and the date it was read. Corrections are welcome through the repository's issues.</p><p class="meta">Version __VERSION__ · Code Apache-2.0, text CC BY 4.0 · <a href="https://github.com/PrompTugal/PrompTugal__News__Startups">source</a> · <a href="/llms.txt">llms.txt</a></p></div>
+<div><h2>About this site</h2><p>Independent: not an official or government site, and not investment advice. Public facts only, each with its source and the date it was read. Corrections are welcome through the repository's issues.</p><div class="row"><p class="meta small">Version __VERSION__ · Code Apache-2.0, text CC BY 4.0 · <a href="https://github.com/PrompTugal/PrompTugal__News__Startups">source</a> · <a href="/llms.txt">llms.txt</a></p></div></div>
 </div></footer>
 </body>
 </html>
 `.replaceAll('href="/', `href="${up}`).replaceAll('src="/', `src="${up}`).replaceAll(`href="${up}"`, `href="${up}index.html"`);
 }
-const MADE_DEFAULT = `<ul><li><b>Code:</b> <code>scripts/generate.mjs</code> builds this page from <code>data/</code> on every push; nothing on it is typed by hand.</li><li><b>Agents:</b> facts gathered by the PrompTugal.news place agents (imported from PrompTugal__News__Website) and by startups.research@PrompTugal.dinis (Sonnet); assembled by startups@PrompTugal.dinis (Opus).</li><li><b>Checked by a person:</b> not yet.</li></ul>`;
+const MADE_DEFAULT = `<ul><li><b>Code:</b> <code>scripts/generate.mjs</code> builds this page from <code>data/</code> on every push; nothing on it is typed by hand.</li><li><b>Agents:</b> facts gathered by the PrompTugal.news place agents (imported from PrompTugal__News__Website) and by startups.b.research@PrompTugal.dinis (Sonnet); the lead is now startups.b@PrompTugal.dinis (Opus), with sub-agents startups.b.dev@PrompTugal.dinis and startups.b.research@PrompTugal.dinis (Sonnet).</li><li><b>Checked by a person:</b> not yet.</li></ul>`;
 
 const pages = [];
 function write(path, html, md) {
@@ -200,18 +212,29 @@ ${SECTIONS.map(([s, label]) => { const l = sorted(s); return `<h2>${label}</h2>$
   const aboutHtml = `<p class="kicker">Provenance</p><h1>How this is made</h1>
 <p class="lede">Every fact on this site is a public one, with the page it came from and the date it was read. Nothing is typed into a page by hand: code builds every page from the data files in the repository.</p>
 <h2>What runs as code</h2><ul><li><code>scripts/import-website.mjs</code> reads the place research of <a href="https://promptugal.news/">PrompTugal.news</a> (its <code>data/by-place/</code> files and the companies it mapped around Web Summit 2026), keeps only the public fields, and writes <code>data/from-website.json</code>. This import is from commit <code>${esc(web.source.commit.slice(0, 7))}</code>, made on ${esc(nice(web.imported_on))}: ${fromWeb} facts.</li><li><code>scripts/generate.mjs</code> merges it with the team's own research (${researchFiles.map(f => `<code>data/research/${esc(f)}</code>`).join(', ') || 'none yet'}) and builds every page, its markdown twin, <code>llms.txt</code> and the sitemap.</li><li><code>scripts/validate.mjs</code> (the gate) and <code>scripts/leak-scan.mjs</code> run on every push; the site does not deploy if either fails.</li></ul>
-<h2>What agents wrote</h2><ul><li>The place agents of PrompTugal.news (place.algarve@, place.faro@ and the others, on Claude) read and summarised the sources imported here.</li><li>startups.research@PrompTugal.dinis (Claude Sonnet) read new sources on 17 November 2026 for the Algarve, Lisbon, Porto and national programmes.</li><li>startups@PrompTugal.dinis (Claude Opus) wrote the code, the page text and reviewed the research.</li></ul>
+<h2>What agents wrote</h2><ul><li>The place agents of PrompTugal.news (place.algarve@, place.faro@ and the others, on Claude) read and summarised the sources imported here.</li><li>startups.research@PrompTugal.dinis (Claude Sonnet) read new sources on 17 November 2026 for the Algarve, Lisbon, Porto and national programmes.</li><li>startups@PrompTugal.dinis (Claude Opus) wrote the first code, the page text and reviewed the research.</li><li>From 18 November 2026 the lead is startups.b@PrompTugal.dinis (Claude Opus), with sub-agents startups.b.dev@PrompTugal.dinis (code, Sonnet) and startups.b.research@PrompTugal.dinis (research, Sonnet).</li></ul>
 <h2>What a person checked</h2><p>Nothing yet. Dinis Cruz started the site; no person has reviewed its facts. Read each fact against its source.</p>
 <h2>Rules we keep</h2><ul><li>Public facts only. People only as public and professional; no personal contacts.</li><li>Sites read politely, with a named agent and pauses. A refusal (403, bot check, robots.txt) is respected and recorded as a gap, never worked around.</li><li>Amounts as the source states them. A place with no entries is a gap in our research, not a finding.</li></ul>
+<h2>The reading meter</h2><p>Pages here cost a few pence of reading credit, as on <a href="https://promptugal.news/">PrompTugal.news</a>: <em>pay for what you read</em>. The balance, the pages you have read and the reading graph are kept in this browser only (localStorage, under this site's own key). Nothing about them is sent to us or to anyone. Clearing this site's data resets it. See <a href="/account/">your account</a>.</p>
+<h2>Page views are counted</h2><p>This site counts page views and reading time, publicly, to learn what is read. Each count says the page, the referring site (host only), the time to the minute, the site version, a random id that ends with the tab, the screen size class, the browser's language and time zone, and the country, region and city from the browser's own lookup. No IP address, no cookie and no user-agent string is kept. To find the place, your browser asks ipapi.co or ipwho.is, which see your IP address. Do Not Track and Global Privacy Control are respected, and the Pause switch in the footer turns counting off on this device. The lane is called <code>startups</code>. What is counted is explained at <a href="https://promptugal.news/newsroom/observability/index.html">promptugal.news</a>.</p>
 <h2>Gaps we know about</h2>${gaps.length ? `<ul class="list">${gaps.map(g => `<li class="item"><p>${esc(g.what)}</p><p class="src">${/^https?:\/\//.test(g.url || '') ? `<a href="${esc(g.url)}" rel="nofollow">${esc(g.url)}</a> · ` : g.url ? `${esc(g.url)} · ` : ''}${esc(g.why || '')}</p></li>`).join('')}</ul>` : '<p class="meta">None recorded yet.</p>'}
 <h2>Counts</h2><div class="stats"><div><b>${counts.all}</b><span>facts</span></div><div><b>${counts.sources}</b><span>source sites</span></div><div><b>${counts.places}</b><span>places with facts</span></div></div>`;
-  page({ path: '/about/', title: 'How this site is made', description: 'What runs as code, what agents wrote, what a person checked, and the gaps we know about.', body: aboutHtml, md: `## What runs as code\n\n- scripts/import-website.mjs imports PrompTugal__News__Website data (commit ${web.source.commit.slice(0, 7)}, ${fromWeb} facts).\n- scripts/generate.mjs builds the pages from data/.\n- scripts/validate.mjs and scripts/leak-scan.mjs gate every push.\n\n## What agents wrote\n\n- PrompTugal.news place agents (imported research).\n- startups.research@PrompTugal.dinis (Claude Sonnet): new research, 17 November 2026.\n- startups@PrompTugal.dinis (Claude Opus): code, text, review.\n\n## What a person checked\n\nNothing yet.\n\n## Gaps\n\n${gaps.map(g => `- ${g.what} (${g.url || ''}; ${g.why || ''})`).join('\n') || 'None recorded yet.'}` });
+  page({ path: '/about/', title: 'How this site is made', description: 'What runs as code, what agents wrote, what a person checked, and the gaps we know about.', body: aboutHtml, md: `## What runs as code\n\n- scripts/import-website.mjs imports PrompTugal__News__Website data (commit ${web.source.commit.slice(0, 7)}, ${fromWeb} facts).\n- scripts/generate.mjs builds the pages from data/.\n- scripts/validate.mjs and scripts/leak-scan.mjs gate every push.\n\n## What agents wrote\n\n- PrompTugal.news place agents (imported research).\n- startups.research@PrompTugal.dinis (Claude Sonnet): new research, 17 November 2026.\n- startups@PrompTugal.dinis (Claude Opus): first code, text, review.\n- startups.b@PrompTugal.dinis (Claude Opus, lead from 18 November 2026) with sub-agents startups.b.dev and startups.b.research (Claude Sonnet).\n\n## The reading meter\n\nPages cost a few pence of reading credit (pay for what you read). The balance and reading graph are kept in this browser only; nothing is sent.\n\n## Page views are counted\n\nPage views and reading time are counted publicly: page, referring host, time to the minute, version, a random id that ends with the tab, screen size class, language, time zone, and country, region and city from the browser's own lookup (ipapi.co or ipwho.is see the IP address). No IP address, cookie or user-agent string is kept. Do Not Track and Global Privacy Control are respected, and a Pause switch in the footer turns it off. Lane: startups.\n\n## What a person checked\n\nNothing yet.\n\n## Gaps\n\n${gaps.map(g => `- ${g.what} (${g.url || ''}; ${g.why || ''})`).join('\n') || 'None recorded yet.'}` });
+
+  // Account: the reading meter's page. meter.js fills #nr-account (balance, history, reading graph). Not in the main NAV.
+  page({ path: '/account/', title: 'Your reading account', description: 'The reading meter for this site: your balance, the pages you have read and your reading graph, kept in this browser only.', body: `<p class="kicker">Pay for what you read</p><h1>Your reading account</h1>
+<p class="lede">Each page here costs a few pence of reading credit, set by its kind and how much of it you read. Your balance, your history and your reading graph are kept in this browser only: nothing is sent to us or to anyone, and clearing this site's data resets them.</p>
+<div id="nr-account"></div>
+<noscript><p class="note">The balance and the reading graph need JavaScript. Without it nothing is charged and nothing is kept.</p></noscript>
+<p class="meta">How pages are priced is explained at <a href="https://promptugal.news/account/billing.html">promptugal.news</a>, whose meter this is.</p>`, md: `Each page here costs a few pence of reading credit, set by its kind and how much of it you read. Your balance, your history and your reading graph are kept in this browser only: nothing is sent to anyone. They are drawn by JavaScript in the HTML page; this markdown twin has no balance.\n\nPrices: https://promptugal.news/account/billing.html. The meter's config: ${SITE}/api/v1/billing/meter.json` });
 
   // 404, llms.txt, sitemap, data
   write('/404/', frame({ path: '/404/', title: 'Page not found', description: 'This page does not exist.', body: '<h1>Page not found</h1><p><a href="/">Back to the front page</a>.</p>' }), '# Page not found');
   writeFileSync(join(OUT, '404.html'), readFileSync(join(OUT, '404/index.html'), 'utf8').replaceAll('href="../', 'href="/').replaceAll('src="../', 'src="/'));
   writeFileSync(join(OUT, 'llms.txt'), `# PrompTugal.news Startups\n\n> Portugal's startups and their funding, place by place: incubators, accelerators, public programmes, rounds and grants, companies and investors. Public facts only, each with its source and the date read. Every page has a markdown twin at index.md. Version __VERSION__.\n\n## Pages\n\n${pages.filter(p => !p.path.startsWith('/design/')).map(p => `- [${p.title}](${SITE}${p.path}index.md): ${p.description}`).join('\n')}\n\n## Data\n\n- [All facts as JSON](${SITE}/data/facts.json): every entry with its source, read date and where it came from.\n\n## Optional\n\n${pages.filter(p => p.path.startsWith('/design/')).map(p => `- [${p.title}](${SITE}${p.path}index.md)`).join('\n')}\n`);
   writeFileSync(join(OUT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${pages.map(p => `<url><loc>${SITE}${p.path}</loc></url>`).join('\n')}\n</urlset>\n`);
+  mkdirSync(join(OUT, 'api/v1/billing'), { recursive: true });
+  writeFileSync(join(OUT, 'api/v1/billing/meter.json'), JSON.stringify(meterConfig('__VERSION__'), null, 2) + '\n');
   mkdirSync(join(OUT, 'data'), { recursive: true });
   writeFileSync(join(OUT, 'data/facts.json'), JSON.stringify({ site: SITE, version: '__VERSION__', licence: 'CC BY 4.0', places, entries: entries.map(({ from, ...e }) => ({ ...e, from: from && { repository: from.repository, path: from.path } })) }, null, 1) + '\n');
   return { pages: pages.length, counts };

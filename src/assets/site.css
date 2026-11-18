@@ -58,3 +58,15 @@ footer ul{margin:.3rem 0;padding-left:1.1rem}
 .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(18rem,1fr));gap:1.5rem}
 @media (max-width:600px){body{font-size:16px}.mast img{height:26px}.mast .sub{font-size:1.2rem}.stats b{font-size:1.5rem}}
 @media (prefers-color-scheme:dark){.mast img.wm-light{display:none}.mast img.wm-dark{display:block}}
+
+/* The PrompTugal.news sites rail (from PrompTugal__News__Website assets/top/top.css): fixed at the right edge on wide screens, hidden under 1180px */
+.em-net{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:20;display:flex;flex-direction:column;gap:2px;padding:8px 6px;background:var(--paper,#f6f3ec);border:1px solid var(--rule,#d8d4cb);border-right:0;border-radius:10px 0 0 10px;font:600 12px var(--sans)}
+.em-net span{writing-mode:vertical-rl;transform:rotate(180deg);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--green,#006600);align-self:center;margin-bottom:6px}
+.em-net a{color:var(--ink);text-decoration:none;padding:5px 6px;border-radius:6px}
+.em-net a:hover,.em-net a:focus-visible{background:var(--card,#e8f3e8)}
+.em-net a[aria-current]{color:var(--green,#006600);background:var(--card,#e8f3e8)}
+@media (max-width:1180px){.em-net{display:none}}
+/* The reading meter chip sits in the masthead row, to the right */
+.mast .tools{margin-left:auto}
+/* The balance stays in view on a phone too (Dinis, 17 Nov 2026: "I need to see the value of my budget, always"); meter.css hides it under 768px because promptugal.news moves it into its own top bar. */
+@media (max-width: 767px) { .mast .tools .tool.meter { display: inline-flex !important; } .mast .tools .tool.meter .meter-label { display: inline; } }
