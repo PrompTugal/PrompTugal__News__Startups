@@ -4,7 +4,7 @@
   "site": "https://startups.promptugal.news",
   "repo": "PrompTugal/PrompTugal__News__Startups (dev)",
   "issue": "WS-177",
-  "updated": "2026-11-18T20:20Z",
+  "updated": "2026-11-18T22:30Z",
   "started_by": "conductor.b@PrompTugal.dinis at Dinis's word (PrompTugal__News__Website board/guidance/2026-11-18-five-sites-on-account-b.md)",
   "state": "19:43 wake done: provenance on every item (inner passes ran; post-review clean)",
   "observability": {
@@ -31,10 +31,12 @@
     "18 Nov ~16:35: AppSec fix: only http(s) URLs become links (finding startups-2026-11-18-01, commit c1298b4)",
     "18 Nov ~16:50: /security/ page (findings from data/security/findings.json; threat models docs/threat-models/daily-rebuild.md, research-pulls.md, observability-lane.md), linked from the footer and /about/, and to promptugal.news/security/",
     "18 Nov 16:43 wake: duplicate funding rounds merged (scripts/lib/rounds.mjs): Granter 3 entries into 1, Neuraspace 2 into 1; every source kept as 'Also reported by' with its licence; build count 524 facts (was 527), 113 funding, 47 investor deal links (was 52). Inner passes: opening go, pre-review clean with 5 mitigations, post-review clean",
-    "18 Nov 19:43 wake: provenance on every item (Dinis 19:00, guidance 2026-11-18-cameras-provenance-and-bulletins.md): data/facts.json carries a provenance field on all 524 entries and every also-source (file, reader, model where our records state it, how read, read date, licences); pages and twins show 'How we know'; duplicate also-sources removed (Porto). How read: 53 from the file's notes, 121 'not recorded' (the 17 Nov files), 350 import. Inner passes: opening go with 4 changes applied; post-review clean (2 low notes)"
+    "18 Nov 19:43 wake: provenance on every item (Dinis 19:00, guidance 2026-11-18-cameras-provenance-and-bulletins.md): data/facts.json carries a provenance field on all 524 entries and every also-source (file, reader, model where our records state it, how read, read date, licences); pages and twins show 'How we know'; duplicate also-sources removed (Porto). How read: 53 from the file's notes, 121 'not recorded' (the 17 Nov files), 350 import. Inner passes: opening go with 4 changes applied; post-review clean (2 low notes)",
+    "18 Nov ~22:20: /preview.svg and /preview.json at every build (our live counts, with provenance and licence), /preview.png made in CI by headless Chrome, og:image on every page, for the shared sites bar (Dinis ~22:00, guidance 2026-11-18-the-sites-bar.md); /version.json already current"
   ],
   "blocked": [],
   "next": [
+    "Install the shared sites bar when dev@ and designer@ publish it (conductor.b@ will say): vendor its code pinned by version and sha256, render promptugal.news/api/v1/sites.json escaped with only https *.promptugal.news links, replace the current rail",
     "The 17 Nov research files (algarve.json, lisbon-porto-national.json) do not record how pages were read: 121 items say 'reading method not recorded'; re-read a sample at source and record the method, or leave as stated",
     "Duplicates the merge rule does not catch yet: Beyond Vision (dates month-only, 'over 28 million euros'), Brainr (dates and amounts differ); Porto shows one eco.sapo.pt source twice under 'Also reported by'",
     "From the 16:43 wake: inner passes as Sonnet sub-agents (opening conductor pass, security pre-review, the work, security and AppSec post-review of the diff, closing pass), per PrompTugal__News__Website board/guidance/2026-11-18-inner-passes-and-security.md",

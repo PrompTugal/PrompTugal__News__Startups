@@ -110,6 +110,10 @@ function frame({ path, title, description, body, made }) {
 <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
 <meta name="page-type" content="${pageType(path)}">
+<meta property="og:title" content="${esc(title)}">
+<meta property="og:description" content="${esc(description)}">
+<meta property="og:image" content="${SITE}/preview.png">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/assets/site.css">
 <link rel="stylesheet" href="/assets/meter/meter.css">
 <script defer src="/assets/meter/meter.js"></script>
@@ -383,6 +387,28 @@ ${inv.groups.filter(g => g.rows.length).map(g => `<h2 id="g${GROUP_IDX(g.title)}
   write('/404/', frame({ path: '/404/', title: 'Page not found', description: 'This page does not exist.', body: '<h1>Page not found</h1><p><a href="/">Back to the front page</a>.</p>' }), '# Page not found');
   writeFileSync(join(OUT, '404.html'), readFileSync(join(OUT, '404/index.html'), 'utf8').replaceAll('href="../', 'href="/').replaceAll('src="../', 'src="/'));
   writeFileSync(join(OUT, 'llms.txt'), `# PrompTugal.news Startups\n\n> Portugal's startups and their funding, place by place: incubators, accelerators, public programmes, rounds and grants, companies and investors. Public facts only, each with its source and the date read. Every page has a markdown twin at index.md. Licences: our text and data are CC BY 4.0; facts taken from other sites stay under each source's licence or terms, linked on every item (fields license and source_license in facts.json). Version __VERSION__.\n\n## Pages\n\n${pages.filter(p => !p.path.startsWith('/design/')).map(p => `- [${p.title}](${SITE}${p.path}index.md): ${p.description}`).join('\n')}\n\n## Data\n\n- [All facts as JSON](${SITE}/data/facts.json): every entry with its source, read date and where it came from.\n\n## Optional\n\n${pages.filter(p => p.path.startsWith('/design/')).map(p => `- [${p.title}](${SITE}${p.path}index.md)`).join('\n')}\n`);
+  // The site's preview for the shared sites bar and social cards (Dinis, 18 Nov 2026 ~22:00 UTC; PrompTugal__News__Website
+  // board/guidance/2026-11-18-the-sites-bar.md): our own live numbers, from the same counts as the pages, with provenance and licence.
+  {
+    const figs = [[counts.all, 'facts with their sources'], [calls.open.length, 'calls open to apply to'], [counts.funding, 'rounds and grants'], [counts.investors, 'investors'], [counts.places, 'places in Portugal'], [counts.sources, 'source sites']];
+    const cell = ([n, label], i) => { const x = 60 + (i % 3) * 370, y = 285 + Math.floor(i / 3) * 150; return `<text x="${x}" y="${y}" font-family="Georgia,serif" font-size="72" font-weight="700" fill="#1a1a1a">${esc(String(n))}</text><text x="${x}" y="${y + 38}" font-family="Helvetica,Arial,sans-serif" font-size="26" fill="#444">${esc(label)}</text>`; };
+    const svg = `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="t d">
+<title id="t">PrompTugal.news Startups: ${esc(String(counts.all))} facts, ${esc(String(calls.open.length))} open calls</title>
+<desc id="d">Built from data/facts.json on ${esc(today)}, version __VERSION__. Each figure is a count of entries on startups.promptugal.news, each with its source and read date. Licence: CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), PrompTugal.news.</desc>
+<rect width="1200" height="630" fill="#f6f3ec"/><rect x="0" y="0" width="1200" height="12" fill="#c52830"/>
+<text x="60" y="110" font-family="Georgia,serif" font-size="56" font-weight="700" fill="#1a1a1a">PrompTugal.news <tspan fill="#006600">Startups</tspan></text>
+<text x="60" y="160" font-family="Helvetica,Arial,sans-serif" font-size="28" fill="#444">Portugal's startups and their funding, place by place</text>
+${figs.map(cell).join('\n')}
+<text x="60" y="590" font-family="Helvetica,Arial,sans-serif" font-size="20" fill="#666">Counted from data/facts.json on ${esc(today)} · version __VERSION__ · CC BY 4.0 PrompTugal.news · startups.promptugal.news</text>
+</svg>
+`;
+    writeFileSync(join(OUT, 'preview.svg'), svg);
+    writeFileSync(join(OUT, 'preview.json'), JSON.stringify({ site: SITE, built: today, version: '__VERSION__', figures: Object.fromEntries(figs.map(([n, l]) => [l, n])),
+      provenance: { from: 'data/facts.json', method: 'counted by scripts/generate.mjs at build', by: 'startups.b@PrompTugal.dinis' },
+      license: { name: 'CC BY 4.0', url: 'https://creativecommons.org/licenses/by/4.0/', holder: 'PrompTugal.news' },
+      images: { svg: `${SITE}/preview.svg`, png: `${SITE}/preview.png` } }, null, 2) + '\n');
+  }
   writeFileSync(join(OUT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${pages.map(p => `<url><loc>${SITE}${p.path}</loc></url>`).join('\n')}\n</urlset>\n`);
   mkdirSync(join(OUT, 'api/v1/billing'), { recursive: true });
   writeFileSync(join(OUT, 'api/v1/billing/meter.json'), JSON.stringify(meterConfig('__VERSION__'), null, 2) + '\n');

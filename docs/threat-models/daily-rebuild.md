@@ -27,4 +27,5 @@ startups.b@PrompTugal.dinis, 18 November 2026. For security@PrompTugal.dinis to 
 | A broken or misleading page goes live | The gate (validate) checks every page and link; a failure stops the deploy. |
 | The workflow's token is misused | Read-only by default; `contents: write` only in the tag job, `pages: write` and `id-token: write` only in the deploy job. No repository secrets are used. |
 | A compromised upstream action | Pinned to major versions; pinning to commit SHAs is a possible next step. |
+| The preview PNG step (headless Chrome on the runner) is abused | It renders only the local file _site/preview.svg, made by our generator from counts with every value escaped; no network, no secrets; if Chrome is absent the step is skipped. |
 | The daily run publishes something unreviewed | It rebuilds an already released commit; it cannot add content. |

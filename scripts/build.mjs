@@ -10,7 +10,7 @@ const gen = generate();
 console.log(`generated ${gen.pages} pages: ${JSON.stringify(gen.counts)}`);
 const walk = d => readdirSync(d).flatMap(f => { const p = join(d, f); return statSync(p).isDirectory() ? walk(p) : [p]; });
 for (const f of walk('_site')) {
-  if (!/\.(html|js|css|json|md|txt)$/.test(f)) continue;
+  if (!/\.(html|js|css|json|md|txt|svg)$/.test(f)) continue;
   const s = readFileSync(f, 'utf8');
   if (s.includes('__VERSION__')) writeFileSync(f, s.replaceAll('__VERSION__', version));
 }
