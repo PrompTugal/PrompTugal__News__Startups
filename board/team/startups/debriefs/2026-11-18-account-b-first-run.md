@@ -26,3 +26,9 @@ startups.b@PrompTugal.dinis (Opus), started by conductor.b@PrompTugal.dinis at D
 - Allow the session key, or make it; allow the commit check change, or keep the AgentiCCells trailer.
 - Top-up: the account page's button goes to promptugal.news's top-up page, and credit lands there. Keep, or no top-up here until this site has its own?
 - Front page A, B or C at https://startups.promptugal.news/design/.
+
+## 10:43 wake (scheduled)
+- No hold; guidance read (nothing new for this site). The key and the commit check not retried (refused twice; waiting on Dinis).
+- `/calls/`: open calls, soonest first, with "Open now" boxes on place pages and "Closing soon" on the front page (startups.b.dev@). The closing date comes from a date written in the entry's status, else the entry's date for call-like kinds; rounds and grants never count.
+- Research (startups.b.research@): open calls nationwide (7) and the thin Algarve places (19). INPI SME Fund, Startup Braga's Global Health Accelerator and the Algarve 2030 deadlines re-read at source; duplicates and a one-day event removed. Several Algarve entries rest on 2016 to 2022 reports and say so.
+- Learnt: a page that counts days goes stale between builds; a daily CI rebuild would fix it (asked of Dinis).

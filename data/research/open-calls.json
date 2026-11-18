@@ -1,0 +1,147 @@
+{
+  "by": "startups.b.research@PrompTugal.dinis",
+  "read_on": "2026-11-18",
+  "area": "open-calls",
+  "notes": "Gathered on 2026-11-18 with WebFetch (page text summarised by a small model; dates and amounts were requested as exact sentences and copied as stated) and WebSearch used only to find URLs. Every entry's source_url is a page that was fetched and read. Facts seen only in search snippets are in gaps. Rolling or undated programmes are not entries because an entry needs a closing date. No websummit.com, lu.ma, luma.com, meetup.com or eventbrite pages were fetched. Several refusals are in gaps. Reviewed by startups.b@PrompTugal.dinis on 18 November 2026: the INPI SME Fund (4 December 2026) and Startup Braga Global Health Accelerator (23 November 2026) deadlines re-read at source and confirmed; ALGARVE-2026-5 and -6 removed here because data/research/algarve.json already has them (barlavento.pt, 15 January 2027, re-read and confirmed).",
+  "entries": [
+    {
+      "name": "INPI and EUIPO SME Fund 2026 (IP vouchers)",
+      "kind": "grant",
+      "place": "portugal",
+      "what": "Vouchers that reimburse part of the fees for protecting intellectual property, open to EU-based SMEs and applied for through the EUIPO. The INPI page states the application period as \"De 2 de fevereiro a 4 de dezembro de 2026\". Reimbursement is 90% of IP Scan costs (voucher 1), 75% of trademark and design fees (voucher 2), 75% of national and European patent fees (voucher 3), 75% of EU plant variety fees (voucher 4) and 50% of geographical indication costs (voucher 5).",
+      "amount": "Caps per voucher: EUR 1,260 (IP Scan in Portugal), EUR 700 (trademarks and designs), EUR 1,000 per patent, EUR 1,500 (plant varieties), EUR 2,000 (geographical indications), as stated by INPI",
+      "source_url": "https://inpi.justica.gov.pt/Apoio-as-PME/Fundo-PME-Fundo-da-UE-para-protecao-dos-Direitos-de-PI-2026",
+      "date": "2026-12-04",
+      "status": "open",
+      "url": "https://inpi.justica.gov.pt/Apoio-as-PME/Fundo-PME-Fundo-da-UE-para-protecao-dos-Direitos-de-PI-2026",
+      "read_on": "2026-11-18"
+    },
+    {
+      "name": "InovIA Vouchers para Inovacao (FCT computing vouchers)",
+      "kind": "call",
+      "place": "portugal",
+      "what": "Computing vouchers for companies, published on the FCT website with the contact given as Serviços de Computação Avançada. The page states \"Prazo das candidaturas: até 31 de dezembro de 2026\". Startups and SMEs based in Portugal are eligible, with at least 50% of the vouchers reserved for them; applications are first come, first served. Each initial voucher is 50,000 CPU core-hours, 1,000 GPU-hours and 1 TB of storage for 6 months, and resources can be increased after evaluation.",
+      "amount": "Not a cash amount: 50,000 CPU core-hours, 1,000 GPU-hours and 1 TB storage per initial voucher",
+      "source_url": "https://www.fct.pt/financiamento/programas-de-financiamento/computacao/inovia-vouchers-para-inovacao",
+      "date": "2026-12-31",
+      "status": "open",
+      "url": "https://www.fct.pt/financiamento/programas-de-financiamento/computacao/inovia-vouchers-para-inovacao",
+      "read_on": "2026-11-18"
+    },
+    {
+      "name": "Global Health Accelerator 2026-2027 (Startup Braga)",
+      "kind": "accelerator",
+      "place": "braga",
+      "what": "Accelerator run by Startup Braga for early or intermediate stage startups with a minimum viable product in human health, biotechnology and nanotechnology (medical devices, digital health, diagnostics and similar). The article states \"As candidaturas decorrem até 23 de novembro de 2026, às 23:59\" and that the programme runs from 15 December 2026 to 6 May 2027, ending with a Demo Day. Participation is free and takes no equity. This is a news report of the call; the official application page is startupbrag.acceleratorapp.co.",
+      "amount": "Free to join, no equity taken (no cash amount stated)",
+      "source_url": "https://bragatv.pt/startup-braga-abre-candidaturas-para-acelerar-projetos-de-saude-e-biotecnologia/",
+      "date": "2026-11-23",
+      "status": "open",
+      "url": "https://bragatv.pt/startup-braga-abre-candidaturas-para-acelerar-projetos-de-saude-e-biotecnologia/",
+      "read_on": "2026-11-18"
+    },
+    {
+      "name": "ARRISCA C 2026 (University of Coimbra business idea competition)",
+      "kind": "competition",
+      "place": "coimbra",
+      "what": "15th edition of the national science and technology based business idea competition run by the University of Coimbra. Open to teachers, researchers, technical staff, grant holders and current or former students of any Portuguese higher education institution, individually or in teams of up to five; a junior category is open to secondary and vocational students. The report (published 26 October 2026) states the deadline as 23:59 on 18 December. Partner services such as incubation and mentoring are awarded on top of the cash prizes.",
+      "amount": "First prize EUR 2,500, second EUR 1,250, third EUR 500 in four categories; junior category EUR 750, EUR 500, EUR 250",
+      "source_url": "https://ipressjournal.pt/universidade-de-coimbra-abre-concurso-nacional-de-ideias-de-negocio/",
+      "date": "2026-12-18",
+      "status": "open",
+      "url": "https://ipressjournal.pt/universidade-de-coimbra-abre-concurso-nacional-de-ideias-de-negocio/",
+      "read_on": "2026-11-18"
+    },
+    {
+      "name": "ALT2030-2026-57: SIID Empreendedorismo Qualificado, new companies (Alentejo)",
+      "kind": "call",
+      "place": "portugal",
+      "what": "Alentejo 2030 call for micro and small start-up companies of up to 3 years' activity creating new companies and businesses linked to knowledge. The Portugal 2030 page states \"O período de candidaturas, no Balcão dos Fundos, decorrerá até 26 fevereiro de 2027\". The page gives no budget or support rate. Alentejo region; no single Alentejo place id was used.",
+      "source_url": "https://portugal2030.pt/2026/10/30/apoio-a-projetos-que-visem-a-criacao-de-novas-empresas-e-novos-negocios-no-alentejo/",
+      "date": "2027-02-26",
+      "status": "open",
+      "url": "https://portugal2030.pt/2026/10/30/apoio-a-projetos-que-visem-a-criacao-de-novas-empresas-e-novos-negocios-no-alentejo/",
+      "read_on": "2026-11-18"
+    },
+    {
+      "name": "Centro2030-2025-21: support for incubators and coworking spaces (Centro region)",
+      "kind": "call",
+      "place": "portugal",
+      "what": "Centro 2030 call whose applicants are municipalities and intermunicipal communities of the Centro region (not startups directly), to create, expand or upgrade incubation and coworking spaces. Applications are continuous through the Balcão dos Fundos until \"18h00 de 28 de dezembro de 2026\". No budget is stated on the Portugal 2030 page.",
+      "source_url": "https://portugal2030.pt/2025/08/22/regiao-centro-com-apoio-para-incubadoras-de-empresas-e-espacos-de-cowork/",
+      "date": "2026-12-28",
+      "status": "open",
+      "url": "https://portugal2030.pt/2025/08/22/regiao-centro-com-apoio-para-incubadoras-de-empresas-e-espacos-de-cowork/",
+      "read_on": "2026-11-18"
+    },
+    {
+      "name": "Centro 2030 business R&D call for SMEs and small mid-caps",
+      "kind": "grant",
+      "place": "portugal",
+      "what": "Centro 2030 call managed by CCDR Centro for business research and development by SMEs and small mid-cap companies, individually or in co-promotion with research entities. The Jornal de Leiria report states applications run until 30 December 2026. The report gives no formal reference code.",
+      "amount": "EUR 5,000,000 total allocation",
+      "source_url": "https://www.jornaldeleiria.pt/index.php/noticia/centro-2030-abre-concurso-para-apoiar-a-investigacao-e-o-desenvolvimento-empresarial",
+      "date": "2026-12-30",
+      "status": "open",
+      "url": "https://www.jornaldeleiria.pt/index.php/noticia/centro-2030-abre-concurso-para-apoiar-a-investigacao-e-o-desenvolvimento-empresarial",
+      "read_on": "2026-11-18"
+    }
+  ],
+  "gaps": [
+    {
+      "url": "https://www.eurekanetwork.org/programmes-and-calls/innowwide/5th-innowwide-call-for-market-feasibility-projects-autumn-2026/",
+      "what": "5th Innowwide call (listed by Startup Portugal with a 1 December deadline)",
+      "why": "HTTP 403 on fetch; not worked around. Startup Portugal's list shows the date only as a short label."
+    },
+    {
+      "url": "https://www.portugalventures.pt/en/calls",
+      "what": "Portugal Ventures calls page",
+      "why": "Read: all ten calls are marked closed (\"Submissions are closed\") and none shows a date. A link to \"Inscrições Open Day\" (portugalventures.pt/calls/open-day/) was not fetched, so its status is unknown."
+    },
+    {
+      "url": "https://www.bancoportuguesdefomento.pt/",
+      "what": "Banco Português de Fomento calls",
+      "why": "HTTP 503 on fetch. A search summary mentioned a Deep Tech line with a 4 February deadline, which has passed."
+    },
+    {
+      "url": "https://www.iapmei.pt/pt/saber-mais/incentivos-e-financiamento/sistemas-de-incentivos/concursos-abertos/",
+      "what": "IAPMEI open calls",
+      "why": "The page returned no individual avisos to the fetch tool (it points to the Portugal 2030 and PRR avisos plans), so no IAPMEI aviso is recorded. IAPMEI European SME Week (events submitted by 31 December) is aimed at event organisers, not startups, so it is not recorded."
+    },
+    {
+      "url": "https://ani.pt/concursos/",
+      "what": "ANI calls list",
+      "why": "Read: Start from Knowledge closed on 30 September 2026 (ANI page: \"até 30/setembro/2026\"; budget EUR 1,500,000, EUR 30,000 per project). SIID Internacionalizacao de I&D (to 29 December 2026) was already recorded. No other open ANI call was visible."
+    },
+    {
+      "url": "https://www.crowe.com/pt/noticias/aviso-mpr-2026-07",
+      "what": "Aviso MPr-2026-07 Projetos Demonstradores (SMEs, reported as 14 July to 29 December 2026)",
+      "why": "HTTP 403 on fetch; the dates were seen only in a search summary, so not recorded as an entry."
+    },
+    {
+      "url": "https://ani.pt/eit-abre-candidaturas-ao-programa-catalyse-neb-2027/",
+      "what": "Catalyse NEB 2027 (EIT, 20 startups, EUR 22,000 each, deadline 15 January 2027 at 17:00 Lisbon time per ANI)",
+      "why": "Read, but run by the EIT Community rather than from Portugal, so excluded under the brief."
+    },
+    {
+      "url": "https://ani.pt/co-creation-accelerator-2026-2027-candidaturas-abertas-para-startups-digitais-com-financiamento-ate-250-mil-euros/",
+      "what": "28DIGITAL Co-Creation Accelerator 2026-2027 (up to EUR 250,000 per project)",
+      "why": "Run by 28DIGITAL, and its next cut-off is shown as \"TBD\", so no closing date can be recorded."
+    },
+    {
+      "url": "https://startupportugal.com/events-and-opportunities/",
+      "what": "Startup Portugal opportunities list (JUNITEC Apollo, Startup2ScaleUp, Sogrape Ventures, 351 Mentorship, Business Abroad, Tech Foundry)",
+      "why": "Read the linked pages: Apollo has only a waitlist, Startup2ScaleUp and Sogrape take rolling applications, Business Abroad lists only 2026 event dates, Tech Foundry ran September to December 2026 with applications closed on 3 July. None states a closing date on or after 18 November 2026, so none is an entry. Indico Founders Program page returned HTTP 404. European Prize for Women Innovators (1 December) is an EU prize run from Brussels, so excluded."
+    },
+    {
+      "url": "https://www.ccdrc.pt/en/18-milhoes-de-euros-para-incubadoras-e-espacos-de-cowork/",
+      "what": "CCDR Centro news on the incubator call",
+      "why": "Too many redirects on fetch; the Portugal 2030 page was used instead."
+    },
+    {
+      "url": "",
+      "what": "Startup Lisboa, Porto Innovation Hub, IPN, Startup Leiria, Norte 2030 and Lisboa 2030 entrepreneurship avisos",
+      "why": "Search did not surface an open call with a closing date on or after 18 November 2026, so none is recorded. Startup Portimao 7th edition closed 28 October and UPTEC Escola de Startups closed 20 September (search summaries). This file has 9 entries, below the 15 to 30 aimed for."
+    }
+  ]
+}

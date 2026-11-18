@@ -4,9 +4,9 @@
   "site": "https://startups.promptugal.news",
   "repo": "PrompTugal/PrompTugal__News__Startups (dev)",
   "issue": "WS-177",
-  "updated": "2026-11-18T10:20Z",
+  "updated": "2026-11-18T11:30Z",
   "started_by": "conductor.b@PrompTugal.dinis at Dinis's word (PrompTugal__News__Website board/guidance/2026-11-18-five-sites-on-account-b.md)",
-  "state": "first run on account B: the masthead, meter, account page, sites rail and page-view counting are live; the key and the commit check are blocked",
+  "state": "10:43 wake done: Open calls page live; open calls and thin Algarve places researched; the key and the commit check still blocked",
   "observability": {
     "lane": "startups",
     "how": "src/assets/obs/obs.js (promptugal.news's obs.js with two edits) reads https://promptugal.news/assets/obs/obs.json, so events go to promptugal.news's site lanes in vault o0x20qag, each with site: startups.promptugal.news. No lane token or key is kept in this repository.",
@@ -16,22 +16,25 @@
     "18 Nov: masthead chip 'Pay for what you read · £balance' (this site's own meter, sg-meter v1.5.0 vendored), /account/ with the reading graph, the sites rail at the right edge, page-view counting with the lane startups (commit cda5ed8)",
     "18 Nov: IPMA checked: no page here is built on IPMA data, so none is kept outside the meter",
     "18 Nov: board/keys.json records the session key as not made (refused again)",
-    "18 Nov: new research by startups.b.research@ (Sonnet), reviewed by startups.b@: data/research/investors.json (13 entries, 17 gaps) and data/research/centre-north.json (12 entries, 12 gaps; Braga, Coimbra, Aveiro, Leiria, Viseu, Covilhã, Guarda). The site now shows 497 facts from 138 source sites (23 investors, 114 rounds and grants)"
+    "18 Nov: new research by startups.b.research@ (Sonnet), reviewed by startups.b@: data/research/investors.json (13 entries, 17 gaps) and data/research/centre-north.json (12 entries, 12 gaps; Braga, Coimbra, Aveiro, Leiria, Viseu, Covilhã, Guarda). The site now shows 497 facts from 138 source sites (23 investors, 114 rounds and grants)",
+    "18 Nov 10:43 wake: /calls/ (open calls, closing soonest first; 'Open now' on place pages; 'Closing soon' on the front page), commit 0f2d837",
+    "18 Nov 10:43 wake: data/research/open-calls.json (7 entries, 11 gaps) and data/research/algarve-thin-places.json (19 entries, 7 gaps); three deadlines re-read at source. Build: 523 facts from 146 source sites in 35 places; 14 calls open, 1 closing within 14 days"
   ],
   "blocked": [
     "Session key: the permission system refused pki-agent.mjs keygen --session (17 and 18 November). Nothing is signed. Not worked around.",
     "Commit check: changing scripts/check-commits.mjs to accept @PrompTugal.dinis was refused by the permission system. Commits carry Agent: startups.b@AgentiCCells.dinis, which the current check accepts."
   ],
   "next": [
-    "Investors: Busy Angels, Hovione Capital, Sonae IM, Big Start Ventures, Beta Capital (refused or unreachable today); Portugal Ventures' 2025 report; centre-north rounds of 2025 to 2026",
-    "Re-check the Algarve Evolution and CRIA facts at their own sites",
-    "Find each nationally filed company's own stated base (Sword Health, Tekever, Bloq.it)",
-    "Read data.promptugal.news's API instead of the Website repo when it serves this site's needs"
+    "The calls page counts days from the build date: it is only current when the site is rebuilt, so push at every wake (or a daily CI build, which is Dinis's call)",
+    "Open calls in Lisbon, Porto, IPN and Startup Leiria (not read this wake); calls with status open but no date (COMPETE 2030, ANI Deep Tech)",
+    "Investors that refused or did not resolve: Busy Angels, Hovione Capital, Sonae IM, Big Start Ventures, Beta Capital",
+    "Quarteira and Aljezur: nothing found yet; Lagoa's Fábrica do Empreendedor has no detail on the council pages"
   ],
   "asks": [
     "Dinis: allow pki-agent.mjs keygen --session in this account's sessions, or make the key yourself, so the work can be signed.",
     "Dinis: allow the change to scripts/check-commits.mjs (accept role@PrompTugal.dinis), or say to keep the AgentiCCells trailer.",
     "Dinis: front page A, B or C at https://startups.promptugal.news/design/ (not waited on).",
-    "Dinis: may the top-up button send readers to promptugal.news's top-up page (credit lands there, not here), or should this site have no top-up until it has its own?"
+    "Dinis: may the top-up button send readers to promptugal.news's top-up page (credit lands there, not here), or should this site have no top-up until it has its own?",
+    "Dinis: may the Pages workflow also rebuild the site once a day (a schedule in .github/workflows/pages.yml), so the open calls page stays current between wakes?"
   ]
 }

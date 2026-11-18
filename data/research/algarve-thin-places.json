@@ -1,0 +1,240 @@
+{
+  "by": "startups.b.research@PrompTugal.dinis",
+  "read_on": "2026-11-18",
+  "area": "algarve-thin-places",
+  "notes": "Gathered on 2026-11-18 with WebFetch (page text summarised by a small model) and WebSearch used only to find URLs. Council sites (cm-vrsa.pt, cm-lagoa.pt, cm-tavira.pt, cm-aljezur.pt) were the first source where they gave content; regional press (postal.pt, barlavento.pt, tomorrowalgarve.com) was read where the council pages did not describe the item. Several reports are 2016 to 2022, and each entry says when its source was published so the reader can judge. No contact details are recorded. No websummit.com, lu.ma, luma.com, meetup.com or eventbrite pages were fetched. Reviewed by startups.b@PrompTugal.dinis: a one-day event entry (19 November 2026) removed; it is not startup support.",
+  "entries": [
+    {
+      "name": "Gabinete do Empreendedorismo (Vila Real de Santo Antonio council)",
+      "kind": "public desk",
+      "place": "vila-real-de-santo-antonio",
+      "what": "Municipal business support office, described on the council site as part of the Rede Invest Algarve. Its stated objectives include attracting companies to the municipality, giving investors relevant information and helping modernise local business. The council's economic activities page also lists a funding desk (Balcao dos Fundos) and an applications unit (Nucleo de Candidaturas).",
+      "source_url": "https://www.cm-vrsa.pt/pt/menu/956/atividades-economicas.aspx",
+      "status": "active",
+      "url": "https://www.cm-vrsa.pt/pt/menu/956/atividades-economicas.aspx",
+      "read_on": "2026-11-18"
+    },
+    {
+      "name": "Gabinete de Apoio ao Emprego e ao Empreendedorismo (Junta de Freguesia de VRSA)",
+      "kind": "public desk",
+      "place": "vila-real-de-santo-antonio",
+      "what": "Parish office reported on 25 February 2025 as giving job-search help, CV help, information on setting up companies and support to young people developing business ideas. It is run by the Junta de Freguesia, not the municipality, and opens on Tuesdays from 09:00 to 15:00 according to the report.",
+      "source_url": "https://postal.pt/algarve/freguesia-de-vrsa-cria-gabinete-para-apoiar-desempregados-e-jovens-empreendedores/",
+      "status": "reported 2025",
+      "url": "https://postal.pt/algarve/freguesia-de-vrsa-cria-gabinete-para-apoiar-desempregados-e-jovens-empreendedores/",
+      "read_on": "2026-11-18"
+    },
+    {
+      "name": "Gabinete de Apoio ao Empreendedor (Lagoa council)",
+      "kind": "public desk",
+      "place": "lagoa",
+      "what": "Council desk listing business-creation advice including business plans, information on funding and public support, training and workshops in entrepreneurship, management and innovation, a partnership network and entrepreneurship events.",
+      "source_url": "https://www.cm-lagoa.pt/investir/gabinete-de-apoio-ao-empreendedor",
+      "status": "active",
+      "url": "https://www.cm-lagoa.pt/investir/gabinete-de-apoio-ao-empreendedor",
+      "read_on": "2026-11-18"
+    },
+    {
+      "name": "Fabrica do Empreendedor and Balcao do Empreendedor (Lagoa council)",
+      "kind": "public desk",
+      "place": "lagoa",
+      "what": "The council's entrepreneurship page lists a Fabrica do Empreendedor and a Balcao do Empreendedor among its sections, with industrial zones, an employment insertion office and a municipal fairs park. The page gives no description of either, so their services are not stated here. No page for a Lagoa Business Center was found.",
+      "source_url": "https://www.cm-lagoa.pt/viver/empreendedorismo",
+      "status": "listed by council",
+      "url": "https://www.cm-lagoa.pt/viver/empreendedorismo",
+      "read_on": "2026-11-18"
+    },
+    {
+      "name": "Aljezur para Investir (Aljezur council investor support)",
+      "kind": "public desk",
+      "place": "aljezur",
+      "what": "Council investor-support page (listed as Apoio ao Investidor) that lists the Feiteirinha industrial zone, an investment process management service (Gestao de Processos de Investimento) and a link to Investalgarve. No coworking space, incubator or startup programme was found on the council site.",
+      "source_url": "https://cm-aljezur.pt/pt/menu/105/aljezur-para-investir.aspx",
+      "status": "active",
+      "url": "https://cm-aljezur.pt/pt/menu/105/aljezur-para-investir.aspx",
+      "read_on": "2026-11-18"
+    },
+    {
+      "name": "Espaco Empresa Tavira",
+      "kind": "public desk",
+      "place": "tavira",
+      "what": "Local point of the national Espaco Empresa service: a single point of contact between public administration and companies, in person, online and by phone, helping with company formalities and with services from IAPMEI, Turismo de Portugal, ANI, DGAE, ASAE, IRN, AMA, AICEP and IFAP.",
+      "source_url": "https://cm-tavira.pt/site/espaco-empresa-tavira/",
+      "status": "active",
+      "url": "https://cm-tavira.pt/site/espaco-empresa-tavira/",
+      "read_on": "2026-11-18"
+    },
+    {
+      "name": "Centro de Negocios e Incubadora Level Up (Tavira)",
+      "kind": "incubator",
+      "place": "tavira",
+      "what": "Business centre and incubator named on Tavira council's entrepreneur and investor page as the single point of contact for entrepreneurs at any stage. Support includes setting up a company on the spot, trademark registration, licensing, matching projects to funding (IEFP, banks, business angels, venture capital, crowdfunding) and information on hiring incentives. The page does not say who operates it.",
+      "source_url": "https://cm-tavira.pt/site/apoio-ao-empreendedor-e-investidor/",
+      "status": "active",
+      "url": "https://cm-tavira.pt/site/apoio-ao-empreendedor-e-investidor/",
+      "read_on": "2026-11-18"
+    },
+    {
+      "name": "Ideias a Mare (Tavira youth entrepreneurship programme)",
+      "kind": "programme",
+      "place": "tavira",
+      "what": "Council programme run with ANJE for people aged 18 to 35 who live in or were born in Tavira. The 2nd edition was reported opened on 13 March 2026. A January 2026 report states applications ran from 12 to 31 January (year inferred from the article date of 12 January 2026), 10 applications join the programme, teams have up to four members, and participants get a certificate and a daily participation grant of EUR 25.",
+      "amount": "Prizes EUR 6,000, EUR 4,000 and EUR 2,500 (1st to 3rd place); participation grant EUR 25 a day",
+      "source_url": "https://postal.pt/algarve/jovens-de-tavira-desafiados-a-apresentar-projetos-no-ideias-a-mare/",
+      "status": "2nd edition 2026",
+      "url": "https://postal.pt/algarve/jovens-de-tavira-desafiados-a-apresentar-projetos-no-ideias-a-mare/",
+      "read_on": "2026-11-18"
+    },
+    {
+      "name": "Startup Albufeira (municipal incubator)",
+      "kind": "incubator",
+      "place": "albufeira",
+      "what": "Business incubator run by Albufeira council with the company Territorios Creativos for innovative projects based in Albufeira, with preference for creativity and tourism. Open to sole traders, self-employed professionals and companies established less than 2 years before applying, applying through the Startup Albufeira website. Report published 24 August 2021 and updated 29 November 2024; it shows no current deadline.",
+      "source_url": "https://postal.pt/economia/abertas-candidaturas-para-a-incubadora-de-negocios-startup-albufeira/",
+      "status": "active, check current intake",
+      "url": "https://postal.pt/economia/abertas-candidaturas-para-a-incubadora-de-negocios-startup-albufeira/",
+      "read_on": "2026-11-18"
+    },
+    {
+      "name": "AGE, Gabinete de Empreendedorismo de Albufeira",
+      "kind": "public desk",
+      "place": "albufeira",
+      "what": "Albufeira's entrepreneurship office, named in the Startup Albufeira call as the body that guides hosted companies and where an in-person meeting can be requested.",
+      "source_url": "https://postal.pt/economia/abertas-candidaturas-para-a-incubadora-de-negocios-startup-albufeira/",
+      "status": "active",
+      "url": "https://postal.pt/economia/abertas-candidaturas-para-a-incubadora-de-negocios-startup-albufeira/",
+      "read_on": "2026-11-18"
+    },
+    {
+      "name": "Centro de Acolhimento Empresarial de Albufeira",
+      "kind": "incubator",
+      "place": "albufeira",
+      "what": "Council business incubation centre described in a December 2016 report: four individual offices of about 12.5 to 16.3 square metres and a 60.6 square metre shared room with 24 workstations, with administrative support, a business address, a meeting room, phone and internet. The 2016 call is no longer current; the 2021 Startup Albufeira report places the incubator at the Centro de Acolhimento Empresarial.",
+      "source_url": "https://postal.pt/nacional/centro-de-acolhimento-empresarial-de-albufeira-abre-candidaturas-a-novas-empresas/",
+      "status": "described in 2016",
+      "url": "https://postal.pt/nacional/centro-de-acolhimento-empresarial-de-albufeira-abre-candidaturas-a-novas-empresas/",
+      "read_on": "2026-11-18"
+    },
+    {
+      "name": "Fabrica do Empreendedor de Lagos",
+      "kind": "public desk",
+      "place": "lagos",
+      "what": "Partnership between Lagos council and the Social Entrepreneurs Agency (SEA), reported on 2 February 2022 as in a glass-fronted unit in the marina. It offers business mentoring, help with funding options, free recruitment help for local companies and shared workspace, plus StartLab, an incubator for early-stage micro-entrepreneurs with room for up to six.",
+      "source_url": "https://tomorrowalgarve.com/?p=12856",
+      "status": "reported 2022",
+      "url": "https://tomorrowalgarve.com/?p=12856",
+      "read_on": "2026-11-18"
+    },
+    {
+      "name": "Espaco Cowork municipal de Lagos",
+      "kind": "coworking",
+      "place": "lagos",
+      "what": "Municipal coworking space in a wing of the former Escola Secundaria Gil Eanes building, reported on 7 March 2021. The council approved a protocol giving operational management to (A)GARRA, a young association from Lagos, with annual support of EUR 26,600 for running the space.",
+      "amount": "EUR 26,600 a year council support (2021 report)",
+      "source_url": "https://postal.pt/economia/camara-de-lagos-e-agarra-dinamizam-novo-espaco-cowork/",
+      "status": "reported 2021",
+      "url": "https://postal.pt/economia/camara-de-lagos-e-agarra-dinamizam-novo-espaco-cowork/",
+      "read_on": "2026-11-18"
+    },
+    {
+      "name": "Rede Algarve Digital Innovators (launched in Lagos)",
+      "kind": "programme",
+      "place": "lagos",
+      "what": "Regional network of the University of the Algarve (CRIA), AMAL, Algarve STP, Algarve Evolution, NERA and ANJE to support startup creation and growth, attract talent and qualify SMEs. Its launch sessions were held by Lagos council under its Fabrica do Empreendedor project, within Algarve Empreende 2026. Report dated 11 September 2025.",
+      "source_url": "https://postal.pt/algarve/lagos-lanca-rede-algarve-digital-innovators-para-impulsionar-inovacao-e-startups/",
+      "status": "launched 2025",
+      "url": "https://postal.pt/algarve/lagos-lanca-rede-algarve-digital-innovators-para-impulsionar-inovacao-e-startups/",
+      "read_on": "2026-11-18"
+    },
+    {
+      "name": "Startup Olhao and ANJE Hub (protocol with Olhao council)",
+      "kind": "programme",
+      "place": "olhao",
+      "what": "Three-year cooperation protocol between ANJE and Olhao council signed on 16 June 2026 to launch a Startup Olhao project and an ANJE Hub in Olhao, part of ANJE's national hub network, to support, train and mentor businesses, with a focus on the sea economy.",
+      "source_url": "https://www.barlavento.pt/olhao-anje-criar-startup-hub-empresarial/",
+      "date": "2026-06-16",
+      "status": "announced",
+      "url": "https://www.barlavento.pt/olhao-anje-criar-startup-hub-empresarial/",
+      "read_on": "2026-11-18"
+    },
+    {
+      "name": "Moinho, Incubadora de Inovacao Social do Sotavento Algarvio",
+      "kind": "incubator",
+      "place": "olhao",
+      "what": "Social innovation incubator presented publicly in Olhao on 14 October 2026 at the municipal library (report dated 19 October 2026). It aims to support the development, incubation and promotion of social innovation initiatives and build networks in the Sotavento Algarvio. The report does not say which organisation operates it.",
+      "source_url": "https://postal.pt/algarve/olhao-recebe-nova-incubadora-dedicada-a-inovacao-social-no-sotavento-algarvio/",
+      "date": "2026-10-14",
+      "status": "launched 2026",
+      "url": "https://postal.pt/algarve/olhao-recebe-nova-incubadora-dedicada-a-inovacao-social-no-sotavento-algarvio/",
+      "read_on": "2026-11-18"
+    },
+    {
+      "name": "Polo Hub Azul do Algarve (Olhao)",
+      "kind": "incubator",
+      "place": "olhao",
+      "what": "Planned reconstruction and expansion of an 836 square metre building on the fishing port, with incubation and installation space for 15 companies and about 90 jobs. Promoted by a consortium of Olhao council, the University of the Algarve, IPMA, Docapesca and S2AQUAcoLAB. Report of 6 April 2025; no opening date stated.",
+      "amount": "EUR 4.4 million investment (Fundo Azul and the municipality, after a PRR application)",
+      "source_url": "https://postal.pt/economia/vai-nascer-um-polo-hub-azul-com-varios-laboratorios-para-a-biotecnologia-e-alimentacao/",
+      "status": "planned (2025 report)",
+      "url": "https://postal.pt/economia/vai-nascer-um-polo-hub-azul-com-varios-laboratorios-para-a-biotecnologia-e-alimentacao/",
+      "read_on": "2026-11-18"
+    },
+    {
+      "name": "Espaco Coworking de Sao Bras de Alportel",
+      "kind": "coworking",
+      "place": "sao-bras-de-alportel",
+      "what": "Council coworking space on Avenida da Liberdade, inaugurated on 12 August 2020, mainly for young local entrepreneurs. It has room for five individual projects, with administrative support, mail reception and meeting rooms; contracts renew every six months for up to two years, first month free. Partners named include IAPMEI, CRIA at the University of the Algarve, ASTP Algarve, ANJE and IEFP.",
+      "source_url": "https://postal.pt/nacional/jovens-sao-brasenses-tem-novo-espaco-coworking-para-fazer-nascer-projetos/",
+      "status": "opened 2020",
+      "url": "https://postal.pt/nacional/jovens-sao-brasenses-tem-novo-espaco-coworking-para-fazer-nascer-projetos/",
+      "read_on": "2026-11-18"
+    },
+    {
+      "name": "Rede de Espacos de Incubacao de Sao Bras de Alportel (Ninho 4 Olhos)",
+      "kind": "business nest",
+      "place": "sao-bras-de-alportel",
+      "what": "Council network of incubation spaces: the Espaco Coworking (2020), the Ninho de Empreendedorismo 4 Olhos (2021) and a planned Ninho de Empreendedorismo Agricola offering low-cost temporary leases of municipal land plots. Report of 17 June 2022; current status not confirmed.",
+      "source_url": "https://www.barlavento.pt/?p=264232",
+      "status": "reported 2022",
+      "url": "https://www.barlavento.pt/?p=264232",
+      "read_on": "2026-11-18"
+    }
+  ],
+  "gaps": [
+    {
+      "url": "https://www.sulinformacao.pt/en/2021/05/lagoa-ja-tem-uma-fabrica-do-empreendedor/",
+      "what": "Fabrica do Empreendedor de Lagoa (2021, with SEA)",
+      "why": "HTTP 403 on fetch; details were seen only in a search summary."
+    },
+    {
+      "url": "https://www.cm-lagoa.pt/viver/empreendedorismo",
+      "what": "Lagoa Business Center",
+      "why": "No page for an organisation of this name in Lagoa was found in search or on cm-lagoa.pt; the closest hit was the Lagoa Congress Center, which is a venue. Not recorded."
+    },
+    {
+      "url": "https://postal.pt/economia/area-empresarial-de-loule-procura-empreendedores/",
+      "what": "Quarteira",
+      "why": "No startup support, incubator or cowork in Quarteira found. The Loule items found (Loule Criativo, Loule Design Lab) were not read at source and are not Quarteira-specific."
+    },
+    {
+      "url": "https://cm-tavira.pt/site/wp-content/uploads/2024/09/normas-ideias-a-mare.pdf",
+      "what": "Ideias a Mare rules (PDF)",
+      "why": "The PDF text could not be read by the fetch tool; the HTML news report was used."
+    },
+    {
+      "url": "https://cms.cm-vrsa.pt/upload_files/client_id_1/website_id_1/Atividade%20Municipal/Atividades%20economicas/Gabinete%20do%20empreendorismo/Brochura_Gabinete%20do%20Empreendedorismo.pdf",
+      "what": "VRSA Gabinete do Empreendedorismo brochure (PDF)",
+      "why": "PDF text could not be read by the fetch tool; only the HTML page was used."
+    },
+    {
+      "url": "https://www.cm-aljezur.pt/",
+      "what": "Aljezur startup support",
+      "why": "Council pages show investor support only; no coworking, incubator or startup programme found."
+    },
+    {
+      "url": "https://postal.pt/economia/level-up-acreditado-para-acolher-startups-no-ambito-do-vale-incubacao/",
+      "what": "Level Up Tavira accreditation (2016 Vale Incubacao)",
+      "why": "Article is from September 2016, so only the current council page is used as an entry."
+    }
+  ]
+}
