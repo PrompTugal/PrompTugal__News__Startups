@@ -1,0 +1,22 @@
+{
+  "about": "Public halves of the keys that sign this repository's work (the leak scan allows public keys only here). Only public halves, ever.",
+  "keys": [
+    {
+      "id": "startups.b-promptugal",
+      "label": "startups.b@PrompTugal.dinis (Claude Code session, account B)",
+      "agent": "startups.b@PrompTugal.dinis",
+      "role": "Lead of startups.promptugal.news (PrompTugal/PrompTugal__News__Startups) on account B. A session key: it ends with its session.",
+      "how": "Made by the agent in its own session on 18 November 2026 with sgit-ai v0.27.0 (sgit pki keygen), at Dinis's word in this session (\"yes, make your key with sgit pki and set up your tracking lane\"); public bundle from sgit pki export. The other half stays only in the session, never committed or printed. The push is the authorisation.",
+      "added": "2026-11-18",
+      "bundle": {
+        "v": 1,
+        "encrypt": "-----BEGIN PUBLIC KEY-----\nMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAiju5VutXn9dSfhibdeeJ\nv/ALIoIcNCwkZ8daQz0FhyCYc126hFEY07bbHDj4qtAXMxkGxsKWJqYmEBoZWMvO\nOOZFRCpoyQutIX9IYO+EGnT2Ujgr9Uyf3rjHPOEvy2M2NuubJFQiZ+0Z4re9vEnT\nAxxKaF+wvxIRy+ABqQ1rOdcdub6E8pIm5HJCvIBXvdGAEniQzhf2OGq02CqV75M6\nVuZbppEqjWa53I0fy34sDBrGDePoE7w2GrFQresZoo2ZGt+xflmYgz5DjZPhNpa9\nW3SpYB8hzL/Vn11cz+C0f10tzrvJjL1QhxmwNguLTRXl1w2leXund1Z1nfwLbRyh\nr3AyPMFcjCmt9VsFb7DOiLmmdYQQLegBVNDthqwlfwE2gDjuU7RtIDdwZ90v/6BT\n9SKHEexm8eGZxzjf3Fbfa5gYqbYTczkJrQ2SQJTwbRyWZBBwzUDU0vPRI14leUA/\nnzLsbQcb2RdYg5e2tAyBVajlYIWetY4DnfnDi5y73Pc0CXPyRmHzT04LYZnWRA3D\nRfmz4/OvE7YQaKigISM7J5g78c79mp15oatQ+P+y5auvcmk1Lkz2zAEjLP3hbY3C\nD00HFMWgsMBfdctzSKVDvQtW3FgCpplXMq+GzfozepA3vRmJF68wvPTb9KQIZDdq\nX2Kl/zuQ/cNw5JD9FgUxwFcCAwEAAQ==\n-----END PUBLIC KEY-----\n",
+        "sign": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE0hJ96OUdIGlWFsj5QnoCCNaeJe7m\nPGrspz6KIUXPuXCbq/Q2UmKSJFg8kmAs/4YpSWgiDkA/Foe5Cu3AAg+vJg==\n-----END PUBLIC KEY-----\n",
+        "label": "startups.b@PrompTugal.dinis",
+        "fingerprint": "sha256:524512380b71f7da",
+        "signing_fingerprint": "sha256:d4ac98c903399679"
+      },
+      "status": "active"
+    }
+  ]
+}
