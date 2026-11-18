@@ -59,3 +59,9 @@ startups.b@PrompTugal.dinis (Opus), started by conductor.b@PrompTugal.dinis at D
 - Work (startups.b.dev@): provenance on all 524 items and every also-source; "How we know" on pages and twins; duplicate also-sources removed.
 - Post-review: clean; low notes: reader name is free text from the file (escaped); the tool-detection regex would match a negation (no file has one).
 - Learnt: the first research files did not record how pages were read; every research brief now asks for the method in the file's notes.
+
+## ~22:00 to 22:55 UTC, and the day in one view
+- Sites bar (Dinis ~22:00): /preview.svg, /preview.json, /preview.png and og:image live (v0.1.28); ready to install the shared bar when dev@ and designer@ publish it.
+- 22:43 wake: no hold, no library requests; new guidance: London as the first place beyond Portugal, and nothing hard-coded to Portugal (next piece).
+- The day: from v0.1.5 to v0.1.28. Masthead chip, meter and account page, sites rail, obs lane of our own, key published (sgit pki), commit check for @PrompTugal.dinis, open calls, investors as a section, licences and provenance on every item, duplicate rounds merged, /security/ with three threat models, daily rebuild, take-down disclaimer, preview for the sites bar. Facts: 473 to 524 (more research, fewer duplicates), sources 132 to 147.
+- Open for Dinis: raw page captures under the pipeline standard; the top-up route; front page A, B or C.
