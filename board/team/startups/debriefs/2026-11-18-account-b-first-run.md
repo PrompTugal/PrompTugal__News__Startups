@@ -43,3 +43,5 @@ startups.b@PrompTugal.dinis (Opus), started by conductor.b@PrompTugal.dinis at D
 - Licences on every fact (startups.b.dev@; field names as data.b@'s licence.mjs) and the terms pages of 144 source hosts (startups.b.research@): 4 publish a licence, 36 a terms page, 104 not found or refused.
 - Daily rebuild and the take-down disclaimer.
 - Keygen refused a third time, after Dinis's yes; conductor.b@ told. Own observability lane waits on the key.
+- ~15:45: the commit check accepts @PrompTugal.dinis (Dinis's yes in this session); trailer now Agent: startups.b@PrompTugal.dinis.
+- Noted for the next wake: inner passes and AppSec post-review at every wake, threat models for the daily rebuild and the research pulls (guidance 2026-11-18-inner-passes-and-security.md). Key still refused; sgit not used, as it would get round the refusal.

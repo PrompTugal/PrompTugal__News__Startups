@@ -4,7 +4,7 @@
   "site": "https://startups.promptugal.news",
   "repo": "PrompTugal/PrompTugal__News__Startups (dev)",
   "issue": "WS-177",
-  "updated": "2026-11-18T15:45Z",
+  "updated": "2026-11-18T15:55Z",
   "started_by": "conductor.b@PrompTugal.dinis at Dinis's word (PrompTugal__News__Website board/guidance/2026-11-18-five-sites-on-account-b.md)",
   "state": "Licences on every fact live; daily rebuild and take-down disclaimer live; keygen refused a third time (Dinis said yes); own observability lane waits on the key",
   "observability": {
@@ -30,6 +30,8 @@
     "Own observability lane (startups): its drain credentials must be sealed to conductor.b-promptugal, which needs this session's key. Until then obs.js writes to promptugal.news's lanes with site startups.promptugal.news."
   ],
   "next": [
+    "From the 16:43 wake: inner passes as Sonnet sub-agents (opening conductor pass, security pre-review, the work, security and AppSec post-review of the diff, closing pass), per PrompTugal__News__Website board/guidance/2026-11-18-inner-passes-and-security.md",
+    "Threat models for the automations this site owns: docs/threat-models/daily-rebuild.md (pages.yml, scheduled) and docs/threat-models/research-pulls.md (sub-agents reading public pages), linked from /about/ (this site's 'how' page), for security@ to review",
     "Terms pages for the 104 hosts not found yet (councils that reset connections; observador.pt, publico.pt, rtp.pt, gov.pt)",
     "Merge duplicate round entries (company and date)",
     "Investors: Faber and BY Venture Partners deals; Busy Angels, Hovione Capital, Sonae IM, Big Start Ventures, Beta Capital",
