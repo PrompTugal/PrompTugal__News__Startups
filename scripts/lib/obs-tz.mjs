@@ -20,7 +20,12 @@ export function checkObsTz(registry, raw = readFileSync(OBS_TZ_FILE)) {
   const version = JSON.parse(raw.toString('utf8')).version;
   const o = registry && registry.obs_tz;
   if (!o) return { on: false, version, message: `obs_tz ${version} off: the registry names none` };
-  const pin = o.version === version ? o.integrity : (o.versions && o.versions[version] && o.versions[version].integrity);
+  // this version's pin: obs_tz.integrity for the version the registry names; for others obs_tz.versions["<v>"].integrity,
+  // either the pin itself or (dev@'s reshape, Website 3f3c627134) a map of file to pin, read as ["tz-country.json"]
+  const kept = o.versions && Object.prototype.hasOwnProperty.call(o.versions, version) ? o.versions[version] : null;
+  const keptPin = kept && kept.integrity && typeof kept.integrity === 'object' ? kept.integrity['tz-country.json'] : kept && kept.integrity;
+  const cur = o.integrity && typeof o.integrity === 'object' ? o.integrity['tz-country.json'] : o.integrity;
+  const pin = o.version === version ? cur : keptPin;
   if (!pin) return { on: false, version, message: `obs_tz ${version} off: the registry names ${o.version}` };
   if (!SRI.test(pin)) throw new Error(`obs tz table: the registry's pin for ${version} is not an SRI string: not built`);
   if (digest(pin.split('-')[0], raw) !== pin) throw new Error(`obs tz table: ${OBS_TZ_FILE} does not match the registry's pin for version ${version}: not built`);

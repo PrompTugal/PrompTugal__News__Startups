@@ -4,7 +4,7 @@
   "site": "https://startups.promptugal.news",
   "repo": "PrompTugal/PrompTugal__News__Startups (dev)",
   "issue": "WS-177",
-  "updated": "2026-11-19T07:50Z",
+  "updated": "2026-11-19T07:51Z",
   "started_by": "conductor.b@PrompTugal.dinis at Dinis's word (PrompTugal__News__Website board/guidance/2026-11-18-five-sites-on-account-b.md)",
   "state": "Day closed (22:43 wake, last of 18 Nov): live v0.1.28; no hold; no library requests; next wake 07:43 Lisbon",
   "observability": {
@@ -48,11 +48,14 @@
     "19 Nov 07:44 UTC: the validator refuses a preview.svg with a script, a foreignObject (or other active element), an event attribute or an outside reference (href, src, url(), @import, entities); scripts/test-svg-check.mjs (10 cases) in release.sh and CI",
     "19 Nov 07:48 UTC: data in the browser for open calls: assets/calls.js works out each call's days left, closes today or closed against today's Lisbon date on the reader's clock (no fetch, textContent only), hides stale 'closing within 14 days' tags, and says on /calls/ when the list was built; the built text stays as the fallback. Checked in Chromium at 19 Nov and 20 Dec",
     "19 Nov 07:49 UTC: predictions kept: data/predictions/predictions.jsonl in library.b@'s form, 18 lines (each open call's closing date as shown, kind expected-date), appended by scripts/predictions.mjs at a wake (append only; a changed date is a new line naming the old; only before its time). Outcome lines once each call is read again after its date",
-    "19 Nov 07:50 UTC: correction: obs.js's footer notice (page views, Pause, what is counted) does show on this site, after the version line in footer .row p.meta.small; the 03:20 note that it never showed was wrong (that test read the page before obs.js had run). Checked in Chromium: notice and Pause work"
+    "19 Nov 07:50 UTC: correction: obs.js's footer notice (page views, Pause, what is counted) does show on this site, after the version line in footer .row p.meta.small; the 03:20 note that it never showed was wrong (that test read the page before obs.js had run). Checked in Chromium: notice and Pause work",
+    "19 Nov 07:51 UTC: the tz table check reads dev@'s reshaped pins (obs_tz.versions[\"<v>\"].integrity[\"tz-country.json\"], Website 3f3c627134) as well as the old form; 3 new tests (9 in all). The bar check already read both. The live registry now names bar 1.2.1; this site's 1.2.0 stays on through its kept pins"
   ],
   "blocked": [],
   "next": [
     "Predictions: run node scripts/predictions.mjs at each wake; after a call's date, read its page once and write its outcome line (held, missed or gap); show what we said beside what happened on /calls/ (designer@'s PF5 to PF9)",
+    "Predictions: for new lines, said_by as \"<organiser>, as reported by <host>\" where a news site reports someone else's date (library.b@, 07:52 UTC; PRED 2026/0005); needs an organiser field in the research data. The 18 lines sent stay as they are",
+    "Sites bar 1.2.1 when security@ says go (its CSS sets nav.ptsb's own display and width)",
     "Nothing hard-coded to Portugal (Dinis 22:20, guidance 2026-11-18-london.md): give places a country, make the place list, page wording ('Portugal's startups'), schemas and the preview work for any place and country; London would be the first outside Portugal if Dinis wants startups there",
     "The 17 Nov research files (algarve.json, lisbon-porto-national.json) do not record how pages were read: 121 items say 'reading method not recorded'; re-read a sample at source and record the method, or leave as stated",
     "Duplicates the merge rule does not catch yet: Beyond Vision (dates month-only, 'over 28 million euros'), Brainr (dates and amounts differ); Porto shows one eco.sapo.pt source twice under 'Also reported by'",
@@ -82,6 +85,7 @@
   "predictions": {
     "file": "data/predictions/predictions.jsonl",
     "lines": 18,
-    "form": "https://library.promptugal.news/predictions/form/"
+    "form": "https://library.promptugal.news/predictions/form/",
+    "library": "PRED 2026/0005 (library a58b96b): all 18 lines passed, shown before due, in the track record"
   }
 }

@@ -15,5 +15,8 @@ t('newer version named: off, with the message', () => checkObsTz({ obs_tz: { ver
 t('newer version, own pin kept: on', () => checkObsTz({ obs_tz: { version: '1.1.0', integrity: pin(B), versions: { '1.0.0': { integrity: pin(A) } } } }, A), '{"on":true,"version":"1.0.0"}');
 t('newer version, own pin kept but wrong: stops', () => checkObsTz({ obs_tz: { version: '1.1.0', integrity: pin(B), versions: { '1.0.0': { integrity: pin(B) } } } }, A), 'throws: mismatch');
 t('no obs_tz in the registry: off', () => checkObsTz({}, A), '{"on":false,"version":"1.0.0","message":"obs_tz 1.0.0 off: the registry names none"}');
+t('newer version, own pin kept in the reshaped map: on', () => checkObsTz({ obs_tz: { version: '1.1.0', integrity: pin(B), versions: { '1.0.0': { integrity: { 'tz-country.json': pin(A) } } } } }, A), '{"on":true,"version":"1.0.0"}');
+t('newer version, reshaped map with a wrong pin: stops', () => checkObsTz({ obs_tz: { version: '1.1.0', integrity: pin(B), versions: { '1.0.0': { integrity: { 'tz-country.json': pin(B) } } } } }, A), 'throws: mismatch');
+t('same version, integrity given as a map: on', () => checkObsTz({ obs_tz: { version: '1.0.0', integrity: { 'tz-country.json': pin(A) } } }, A), '{"on":true,"version":"1.0.0"}');
 if (fails) { console.error(`test-obs-tz: ${fails} failed`); process.exit(1); }
 console.log('test-obs-tz: OK');
