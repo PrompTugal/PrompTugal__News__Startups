@@ -2,6 +2,7 @@
 // twin index.md, plus llms.txt and sitemap.xml. Called by scripts/build.mjs after src/ is copied.
 // Written by startups@PrompTugal.dinis, 2026-11-17. Node built-ins only.
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync } from 'node:fs';
+import { MAP_DIR } from './lib/ptmap.mjs';
 import { join, dirname } from 'node:path';
 import { variants } from './lib/front-variants.mjs';
 import { loadLicences, sourceLicence, licenceHtml, licenceMd, OWN } from './lib/licence.mjs';
@@ -299,13 +300,13 @@ ${fv.map(v => `<section class="view view-${v.slug}" aria-label="${esc(v.name)}">
 
   // Places
   const placeCounts = id => ['support', 'funding', 'companies', 'investors'].map(s => entries.filter(e => e.place === id && e.section === s).length);
-  // The shared map (ptmap 1.0.0; Dinis, 19 Nov 2026): Portugal big, one dot per place with facts, sized by its count.
+  // The shared map (ptmap, scripts/lib/ptmap.mjs; Dinis, 19 Nov 2026): Portugal big, one dot per place with facts, sized by its count.
   // London and the EU (Brussels) insets only once this site has their data; today it has neither.
   const AT = (() => { try { return JSON.parse(readFileSync('data/map/places-at.json', 'utf8')).at || {}; } catch { return {}; } })();
   const mapPlaces = places.filter(p => p.kind !== 'country' && AT[p.id]).map(p => ({ id: p.id, name: p.name, at: AT[p.id], href: `${SITE}/places/${p.id}/`, n: placeCounts(p.id).reduce((a, b) => a + b, 0) })).filter(p => p.n > 0);
   const mapData = { places: mapPlaces, label: 'Places with startup facts on this site' };
   const mapHtml = MAP && mapPlaces.length ? `<div id="ptmap" class="ptmap-host"></div><script type="application/json" id="ptmap-data">${JSON.stringify(mapData).replace(/</g, '\\u003c')}</script>` : '';
-  const mapHead = mapHtml ? '<link rel="stylesheet" href="/assets/ptmap/1.0.0/ptmap.css">\n<script defer src="/assets/ptmap/1.0.0/ptmap.js"></script>\n<script defer src="/assets/ptmap-init.js"></script>\n' : '';
+  const mapHead = mapHtml ? `<link rel="stylesheet" href="/${MAP_DIR}/ptmap.css">\n<script defer src="/${MAP_DIR}/ptmap.js"></script>\n<script defer src="/assets/ptmap-init.js"></script>\n` : '';
   page({ path: '/places/', head: mapHead, title: 'Places', description: 'Each place\'s incubators, programmes, rounds, grants, companies and investors, starting with the Algarve.', body: `<p class="kicker">Place by place</p><h1>Places</h1><p class="lede">Start with the Algarve, then Lisbon and Porto. A place with nothing yet is a gap we have not filled, not a place with no startups.</p>${mapHtml}${groups.map(g => `<h2>${esc(g.group)}</h2><div class="tablewrap"><table><thead><tr><th>Place</th><th>Support</th><th>Rounds and grants</th><th>Companies</th><th>Investors</th></tr></thead><tbody>${g.places.map(p => { const c = placeCounts(p.id); return `<tr><td><a href="/places/${p.id}/">${esc(p.name)}</a></td>${c.map(n => `<td>${n || '<span class="meta">none yet</span>'}</td>`).join('')}</tr>`; }).join('')}</tbody></table></div>`).join('')}`, md: groups.map(g => `## ${g.group}\n\n${g.places.map(p => { const c = placeCounts(p.id); return `- ${p.name} (${SITE}/places/${p.id}/): ${c[0]} support, ${c[1]} rounds and grants, ${c[2]} companies, ${c[3]} investors`; }).join('\n')}`).join('\n\n') });
 
   const SECTIONS = [['support', 'Incubators, accelerators and programmes'], ['funding', 'Rounds, grants and public money'], ['companies', 'Companies'], ['investors', 'Investors']];

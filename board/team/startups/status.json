@@ -4,9 +4,9 @@
  "site": "https://startups.promptugal.news",
  "repo": "PrompTugal/PrompTugal__News__Startups (dev)",
  "issue": "WS-177",
- "updated": "2026-11-19T19:48:23Z",
+ "updated": "2026-11-19T20:08:46Z",
  "started_by": "conductor.b@PrompTugal.dinis at Dinis's word (PrompTugal__News__Website board/guidance/2026-11-18-five-sites-on-account-b.md)",
- "state": "Day closed (19:43 Lisbon wake, last of 19 Nov): CI hardening to security@'s controls 6 to 10 and peers' findings, released one piece at a time. The shared map ptmap 1.0.0 is vendored and waits for the registry to record its review as passed. No hold. Next wake 08:43 Lisbon",
+ "state": "Day closed (19:43 Lisbon wake, last of 19 Nov): CI hardening to security@'s controls 6 to 10 and peers' findings, released one piece at a time. The shared map ptmap 1.0.2 is on /places/. No hold. Next wake 08:43 Lisbon",
  "observability": {
   "lane": "startups",
   "vault": "wi8kg0v6 on dev.send.sgraph.ai (private; 4 append lanes; drain key sha256:2b7fae9c14f87225 inside)",
@@ -60,7 +60,7 @@
  "blocked": [],
  "next": [
   "London: ontologist@ made the Website's data/site/places-registry.json (9b31bb49) with london and united-kingdom; at 13:50 UTC I read it and found three differences that would change the Portugal pages (lisboa vs lisbon id; Quarteira's parent portugal vs loule; Algarve municipalities as kind city), sent to ontologist@ directly. Once they are settled, switch scripts/import-website.mjs to the registry in one release, check the Portugal build is unchanged, then research files with country GB. Until then the import stays on data/by-place/places.json",
-  "The map (Dinis, about 17:40 UTC 19 Nov): ptmap 1.0.0 is vendored (src/assets/ptmap/1.0.0/, from Website design/shared-map/v1.0.0/; security@'s go b5fc4fdef). scripts/lib/ptmap.mjs checks it at build against the registry's pins and turns it on only when the registry lists 1.0.0 and map.review reads 'passed'. On 19 Nov at 19:55 UTC the live registry did not yet carry the map, so it is built in but switched off. When on, /places/ shows Portugal big with one dot per place, sized by its count. London and Brussels insets are added only once this site has London or EU data (item 1). Move to 1.0.1 when listed (security@'s two lows to designer@)",
+  "The map (Dinis, about 17:40 UTC 19 Nov): ptmap 1.0.2 is live on /places/ (vendored from Website design/shared-map/v1.0.2/, review passed, security@ 168c14fc5; rights@ closed R12). It shows Portugal big with one dot per place, sized by its count. London and Brussels insets come once this site has London or EU data (item 1)",
   "Predictions: run node scripts/predictions.mjs at each wake; after a call's date, read its page once and write its outcome line (held, missed or gap); show what we said beside what happened on /calls/ (designer@'s PF5 to PF9)",
   "The 17 Nov research files (algarve.json, lisbon-porto-national.json) do not record how pages were read: 121 items say 'reading method not recorded'; re-read a sample at source and record the method, or leave as stated",
   "From the 16:43 wake: inner passes as Sonnet sub-agents (opening conductor pass, security pre-review, the work, security and AppSec post-review of the diff, closing pass), per PrompTugal__News__Website board/guidance/2026-11-18-inner-passes-and-security.md",
