@@ -82,6 +82,7 @@ jobs:
       actions: read
     env:
       GIT_NO_REPLACE_OBJECTS: '1'
+      GIT_ATTR_SOURCE: 4b825dc642cb6eb9a060e54bf8d69288fbee4904   # the empty tree: pushed .gitattributes are never read (git 2.42+; events.b@'s finding)
       NODE_OPTIONS: ''
       AFTER: ${{ github.sha }}
     steps:
@@ -92,6 +93,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Git is 2.42 or later, so GIT_ATTR_SOURCE is honoured
+        run: |
+          v=$(git version | awk '{print $3}'); maj=${v%%.*}; rest=${v#*.}; min=${rest%%.*}
+          [ "$maj" -gt 2 ] || { [ "$maj" -eq 2 ] && [ "$min" -ge 42 ]; } || { echo "git $v is older than 2.42" >&2; exit 1; }
       - uses: actions/download-artifact@v4
         with:
           name: github-pages
