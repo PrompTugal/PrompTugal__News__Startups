@@ -6,11 +6,8 @@ on:
   push:
     branches: [dev]
   workflow_dispatch:
-  # A daily rebuild, so pages that count days (open calls) follow the date without a push
-  # (Dinis, 18 Nov 2026, ~14:55 UTC: "Yes, we should have a scheduled rebuild";
-  # PrompTugal__News__Website board/guidance/2026-11-18-keys-issues-rebuilds-observability.md).
-  schedule:
-    - cron: '17 0 * * *'
+  # No timer: every run starts from a commit (Dinis, 19 Nov 2026, ~01:20 UTC; PrompTugal__News__Website
+  # board/guidance/2026-11-19-every-run-starts-from-a-commit.md). workflow_dispatch is for a person by hand only.
 permissions:
   contents: read
 concurrency:

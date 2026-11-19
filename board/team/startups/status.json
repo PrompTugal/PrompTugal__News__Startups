@@ -4,7 +4,7 @@
   "site": "https://startups.promptugal.news",
   "repo": "PrompTugal/PrompTugal__News__Startups (dev)",
   "issue": "WS-177",
-  "updated": "2026-11-19T00:53Z",
+  "updated": "2026-11-19T01:23Z",
   "started_by": "conductor.b@PrompTugal.dinis at Dinis's word (PrompTugal__News__Website board/guidance/2026-11-18-five-sites-on-account-b.md)",
   "state": "Day closed (22:43 wake, last of 18 Nov): live v0.1.28; no hold; no library requests; next wake 07:43 Lisbon",
   "observability": {
@@ -34,11 +34,14 @@
     "18 Nov 19:43 wake: provenance on every item (Dinis 19:00, guidance 2026-11-18-cameras-provenance-and-bulletins.md): data/facts.json carries a provenance field on all 524 entries and every also-source (file, reader, model where our records state it, how read, read date, licences); pages and twins show 'How we know'; duplicate also-sources removed (Porto). How read: 53 from the file's notes, 121 'not recorded' (the 17 Nov files), 350 import. Inner passes: opening go with 4 changes applied; post-review clean (2 low notes)",
     "18 Nov ~22:20: /preview.svg and /preview.json at every build (our live counts, with provenance and licence), /preview.png made in CI by headless Chrome, og:image on every page, for the shared sites bar (Dinis ~22:00, guidance 2026-11-18-the-sites-bar.md); /version.json already current",
     "18 Nov (after 23:35 UTC): billing removed at Dinis's word (guidance 2026-11-18-billing-only-on-the-main-site.md): masthead chip 'Free to read', /about/#free, /account/ says no account is needed; meter, billing config and prices deleted",
-    "19 Nov 00:53 UTC: sites bar 1.1.0 installed: vendored and pinned by sha256 (the build stops on a mismatch), registry read at build with a committed snapshot as fallback, first in <body>; the old rail removed; /preview.svg now 320 by 180 from designer@'s template, /preview.png at 2x"
+    "19 Nov 00:53 UTC: sites bar 1.1.0 installed: vendored and pinned by sha256 (the build stops on a mismatch), registry read at build with a committed snapshot as fallback, first in <body>; the old rail removed; /preview.svg now 320 by 180 from designer@'s template, /preview.png at 2x",
+    "19 Nov 01:23 UTC: the Pages workflow's timer removed (every run starts from a commit; guidance 2026-11-19-every-run-starts-from-a-commit.md); push and workflow_dispatch by a person only"
   ],
   "blocked": [],
   "next": [
-    "/about/ scrolls sideways on phones and desktops: long source URLs in the gaps list (found while testing the bar; there before it); wrap them",
+    "07:43 wake: signed commits on (guidance 2026-11-19-signed-commits-paid-search-and-free-embeds.md s2): SSH key with this session's ID in team/keys.json, gpg.ssh.program repo-local, scripts/check-signatures.mjs in release.sh and CI; each commit checked against the keys in its parent's team/keys.json; CI's commits exempt only by something a pusher cannot forge, never by a name or address",
+    "Data in the browser (guidance 2026-11-19-load-the-data-in-the-browser.md): /api/v1/calls.json with data_read_at, licence and schema; a self-hosted script re-works open, closing and closed and days left on the reader's clock, textContent only, built list as fallback, read time and live or built shown. Needed now that there is no timed rebuild",
+    "/about/ scrolls sideways on phones and desktops: long source URLs in the gaps list (there before the sites bar); wrap them",
     "Nothing hard-coded to Portugal (Dinis 22:20, guidance 2026-11-18-london.md): give places a country, make the place list, page wording ('Portugal's startups'), schemas and the preview work for any place and country; London would be the first outside Portugal if Dinis wants startups there",
     "The 17 Nov research files (algarve.json, lisbon-porto-national.json) do not record how pages were read: 121 items say 'reading method not recorded'; re-read a sample at source and record the method, or leave as stated",
     "Duplicates the merge rule does not catch yet: Beyond Vision (dates month-only, 'over 28 million euros'), Brainr (dates and amounts differ); Porto shows one eco.sapo.pt source twice under 'Also reported by'",
