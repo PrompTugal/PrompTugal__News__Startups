@@ -22,7 +22,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      deployments: read   # to read the anchor A: the last successful github-pages deployment (security@, 19 Nov 2026)
     outputs:
       version: ${{ steps.version.outputs.version }}
       deploy: ${{ steps.mode.outputs.deploy }}
@@ -46,25 +45,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Every commit since the last verified one carries an Agent trailer (checks from the anchor's tree)
-        # security@'s fourth ruling (948820a7e, 19 Nov 2026): the anchor A is the newest commit a passing run verified,
-        # read from CI's own record (the last successful github-pages deployment), never from a tag. The range is
-        # A..AFTER, so a dropped run's commits are covered (specialist.code@ finding 3b), and the checks and their
-        # config come from A's tree (scripts/trusted-checks.sh). A missing A, A not an ancestor of AFTER, or no copy
-        # at A fails the run. Limit: this YAML, anchor.mjs and trusted-checks.sh come from the pushed tree.
-        env:
-          AFTER: ${{ github.sha }}
-          GITHUB_TOKEN: ${{ github.token }}
-        run: |
-          A=$(node scripts/anchor.mjs)
-          bash scripts/trusted-checks.sh "$A" "$AFTER" .trusted
-          node .trusted/check-commits.mjs "$A" "$AFTER"
       - run: node scripts/test-leak-scan.mjs
       - run: node scripts/test-obs-tz.mjs
       - run: node scripts/test-sites-bar.mjs
       - run: node scripts/test-svg-check.mjs
       - run: node scripts/test-rounds.mjs
       - run: node scripts/test-check-commits.mjs
+      - run: node scripts/test-workflow.mjs
       - run: node scripts/build.mjs
         env:
           SITE_VERSION: ${{ steps.version.outputs.version }}
@@ -73,16 +60,78 @@ jobs:
           c=$(command -v google-chrome || command -v chromium || command -v chromium-browser || true)
           if [ -n "$c" ]; then "$c" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --window-size=320,180 --force-device-scale-factor=2 --screenshot="$PWD/_site/preview.png" "file://$PWD/_site/preview.svg" || echo "preview.png not made"; else echo "no Chrome: preview.png not made"; fi
       - run: node scripts/validate.mjs
-      - name: Leak scan (tracked files and the built site), from the anchor's copy
-        run: node .trusted/leak-scan.mjs
       - if: steps.mode.outputs.deploy == 'true'
         uses: actions/configure-pages@v5
       - if: steps.mode.outputs.deploy == 'true'
         uses: actions/upload-pages-artifact@v3
         with:
           path: _site
-  deploy:
+  checks:
+    # security@'s controls 7 to 9 (fourth and fifth rulings, 948820a7e and 16402a95c, relayed by conductor.b@ at 14:17 and
+    # 14:20 UTC, 19 Nov 2026). This job runs no pushed code: every run line is in this file, and the checks run from the
+    # anchor A's tree, copied into RUNNER_TEMP. A is read from GitHub's record (the newest github-pages deployment whose
+    # latest status is success), never from git or a tag, and must be an ancestor of the commit checked. The range is
+    # A..AFTER. The build output reaches this job only as data (the Pages artifact, unpacked into _site/). GITHUB_ENV and
+    # GITHUB_PATH written by the build job do not reach it: those files are per job, and it reads no build outputs.
+    # Limit: this YAML comes from the pushed tree; only Dinis's branch protection with a required check closes that.
     needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: read
+    env:
+      GIT_NO_REPLACE_OBJECTS: '1'
+      NODE_OPTIONS: ''
+      AFTER: ${{ github.sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: The anchor A, from GitHub's record of passed runs
+        id: anchor
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          A=""
+          for row in $(gh api "repos/$GITHUB_REPOSITORY/deployments?environment=github-pages&per_page=50" --jq '.[] | "\(.id),\(.sha)"'); do
+            st=$(gh api "repos/$GITHUB_REPOSITORY/deployments/${row%%,*}/statuses?per_page=1" --jq '.[0].state // ""')
+            if [ "$st" = success ]; then A=${row#*,}; break; fi
+          done
+          [[ "$A" =~ ^[0-9a-f]{40}$ ]] || { echo "no successful github-pages deployment: no verified anchor" >&2; exit 1; }
+          git merge-base --is-ancestor "$A" "$AFTER" || { echo "anchor $A is not an ancestor of $AFTER" >&2; exit 1; }
+          echo "a=$A" >> "$GITHUB_OUTPUT"
+          echo "node=$(readlink -f "$(command -v node)")" >> "$GITHUB_OUTPUT"
+          echo "anchor: $A"
+      - name: The checks from A's tree, into RUNNER_TEMP (symlinks refused)
+        env:
+          A: ${{ steps.anchor.outputs.a }}
+        run: |
+          [ "$(git ls-tree "$A" scripts/trusted-checks.sh | cut -c1-6)" = "100644" ] || { echo "anchor $A has no plain scripts/trusted-checks.sh" >&2; exit 1; }
+          git show "$A:scripts/trusted-checks.sh" > "$RUNNER_TEMP/trusted-checks.sh"
+          /usr/bin/bash "$RUNNER_TEMP/trusted-checks.sh" "$A" "$AFTER" "$RUNNER_TEMP/trusted"
+      - name: Every commit in A..AFTER carries an Agent trailer
+        env:
+          A: ${{ steps.anchor.outputs.a }}
+          NODE: ${{ steps.anchor.outputs.node }}
+        run: '"$NODE" "$RUNNER_TEMP/trusted/check-commits.mjs" "$A" "$AFTER"'
+      - uses: actions/download-artifact@v4
+        with:
+          name: github-pages
+          path: ${{ runner.temp }}/pages
+      - name: Leak scan of the tracked files and the built site, from A's copy
+        env:
+          NODE: ${{ steps.anchor.outputs.node }}
+        run: |
+          rm -rf _site && mkdir _site
+          tar -xf "$RUNNER_TEMP/pages/artifact.tar" -C _site --no-same-owner --no-same-permissions
+          [ -z "$(find _site -type l -print -quit)" ] || { echo "the built site holds a symlink" >&2; exit 1; }
+          "$NODE" "$RUNNER_TEMP/trusted/leak-scan.mjs" --root "$GITHUB_WORKSPACE"
+  deploy:
+    needs: [build, checks]
     if: needs.build.outputs.deploy == 'true'
     runs-on: ubuntu-latest
     permissions:
@@ -95,8 +144,8 @@ jobs:
       - id: deployment
         uses: actions/deploy-pages@v4
   tag:
-    needs: [build, deploy]
-    if: ${{ always() && needs.build.result == 'success' && (needs.deploy.result == 'success' || needs.deploy.result == 'skipped') }}
+    needs: [build, checks, deploy]
+    if: ${{ always() && needs.build.result == 'success' && needs.checks.result == 'success' && (needs.deploy.result == 'success' || needs.deploy.result == 'skipped') }}
     runs-on: ubuntu-latest
     permissions:
       contents: write

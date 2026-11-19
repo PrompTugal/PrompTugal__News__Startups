@@ -6,7 +6,6 @@ import { execFileSync, spawnSync } from 'node:child_process';
 import { mkdtempSync, readFileSync, writeFileSync, mkdirSync, rmSync, symlinkSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { pickAnchor } from './lib/anchor.mjs';
 
 const SRC = readFileSync(new URL('./check-commits.mjs', import.meta.url), 'utf8');
 const BASE_LINE = /const BASE = '[0-9a-f]{40}';/;
@@ -122,15 +121,6 @@ try {
     expect('tag ignored', sel(r, A), true, `security checks from the anchor ${A}`);
     if (readFileSync(join(r.dir, '.trusted/check-commits.mjs'), 'utf8') !== SRC) { failed++; console.error('FAIL tag ignored: the copy is not A\'s'); }
   }
-  { // 14. pickAnchor: the newest github-pages deployment whose latest status is success; none fails
-    const sha = (c) => c.repeat(40);
-    const deps = [{ id: 3, environment: 'github-pages', sha: sha('c') }, { id: 2, environment: 'other', sha: sha('b') }, { id: 1, environment: 'github-pages', sha: sha('a') }];
-    const states = { 3: 'failure', 2: 'success', 1: 'success' };
-    const got = await pickAnchor(deps, async (id) => states[id]);
-    if (got !== sha('a')) { failed++; console.error(`FAIL pickAnchor newest success: got ${got}`); }
-    let threw = false; try { await pickAnchor(deps, async () => 'inactive'); } catch { threw = true; }
-    if (!threw) { failed++; console.error('FAIL pickAnchor: no success should fail'); }
-  }
   { // 15. control 9: a checker that is a symlink at A is refused
     const r = repo(); symlinkSync('/etc/hostname', join(r.dir, 'scripts/leak-scan.mjs')); r.g('add', '-A'); r.g('commit', '-q', '-m', 'link' + OK_TRAILER);
     expect('symlink at A refused', sel(r, r.g('rev-parse', 'HEAD')), false, 'a symlink is refused');
@@ -147,5 +137,5 @@ try {
 } finally {
   rmSync(root, { recursive: true, force: true });
 }
-if (failed) { console.error(`FAILED (${failed} of 23 checks)`); process.exit(1); }
-console.log('OK (23 checks: controls 6, 7 and 8 on the trailer check, the copy taken from the anchor A, and A itself)');
+if (failed) { console.error(`FAILED (${failed} of 21 checks)`); process.exit(1); }
+console.log('OK (21 checks: controls 6 to 9 on the trailer check, the copy taken from the anchor A, and the --root of the leak scan)');
