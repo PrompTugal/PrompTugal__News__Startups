@@ -91,9 +91,7 @@ const NAV = [['/', 'Front'], ['/places/', 'Places'], ['/support/', 'Incubators a
 // the front page, about, account and design pages are "site". Nothing here is priced: only promptugal.news bills
 // (Dinis, 18 November 2026; PrompTugal__News__Website board/guidance/2026-11-18-billing-only-on-the-main-site.md).
 const pageType = path => (path === '/account/' || path === '/' || path === '/about/' || path.startsWith('/design/') || path === '/404/') ? 'site' : 'evidence';
-// The PrompTugal.news sites rail (as in PrompTugal__News__Website assets/top/top.tmpl), this site marked as current.
-const NET = [['Weather', 'weather'], ['Civic', 'civic'], ['Startups', 'startups'], ['Travel', 'travel'], ['Data', 'data']];
-const netRail = `<nav class="em-net" aria-label="The PrompTugal.news sites"><span>Also from PrompTugal.news</span>${NET.map(([n, h]) => h === 'startups' ? `<a href="https://${h}.promptugal.news/" aria-current="page">${n}</a>` : `<a href="https://${h}.promptugal.news/" target="_blank" rel="noopener">${n}</a>`).join('')}</nav>`;
+let BAR = ''; // the sites bar's HTML, rendered at build by scripts/lib/sites-bar.mjs (empty: no bar)
 function frame({ path, title, description, body, made }) {
   const depth = path.split('/').filter(Boolean).length;
   const up = depth ? '../'.repeat(depth) : './';
@@ -115,15 +113,17 @@ function frame({ path, title, description, body, made }) {
 <meta property="og:image" content="${SITE}/preview.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/sites-bar/1.1.0/sites-bar.css">
+<script defer src="/assets/sites-bar/1.1.0/sites-bar.js"></script>
 <script defer src="/assets/obs/obs.js"></script>
 </head>
 <body>
+${BAR}
 <header class="top"><div class="wrap">
 <div class="strip"><span>Portugal, town by town · <a href="https://promptugal.news/">PrompTugal.news</a></span><span>version __VERSION__ · <a href="${path}index.md">markdown</a></span></div>
 <div class="mast"><a href="/" aria-label="PrompTugal.news Startups, front page"><img class="wm-light" src="/assets/brand/promptugal-wordmark-light.svg" alt="PrompTugal.news" width="240" height="40"><img class="wm-dark" src="/assets/brand/promptugal-wordmark-dark.svg" alt="" width="240" height="40"></a><span class="sub">Startups</span><div class="tools" id="nr-tools"><a class="tool free" id="nr-free-chip" href="/about/#free">Free to read</a></div></div>
 <nav class="main" aria-label="Sections">${nav}</nav>
 </div></header>
-${netRail}
 <main class="wrap">
 ${body}
 </main>
@@ -238,7 +238,8 @@ export function callsBoxHtml(list, heading, placeName, showPlace) {
 }
 
 // ---------- build ----------
-export function generate() {
+export function generate({ bar = '', entry = null } = {}) {
+  BAR = bar;
   const { web, places, entries, gaps, researchFiles, roundMerges, roundsBefore } = loadData();
   const dropped = roundMerges.reduce((n, m) => n + m.names.length - 1, 0);
   console.log(`rounds merged: ${roundMerges.reduce((n, m) => n + m.names.length, 0)} entries into ${roundMerges.length} (${roundsBefore} round entries before, ${roundsBefore - dropped} after)`);
@@ -385,21 +386,17 @@ ${inv.groups.filter(g => g.rows.length).map(g => `<h2 id="g${GROUP_IDX(g.title)}
   writeFileSync(join(OUT, '404.html'), readFileSync(join(OUT, '404/index.html'), 'utf8').replaceAll('href="../', 'href="/').replaceAll('src="../', 'src="/'));
   writeFileSync(join(OUT, 'llms.txt'), `# PrompTugal.news Startups\n\n> Portugal's startups and their funding, place by place: incubators, accelerators, public programmes, rounds and grants, companies and investors. Public facts only, each with its source and the date read. Every page has a markdown twin at index.md. Licences: our text and data are CC BY 4.0; facts taken from other sites stay under each source's licence or terms, linked on every item (fields license and source_license in facts.json). Version __VERSION__.\n\n## Pages\n\n${pages.filter(p => !p.path.startsWith('/design/')).map(p => `- [${p.title}](${SITE}${p.path}index.md): ${p.description}`).join('\n')}\n\n## Data\n\n- [All facts as JSON](${SITE}/data/facts.json): every entry with its source, read date and where it came from.\n\n## Optional\n\n${pages.filter(p => p.path.startsWith('/design/')).map(p => `- [${p.title}](${SITE}${p.path}index.md)`).join('\n')}\n`);
   // The site's preview for the shared sites bar and social cards (Dinis, 18 Nov 2026 ~22:00 UTC; PrompTugal__News__Website
-  // board/guidance/2026-11-18-the-sites-bar.md): our own live numbers, from the same counts as the pages, with provenance and licence.
+  // board/guidance/2026-11-18-the-sites-bar.md; designer@'s spec SB6): /preview.svg, 320 by 180, from designer@'s template
+  // (scripts/lib/sites-bar/preview-template.svg.txt), three live numbers from the same counts as the pages, every value
+  // escaped, no script, no external reference, system fonts only. /preview.png is the same at 2x, rendered in CI.
+  // preview.json keeps all six counts, with provenance and licence.
   {
-    const figs = [[counts.all, 'facts with their sources'], [calls.open.length, 'calls open to apply to'], [counts.funding, 'rounds and grants'], [counts.investors, 'investors'], [counts.places, 'places in Portugal'], [counts.sources, 'source sites']];
-    const cell = ([n, label], i) => { const x = 60 + (i % 3) * 370, y = 285 + Math.floor(i / 3) * 150; return `<text x="${x}" y="${y}" font-family="Georgia,serif" font-size="72" font-weight="700" fill="#1a1a1a">${esc(String(n))}</text><text x="${x}" y="${y + 38}" font-family="Helvetica,Arial,sans-serif" font-size="26" fill="#444">${esc(label)}</text>`; };
-    const svg = `<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="t d">
-<title id="t">PrompTugal.news Startups: ${esc(String(counts.all))} facts, ${esc(String(calls.open.length))} open calls</title>
-<desc id="d">Built from data/facts.json on ${esc(today)}, version __VERSION__. Each figure is a count of entries on startups.promptugal.news, each with its source and read date. Licence: CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), PrompTugal.news.</desc>
-<rect width="1200" height="630" fill="#f6f3ec"/><rect x="0" y="0" width="1200" height="12" fill="#c52830"/>
-<text x="60" y="110" font-family="Georgia,serif" font-size="56" font-weight="700" fill="#1a1a1a">PrompTugal.news <tspan fill="#006600">Startups</tspan></text>
-<text x="60" y="160" font-family="Helvetica,Arial,sans-serif" font-size="28" fill="#444">Portugal's startups and their funding, place by place</text>
-${figs.map(cell).join('\n')}
-<text x="60" y="590" font-family="Helvetica,Arial,sans-serif" font-size="20" fill="#666">Counted from data/facts.json on ${esc(today)} · version __VERSION__ · CC BY 4.0 PrompTugal.news · startups.promptugal.news</text>
-</svg>
-`;
+    const figs = [[calls.open.length, 'calls open to apply to'], [counts.funding, 'rounds and grants'], [counts.places, 'places'], [counts.all, 'facts with their sources'], [counts.investors, 'investors'], [counts.sources, 'source sites']];
+    const accent = entry && /^#[0-9a-f]{6}$/i.test(entry.accent || '') ? entry.accent : '#d4761a';
+    const line = entry && typeof entry.line === 'string' ? entry.line : 'startups and their funding, by place';
+    const fill = { site: 'PrompTugal.news Startups', line, accent, SITE: 'STARTUPS', n1: figs[0][0], label1: figs[0][1], n2: figs[1][0], label2: figs[1][1], n3: figs[2][0], label3: figs[2][1], read_at: nice(today), licence: 'CC BY 4.0 PrompTugal.news' };
+    let svg = readFileSync('scripts/lib/sites-bar/preview-template.svg.txt', 'utf8').replace(/\{\{(\w+)\}\}/g, (_, k) => { if (!(k in fill)) throw new Error(`preview template: no value for {{${k}}}`); return esc(String(fill[k])); });
+    svg = svg.replace(/(<svg [^>]*>)/, `$1\n  <title>${esc(`PrompTugal.news Startups: ${figs[0][0]} calls open, ${figs[1][0]} rounds and grants, ${figs[2][0]} places`)}</title>\n  <desc>${esc(`Counted from data/facts.json by scripts/generate.mjs on ${today}, version __VERSION__. Licence: CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), PrompTugal.news.`)}</desc>`);
     writeFileSync(join(OUT, 'preview.svg'), svg);
     writeFileSync(join(OUT, 'preview.json'), JSON.stringify({ site: SITE, built: today, version: '__VERSION__', figures: Object.fromEntries(figs.map(([n, l]) => [l, n])),
       provenance: { from: 'data/facts.json', method: 'counted by scripts/generate.mjs at build', by: 'startups.b@PrompTugal.dinis' },

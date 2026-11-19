@@ -59,10 +59,10 @@ jobs:
       - run: node scripts/build.mjs
         env:
           SITE_VERSION: ${{ steps.version.outputs.version }}
-      - name: The preview as PNG, for social cards (headless Chrome on the runner; skipped if absent)
+      - name: The preview as PNG at 2x (640 by 360), for social cards (headless Chrome on the runner; skipped if absent)
         run: |
           c=$(command -v google-chrome || command -v chromium || command -v chromium-browser || true)
-          if [ -n "$c" ]; then "$c" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --window-size=1200,630 --screenshot="$PWD/_site/preview.png" "file://$PWD/_site/preview.svg" || echo "preview.png not made"; else echo "no Chrome: preview.png not made"; fi
+          if [ -n "$c" ]; then "$c" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --window-size=320,180 --force-device-scale-factor=2 --screenshot="$PWD/_site/preview.png" "file://$PWD/_site/preview.svg" || echo "preview.png not made"; else echo "no Chrome: preview.png not made"; fi
       - run: node scripts/validate.mjs
       - name: Leak scan (tracked files and the built site)
         run: node scripts/leak-scan.mjs

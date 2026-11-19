@@ -4,7 +4,7 @@
   "site": "https://startups.promptugal.news",
   "repo": "PrompTugal/PrompTugal__News__Startups (dev)",
   "issue": "WS-177",
-  "updated": "2026-11-18T23:38Z",
+  "updated": "2026-11-19T00:53Z",
   "started_by": "conductor.b@PrompTugal.dinis at Dinis's word (PrompTugal__News__Website board/guidance/2026-11-18-five-sites-on-account-b.md)",
   "state": "Day closed (22:43 wake, last of 18 Nov): live v0.1.28; no hold; no library requests; next wake 07:43 Lisbon",
   "observability": {
@@ -33,12 +33,13 @@
     "18 Nov 16:43 wake: duplicate funding rounds merged (scripts/lib/rounds.mjs): Granter 3 entries into 1, Neuraspace 2 into 1; every source kept as 'Also reported by' with its licence; build count 524 facts (was 527), 113 funding, 47 investor deal links (was 52). Inner passes: opening go, pre-review clean with 5 mitigations, post-review clean",
     "18 Nov 19:43 wake: provenance on every item (Dinis 19:00, guidance 2026-11-18-cameras-provenance-and-bulletins.md): data/facts.json carries a provenance field on all 524 entries and every also-source (file, reader, model where our records state it, how read, read date, licences); pages and twins show 'How we know'; duplicate also-sources removed (Porto). How read: 53 from the file's notes, 121 'not recorded' (the 17 Nov files), 350 import. Inner passes: opening go with 4 changes applied; post-review clean (2 low notes)",
     "18 Nov ~22:20: /preview.svg and /preview.json at every build (our live counts, with provenance and licence), /preview.png made in CI by headless Chrome, og:image on every page, for the shared sites bar (Dinis ~22:00, guidance 2026-11-18-the-sites-bar.md); /version.json already current",
-    "18 Nov (after 23:35 UTC): billing removed at Dinis's word (guidance 2026-11-18-billing-only-on-the-main-site.md): masthead chip 'Free to read', /about/#free, /account/ says no account is needed; meter, billing config and prices deleted"
+    "18 Nov (after 23:35 UTC): billing removed at Dinis's word (guidance 2026-11-18-billing-only-on-the-main-site.md): masthead chip 'Free to read', /about/#free, /account/ says no account is needed; meter, billing config and prices deleted",
+    "19 Nov 00:53 UTC: sites bar 1.1.0 installed: vendored and pinned by sha256 (the build stops on a mismatch), registry read at build with a committed snapshot as fallback, first in <body>; the old rail removed; /preview.svg now 320 by 180 from designer@'s template, /preview.png at 2x"
   ],
   "blocked": [],
   "next": [
+    "/about/ scrolls sideways on phones and desktops: long source URLs in the gaps list (found while testing the bar; there before it); wrap them",
     "Nothing hard-coded to Portugal (Dinis 22:20, guidance 2026-11-18-london.md): give places a country, make the place list, page wording ('Portugal's startups'), schemas and the preview work for any place and country; London would be the first outside Portugal if Dinis wants startups there",
-    "Install the shared sites bar when dev@ and designer@ publish it (conductor.b@ will say): vendor its code pinned by version and sha256, render promptugal.news/api/v1/sites.json escaped with only https *.promptugal.news links, replace the current rail",
     "The 17 Nov research files (algarve.json, lisbon-porto-national.json) do not record how pages were read: 121 items say 'reading method not recorded'; re-read a sample at source and record the method, or leave as stated",
     "Duplicates the merge rule does not catch yet: Beyond Vision (dates month-only, 'over 28 million euros'), Brainr (dates and amounts differ); Porto shows one eco.sapo.pt source twice under 'Also reported by'",
     "From the 16:43 wake: inner passes as Sonnet sub-agents (opening conductor pass, security pre-review, the work, security and AppSec post-review of the diff, closing pass), per PrompTugal__News__Website board/guidance/2026-11-18-inner-passes-and-security.md",
@@ -51,7 +52,8 @@
   ],
   "asks": [
     "Dinis: front page A, B or C at https://startups.promptugal.news/design/ (not waited on).",
-    "Dinis: should this site keep a raw, timestamped capture of every page its research agents read (the pipeline standard), or does the standard apply only to data.b@'s collected feeds, with our research files citing source URL and read date as now?"
+    "Dinis: should this site keep a raw, timestamped capture of every page its research agents read (the pipeline standard), or does the standard apply only to data.b@'s collected feeds, with our research files citing source URL and read date as now?",
+    "Dinis: (for dev@, via conductor.b@) the registry's preview_spec still says /preview.svg is 1200 by 630, while designer@'s spec SB6 and conductor.b@ say 320 by 180; this site follows SB6. And GitHub Pages sends no nosniff header for /preview.svg; this site cannot set one, so item 4 is met except for that header."
   ],
   "library_requests": {
     "channel": "https://library.promptugal.news/api/v1/requests/startups.b-at-promptugal.dinis.json",

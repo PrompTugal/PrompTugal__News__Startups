@@ -87,6 +87,7 @@ function highEntropy(line) {
 
 // Narrow allowlist: [path, kind, reason]. Keep each entry to one file and one kind.
 const ALLOW = [
+  ['scripts/lib/sites-bar.mjs', 'long high-entropy string', 'sha256 pins of the three vendored sites bar files (public hashes of public files, from conductor.b@ on 19 Nov 2026); the build checks each file against them'],
   ['src/assets/obs/obs.json', 'long high-entropy string', 'observability lane append tokens and drain public key, public by design (a token can only append to its lane, the key can only encrypt); written by scripts/obs-setup.py on 18 Nov 2026 at the word of Dinis (set up your tracking lane); never the vault key or enum key'],
   ['src/assets/obs/obs.json', 'public key outside team/keys', 'observability lane append tokens and drain public key, public by design (a token can only append to its lane, the key can only encrypt); written by scripts/obs-setup.py on 18 Nov 2026 at the word of Dinis (set up your tracking lane); never the vault key or enum key'],
   ['_site/assets/obs/obs.json', 'long high-entropy string', 'observability lane append tokens and drain public key, public by design (a token can only append to its lane, the key can only encrypt); written by scripts/obs-setup.py on 18 Nov 2026 at the word of Dinis (set up your tracking lane); never the vault key or enum key'],

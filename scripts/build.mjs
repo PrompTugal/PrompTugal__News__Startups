@@ -3,10 +3,13 @@
 import { cpSync, rmSync, readdirSync, readFileSync, writeFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { generate } from './generate.mjs';
+import { loadBar, ownEntry, BAR_VERSION } from './lib/sites-bar.mjs';
 const version = process.env.SITE_VERSION || 'dev';
 rmSync('_site', { recursive: true, force: true });
 cpSync('src', '_site', { recursive: true });
-const gen = generate();
+const bar = await loadBar();
+console.log(bar.html ? `sites bar ${BAR_VERSION} from ${bar.from}` : `sites bar ${BAR_VERSION}: registry refused by the renderer (from ${bar.from}); built without a bar`);
+const gen = generate({ bar: bar.html, entry: ownEntry(bar.registry) });
 console.log(`generated ${gen.pages} pages: ${JSON.stringify(gen.counts)}`);
 const walk = d => readdirSync(d).flatMap(f => { const p = join(d, f); return statSync(p).isDirectory() ? walk(p) : [p]; });
 for (const f of walk('_site')) {
