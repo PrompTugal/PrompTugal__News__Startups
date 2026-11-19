@@ -4,7 +4,7 @@
   "site": "https://startups.promptugal.news",
   "repo": "PrompTugal/PrompTugal__News__Startups (dev)",
   "issue": "WS-177",
-  "updated": "2026-11-19T07:48Z",
+  "updated": "2026-11-19T07:49Z",
   "started_by": "conductor.b@PrompTugal.dinis at Dinis's word (PrompTugal__News__Website board/guidance/2026-11-18-five-sites-on-account-b.md)",
   "state": "Day closed (22:43 wake, last of 18 Nov): live v0.1.28; no hold; no library requests; next wake 07:43 Lisbon",
   "observability": {
@@ -46,11 +46,12 @@
     "19 Nov 07:17 UTC: sites bar 1.2.0 installed (security@'s go, 055e6c1430): checked against the registry's pins, no pin in code; off and left out if the registry no longer lists 1.2.0; hex pins and their leak-scan allowance removed; scripts/test-sites-bar.mjs (9 cases) in release.sh and CI. Checked in Chromium at 1280 and 390 px",
     "19 Nov 07:19 UTC: no page scrolls sideways: long source URLs on /about/ now wrap (it was 1276 px wide at 375 px). Checked 10 pages at 375 and 1280 px; this site's nav CSS is scoped to nav.main, so the sites bar's phone row scrolls inside the bar only",
     "19 Nov 07:44 UTC: the validator refuses a preview.svg with a script, a foreignObject (or other active element), an event attribute or an outside reference (href, src, url(), @import, entities); scripts/test-svg-check.mjs (10 cases) in release.sh and CI",
-    "19 Nov 07:48 UTC: data in the browser for open calls: assets/calls.js works out each call's days left, closes today or closed against today's Lisbon date on the reader's clock (no fetch, textContent only), hides stale 'closing within 14 days' tags, and says on /calls/ when the list was built; the built text stays as the fallback. Checked in Chromium at 19 Nov and 20 Dec"
+    "19 Nov 07:48 UTC: data in the browser for open calls: assets/calls.js works out each call's days left, closes today or closed against today's Lisbon date on the reader's clock (no fetch, textContent only), hides stale 'closing within 14 days' tags, and says on /calls/ when the list was built; the built text stays as the fallback. Checked in Chromium at 19 Nov and 20 Dec",
+    "19 Nov 07:49 UTC: predictions kept: data/predictions/predictions.jsonl in library.b@'s form, 18 lines (each open call's closing date as shown, kind expected-date), appended by scripts/predictions.mjs at a wake (append only; a changed date is a new line naming the old; only before its time). Outcome lines once each call is read again after its date"
   ],
   "blocked": [],
   "next": [
-    "Predictions: data/predictions/predictions.jsonl (append-only, the library's form): one prediction line per call deadline as shown, an outcome line once checked; then tell library.b@",
+    "Predictions: run node scripts/predictions.mjs at each wake; after a call's date, read its page once and write its outcome line (held, missed or gap); show what we said beside what happened on /calls/ (designer@'s PF5 to PF9)",
     "Nothing hard-coded to Portugal (Dinis 22:20, guidance 2026-11-18-london.md): give places a country, make the place list, page wording ('Portugal's startups'), schemas and the preview work for any place and country; London would be the first outside Portugal if Dinis wants startups there",
     "The 17 Nov research files (algarve.json, lisbon-porto-national.json) do not record how pages were read: 121 items say 'reading method not recorded'; re-read a sample at source and record the method, or leave as stated",
     "Duplicates the merge rule does not catch yet: Beyond Vision (dates month-only, 'over 28 million euros'), Brainr (dates and amounts differ); Porto shows one eco.sapo.pt source twice under 'Also reported by'",
@@ -77,5 +78,10 @@
   },
   "observability_tz": "obs_tz 1.1.0 on (status line form for a bump: 'obs_tz <v> off: the registry names <newer>')",
   "sites_bar": "sites-bar 1.2.0 on",
-  "signed_commits": "not on: key generation refused by this session's permission check (19 Nov 07:46 UTC); waiting for Dinis"
+  "signed_commits": "not on: key generation refused by this session's permission check (19 Nov 07:46 UTC); waiting for Dinis",
+  "predictions": {
+    "file": "data/predictions/predictions.jsonl",
+    "lines": 18,
+    "form": "https://library.promptugal.news/predictions/form/"
+  }
 }
