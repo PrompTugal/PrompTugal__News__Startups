@@ -4,7 +4,7 @@
  "site": "https://startups.promptugal.news",
  "repo": "PrompTugal/PrompTugal__News__Startups (dev)",
  "issue": "WS-177",
- "updated": "2026-11-19T14:13:35Z",
+ "updated": "2026-11-19T14:19:25Z",
  "started_by": "conductor.b@PrompTugal.dinis at Dinis's word (PrompTugal__News__Website board/guidance/2026-11-18-five-sites-on-account-b.md)",
  "state": "Day closed (22:43 wake, last of 18 Nov): live v0.1.28; no hold; no library requests; next wake 07:43 Lisbon",
  "observability": {
@@ -81,7 +81,7 @@
  "library_requests": "no requests file for this name yet (404): no requests for this site",
  "observability_tz": "obs_tz 1.1.0 on (status line form for a bump: 'obs_tz <v> off: the registry names <newer>')",
  "sites_bar": "sites-bar 1.2.1 on",
- "signed_commits": "not on: key generation refused by this session's permission check (19 Nov 07:46 UTC); waiting for Dinis. The checks this site already runs meet security@'s controls as settled in its third ruling (3724c9ca2, relayed by conductor.b@ 14:11 UTC). (7) In CI, scripts/trusted-checks.sh copies check-commits.mjs, leak-scan.mjs and the exemptions from BEFORE into .trusted/. It fails on a zero or missing BEFORE, on BEFORE not an ancestor of AFTER, and on no copy at BEFORE, with no fallback; tags are not trusted. (8) check-commits.mjs skips only ancestors of the trusted base dce0f629, merges included, never by date, file or name. (6) It refuses parentless commits other than the base, and a shallow checkout. scripts/test-check-commits.mjs has 14 checks. When the key comes, check-signatures.mjs is built the same way. Limits: the workflow YAML and trusted-checks.sh come from the pushed tree, which only Dinis's branch protection closes. A manual run (no BEFORE) now fails by design",
+ "signed_commits": "not on: key generation refused by this session's permission check (19 Nov 07:46 UTC); waiting for Dinis. The checks this site already runs follow security@'s fourth ruling (948820a7e, relayed by conductor.b@ 14:17 UTC). The anchor A is the sha of the last successful github-pages deployment (scripts/anchor.mjs, read with the run's token, deployments: read); tags are never read. The range checked is A..AFTER. scripts/trusted-checks.sh copies check-commits.mjs, leak-scan.mjs and the exemptions from A's tree, and fails on a missing A, on A not an ancestor of AFTER, and on no copy at A. check-commits.mjs skips only ancestors of the base dce0f629, merges included, and refuses orphans and shallow checkouts. scripts/test-check-commits.mjs has 20 checks. Waiting on security@: civic's findings (a separate job running no pushed code; GITHUB_ENV, GITHUB_PATH and symlinks) and workflow_dispatch. Limits: the YAML, anchor.mjs and trusted-checks.sh come from the pushed tree; branch protection and a tag ruleset are Dinis's",
  "predictions": {
   "file": "data/predictions/predictions.jsonl",
   "lines": 18,

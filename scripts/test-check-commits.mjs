@@ -6,6 +6,7 @@ import { execFileSync, spawnSync } from 'node:child_process';
 import { mkdtempSync, readFileSync, writeFileSync, mkdirSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+import { pickAnchor } from './lib/anchor.mjs';
 
 const SRC = readFileSync(new URL('./check-commits.mjs', import.meta.url), 'utf8');
 const BASE_LINE = /const BASE = '[0-9a-f]{40}';/;
@@ -81,35 +82,57 @@ try {
     g('init', '-q', '-b', 'dev'); writeFileSync(join(other, 'x'), 'another history\n'); g('add', '-A'); g('commit', '-q', '-m', 'other' + OK_TRAILER);
     expect('base not in history', spawnSync('node', [join(r.trusted, 'check-commits.mjs'), '', 'HEAD'], { cwd: other, encoding: 'utf8' }), false, 'is not in this history');
   }
-  // Control 7 as settled (third ruling): scripts/trusted-checks.sh takes the checks from BEFORE or fails.
+  // Control 7 as settled (fourth ruling): scripts/trusted-checks.sh takes the checks from the anchor A or fails.
   const SEL = new URL('./trusted-checks.sh', import.meta.url).pathname;
   const sel = (r, before, after = 'HEAD') => spawnSync('bash', [SEL, before, after, join(r.dir, '.trusted')], { cwd: r.dir, encoding: 'utf8' });
   const withLeak = () => { const r = repo(); r.commit('scripts/leak-scan.mjs', 'console.log("leak scan v1")\n', 'leak scan' + OK_TRAILER); return r; };
-  { // 8. BEFORE's copy is used even when the push weakens the checker
+  { // 8. A's copy is used even when the push weakens the checker
     const r = withLeak(); const before = r.g('rev-parse', 'HEAD');
     r.commit('scripts/check-commits.mjs', 'console.log("OK")\n', 'weaken the checker'); r.commit('g', '1\n', 'no trailer');
     const res = sel(r, before);
-    expect('copy from BEFORE', res, true, 'security checks from BEFORE');
+    expect('copy from A', res, true, 'security checks from the anchor');
     const copied = readFileSync(join(r.dir, '.trusted/check-commits.mjs'), 'utf8');
-    if (copied !== SRC) { failed++; console.error('FAIL copy from BEFORE: .trusted/check-commits.mjs is not the copy at BEFORE'); }
+    if (copied !== SRC) { failed++; console.error('FAIL copy from A: .trusted/check-commits.mjs is not the copy at A'); }
   }
-  { // 9. a zero BEFORE (a new branch) fails
+  { // 9. a missing A fails
     const r = withLeak();
-    expect('zero BEFORE', sel(r, '0000000000000000000000000000000000000000'), false, 'no BEFORE');
-    expect('empty BEFORE', sel(r, ''), false, 'no BEFORE');
+    expect('zero A', sel(r, '0000000000000000000000000000000000000000'), false, 'no anchor');
+    expect('missing A', sel(r, ''), false, 'no anchor');
   }
-  { // 10. BEFORE not an ancestor of AFTER (a force push) fails
+  { // 10. A not an ancestor of AFTER (a force push) fails
     const r = withLeak(); const before = r.commit('h', '1\n', 'h' + OK_TRAILER);
     r.g('reset', '-q', '--hard', 'HEAD~1'); r.commit('i', '1\n', 'i' + OK_TRAILER);
     expect('force push', sel(r, before), false, 'not an ancestor of AFTER');
   }
-  { // 11. a missing release copy (BEFORE has no leak-scan.mjs) fails, with no fallback to the pushed tree
+  { // 11. a missing copy (A has no leak-scan.mjs) fails, with no fallback to the pushed tree
     const r = repo(); const before = r.g('rev-parse', 'HEAD');
     r.commit('scripts/leak-scan.mjs', 'console.log("added after")\n', 'leak scan' + OK_TRAILER);
-    expect('missing copy at BEFORE', sel(r, before), false, 'has no scripts/leak-scan.mjs');
+    expect('missing copy at A', sel(r, before), false, 'has no scripts/leak-scan.mjs');
+  }
+  { // 12. an unsigned commit from a dropped run (between A and BEFORE) fails: the range is A..AFTER
+    const r = withLeak(); const A = r.g('rev-parse', 'HEAD');
+    r.commit('j', '1\n', 'dropped run, no trailer');                  // its run was dropped by a newer push
+    const before = r.commit('k', '1\n', 'k' + OK_TRAILER); r.commit('l', '1\n', 'l' + OK_TRAILER);
+    expect('dropped-run commit, range from BEFORE would miss it', r.run(before), true);
+    expect('dropped-run commit, range from A', r.run(A), false, 'dropped run, no trailer');
+  }
+  { // 13. a pushed tag on an unverified commit is not used: the copy is A's
+    const r = withLeak(); const A = r.g('rev-parse', 'HEAD');
+    r.commit('scripts/check-commits.mjs', 'console.log("OK")\n', 'weaken' + OK_TRAILER); r.g('tag', 'v0.1.999');
+    expect('tag ignored', sel(r, A), true, `security checks from the anchor ${A}`);
+    if (readFileSync(join(r.dir, '.trusted/check-commits.mjs'), 'utf8') !== SRC) { failed++; console.error('FAIL tag ignored: the copy is not A\'s'); }
+  }
+  { // 14. pickAnchor: the newest github-pages deployment whose latest status is success; none fails
+    const sha = (c) => c.repeat(40);
+    const deps = [{ id: 3, environment: 'github-pages', sha: sha('c') }, { id: 2, environment: 'other', sha: sha('b') }, { id: 1, environment: 'github-pages', sha: sha('a') }];
+    const states = { 3: 'failure', 2: 'success', 1: 'success' };
+    const got = await pickAnchor(deps, async (id) => states[id]);
+    if (got !== sha('a')) { failed++; console.error(`FAIL pickAnchor newest success: got ${got}`); }
+    let threw = false; try { await pickAnchor(deps, async () => 'inactive'); } catch { threw = true; }
+    if (!threw) { failed++; console.error('FAIL pickAnchor: no success should fail'); }
   }
 } finally {
   rmSync(root, { recursive: true, force: true });
 }
-if (failed) { console.error(`FAILED (${failed} of 14 checks)`); process.exit(1); }
-console.log('OK (14 checks: controls 6, 7 and 8 on the trailer check and the copy taken from BEFORE)');
+if (failed) { console.error(`FAILED (${failed} of 20 checks)`); process.exit(1); }
+console.log('OK (20 checks: controls 6, 7 and 8 on the trailer check, the copy taken from the anchor A, and A itself)');
