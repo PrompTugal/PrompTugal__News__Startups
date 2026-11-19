@@ -5,6 +5,7 @@ import { join } from 'node:path';
 import { generate } from './generate.mjs';
 import { loadRegistry, loadBar, ownEntry, BAR_VERSION } from './lib/sites-bar.mjs';
 import { checkObsTz, OBS_TZ_SITE } from './lib/obs-tz.mjs';
+import { checkMap, MAP_DIR } from './lib/ptmap.mjs';
 const version = process.env.SITE_VERSION || 'dev';
 rmSync('_site', { recursive: true, force: true });
 cpSync('src', '_site', { recursive: true });
@@ -15,7 +16,10 @@ if (!tz.on) rmSync(join('_site', OBS_TZ_SITE), { force: true });   // left out, 
 const bar = await loadBar(reg);
 console.log(`${bar.message} (registry: ${reg.from.split(' ')[0]})`);
 if (!bar.on) rmSync(join('_site', 'assets', 'sites-bar', BAR_VERSION), { recursive: true, force: true });   // left out, never shipped unchecked
-const gen = generate({ bar: bar.html, entry: ownEntry(reg.registry) });
+const mp = checkMap(reg.registry);
+console.log(`${mp.message} (registry: ${reg.from.split(' ')[0]})`);
+if (!mp.on) { rmSync(join('_site', MAP_DIR), { recursive: true, force: true }); rmSync(join('_site', 'assets', 'ptmap-init.js'), { force: true }); }   // left out, never shipped unchecked
+const gen = generate({ bar: bar.html, entry: ownEntry(reg.registry), map: mp.on });
 console.log(`generated ${gen.pages} pages: ${JSON.stringify(gen.counts)}`);
 const walk = d => readdirSync(d).flatMap(f => { const p = join(d, f); return statSync(p).isDirectory() ? walk(p) : [p]; });
 for (const f of walk('_site')) {

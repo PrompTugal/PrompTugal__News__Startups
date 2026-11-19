@@ -52,6 +52,7 @@ jobs:
       - run: node scripts/test-rounds.mjs
       - run: node scripts/test-check-commits.mjs
       - run: node scripts/test-workflow.mjs
+      - run: node scripts/test-ptmap.mjs
       - run: node scripts/build.mjs
         env:
           SITE_VERSION: ${{ steps.version.outputs.version }}

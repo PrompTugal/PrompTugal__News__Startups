@@ -14,6 +14,7 @@ node scripts/test-svg-check.mjs
 node scripts/test-rounds.mjs
 node scripts/test-check-commits.mjs
 node scripts/test-workflow.mjs
+node scripts/test-ptmap.mjs
 node scripts/build.mjs
 node scripts/validate.mjs
 node scripts/leak-scan.mjs

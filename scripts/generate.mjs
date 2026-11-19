@@ -105,8 +105,9 @@ const pageType = path => (path === '/account/' || path === '/' || path === '/abo
 // The countries this site covers, in words, from the places that have facts (set in generate()): "Portugal" today,
 // "Portugal and the United Kingdom" once London has facts. Nothing in the wording below names a country itself.
 let WHERE = '';
+let MAP = false; // the shared map ptmap is drawn on /places/ only when scripts/lib/ptmap.mjs has checked it
 let BAR = ''; // the sites bar's HTML, rendered at build by scripts/lib/sites-bar.mjs (empty: no bar)
-function frame({ path, title, description, body, made }) {
+function frame({ path, title, description, body, made, head = '' }) {
   const depth = path.split('/').filter(Boolean).length;
   const up = depth ? '../'.repeat(depth) : './';
   const nav = NAV.map(([href, label]) => `<a href="${href}"${href === path || (href !== '/' && path.startsWith(href)) ? ' aria-current="page"' : ''}>${label}</a>`).join('');
@@ -129,7 +130,7 @@ function frame({ path, title, description, body, made }) {
 <link rel="stylesheet" href="/assets/site.css">
 ${BAR ? '<link rel="stylesheet" href="/assets/sites-bar/1.2.1/sites-bar.css">\n<script defer src="/assets/sites-bar/1.2.1/sites-bar.js"></script>\n' : ''}<script defer src="/assets/calls.js"></script>
 <script defer src="/assets/obs/obs.js"></script>
-</head>
+${head}</head>
 <body>
 ${BAR}
 <header class="top"><div class="wrap">
@@ -251,8 +252,9 @@ export function callsBoxHtml(list, heading, placeName, showPlace) {
 }
 
 // ---------- build ----------
-export function generate({ bar = '', entry = null } = {}) {
+export function generate({ bar = '', entry = null, map = false } = {}) {
   BAR = bar;
+  MAP = map;
   {
     const d0 = loadData(), used = new Set(d0.entries.map(e => (d0.places.find(p => p.id === e.place) || {}).country).filter(Boolean));
     const names = [...used].sort((a, b) => a === 'portugal' ? -1 : b === 'portugal' ? 1 : a.localeCompare(b)).map(id => (d0.countries[id] || {}).name || id);
@@ -297,7 +299,14 @@ ${fv.map(v => `<section class="view view-${v.slug}" aria-label="${esc(v.name)}">
 
   // Places
   const placeCounts = id => ['support', 'funding', 'companies', 'investors'].map(s => entries.filter(e => e.place === id && e.section === s).length);
-  page({ path: '/places/', title: 'Places', description: 'Each place\'s incubators, programmes, rounds, grants, companies and investors, starting with the Algarve.', body: `<p class="kicker">Place by place</p><h1>Places</h1><p class="lede">Start with the Algarve, then Lisbon and Porto. A place with nothing yet is a gap we have not filled, not a place with no startups.</p>${groups.map(g => `<h2>${esc(g.group)}</h2><div class="tablewrap"><table><thead><tr><th>Place</th><th>Support</th><th>Rounds and grants</th><th>Companies</th><th>Investors</th></tr></thead><tbody>${g.places.map(p => { const c = placeCounts(p.id); return `<tr><td><a href="/places/${p.id}/">${esc(p.name)}</a></td>${c.map(n => `<td>${n || '<span class="meta">none yet</span>'}</td>`).join('')}</tr>`; }).join('')}</tbody></table></div>`).join('')}`, md: groups.map(g => `## ${g.group}\n\n${g.places.map(p => { const c = placeCounts(p.id); return `- ${p.name} (${SITE}/places/${p.id}/): ${c[0]} support, ${c[1]} rounds and grants, ${c[2]} companies, ${c[3]} investors`; }).join('\n')}`).join('\n\n') });
+  // The shared map (ptmap 1.0.0; Dinis, 19 Nov 2026): Portugal big, one dot per place with facts, sized by its count.
+  // London and the EU (Brussels) insets only once this site has their data; today it has neither.
+  const AT = (() => { try { return JSON.parse(readFileSync('data/map/places-at.json', 'utf8')).at || {}; } catch { return {}; } })();
+  const mapPlaces = places.filter(p => p.kind !== 'country' && AT[p.id]).map(p => ({ id: p.id, name: p.name, at: AT[p.id], href: `${SITE}/places/${p.id}/`, n: placeCounts(p.id).reduce((a, b) => a + b, 0) })).filter(p => p.n > 0);
+  const mapData = { places: mapPlaces, label: 'Places with startup facts on this site' };
+  const mapHtml = MAP && mapPlaces.length ? `<div id="ptmap" class="ptmap-host"></div><script type="application/json" id="ptmap-data">${JSON.stringify(mapData).replace(/</g, '\\u003c')}</script>` : '';
+  const mapHead = mapHtml ? '<link rel="stylesheet" href="/assets/ptmap/1.0.0/ptmap.css">\n<script defer src="/assets/ptmap/1.0.0/ptmap.js"></script>\n<script defer src="/assets/ptmap-init.js"></script>\n' : '';
+  page({ path: '/places/', head: mapHead, title: 'Places', description: 'Each place\'s incubators, programmes, rounds, grants, companies and investors, starting with the Algarve.', body: `<p class="kicker">Place by place</p><h1>Places</h1><p class="lede">Start with the Algarve, then Lisbon and Porto. A place with nothing yet is a gap we have not filled, not a place with no startups.</p>${mapHtml}${groups.map(g => `<h2>${esc(g.group)}</h2><div class="tablewrap"><table><thead><tr><th>Place</th><th>Support</th><th>Rounds and grants</th><th>Companies</th><th>Investors</th></tr></thead><tbody>${g.places.map(p => { const c = placeCounts(p.id); return `<tr><td><a href="/places/${p.id}/">${esc(p.name)}</a></td>${c.map(n => `<td>${n || '<span class="meta">none yet</span>'}</td>`).join('')}</tr>`; }).join('')}</tbody></table></div>`).join('')}`, md: groups.map(g => `## ${g.group}\n\n${g.places.map(p => { const c = placeCounts(p.id); return `- ${p.name} (${SITE}/places/${p.id}/): ${c[0]} support, ${c[1]} rounds and grants, ${c[2]} companies, ${c[3]} investors`; }).join('\n')}`).join('\n\n') });
 
   const SECTIONS = [['support', 'Incubators, accelerators and programmes'], ['funding', 'Rounds, grants and public money'], ['companies', 'Companies'], ['investors', 'Investors']];
   for (const p of places) {

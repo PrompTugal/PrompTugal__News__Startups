@@ -94,3 +94,7 @@ h2.vh{font-size:clamp(1.9rem,4.5vw,2.8rem);margin:.2rem 0 .6rem;padding:0;border
 
 /* A call whose date has passed since the page was built (assets/calls.js) */
 .call-closed{opacity:.6}
+
+/* The shared map (ptmap) on /places/: kept to a column, Portugal big within it (startups.b@, 19 Nov 2026) */
+.ptmap-host { max-width: 22rem; margin: 1rem 0 1.5rem; }
+.ptmap-host svg { width: 100%; height: auto; display: block; }
