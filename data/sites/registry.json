@@ -1,9 +1,9 @@
 {
- "about": "The last snapshot of the PrompTugal.news sites registry, used by scripts/lib/sites-bar.mjs only when the live registry cannot be read at build. Refreshed by hand by the site lead; never edited. The registry's bar.sha256 block is left out here: the pins live in scripts/lib/sites-bar.mjs only, and the renderer does not read them.",
+ "about": "This site's copy of the PrompTugal.news sites registry. The build reads the live registry and falls back to this copy only when the live one cannot be read. The pins in its .integrity fields are the only SRI strings the leak scan exempts (security@'s ruling of 19 Nov 2026, 04:51 UTC). Refreshed by hand by the site lead; never edited.",
  "source_url": "https://promptugal.news/api/v1/sites.json",
  "read_on": "2026-11-19",
  "read_by": "startups.b@PrompTugal.dinis",
- "how_read": "curl, one GET, at the time conductor.b@ cleared the sites bar v1.1.0",
+ "how_read": "curl, one GET, after security@'s ruling on registry pins (04:51 UTC)",
  "license": {
   "name": "CC BY 4.0",
   "url": "https://creativecommons.org/licenses/by/4.0/",
@@ -12,7 +12,7 @@
  },
  "registry": {
   "about": "The registry of every *.promptugal.news site (Dinis, 18 November 2026, about 22:00 UTC: board/guidance/2026-11-18-the-sites-bar.md), published at promptugal.news/api/v1/sites.json and read by the sites bar on every site. Data, not code. Each site's version and last change are read from its own /version.json; its preview is its own /preview.svg. dev@PrompTugal.dinis keeps the list; a site lead asks to change its line or mark. The one lines are designer@'s (design/sites-bar/sites-bar.html.txt).",
-  "version": "v0.1.1834",
+  "version": "v0.1.1847",
   "sites": [
    {
     "id": "news",
@@ -133,19 +133,31 @@
    }
   ],
   "bar": {
-   "version": "1.1.0",
-   "js": "https://promptugal.news/assets/sites-bar/1.1.0/sites-bar.js",
-   "css": "https://promptugal.news/assets/sites-bar/1.1.0/sites-bar.css",
-   "render": "https://promptugal.news/assets/sites-bar/1.1.0/sites-bar-render.mjs",
+   "version": "1.1.1",
+   "js": "https://promptugal.news/assets/sites-bar/1.1.1/sites-bar.js",
+   "css": "https://promptugal.news/assets/sites-bar/1.1.1/sites-bar.css",
+   "integrity": {
+    "js": "sha256-CocgHABQfdAOZrH/4dwXFz0kdfQtd8dfQfUNG9Cd4zM=",
+    "css": "sha256-xz+fEE+rY1AK+9NgKEz+qBRUgeuirUoTBuDWfXFPB1U=",
+    "render": "sha256-qi/wub3SbA90q6Ab+p5TtTd6ewAuMtiDA1L6e3nzou4="
+   },
+   "render": "https://promptugal.news/assets/sites-bar/1.1.1/sites-bar-render.mjs",
    "spec": "https://github.com/promptugal/promptugal__news__website/blob/dev/board/spec-the-sites-bar.md",
-   "install": "Copy the three files of this version into your site, check each sha256 against these, never load them from promptugal.news. At build: import render from sites-bar-render.mjs, render(the registry, { here: your hostname }) and put the HTML first in <body>, above your masthead; refuse to publish the bar if it returns ''. On every page: the CSS in <head> and sites-bar.js with defer. Serve your own /preview.svg (320 by 180, the template in design/sites-bar/preview-template.svg.txt) as image/svg+xml with nosniff, and /version.json."
+   "install": "Copy the three files of this version into your site and check each against its pin in bar.integrity (SRI form, sha256-<base64> of the whole file: node -e \"console.log('sha256-'+require('crypto').createHash('sha256').update(require('fs').readFileSync(process.argv[1])).digest('base64'))\" <file>), the full pin, never a part of it; it has no long hex run for a leak scan to flag; never load them from promptugal.news. At build: import render from sites-bar-render.mjs, render(the registry, { here: your hostname }) and put the HTML first in <body>, above your masthead; refuse to publish the bar if it returns ''. On every page: the CSS in <head> and sites-bar.js with defer. Serve your own /preview.svg (320 by 180, the template in design/sites-bar/preview-template.svg.txt) and /version.json. On GitHub Pages the .svg extension is enough: Pages sends image/svg+xml and no site can add nosniff there, so the controls are the bar showing previews only as <img> (an SVG in an img runs no script and loads nothing) and your gate refusing a script, a foreignObject, an event attribute or an outside reference in your preview.svg."
   },
   "preview_spec": [
-   "Each site makes its own preview at every build, from its own numbers: /preview.svg, 1200 by 630, an infographic of what is live there now (events this week, cameras up, contracts in 90 days, the pulse), with the site's name and mark, the version and the time built.",
+   "Each site makes its own preview at every build, from its own numbers: /preview.svg, 320 by 180 (designer@'s SB6, the template in design/sites-bar/preview-template.svg.txt), three numbers that say what the site is for today, with the site's name, accent, the time read and the licence.",
    "It carries its provenance and licence inside: an SVG <title> and <desc> naming the files the numbers come from and the licence (CC BY 4.0 for what we make).",
    "No script, no external reference, no font file in the SVG: system fonts only, so any site can show it as an <img>.",
-   "/preview.png, the same picture for social cards (og:image), when the site's build can render one; until then the SVG alone."
+   "/preview.png, 1200 by 630, for social cards (og:image), when the site's build can render one; until then the SVG alone."
   ],
+  "obs_tz": {
+   "file": "https://promptugal.news/assets/obs/tz-country.json",
+   "integrity": "sha256-mF2obgKbjMH+Xu9eV1rZieDUuh0DnIVzuqKGQAKFJJc=",
+   "version": "1.0.0",
+   "zones": 143,
+   "install": "Copy assets/obs/tz-country.json of this version into your site and check it against obs_tz.integrity (the full SRI string). In your page-view script, build the table as a null-prototype map (Object.assign(Object.create(null), zones)), look the browser's zone up only as an own key, accept only two letters A to Z, and send no country otherwise. No network call for the place, no IP lookup, no region or city. Missing a zone? Ask dev@ to add it: one table for every site, so every site reports the same countries."
+  },
   "license": {
    "name": "CC BY 4.0",
    "url": "https://creativecommons.org/licenses/by/4.0/",

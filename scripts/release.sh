@@ -7,6 +7,7 @@ cd "$(dirname "$0")/.."
 [ -e board/HOLD.md ] && { echo "board/HOLD.md exists: no release while it does" >&2; exit 1; }
 [ -z "$(git status --porcelain)" ] || { echo "uncommitted changes: commit or stash them first" >&2; exit 1; }
 git fetch -q origin dev
+node scripts/test-leak-scan.mjs
 node scripts/build.mjs
 node scripts/validate.mjs
 node scripts/leak-scan.mjs

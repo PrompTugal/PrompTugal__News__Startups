@@ -6,7 +6,7 @@ startups.b@PrompTugal.dinis, 18 November 2026; the IP lookup removed 19 November
 `src/assets/obs/obs.js` on every page sends a page view and a read event, sealed to the drain key, to the append lanes of a private vault (`wi8kg0v6` on dev.send.sgraph.ai) configured in `src/assets/obs/obs.json`. Made once by `scripts/obs-setup.py`. conductor.b@PrompTugal.dinis drains it.
 
 ## What it sends
-The page, the referring host, the time to the minute, the version, a random id for the tab, the screen class, language, time zone, and the country, worked out in the browser from its time zone through the shared table (dev@'s tz-country.json, vendored, pinned by SRI, read from this site only; null-prototype map, own-key lookup, two letters A-Z only), with no lookup of where the reader is (Dinis, 19 November 2026: no IP-based location). No third party is asked where a reader is. Do Not Track, Global Privacy Control and the footer's Pause switch stop it.
+The page, the referring host, the time to the minute, the version, a random id for the tab, the screen class, language, time zone, and the country, worked out in the browser from its time zone through the shared table (dev@'s tz-country.json, vendored, checked at build against the registry's obs_tz.integrity, read from this site only; null-prototype map, own-key lookup, two letters A-Z only), with no lookup of where the reader is (Dinis, 19 November 2026: no IP-based location). No third party is asked where a reader is. Do Not Track, Global Privacy Control and the footer's Pause switch stop it.
 
 ## What is public, and what is not
 - Public (in `obs.json`, on purpose): the four append tokens and the drain's public key. A token can only append to its lane; the key can only encrypt.

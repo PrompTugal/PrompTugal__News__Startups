@@ -4,7 +4,7 @@
   "site": "https://startups.promptugal.news",
   "repo": "PrompTugal/PrompTugal__News__Startups (dev)",
   "issue": "WS-177",
-  "updated": "2026-11-19T04:50Z",
+  "updated": "2026-11-19T04:57Z",
   "started_by": "conductor.b@PrompTugal.dinis at Dinis's word (PrompTugal__News__Website board/guidance/2026-11-18-five-sites-on-account-b.md)",
   "state": "Day closed (22:43 wake, last of 18 Nov): live v0.1.28; no hold; no library requests; next wake 07:43 Lisbon",
   "observability": {
@@ -37,10 +37,12 @@
     "19 Nov 00:53 UTC: sites bar 1.1.0 installed: vendored and pinned by sha256 (the build stops on a mismatch), registry read at build with a committed snapshot as fallback, first in <body>; the old rail removed; /preview.svg now 320 by 180 from designer@'s template, /preview.png at 2x",
     "19 Nov 01:23 UTC: the Pages workflow's timer removed (every run starts from a commit; guidance 2026-11-19-every-run-starts-from-a-commit.md); push and workflow_dispatch by a person only",
     "19 Nov 03:21 UTC: no IP-based location: obs.js sends the country only, from the browser's time zone through a fixed table (tz zone.tab 2026e), with no network call; the ipapi.co and ipwho.is lookup removed; region, city and map position no longer sent; obs.json geo, /about/, the observability threat model and REALITY.md updated (guidance 2026-11-19-no-ip-lookup-predictions-and-small-decisions.md)",
-    "19 Nov 04:50 UTC: obs.js uses the one shared time-zone-to-country table (dev@'s tz-country.json 1.0.0, 143 zones), vendored and pinned by its full SRI string (the build stops on a mismatch); null-prototype map, own-key lookup, two letters A-Z only; this site's own table dropped. Leak scan: an exact-pattern exemption for SRI strings (sha256/384/512 of exact length)"
+    "19 Nov 04:50 UTC: obs.js uses the one shared time-zone-to-country table (dev@'s tz-country.json 1.0.0, 143 zones), vendored and pinned by its full SRI string (the build stops on a mismatch); null-prototype map, own-key lookup, two letters A-Z only; this site's own table dropped. Leak scan: an exact-pattern exemption for SRI strings (sha256/384/512 of exact length)",
+    "19 Nov 04:57 UTC: registry pins per security@'s ruling of 04:51 UTC: the tz table is checked against the registry's obs_tz.integrity (live, else data/sites/registry.json), no pin in code; the leak scan's SRI exemption narrowed from 'anywhere' (e11df5e) to file + field + exact pattern, with scripts/test-leak-scan.mjs (8 cases) in release.sh and CI"
   ],
   "blocked": [],
   "next": [
+    "07:43: sites bar 1.1.1, checked against the registry's bar.integrity (drop the hex pins in scripts/lib/sites-bar.mjs and their leak-scan file allowance); validator check on preview.svg (no script, foreignObject, event attributes or outside references)",
     "07:43 wake: signed commits on (guidance 2026-11-19-signed-commits-paid-search-and-free-embeds.md s2): SSH key with this session's ID in team/keys.json, gpg.ssh.program repo-local, scripts/check-signatures.mjs in release.sh and CI; each commit checked against the keys in its parent's team/keys.json; CI's commits exempt only by something a pusher cannot forge, never by a name or address",
     "Data in the browser (guidance 2026-11-19-load-the-data-in-the-browser.md): /api/v1/calls.json with data_read_at, licence and schema; a self-hosted script re-works open, closing and closed and days left on the reader's clock, textContent only, built list as fallback, read time and live or built shown. Needed now that there is no timed rebuild",
     "/about/ scrolls sideways on phones and desktops: long source URLs in the gaps list (there before the sites bar); wrap them",

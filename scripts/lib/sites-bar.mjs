@@ -34,15 +34,18 @@ async function fetchRegistry() {
   return JSON.parse(t);
 }
 
-// Returns { html, registry, from }: html is '' when the renderer refuses the registry.
-export async function loadBar() {
-  verifyPinned();
-  let registry, from;
-  try { registry = await fetchRegistry(); from = REGISTRY_URL; }
+// The registry: the live one, or this site's copy when the live one cannot be read. Returns { registry, from }.
+export async function loadRegistry() {
+  try { return { registry: await fetchRegistry(), from: REGISTRY_URL }; }
   catch (e) {
     const snap = JSON.parse(readFileSync(SNAPSHOT, 'utf8'));
-    registry = snap.registry; from = `${SNAPSHOT} (read ${snap.read_on}; live registry not read: ${String(e.message || e).slice(0, 80)})`;
+    return { registry: snap.registry, from: `${SNAPSHOT} (read ${snap.read_on}; live registry not read: ${String(e.message || e).slice(0, 80)})` };
   }
+}
+
+// Returns { html, registry, from }: html is '' when the renderer refuses the registry.
+export function loadBar({ registry, from }) {
+  verifyPinned();
   const html = render(registry, { here: HERE, newTab: true });
   return { html, registry, from };
 }

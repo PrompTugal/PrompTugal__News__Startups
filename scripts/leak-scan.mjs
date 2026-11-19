@@ -77,9 +77,6 @@ const LONG = /[A-Za-z0-9+\/_-]{32,}={0,2}/g;
 function highEntropy(line) {
   for (const m of line.matchAll(LONG)) {
     const s = m[0].replace(/=+$/, '');
-    // A Subresource Integrity string is a public hash of a public file (security@'s ruling of 19 Nov 2026: exempt by exact
-    // pattern only): sha256-, sha384- or sha512- and base64 of exactly that digest's length, padding included.
-    if (/^sha256-[A-Za-z0-9+\/]{43}=$|^sha384-[A-Za-z0-9+\/]{64}$|^sha512-[A-Za-z0-9+\/]{86}==$/.test(m[0])) continue;
     if (/^[0-9a-f]+$/i.test(s)) { if (s.length >= 48 && entropy(s) >= 3.5) return true; continue; }
     if (s.includes('/') && !/[+=]/.test(m[0]) && s.split('/').some((seg) => /^[a-z][a-z.-]*$/.test(seg))) continue; // a path or URL
     const classes = [/[a-z]/, /[A-Z]/, /[0-9]/].filter((r) => r.test(s)).length;
@@ -98,6 +95,29 @@ const ALLOW = [
 ];
 const allowed = (path, kind) => ALLOW.some(([p, k]) => p === path && k === kind);
 
+// Registry pins (security@'s ruling, Website board/team/security/reviews/2026-11-19-0120-ruling-public-keys-in-leak-scans.md,
+// addendum of 04:51 UTC 19 Nov 2026): an SRI pin is exempt only when all three hold.
+//   File: this site's copy of the registry, data/sites/registry.json.
+//   Field: a key ending in .integrity or .integrity.<file> (e.g. obs_tz.integrity, bar.integrity.js).
+//   Pattern: the whole value matches SRI below, nothing before or after it.
+// Anything else of that shape, in any other file or field, stays flagged. Tested by scripts/test-leak-scan.mjs.
+export const REGISTRY_COPY = 'data/sites/registry.json';
+export const SRI = /^sha(256|384|512)-[A-Za-z0-9+\/]{43,86}={0,2}$/;
+function registryPins(text) {
+  const pins = new Set();
+  let j; try { j = JSON.parse(text); } catch { return pins; }
+  const walkJ = (v, path) => {
+    if (v && typeof v === 'object' && !Array.isArray(v)) { for (const k of Object.keys(v)) walkJ(v[k], [...path, k]); return; }
+    if (Array.isArray(v)) { v.forEach((x, i) => walkJ(x, [...path, String(i)])); return; }
+    const last = path[path.length - 1], parent = path[path.length - 2];
+    if (typeof v === 'string' && SRI.test(v) && (last === 'integrity' || parent === 'integrity')) pins.add(v);
+  };
+  walkJ(j, []);
+  return pins;
+}
+// A line of the registry copy that is exactly one "key": "<pin>" pair, the pin taken from an integrity field.
+const pinLine = (line, pins) => { const m = /^\s*"[A-Za-z0-9_.-]+":\s*"([^"]*)",?\s*$/.exec(line); return !!(m && pins.has(m[1])); };
+
 const PUBLIC_KEY_FILES = (p) => p === 'team/keys.json' || /^team\/keys\/[a-z0-9-]+\.json$/.test(p);
 
 // Returns a list of {line, kind} for one file's text. Never returns the match.
@@ -105,6 +125,7 @@ export function scanText(path, text) {
   const found = [];
   const add = (line, kind) => { if (!allowed(path, kind)) found.push({ line, kind }); };
   let body = text;
+  const pins = path === REGISTRY_COPY ? registryPins(text) : null;
   if (PUBLIC_KEY_FILES(path)) {
     if (/private|passphrase|secret|seed/i.test(text)) add(0, 'public key file mentions a private part');
     // Blank the allowed public key blocks, keeping line numbers.
@@ -119,7 +140,7 @@ export function scanText(path, text) {
       const v = m[1];
       if (/[0-9]/.test(v) && /[A-Za-z]/.test(v) && entropy(v) >= 3.5) { add(n, 'secret-looking value assigned to a secret name'); break; }
     }
-    if (highEntropy(line)) add(n, 'long high-entropy string');
+    if (highEntropy(line) && !(pins && pinLine(line, pins))) add(n, 'long high-entropy string');
   });
   return found;
 }
