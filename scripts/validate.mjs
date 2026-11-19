@@ -4,6 +4,7 @@
 // placeholder check (a seeded site must hold no __SITE_*__ placeholder).
 import { readdirSync, readFileSync, statSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
+import { svgProblems } from './lib/svg-check.mjs';
 const walk = d => readdirSync(d).flatMap(f => { const p = join(d, f); return statSync(p).isDirectory() ? walk(p) : [p]; });
 const problems = [];
 const fail = m => problems.push(m);
@@ -32,6 +33,10 @@ for (const f of [...files, 'hub.json', 'README.md']) {
     }
   }
 }
+// The preview: refused if it carries a script, a foreignObject, an event attribute or an outside reference
+// (scripts/lib/svg-check.mjs; the registry's bar install note, 19 Nov 2026).
+if (!existsSync('_site/preview.svg')) fail('no preview.svg');
+else for (const p of svgProblems(readFileSync('_site/preview.svg', 'utf8'))) fail(`preview.svg: ${p}`);
 if (!existsSync('_site/version.json')) fail('no version.json');
 if (!existsSync('_site/index.html')) fail('no index.html');
 try {
