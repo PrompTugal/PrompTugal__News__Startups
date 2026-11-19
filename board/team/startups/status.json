@@ -4,7 +4,7 @@
   "site": "https://startups.promptugal.news",
   "repo": "PrompTugal/PrompTugal__News__Startups (dev)",
   "issue": "WS-177",
-  "updated": "2026-11-19T04:57Z",
+  "updated": "2026-11-19T05:10Z",
   "started_by": "conductor.b@PrompTugal.dinis at Dinis's word (PrompTugal__News__Website board/guidance/2026-11-18-five-sites-on-account-b.md)",
   "state": "Day closed (22:43 wake, last of 18 Nov): live v0.1.28; no hold; no library requests; next wake 07:43 Lisbon",
   "observability": {
@@ -38,7 +38,8 @@
     "19 Nov 01:23 UTC: the Pages workflow's timer removed (every run starts from a commit; guidance 2026-11-19-every-run-starts-from-a-commit.md); push and workflow_dispatch by a person only",
     "19 Nov 03:21 UTC: no IP-based location: obs.js sends the country only, from the browser's time zone through a fixed table (tz zone.tab 2026e), with no network call; the ipapi.co and ipwho.is lookup removed; region, city and map position no longer sent; obs.json geo, /about/, the observability threat model and REALITY.md updated (guidance 2026-11-19-no-ip-lookup-predictions-and-small-decisions.md)",
     "19 Nov 04:50 UTC: obs.js uses the one shared time-zone-to-country table (dev@'s tz-country.json 1.0.0, 143 zones), vendored and pinned by its full SRI string (the build stops on a mismatch); null-prototype map, own-key lookup, two letters A-Z only; this site's own table dropped. Leak scan: an exact-pattern exemption for SRI strings (sha256/384/512 of exact length)",
-    "19 Nov 04:57 UTC: registry pins per security@'s ruling of 04:51 UTC: the tz table is checked against the registry's obs_tz.integrity (live, else data/sites/registry.json), no pin in code; the leak scan's SRI exemption narrowed from 'anywhere' (e11df5e) to file + field + exact pattern, with scripts/test-leak-scan.mjs (8 cases) in release.sh and CI"
+    "19 Nov 04:57 UTC: registry pins per security@'s ruling of 04:51 UTC: the tz table is checked against the registry's obs_tz.integrity (live, else data/sites/registry.json), no pin in code; the leak scan's SRI exemption narrowed from 'anywhere' (e11df5e) to file + field + exact pattern, with scripts/test-leak-scan.mjs (8 cases) in release.sh and CI",
+    "19 Nov 05:10 UTC: shared tz table 1.1.0 (487 zones) vendored, matching the live registry's obs_tz.integrity in full; data/sites/registry.json refreshed. A newer registry version no longer fails the build (checked against the copy's pin for the vendored version, upgrade noted); same version with other bytes still stops it"
   ],
   "blocked": [],
   "next": [
