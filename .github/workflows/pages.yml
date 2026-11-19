@@ -69,8 +69,8 @@ jobs:
   checks:
     # security@'s controls 7 to 9 (fourth and fifth rulings, 948820a7e and 16402a95c, relayed by conductor.b@ at 14:17 and
     # 14:20 UTC, 19 Nov 2026). This job runs no pushed code: every run line is in this file, and the checks run from the
-    # anchor A's tree, copied into RUNNER_TEMP. A is read from GitHub's record (the newest github-pages deployment whose
-    # latest status is success), never from git or a tag, and must be an ancestor of the commit checked. The range is
+    # anchor A's tree, copied into RUNNER_TEMP. A is read from GitHub's record (the head_sha of the latest successful push
+    # run of this workflow on dev; sixth ruling), never from git, a tag or a deployment, and must be an ancestor of AFTER. The range is
     # A..AFTER. The build output reaches this job only as data (the Pages artifact, unpacked into _site/). GITHUB_ENV and
     # GITHUB_PATH written by the build job do not reach it: those files are per job, and it reads no build outputs.
     # Limit: this YAML comes from the pushed tree; only Dinis's branch protection with a required check closes that.
@@ -78,7 +78,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      deployments: read
+      actions: read
     env:
       GIT_NO_REPLACE_OBJECTS: '1'
       NODE_OPTIONS: ''
@@ -92,16 +92,16 @@ jobs:
         with:
           node-version: 22
       - name: The anchor A, from GitHub's record of passed runs
+        # security@'s sixth ruling (0ba439611, relayed by conductor.b@ at 14:26 UTC, 19 Nov 2026): A is the head_sha of
+        # the latest run of this workflow file on dev, event push, conclusion success. Only GitHub Actions creates runs;
+        # anyone with write access can make a deployment (civic.b@'s finding), so none is read here.
         id: anchor
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          A=""
-          for row in $(gh api "repos/$GITHUB_REPOSITORY/deployments?environment=github-pages&per_page=50" --jq '.[] | "\(.id),\(.sha)"'); do
-            st=$(gh api "repos/$GITHUB_REPOSITORY/deployments/${row%%,*}/statuses?per_page=1" --jq '.[0].state // ""')
-            if [ "$st" = success ]; then A=${row#*,}; break; fi
-          done
-          [[ "$A" =~ ^[0-9a-f]{40}$ ]] || { echo "no successful github-pages deployment: no verified anchor" >&2; exit 1; }
+          A=$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/pages.yml/runs?branch=dev&event=push&status=success&per_page=20" \
+            --jq '[.workflow_runs[] | select(.path == ".github/workflows/pages.yml" and .head_branch == "dev" and .event == "push" and .conclusion == "success")][0].head_sha // ""')
+          [[ "$A" =~ ^[0-9a-f]{40}$ ]] || { echo "no successful push run of this workflow on dev: no verified anchor" >&2; exit 1; }
           git merge-base --is-ancestor "$A" "$AFTER" || { echo "anchor $A is not an ancestor of $AFTER" >&2; exit 1; }
           echo "a=$A" >> "$GITHUB_OUTPUT"
           echo "node=$(readlink -f "$(command -v node)")" >> "$GITHUB_OUTPUT"

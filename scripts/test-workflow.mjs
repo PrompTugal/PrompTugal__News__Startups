@@ -19,7 +19,8 @@ else {
   if (!/RUNNER_TEMP\/trusted\/check-commits\.mjs/.test(checks) || !/RUNNER_TEMP\/trusted\/leak-scan\.mjs/.test(checks)) problems.push('checks job does not run both checks from RUNNER_TEMP');
   if (!/"\$NODE"/.test(checks) || !/readlink -f/.test(checks)) problems.push('checks job does not use an absolute path to node');
   if (/\btags?\b.*describe|git describe/.test(checks)) problems.push('checks job reads a tag');
-  if (!/environment=github-pages/.test(checks) || !/merge-base --is-ancestor "\$A" "\$AFTER"/.test(checks)) problems.push('checks job does not take A from the deployments record and require it to be an ancestor');
+  if (!/actions\/workflows\/pages\.yml\/runs/.test(checks) || !/\.event == "push"/.test(checks) || !/\.conclusion == "success"/.test(checks) || !/\.head_branch == "dev"/.test(checks) || !/merge-base --is-ancestor "\$A" "\$AFTER"/.test(checks)) problems.push('checks job does not take A from the successful push runs of this workflow on dev and require it to be an ancestor');
+  if (/deployments/.test(checks)) problems.push('checks job reads deployments: anyone with write access can make one (sixth ruling)');
   if (!/find _site -type l/.test(checks)) problems.push('checks job does not refuse symlinks in the built site');
 }
 if (!/^  deploy:\n    needs: \[build, checks\]/m.test(y)) problems.push('deploy does not need the checks job');
