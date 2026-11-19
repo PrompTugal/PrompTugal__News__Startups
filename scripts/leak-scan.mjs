@@ -118,11 +118,12 @@ function registryPins(text) {
 // A line of the registry copy that is exactly one "key": "<pin>" pair, the pin taken from an integrity field.
 const pinLine = (line, pins) => { const m = /^\s*"[A-Za-z0-9_.-]+":\s*"([^"]*)",?\s*$/.exec(line); return !!(m && pins.has(m[1])); };
 
-// OpenSSH public keys (security@'s ruling, Website 1acd10498, 05:14 UTC): an ssh-ed25519, ecdsa-sha2-* or ssh-rsa key is
+// OpenSSH public keys (security@'s ruling, Website 1acd10498, 05:14 UTC): an ssh-ed25519, ecdsa-sha2-nistp256/384/521 or ssh-rsa key, and the
+// security-key forms sk-ssh-ed25519@openssh.com and sk-ecdsa-sha2-nistp256@openssh.com (library.b@'s LIB-2026-060), is
 // flagged anywhere but its published field, ssh_signing.public_key in team/keys.json (the entropy rule alone missed about
 // 1 in 75). Private-key headers of every kind fail everywhere through PRIVATE_BLOCK, with no allowance. Tested by
 // scripts/test-leak-scan.mjs.
-const SSH_PUBLIC = /\b(?:ssh-ed25519|ssh-rsa|ecdsa-sha2-nistp(?:256|384|521))\s+AAAA[0-9A-Za-z+\/]{20,}={0,3}/;
+const SSH_PUBLIC = /(?:^|[^A-Za-z0-9-])(?:sk-)?(?:ssh-ed25519|ssh-rsa|ecdsa-sha2-nistp(?:256|384|521))(?:@openssh\.com)?\s+AAAA[0-9A-Za-z+\/]{20,}={0,3}/;
 function sshPublished(path, text) {
   const ok = new Set();
   if (path !== 'team/keys.json') return ok;

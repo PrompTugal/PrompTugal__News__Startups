@@ -4,7 +4,7 @@
   "site": "https://startups.promptugal.news",
   "repo": "PrompTugal/PrompTugal__News__Startups (dev)",
   "issue": "WS-177",
-  "updated": "2026-11-19T05:15Z",
+  "updated": "2026-11-19T05:16Z",
   "started_by": "conductor.b@PrompTugal.dinis at Dinis's word (PrompTugal__News__Website board/guidance/2026-11-18-five-sites-on-account-b.md)",
   "state": "Day closed (22:43 wake, last of 18 Nov): live v0.1.28; no hold; no library requests; next wake 07:43 Lisbon",
   "observability": {
@@ -41,7 +41,8 @@
     "19 Nov 04:57 UTC: registry pins per security@'s ruling of 04:51 UTC: the tz table is checked against the registry's obs_tz.integrity (live, else data/sites/registry.json), no pin in code; the leak scan's SRI exemption narrowed from 'anywhere' (e11df5e) to file + field + exact pattern, with scripts/test-leak-scan.mjs (8 cases) in release.sh and CI",
     "19 Nov 05:10 UTC: shared tz table 1.1.0 (487 zones) vendored, matching the live registry's obs_tz.integrity in full; data/sites/registry.json refreshed. A newer registry version no longer fails the build (checked against the copy's pin for the vendored version, upgrade noted); same version with other bytes still stops it",
     "19 Nov 05:14 UTC: registry version bumps degrade per security@'s ruling (1acd10498): a newer obs_tz version turns the table off (left out of the site, no country sent; log: 'obs_tz <v> off: the registry names <newer>'), unless the registry keeps this version's pin in obs_tz.versions; same version with other bytes still stops the build. scripts/test-obs-tz.mjs (6 cases) in release.sh and CI",
-    "19 Nov 05:15 UTC: leak scan key rules per security@'s ruling (1acd10498): every private-key header (OpenSSH, RSA, EC, DSA, encrypted, plain) fails everywhere, no allowance; an ssh-ed25519, ssh-rsa or ecdsa public key fails outside ssh_signing.public_key in team/keys.json; 23 new test cases in scripts/test-leak-scan.mjs (31 in all)"
+    "19 Nov 05:15 UTC: leak scan key rules per security@'s ruling (1acd10498): every private-key header (OpenSSH, RSA, EC, DSA, encrypted, plain) fails everywhere, no allowance; an ssh-ed25519, ssh-rsa or ecdsa public key fails outside ssh_signing.public_key in team/keys.json; 23 new test cases in scripts/test-leak-scan.mjs (31 in all)",
+    "19 Nov 05:16 UTC: ssh public-key rule extended to the security-key forms (sk-ssh-ed25519@openssh.com, sk-ecdsa-sha2-nistp256@openssh.com) and tested for every type (ed25519, rsa, ecdsa nistp256/384/521, both sk- forms), in and outside the published field; 45 leak-scan test cases"
   ],
   "blocked": [],
   "next": [

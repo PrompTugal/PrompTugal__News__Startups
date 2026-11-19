@@ -37,5 +37,9 @@ expect('ssh-ed25519 key in another field of team/keys.json fails', kinds('team/k
 expect('ssh-rsa key in a script fails', kinds('scripts/x.mjs', `const k = '${sshPub('ssh-rsa')}'`).includes(SSH), true);
 expect('ecdsa key in the registry copy fails', kinds(REGISTRY_COPY, reg({ k: sshPub('ecdsa-sha2-nistp256') })).includes(SSH), true);
 expect('ssh key in a public_key field outside ssh_signing fails', kinds('team/keys.json', reg({ other: { public_key: sshPub('ssh-ed25519') } })).includes(SSH), true);
+for (const type of ['ssh-ed25519', 'ssh-rsa', 'ecdsa-sha2-nistp256', 'ecdsa-sha2-nistp384', 'ecdsa-sha2-nistp521', 'sk-ssh-ed25519@openssh.com', 'sk-ecdsa-sha2-nistp256@openssh.com']) {
+  expect(`${type} key outside the published field fails`, kinds('board/team/startups/status.json', reg({ note: sshPub(type) })).includes(SSH), true);
+  expect(`${type} key in ssh_signing.public_key passes`, kinds('team/keys.json', reg({ keys: [{ ssh_signing: { public_key: sshPub(type) } }] })).filter(k => k === SSH), []);
+}
 if (fails) { console.error(`test-leak-scan: ${fails} failed`); process.exit(1); }
 console.log('test-leak-scan: OK');
