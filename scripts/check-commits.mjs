@@ -1,4 +1,4 @@
-// ACC-015: every non-merge commit a push adds to dev must carry a readable Agent: trailer,
+// ACC-015: every commit a push adds (merges included, 19 Nov 2026) to dev must carry a readable Agent: trailer,
 // read the way git reads it: git log --format=%(trailers:key=Agent,valueonly).
 // Usage: node scripts/check-commits.mjs <before> <after>   (the pushed range, before..after)
 // security@'s controls (board/team/security/reviews/2026-11-19-0130-bar-signing-live-data.md in PrompTugal__News__Website,
@@ -33,7 +33,7 @@ const isAncestorOfBase = (c) => { try { execFileSync('git', ['merge-base', '--is
 const zero = /^0+$/;
 const before = beforeArg && !zero.test(beforeArg) && tryGit('rev-parse', '--verify', '--quiet', `${beforeArg}^{commit}`);
 const range = before ? [`${before}..${after}`] : [after];
-const added = lines(git('rev-list', '--no-merges', ...range));
+const added = lines(git('rev-list', ...range));   // merges too: a skip is decided by ancestry only (control 8)
 
 // A role may be dotted, role.speciality (Dinis, 16 Nov 2026: "we definitely should allow dots because that's our terminology").
 // PrompTugal's agents sign as role@PrompTugal.dinis (Dinis, 18 Nov 2026, in startups.b@'s session: "yes, change

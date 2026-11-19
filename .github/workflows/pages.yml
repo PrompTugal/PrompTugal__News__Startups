@@ -50,17 +50,14 @@ jobs:
         env:
           BEFORE: ${{ github.event.before }}
           AFTER: ${{ github.sha }}
-        # security@'s control 7 (19 Nov 2026, fails closed): the security checks and their config come from the
-        # last release tag (the trusted copy), never from the pushed tree; no release tag means no check, so it fails.
-        # They are copied into .trusted/ (ignored by git) so that each one's root, one level up, is this checkout.
+        # security@'s control 7 (third ruling, 19 Nov 2026): the security checks and their config come from BEFORE,
+        # never from the pushed tree, and the run fails when BEFORE is missing, is not an ancestor of AFTER, or has no
+        # copy (scripts/trusted-checks.sh). They go into .trusted/ (ignored by git), so each one's root is this checkout.
+        # The range still starts at the last release tag reachable from BEFORE, so a dropped run's commits are checked.
         run: |
-          last=$(git describe --tags --abbrev=0 --match "v${VERSION_BASE}.*" "$AFTER^" 2>/dev/null || true)
-          [ -n "$last" ] || { echo "no release tag before $AFTER: no trusted copy of the checks" >&2; exit 1; }
-          rm -rf .trusted && mkdir .trusted
-          for f in check-commits.mjs leak-scan.mjs; do git show "$last:scripts/$f" > ".trusted/$f"; done
-          if git cat-file -e "$last:scripts/commit-exemptions.json" 2>/dev/null; then git show "$last:scripts/commit-exemptions.json" > .trusted/commit-exemptions.json; fi
-          echo "security checks from $last ($(git rev-parse "$last^{commit}"))"
-          node .trusted/check-commits.mjs "$last" "$AFTER"
+          bash scripts/trusted-checks.sh "$BEFORE" "$AFTER" .trusted
+          last=$(git describe --tags --abbrev=0 --match "v${VERSION_BASE}.*" "$BEFORE" 2>/dev/null || true)
+          node .trusted/check-commits.mjs "${last:-$BEFORE}" "$AFTER"
       - run: node scripts/test-leak-scan.mjs
       - run: node scripts/test-obs-tz.mjs
       - run: node scripts/test-sites-bar.mjs

@@ -4,7 +4,7 @@
  "site": "https://startups.promptugal.news",
  "repo": "PrompTugal/PrompTugal__News__Startups (dev)",
  "issue": "WS-177",
- "updated": "2026-11-19T14:11:46Z",
+ "updated": "2026-11-19T14:13:35Z",
  "started_by": "conductor.b@PrompTugal.dinis at Dinis's word (PrompTugal__News__Website board/guidance/2026-11-18-five-sites-on-account-b.md)",
  "state": "Day closed (22:43 wake, last of 18 Nov): live v0.1.28; no hold; no library requests; next wake 07:43 Lisbon",
  "observability": {
@@ -81,7 +81,7 @@
  "library_requests": "no requests file for this name yet (404): no requests for this site",
  "observability_tz": "obs_tz 1.1.0 on (status line form for a bump: 'obs_tz <v> off: the registry names <newer>')",
  "sites_bar": "sites-bar 1.2.1 on",
- "signed_commits": "not on: key generation refused by this session's permission check (19 Nov 07:46 UTC); waiting for Dinis. The checks this site already runs now meet security@'s controls as they apply without signing (conductor.b@ relayed them at 14:07 and 14:08 UTC; Website rulings a21986a69 and fae9649db). In CI, check-commits.mjs, leak-scan.mjs and the exemptions come from the last release tag via git show into .trusted/, and fail closed when there is none (7). check-commits.mjs refuses a shallow checkout and parentless commits other than the trusted base dce0f629 (6), and skips only ancestors of that base, never by tree or date (8). There is no override. scripts/test-check-commits.mjs has 8 checks. When the key comes, check-signatures.mjs is built the same way, with all eight controls and their tests. Limit: the workflow YAML still comes from the pushed tree; only Dinis's branch protection with a required check closes that",
+ "signed_commits": "not on: key generation refused by this session's permission check (19 Nov 07:46 UTC); waiting for Dinis. The checks this site already runs meet security@'s controls as settled in its third ruling (3724c9ca2, relayed by conductor.b@ 14:11 UTC). (7) In CI, scripts/trusted-checks.sh copies check-commits.mjs, leak-scan.mjs and the exemptions from BEFORE into .trusted/. It fails on a zero or missing BEFORE, on BEFORE not an ancestor of AFTER, and on no copy at BEFORE, with no fallback; tags are not trusted. (8) check-commits.mjs skips only ancestors of the trusted base dce0f629, merges included, never by date, file or name. (6) It refuses parentless commits other than the base, and a shallow checkout. scripts/test-check-commits.mjs has 14 checks. When the key comes, check-signatures.mjs is built the same way. Limits: the workflow YAML and trusted-checks.sh come from the pushed tree, which only Dinis's branch protection closes. A manual run (no BEFORE) now fails by design",
  "predictions": {
   "file": "data/predictions/predictions.jsonl",
   "lines": 18,

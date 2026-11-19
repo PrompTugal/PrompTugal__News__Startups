@@ -81,8 +81,35 @@ try {
     g('init', '-q', '-b', 'dev'); writeFileSync(join(other, 'x'), 'another history\n'); g('add', '-A'); g('commit', '-q', '-m', 'other' + OK_TRAILER);
     expect('base not in history', spawnSync('node', [join(r.trusted, 'check-commits.mjs'), '', 'HEAD'], { cwd: other, encoding: 'utf8' }), false, 'is not in this history');
   }
+  // Control 7 as settled (third ruling): scripts/trusted-checks.sh takes the checks from BEFORE or fails.
+  const SEL = new URL('./trusted-checks.sh', import.meta.url).pathname;
+  const sel = (r, before, after = 'HEAD') => spawnSync('bash', [SEL, before, after, join(r.dir, '.trusted')], { cwd: r.dir, encoding: 'utf8' });
+  const withLeak = () => { const r = repo(); r.commit('scripts/leak-scan.mjs', 'console.log("leak scan v1")\n', 'leak scan' + OK_TRAILER); return r; };
+  { // 8. BEFORE's copy is used even when the push weakens the checker
+    const r = withLeak(); const before = r.g('rev-parse', 'HEAD');
+    r.commit('scripts/check-commits.mjs', 'console.log("OK")\n', 'weaken the checker'); r.commit('g', '1\n', 'no trailer');
+    const res = sel(r, before);
+    expect('copy from BEFORE', res, true, 'security checks from BEFORE');
+    const copied = readFileSync(join(r.dir, '.trusted/check-commits.mjs'), 'utf8');
+    if (copied !== SRC) { failed++; console.error('FAIL copy from BEFORE: .trusted/check-commits.mjs is not the copy at BEFORE'); }
+  }
+  { // 9. a zero BEFORE (a new branch) fails
+    const r = withLeak();
+    expect('zero BEFORE', sel(r, '0000000000000000000000000000000000000000'), false, 'no BEFORE');
+    expect('empty BEFORE', sel(r, ''), false, 'no BEFORE');
+  }
+  { // 10. BEFORE not an ancestor of AFTER (a force push) fails
+    const r = withLeak(); const before = r.commit('h', '1\n', 'h' + OK_TRAILER);
+    r.g('reset', '-q', '--hard', 'HEAD~1'); r.commit('i', '1\n', 'i' + OK_TRAILER);
+    expect('force push', sel(r, before), false, 'not an ancestor of AFTER');
+  }
+  { // 11. a missing release copy (BEFORE has no leak-scan.mjs) fails, with no fallback to the pushed tree
+    const r = repo(); const before = r.g('rev-parse', 'HEAD');
+    r.commit('scripts/leak-scan.mjs', 'console.log("added after")\n', 'leak scan' + OK_TRAILER);
+    expect('missing copy at BEFORE', sel(r, before), false, 'has no scripts/leak-scan.mjs');
+  }
 } finally {
   rmSync(root, { recursive: true, force: true });
 }
-if (failed) { console.error(`FAILED (${failed} of 8 checks)`); process.exit(1); }
-console.log('OK (8 checks: controls 6, 7 and 8 on the trailer check)');
+if (failed) { console.error(`FAILED (${failed} of 14 checks)`); process.exit(1); }
+console.log('OK (14 checks: controls 6, 7 and 8 on the trailer check and the copy taken from BEFORE)');
