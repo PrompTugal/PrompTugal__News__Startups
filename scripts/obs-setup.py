@@ -108,8 +108,7 @@ def main():
                  'Used by assets/obs/obs.js on every page. The data vault is private; conductor.b@PrompTugal.dinis drains it.',
         'lane': 'startups', 'enabled': True, 'endpoint': HOST, 'vault_id': vid,
         'lanes': {'site': toks},
-        'recipient': {'fingerprint': fp, 'encrypt': pub_pem},
-        'geo': ['https://ipapi.co/json/', 'https://ipwho.is/']})
+        'recipient': {'fingerprint': fp, 'encrypt': pub_pem}})   # no geo lookup (removed 19 Nov 2026, Dinis: country from the time zone only)
 
     # 3. the credentials: outside the repository, and sealed to conductor.b@
     creds = {'type': 'promptugal.obs/creds', 'lane': 'startups', 'site': 'startups.promptugal.news', 'host': HOST, 'vault_id': vid,

@@ -1,5 +1,5 @@
 {
-  "about": "startups.promptugal.news's own observability lane, named startups (startups.b@PrompTugal.dinis, 18 November 2026, at Dinis Cruz's word; made by scripts/obs-setup.py). Public on purpose: each append token can only write to its lane, and the key can only encrypt. Used by assets/obs/obs.js on every page. The data vault is private; conductor.b@PrompTugal.dinis drains it.",
+  "about": "startups.promptugal.news's own observability lane, named startups (startups.b@PrompTugal.dinis, 18 November 2026, at Dinis Cruz's word; made by scripts/obs-setup.py). Public on purpose: each append token can only write to its lane, and the key can only encrypt. Used by assets/obs/obs.js on every page. The data vault is private; conductor.b@PrompTugal.dinis drains it. No geo lookup: since 19 November 2026 obs.js takes the country from the browser's time zone, with no network call (Dinis, guidance 2026-11-19-no-ip-lookup-predictions-and-small-decisions.md).",
   "lane": "startups",
   "enabled": true,
   "endpoint": "https://dev.send.sgraph.ai",
@@ -15,9 +15,5 @@
   "recipient": {
     "fingerprint": "sha256:2b7fae9c14f87225",
     "encrypt": "-----BEGIN PUBLIC KEY-----\nMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAt0myV8OWvwu03KUMF22b\nh8an44j/gMuKm07FzxgplWTFTyX8+lEa73OGppH2+nk3U4clV6UZUTataAHVOiFW\nxZp9gKcotQETyZkvm3JZrs/TTK+qwbLoVqpVacuCA7uWLxS47LyRmrkyBgMvOGSo\nGGqoqi3OxyiQS6Dc06aEm10aCB3z0ihEfKnQlhh85tC99TJQf2qXdWjclhX1/vXa\nd8lmQ1AHh7lQOok6z1IXbye3cXATgABL8b5KAOQdUaxz1ibmOzcUuJcQjF0AO8I8\nyKownXZmOHNcm4h3YJfz7GLqWSP0T/rqyre49Ly9DuoSVMdFOR5cxrluYrQ02xiw\nKgNHj5jEeeNPLkQocCp8NtkePfFAjBU6pk8JR0DiFel/VnALiXTebupRspettJ/R\nFQBSbT9zSCqpw5NSkwGsMoaGX5R1XNzhEoH01aD6qCwtQinO2j/6F27cYKNplkXt\n4PsCpqhKV1NDTuXEFiisVnl6jy2hKpjxUVYfuvcPAEkxpyC3kCOxqi49r2+Phs2L\ncV6JGL1y6WFR7ET191HENCPKb+wqlcaBvvRk52Jjgw5ScNqsgwOYQLngoaufJrVO\nMj1vjR43gjfX1151ZPeFD0qgdD5JML6hgTdwGyQdr1GAPEL1LJDEP7Fd00kK0IwT\nLD3WW3lWxDludQRen/+GfTUCAwEAAQ==\n-----END PUBLIC KEY-----\n"
-  },
-  "geo": [
-    "https://ipapi.co/json/",
-    "https://ipwho.is/"
-  ]
+  }
 }
