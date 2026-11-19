@@ -113,7 +113,7 @@ function frame({ path, title, description, body, made }) {
 <meta property="og:image" content="${SITE}/preview.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/assets/site.css">
-${BAR ? '<link rel="stylesheet" href="/assets/sites-bar/1.2.0/sites-bar.css">\n<script defer src="/assets/sites-bar/1.2.0/sites-bar.js"></script>\n' : ''}<script defer src="/assets/calls.js"></script>
+${BAR ? '<link rel="stylesheet" href="/assets/sites-bar/1.2.1/sites-bar.css">\n<script defer src="/assets/sites-bar/1.2.1/sites-bar.js"></script>\n' : ''}<script defer src="/assets/calls.js"></script>
 <script defer src="/assets/obs/obs.js"></script>
 </head>
 <body>

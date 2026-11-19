@@ -12,7 +12,7 @@ import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
 
-export const BAR_VERSION = '1.2.0';
+export const BAR_VERSION = '1.2.1';
 export const HERE = 'startups.promptugal.news';
 export const REGISTRY_URL = 'https://promptugal.news/api/v1/sites.json';
 export const SNAPSHOT = 'data/sites/registry.json';
