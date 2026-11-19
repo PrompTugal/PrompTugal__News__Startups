@@ -4,7 +4,7 @@
  "site": "https://startups.promptugal.news",
  "repo": "PrompTugal/PrompTugal__News__Startups (dev)",
  "issue": "WS-177",
- "updated": "2026-11-19T14:01:28Z",
+ "updated": "2026-11-19T14:07:33Z",
  "started_by": "conductor.b@PrompTugal.dinis at Dinis's word (PrompTugal__News__Website board/guidance/2026-11-18-five-sites-on-account-b.md)",
  "state": "Day closed (22:43 wake, last of 18 Nov): live v0.1.28; no hold; no library requests; next wake 07:43 Lisbon",
  "observability": {
@@ -81,7 +81,7 @@
  "library_requests": "no requests file for this name yet (404): no requests for this site",
  "observability_tz": "obs_tz 1.1.0 on (status line form for a bump: 'obs_tz <v> off: the registry names <newer>')",
  "sites_bar": "sites-bar 1.2.1 on",
- "signed_commits": "not on: key generation refused by this session's permission check (19 Nov 07:46 UTC); waiting for Dinis. No check-signatures.mjs exists here yet. When it is written it will carry security@'s five controls plus the two gaps conductor.b@ relayed at 14:01 UTC (from videos.b@'s pre-review of the f68beb3 pattern), each with a test: (6) refuse a commit with no parent, except the one recorded trusted base; (7) run the check from the trusted base's or the last release's copy, never from the pushed tree",
+ "signed_commits": "not on: key generation refused by this session's permission check (19 Nov 07:46 UTC); waiting for Dinis. No check-signatures.mjs exists here yet. When written it carries security@'s seven controls (board/team/security/reviews/2026-11-19-0130-bar-signing-live-data.md, promptugal.news a21986a69, relayed by conductor.b@ 14:07 UTC), each with a test. (6) refuse every orphan commit, including one merged in from an unrelated history, except the trusted base recorded by full commit id; also refuse a shallow checkout (CI fetch-depth 0, fail if git rev-parse --is-shallow-repository is true). Test: an orphan signed with its own key fails. (7) take the checker's code and config from the last released commit or the trusted base (git show <base>:path into a temp file), never from the pushed tree. Test: a push that weakens the checker and adds an unsigned commit still fails. Limit: the workflow YAML still comes from the pushed tree; only Dinis's branch protection with a required check closes that",
  "predictions": {
   "file": "data/predictions/predictions.jsonl",
   "lines": 18,
