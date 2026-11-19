@@ -146,11 +146,11 @@ try {
     symlinkSync('README', join(r.dir, 'link')); r.g('add', '-A'); r.g('commit', '-q', '-m', 'link' + OK_TRAILER);
     expect('pushed symlink fails', sel(r, A), false, 'adds or changes a symlink: link');
     const r2 = withLeak();
-    const A2 = r2.commit('scripts/symlink-exceptions.json', JSON.stringify([{ path: 'link', reason: 'test' }]), 'exception' + OK_TRAILER);
+    const A2 = r2.commit('scripts/symlink-exceptions.json', JSON.stringify([{ path: 'link', target: 'README', reason: 'test' }]), 'exception' + OK_TRAILER);
     symlinkSync('README', join(r2.dir, 'link')); r2.g('add', '-A'); r2.g('commit', '-q', '-m', 'link' + OK_TRAILER);
     expect('listed symlink passes', sel(r2, A2), true, 'security checks from the anchor');
     const r3 = withLeak(); const A3 = r3.g('rev-parse', 'HEAD');
-    r3.commit('scripts/symlink-exceptions.json', JSON.stringify([{ path: 'link', reason: 'pushed' }]), 'exception' + OK_TRAILER);
+    r3.commit('scripts/symlink-exceptions.json', JSON.stringify([{ path: 'link', target: 'README', reason: 'pushed' }]), 'exception' + OK_TRAILER);
     symlinkSync('README', join(r3.dir, 'link')); r3.g('add', '-A'); r3.g('commit', '-q', '-m', 'link' + OK_TRAILER);
     expect('symlink listed only in the pushed tree fails', sel(r3, A3), false, 'adds or changes a symlink: link');
     r3.g('rm', '-q', 'link'); r3.commit('x', '1\n', 'drop link' + OK_TRAILER);
@@ -158,16 +158,36 @@ try {
   }
   { // 18. control 10, events.b@'s finding: a symlink whose name holds a newline cannot match an exception by part
     const r = withLeak();
-    const A = r.commit('scripts/symlink-exceptions.json', JSON.stringify([{ path: 'link', reason: 'test' }]), 'exception' + OK_TRAILER);
+    const A = r.commit('scripts/symlink-exceptions.json', JSON.stringify([{ path: 'link', target: 'README', reason: 'test' }]), 'exception' + OK_TRAILER);
     symlinkSync('README', join(r.dir, 'evil\nlink')); r.g('add', '-A'); r.g('commit', '-q', '-m', 'newline link' + OK_TRAILER);
     expect('newline name does not match an exception', sel(r, A), false, 'adds or changes a symlink');
     const r2 = withLeak();
-    const A2 = r2.commit('scripts/symlink-exceptions.json', JSON.stringify([{ path: 'link', reason: 'test' }]), 'exception' + OK_TRAILER);
+    const A2 = r2.commit('scripts/symlink-exceptions.json', JSON.stringify([{ path: 'link', target: 'README', reason: 'test' }]), 'exception' + OK_TRAILER);
     symlinkSync('README', join(r2.dir, 'evil\nlink'));   // in the working tree only, so the tree scan must catch it
     expect('newline name in the tree does not match an exception', sel(r2, A2), false, 'the checked-out tree holds a symlink');
+  }
+  { // 19. LIB-2026-069: a symlink added in a merge fails; an excepted link re-pointed fails; one in AFTER's tree only fails
+    const r = withLeak(); const A = r.g('rev-parse', 'HEAD');
+    r.g('checkout', '-q', '-b', 'side'); r.commit('s', '1\n', 'side' + OK_TRAILER);
+    r.g('checkout', '-q', 'dev'); r.commit('y', '1\n', 'y' + OK_TRAILER);
+    r.g('merge', '-q', '--no-ff', '--no-commit', 'side');      // the symlink comes in the merge commit itself
+    symlinkSync('README', join(r.dir, 'm')); r.g('add', '-A'); r.g('commit', '-q', '-m', 'merge' + OK_TRAILER);
+    rmSync(join(r.dir, 'm'));                                   // and not in the working tree, so only the range check sees it
+    const res = sel(r, A);
+    expect('symlink added in a merge commit fails', res, false, 'symlink');
+    const r2 = withLeak();
+    const A2 = r2.commit('scripts/symlink-exceptions.json', JSON.stringify([{ path: 'link', target: 'README', reason: 'test' }]), 'exception' + OK_TRAILER);
+    symlinkSync('/etc/passwd', join(r2.dir, 'link')); r2.g('add', '-A'); r2.g('commit', '-q', '-m', 're-pointed' + OK_TRAILER);
+    expect('excepted path re-pointed fails', sel(r2, A2), false, 'adds or changes a symlink: link');
+    const r3 = withLeak();
+    symlinkSync('README', join(r3.dir, 'old')); r3.g('add', '-A'); r3.g('commit', '-q', '-m', 'old link' + OK_TRAILER);
+    const A3 = r3.g('rev-parse', 'HEAD'); r3.g('rm', '-q', '--cached', 'old'); rmSync(join(r3.dir, 'old'));
+    symlinkSync('README', join(r3.dir, 'old')); r3.g('add', '-A');
+    const after = r3.g('rev-parse', 'HEAD');
+    expect("symlink in AFTER's tree (from before A) fails", sel(r3, A3, after), false, "AFTER's tree holds a symlink: old");
   }
 } finally {
   rmSync(root, { recursive: true, force: true });
 }
-if (failed) { console.error(`FAILED (${failed} of 29 checks)`); process.exit(1); }
-console.log('OK (29 checks: controls 6 to 10 on the trailer check, the copy taken from the anchor A, and the --root of the leak scan)');
+if (failed) { console.error(`FAILED (${failed} of 32 checks)`); process.exit(1); }
+console.log('OK (32 checks: controls 6 to 10 on the trailer check, the copy taken from the anchor A, and the --root of the leak scan)');
