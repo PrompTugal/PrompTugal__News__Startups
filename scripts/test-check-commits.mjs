@@ -156,8 +156,18 @@ try {
     r3.g('rm', '-q', 'link'); r3.commit('x', '1\n', 'drop link' + OK_TRAILER);
     expect('a symlink added then removed in the range still fails', sel(r3, A3), false, 'adds or changes a symlink: link');
   }
+  { // 18. control 10, events.b@'s finding: a symlink whose name holds a newline cannot match an exception by part
+    const r = withLeak();
+    const A = r.commit('scripts/symlink-exceptions.json', JSON.stringify([{ path: 'link', reason: 'test' }]), 'exception' + OK_TRAILER);
+    symlinkSync('README', join(r.dir, 'evil\nlink')); r.g('add', '-A'); r.g('commit', '-q', '-m', 'newline link' + OK_TRAILER);
+    expect('newline name does not match an exception', sel(r, A), false, 'adds or changes a symlink');
+    const r2 = withLeak();
+    const A2 = r2.commit('scripts/symlink-exceptions.json', JSON.stringify([{ path: 'link', reason: 'test' }]), 'exception' + OK_TRAILER);
+    symlinkSync('README', join(r2.dir, 'evil\nlink'));   // in the working tree only, so the tree scan must catch it
+    expect('newline name in the tree does not match an exception', sel(r2, A2), false, 'the checked-out tree holds a symlink');
+  }
 } finally {
   rmSync(root, { recursive: true, force: true });
 }
-if (failed) { console.error(`FAILED (${failed} of 27 checks)`); process.exit(1); }
-console.log('OK (27 checks: controls 6 to 10 on the trailer check, the copy taken from the anchor A, and the --root of the leak scan)');
+if (failed) { console.error(`FAILED (${failed} of 29 checks)`); process.exit(1); }
+console.log('OK (29 checks: controls 6 to 10 on the trailer check, the copy taken from the anchor A, and the --root of the leak scan)');
