@@ -88,3 +88,6 @@ h2.vh{font-size:clamp(1.9rem,4.5vw,2.8rem);margin:.2rem 0 .6rem;padding:0;border
 .s-support circle{fill:var(--green)}.s-funding circle{fill:var(--red)}.s-companies circle{fill:var(--ink)}.s-investors circle{fill:var(--card);stroke:var(--red)!important;stroke-width:1px!important}
 .maplegend{display:flex;flex-wrap:wrap;gap:.3rem 1rem;font-size:.85rem;margin:.3rem 0}
 .maplegend .key svg{vertical-align:-1px}
+
+/* Long source URLs wrap instead of widening the page (gaps list on /about/ was 1276 px wide at 375 px, 19 Nov 2026) */
+.src,.src a,.item p{overflow-wrap:anywhere}
