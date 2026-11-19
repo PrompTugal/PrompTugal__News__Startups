@@ -27,7 +27,10 @@
       "date": "2026-12-31",
       "status": "open",
       "url": "https://www.fct.pt/financiamento/programas-de-financiamento/computacao/inovia-vouchers-para-inovacao",
-      "read_on": "2026-11-18"
+      "read_on": "2026-11-18",
+      "organiser": "Fundação para a Ciência e a Tecnologia (FCT)",
+      "organiser_source": "own",
+      "organiser_note": "organiser read from the source page on 2026-11-19 by startups.b.research@PrompTugal.dinis, checked by startups.b@"
     },
     {
       "name": "Global Health Accelerator 2026-2027 (Startup Braga)",
@@ -39,7 +42,10 @@
       "date": "2026-11-23",
       "status": "open",
       "url": "https://bragatv.pt/startup-braga-abre-candidaturas-para-acelerar-projetos-de-saude-e-biotecnologia/",
-      "read_on": "2026-11-18"
+      "read_on": "2026-11-18",
+      "organiser": "Startup Braga",
+      "organiser_source": "reported",
+      "organiser_note": "organiser read from the source page on 2026-11-19 by startups.b.research@PrompTugal.dinis, checked by startups.b@"
     },
     {
       "name": "ARRISCA C 2026 (University of Coimbra business idea competition)",
@@ -51,7 +57,10 @@
       "date": "2026-12-18",
       "status": "open",
       "url": "https://ipressjournal.pt/universidade-de-coimbra-abre-concurso-nacional-de-ideias-de-negocio/",
-      "read_on": "2026-11-18"
+      "read_on": "2026-11-18",
+      "organiser": "Universidade de Coimbra",
+      "organiser_source": "reported",
+      "organiser_note": "organiser read from the source page on 2026-11-19 by startups.b.research@PrompTugal.dinis, checked by startups.b@"
     },
     {
       "name": "ALT2030-2026-57: SIID Empreendedorismo Qualificado, new companies (Alentejo)",
@@ -62,7 +71,10 @@
       "date": "2027-02-26",
       "status": "open",
       "url": "https://portugal2030.pt/2026/10/30/apoio-a-projetos-que-visem-a-criacao-de-novas-empresas-e-novos-negocios-no-alentejo/",
-      "read_on": "2026-11-18"
+      "read_on": "2026-11-18",
+      "organiser": "Programa Alentejo 2030",
+      "organiser_source": "own",
+      "organiser_note": "organiser read from the source page on 2026-11-19 by startups.b.research@PrompTugal.dinis, checked by startups.b@"
     },
     {
       "name": "Centro2030-2025-21: support for incubators and coworking spaces (Centro region)",
@@ -73,7 +85,10 @@
       "date": "2026-12-28",
       "status": "open",
       "url": "https://portugal2030.pt/2025/08/22/regiao-centro-com-apoio-para-incubadoras-de-empresas-e-espacos-de-cowork/",
-      "read_on": "2026-11-18"
+      "read_on": "2026-11-18",
+      "organiser": "Programa Centro 2030",
+      "organiser_source": "own",
+      "organiser_note": "organiser read from the source page on 2026-11-19 by startups.b.research@PrompTugal.dinis, checked by startups.b@"
     },
     {
       "name": "Centro 2030 business R&D call for SMEs and small mid-caps",

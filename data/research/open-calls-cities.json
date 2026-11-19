@@ -14,7 +14,10 @@
       "source_url": "https://uptec.up.pt/noticias-e-media/noticias/santander-abre-candidaturas-mais-uma-edicao-do-programa-explorer",
       "read_on": "2026-11-18",
       "date": "2026-12-10",
-      "status": "open"
+      "status": "open",
+      "organiser": "Santander X",
+      "organiser_source": "reported",
+      "organiser_note": "organiser read from the source page on 2026-11-19 by startups.b.research@PrompTugal.dinis, checked by startups.b@"
     },
     {
       "name": "European Prize for Women Innovators 2027",
@@ -26,7 +29,10 @@
       "read_on": "2026-11-18",
       "date": "2026-12-01",
       "status": "open",
-      "amount": "Women Innovators EUR 100,000 / 70,000 / 50,000; EIT Women Leadership EUR 50,000 / 30,000 / 20,000; Rising Innovators EUR 50,000 / 30,000 / 20,000 (1st / 2nd / 3rd place), as stated by the EIC"
+      "amount": "Women Innovators EUR 100,000 / 70,000 / 50,000; EIT Women Leadership EUR 50,000 / 30,000 / 20,000; Rising Innovators EUR 50,000 / 30,000 / 20,000 (1st / 2nd / 3rd place), as stated by the EIC",
+      "organiser": "European Innovation Council and the European Institute of Innovation and Technology (EIT)",
+      "organiser_source": "own",
+      "organiser_note": "organiser read from the source page on 2026-11-19 by startups.b.research@PrompTugal.dinis, checked by startups.b@"
     },
     {
       "name": "Open Innovation Amarsul|Valorsul 2026 (waste management)",
@@ -38,7 +44,10 @@
       "read_on": "2026-11-18",
       "date": "2027-01-25",
       "status": "open",
-      "amount": "Each winning project receives a prize of EUR 3,000 (\"3.000 euros\") and can develop a funded pilot; the programme as a whole offers more than EUR 150,000, as stated"
+      "amount": "Each winning project receives a prize of EUR 3,000 (\"3.000 euros\") and can develop a funded pilot; the programme as a whole offers more than EUR 150,000, as stated",
+      "organiser": "Amarsul and Valorsul",
+      "organiser_source": "reported",
+      "organiser_note": "organiser read from the source page on 2026-11-19 by startups.b.research@PrompTugal.dinis, checked by startups.b@"
     },
     {
       "name": "Rising Up in Spain (ICEX, via Invest in Spain)",
@@ -49,7 +58,10 @@
       "source_url": "https://portugalglobal.pt/noticias/2026/outubro/rising-up-in-spain-tem-candidaturas-abertas-a-startups/",
       "read_on": "2026-11-18",
       "date": "2026-12-31",
-      "status": "open"
+      "status": "open",
+      "organiser": "ICEX, through Invest in Spain",
+      "organiser_source": "reported",
+      "organiser_note": "organiser read from the source page on 2026-11-19 by startups.b.research@PrompTugal.dinis, checked by startups.b@"
     }
   ],
   "gaps": [

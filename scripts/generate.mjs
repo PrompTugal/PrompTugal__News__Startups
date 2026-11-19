@@ -232,13 +232,13 @@ export function callHtml(c, placeName) {
   const tags = `<span class="tag">${esc(e.kind)}</span><span class="tag"><a href="/places/${esc(e.place)}/">${esc(placeName[e.place])}</a></span>${d && left >= 0 && left <= 14 ? '<span class="tag money" data-soon>closing within 14 days</span>' : ''}`;
   const name = e.url ? `<a href="${esc(e.url)}" rel="nofollow">${esc(e.name)}</a>` : esc(e.name);
   const when = d ? `<span class="when" data-closes="${esc(d)}">${left >= 0 ? `closes ${esc(closesText(d))} (${leftText(left)})` : `closed ${esc(closesText(d))}`}</span>` : esc(e.status || '');
-  const facts = [e.amount && `<span class="amount">${esc(e.amount)}</span>`, when].filter(Boolean).join(' · ');
+  const facts = [e.amount && `<span class="amount">${esc(e.amount)}</span>`, when, e.organiser && `run by ${esc(e.organiser)}`].filter(Boolean).join(' · ');
   return `<li class="item" id="${esc(e.id)}"><h3>${name}</h3><p>${tags} ${facts}</p><p>${esc(e.what || '')}</p>${sourceLine(e)}</li>`;
 }
 export function callMd(c, placeName) {
   const { e, d, left } = c;
   const when = d ? (left >= 0 ? `closes ${closesText(d)} (${leftText(left)})${left <= 14 ? ', closing within 14 days' : ''}` : `closed ${closesText(d)}`) : e.status;
-  const facts = [e.kind, placeName[e.place], e.amount, when].filter(Boolean).join(' · ');
+  const facts = [e.kind, placeName[e.place], e.amount, when, e.organiser && `run by ${e.organiser}`].filter(Boolean).join(' · ');
   return `- **${mdEsc(e.name)}**${e.url ? ` (${e.url})` : ''}: ${mdEsc(facts)}. ${mdEsc(e.what || '')} Source: ${e.source_url}, read ${nice(e.read_on)}.${licenceMd(e)}${howMd(e.provenance, mdEsc, nice, safeUrl)}`;
 }
 // A short box: the next closing calls, each linking to the list.

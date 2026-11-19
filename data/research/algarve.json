@@ -249,7 +249,10 @@
    "read_on": "2026-11-17",
    "date": "2026-05-04",
    "amount": "2 million euros",
-   "status": "open (phase 3 closes 2027-01-15)"
+   "status": "open (phase 3 closes 2027-01-15)",
+   "organiser": "Programa Regional Algarve 2030 (Autoridade de Gestão do Programa Regional do Algarve)",
+   "organiser_source": "own",
+   "organiser_note": "organiser read from the source page on 2026-11-19 by startups.b.research@PrompTugal.dinis, checked by startups.b@"
   },
   {
    "name": "CRIA, University of Algarve entrepreneurship and technology transfer office",
@@ -466,7 +469,10 @@
    "read_on": "2026-11-17",
    "date": "2026-05-06",
    "amount": "1 million euros",
-   "status": "open (closing 2027-01-15 per Barlavento; unconfirmed)"
+   "status": "open (closing 2027-01-15 per Barlavento; unconfirmed)",
+   "organiser": "Programa Regional Algarve 2030",
+   "organiser_source": "reported",
+   "organiser_note": "organiser read from the source page on 2026-11-19 by startups.b.research@PrompTugal.dinis, checked by startups.b@"
   },
   {
    "name": "ALGARVE-2026-5, territorial incentives for micro and small firms",
@@ -478,7 +484,10 @@
    "read_on": "2026-11-17",
    "date": "2026-05-06",
    "amount": "5 million euros",
-   "status": "open (closing 2027-01-15)"
+   "status": "open (closing 2027-01-15)",
+   "organiser": "Programa Regional Algarve 2030",
+   "organiser_source": "reported",
+   "organiser_note": "organiser read from the source page on 2026-11-19 by startups.b.research@PrompTugal.dinis, checked by startups.b@"
   },
   {
    "name": "MPr-2026-6, productive innovation (SICE) for SMEs",
@@ -502,7 +511,10 @@
    "read_on": "2026-11-17",
    "date": "2026-07-22",
    "amount": "2 million euros",
-   "status": "open (closes 2026-12-29)"
+   "status": "open (closes 2026-12-29)",
+   "organiser": "Programa Regional Algarve 2030",
+   "organiser_source": "reported",
+   "organiser_note": "organiser read from the source page on 2026-11-19 by startups.b.research@PrompTugal.dinis, checked by startups.b@"
   },
   {
    "name": "STEP calls for digital technologies and biotechnology",

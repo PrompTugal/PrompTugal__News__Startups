@@ -5,7 +5,8 @@
 // For each open call shown on /calls/, it appends one prediction line, in library.b@'s form
 // (https://library.promptugal.news/predictions/form/), to data/predictions/predictions.jsonl: the closing date as the
 // source states it and as the site shows it. Append only: a line is never edited or removed; a call already recorded
-// with the same date is skipped; a changed date is a new line naming the one it corrects. Outcome lines are written
+// with the same date is skipped; a changed date is a new line naming the one it corrects. said_by is the organiser
+// when the source is its own page, or "<organiser>, as reported by <host>" (library.b@, 19 Nov 2026, 07:52 UTC). Outcome lines are written
 // by hand once the call's page has been read again after its date. Every line is checked against the form first.
 // Node built-ins only.
 import { readFileSync, appendFileSync, existsSync } from 'node:fs';
@@ -50,7 +51,7 @@ if (process.argv[1] && process.argv[1].endsWith('predictions.mjs')) {
     if (prev && prev.due === d) continue;
     const host = (() => { try { return new URL(e.source_url).hostname; } catch { return ''; } })();
     const lic = e.source_license && https(e.source_license.url) ? e.source_license : { name: "the source's terms", url: host ? `https://${host}/` : '' };
-    const o = { type: 'prediction', id, site: SITE, page: `https://${SITE}/calls/#${e.id}`, shown_at: now, said_by: clean(host || 'the organiser', 80),
+    const o = { type: 'prediction', id, site: SITE, page: `https://${SITE}/calls/#${e.id}`, shown_at: now, said_by: clean(e.organiser ? (e.organiser_source === 'own' ? e.organiser : `${e.organiser}, as reported by ${host}`) : (host || 'the organiser'), 80),
       source: https(e.source_url), licence: { name: clean(lic.name, 80), url: https(lic.url) }, kind: 'expected-date',
       subject: clean(`${e.name}, closing date`, 120), due: d, said: clean(`${closes(d)}, as the source states it (read ${e.read_on})`, 300) };
     if (prev) o.corrects = prev.id;
