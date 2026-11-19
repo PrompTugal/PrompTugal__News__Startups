@@ -123,7 +123,7 @@ try {
   }
   { // 15. control 9: a checker that is a symlink at A is refused
     const r = repo(); symlinkSync('/etc/hostname', join(r.dir, 'scripts/leak-scan.mjs')); r.g('add', '-A'); r.g('commit', '-q', '-m', 'link' + OK_TRAILER);
-    expect('symlink at A refused', sel(r, r.g('rev-parse', 'HEAD')), false, 'a symlink is refused');
+    expect('symlink at A refused', sel(r, r.g('rev-parse', 'HEAD')), false, 'symlink');
   }
   { // 16. control 9: the leak scan, run from a copy outside the checkout, scans the checkout given by --root
     const LEAK = new URL('./leak-scan.mjs', import.meta.url).pathname;
@@ -141,8 +141,23 @@ try {
     symlinkSync('/etc/hostname', join(r.dir, '_site/link.txt'));
     expect('leak scan refuses a symlink in the built site', spawnSync(process.execPath, [join(out, 'leak-scan.mjs'), '--root', r.dir], { cwd: r.dir, encoding: 'utf8' }), false, 'a symlink');
   }
+  { // 17. control 10: a pushed symlink fails; one listed in A's exceptions passes; one listed only in the pushed tree fails
+    const r = withLeak(); const A = r.g('rev-parse', 'HEAD');
+    symlinkSync('README', join(r.dir, 'link')); r.g('add', '-A'); r.g('commit', '-q', '-m', 'link' + OK_TRAILER);
+    expect('pushed symlink fails', sel(r, A), false, 'adds or changes a symlink: link');
+    const r2 = withLeak();
+    const A2 = r2.commit('scripts/symlink-exceptions.json', JSON.stringify([{ path: 'link', reason: 'test' }]), 'exception' + OK_TRAILER);
+    symlinkSync('README', join(r2.dir, 'link')); r2.g('add', '-A'); r2.g('commit', '-q', '-m', 'link' + OK_TRAILER);
+    expect('listed symlink passes', sel(r2, A2), true, 'security checks from the anchor');
+    const r3 = withLeak(); const A3 = r3.g('rev-parse', 'HEAD');
+    r3.commit('scripts/symlink-exceptions.json', JSON.stringify([{ path: 'link', reason: 'pushed' }]), 'exception' + OK_TRAILER);
+    symlinkSync('README', join(r3.dir, 'link')); r3.g('add', '-A'); r3.g('commit', '-q', '-m', 'link' + OK_TRAILER);
+    expect('symlink listed only in the pushed tree fails', sel(r3, A3), false, 'adds or changes a symlink: link');
+    r3.g('rm', '-q', 'link'); r3.commit('x', '1\n', 'drop link' + OK_TRAILER);
+    expect('a symlink added then removed in the range still fails', sel(r3, A3), false, 'adds or changes a symlink: link');
+  }
 } finally {
   rmSync(root, { recursive: true, force: true });
 }
-if (failed) { console.error(`FAILED (${failed} of 23 checks)`); process.exit(1); }
-console.log('OK (23 checks: controls 6 to 9 on the trailer check, the copy taken from the anchor A, and the --root of the leak scan)');
+if (failed) { console.error(`FAILED (${failed} of 27 checks)`); process.exit(1); }
+console.log('OK (27 checks: controls 6 to 10 on the trailer check, the copy taken from the anchor A, and the --root of the leak scan)');
