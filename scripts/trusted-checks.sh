@@ -41,23 +41,30 @@ if git cat-file -e "$anchor:scripts/symlink-exceptions.json" 2>/dev/null; then
 fi
 # is_allowed <path> <target>: both must equal one exception, byte for byte
 is_allowed() { local i; for ((i = 0; i < ${#allowed_p[@]}; i++)); do [[ "$1" == "${allowed_p[i]}" && "$2" == "${allowed_t[i]}" ]] && return 0; done; return 1; }
-blob() { git cat-file blob "$1" 2>/dev/null || printf '\0unreadable'; }
+# The link's target into T, byte for byte: a sentinel keeps trailing newlines that $(...) would strip (events.b@'s
+# b4504bf, relayed 19:55 UTC), and a size check catches a NUL that bash would drop. A failed read gives an empty T, which
+# no exception can match (each needs a non-empty target).
+blob_target() { local n; T=$(git cat-file blob "$1" 2>/dev/null; printf x); T=${T%x}; n=$(git cat-file -s "$1" 2>/dev/null || echo -1); [ "${#T}" = "$n" ] || T=""; }
+link_target() { T=$(readlink -n -- "$1"; printf x); T=${T%x}; }
 for c in $(git rev-list "$anchor..$after"); do
   # -z: ":<old mode> <new mode> <old> <new> <status>\0<path>\0" for each entry; -m: a merge against each parent
   while IFS= read -r -d '' meta && IFS= read -r -d '' path; do
     read -r _ dst _ new _ <<< "${meta#:}"
-    if [ "$dst" = "120000" ] && ! is_allowed "$path" "$(blob "$new")"; then fail "commit $c adds or changes a symlink: $(printf '%q' "$path")"; fi
+    if [ "$dst" = "120000" ]; then blob_target "$new"; fi
+    if [ "$dst" = "120000" ] && ! is_allowed "$path" "$T"; then fail "commit $c adds or changes a symlink: $(printf '%q' "$path")"; fi
   done < <(git diff-tree -m -r -z --raw --no-commit-id --root --no-renames "$c")
 done
 # AFTER's own tree: "<mode> <type> <object>\t<path>\0"
 while IFS= read -r -d '' ent; do
   meta=${ent%%$'\t'*}; path=${ent#*$'\t'}
   read -r mode _ obj <<< "$meta"
-  if [ "$mode" = "120000" ] && ! is_allowed "$path" "$(blob "$obj")"; then fail "AFTER's tree holds a symlink: $(printf '%q' "$path")"; fi
+  if [ "$mode" = "120000" ]; then blob_target "$obj"; fi
+  if [ "$mode" = "120000" ] && ! is_allowed "$path" "$T"; then fail "AFTER's tree holds a symlink: $(printf '%q' "$path")"; fi
 done < <(git ls-tree -r -z "$after")
 while IFS= read -r -d '' l; do
   rel=${l#./}
-  is_allowed "$rel" "$(readlink -- "$l")" || fail "the checked-out tree holds a symlink: $(printf '%q' "$rel")"
+  link_target "$l"
+  is_allowed "$rel" "$T" || fail "the checked-out tree holds a symlink: $(printf '%q' "$rel")"
 done < <(find . -path ./.git -prune -o -type l -print0)
 [ ! -L "$out" ] || fail "$out is a symlink"
 rm -rf "$out" && mkdir -p "$out"

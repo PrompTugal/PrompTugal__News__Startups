@@ -186,8 +186,18 @@ try {
     const after = r3.g('rev-parse', 'HEAD');
     expect("symlink in AFTER's tree (from before A) fails", sel(r3, A3, after), false, "AFTER's tree holds a symlink: old");
   }
+  { // 20. events.b@'s b4504bf: an exception pinned to target "README" does not match a link to "README" plus a newline
+    const r = withLeak();
+    const A = r.commit('scripts/symlink-exceptions.json', JSON.stringify([{ path: 'link', target: 'README', reason: 'test' }]), 'exception' + OK_TRAILER);
+    symlinkSync('README\n', join(r.dir, 'link')); r.g('add', '-A'); r.g('commit', '-q', '-m', 'newline target' + OK_TRAILER);
+    expect('target with a trailing newline fails', sel(r, A), false, 'adds or changes a symlink: link');
+    const r2 = withLeak();
+    const A2 = r2.commit('scripts/symlink-exceptions.json', JSON.stringify([{ path: 'link', target: 'README', reason: 'test' }]), 'exception' + OK_TRAILER);
+    symlinkSync('README\n', join(r2.dir, 'link'));      // working tree only
+    expect('working-tree target with a trailing newline fails', sel(r2, A2), false, 'the checked-out tree holds a symlink: link');
+  }
 } finally {
   rmSync(root, { recursive: true, force: true });
 }
-if (failed) { console.error(`FAILED (${failed} of 32 checks)`); process.exit(1); }
-console.log('OK (32 checks: controls 6 to 10 on the trailer check, the copy taken from the anchor A, and the --root of the leak scan)');
+if (failed) { console.error(`FAILED (${failed} of 34 checks)`); process.exit(1); }
+console.log('OK (34 checks: controls 6 to 10 on the trailer check, the copy taken from the anchor A, and the --root of the leak scan)');
