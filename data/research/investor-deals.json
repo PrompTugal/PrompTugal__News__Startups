@@ -1,0 +1,179 @@
+{
+  "by": "startups.b.research@PrompTugal.dinis",
+  "country": "PT",
+  "read_on": "2026-11-19",
+  "area": "investor-deals",
+  "notes": "Found with WebSearch, then read with WebFetch (page text summarised by a small model, so figures are as that summary reported them). Every entry's source_url is a page that was fetched and that itself names the investor; facts seen only in search snippets are in gaps. Investor names are as each source gives them (Bynd Venture Capital was formerly Busy Angels; Bright Pixel was formerly Sonae IM). No websummit.com, lu.ma, luma.com, meetup.com or eventbrite pages were fetched. Reviewed by startups.b@PrompTugal.dinis on 19 November 2026: each source page re-read in its raw HTML; every amount and every investor name matched.",
+  "entries": [
+    {
+      "name": "Meight seed round",
+      "kind": "round",
+      "section": "funding",
+      "place": "portugal",
+      "company": "Meight",
+      "investors": [
+        "Faber",
+        "Lusiaves SGPS",
+        "Superlyst",
+        "European Institute of Innovation and Technology (EIT)",
+        "Dispatch Ventures"
+      ],
+      "amount": "EUR 1.3 million",
+      "date": "2022-01-19",
+      "what": "Portuguese freight-transport software startup Meight closed a seed round led by Faber to expand its AI platform for road freight operations and to recruit.",
+      "source_url": "https://eco.sapo.pt/2022/01/19/startup-portuguesa-meight-financia-se-em-13-milhoes-de-euros-quer-acelerar-expansao-e-recrutamento/",
+      "read_on": "2026-11-19",
+      "how_read": "WebFetch summary of the ECO article; the date is the article's publication date and the article does not state the company's base city"
+    },
+    {
+      "name": "Meight seed round (second)",
+      "kind": "round",
+      "section": "funding",
+      "place": "portugal",
+      "company": "Meight",
+      "investors": [
+        "Cusp Capital",
+        "Grupo Lusiaves",
+        "Faber",
+        "EIT Urban Mobility"
+      ],
+      "amount": "EUR 3.4 million",
+      "date": "2024-12-17",
+      "what": "Meight raised a seed round led by Cusp Capital with Faber among the other investors, to automate freight planning and monitoring for carriers.",
+      "source_url": "https://executivedigest.sapo.pt/?p=560308",
+      "read_on": "2026-11-19",
+      "how_read": "WebFetch summary of the Executive Digest article; the date is the article's publication date and the article does not state the company's base city"
+    },
+    {
+      "name": "Chic by Choice financing round",
+      "kind": "round",
+      "section": "funding",
+      "place": "portugal",
+      "company": "Chic by Choice",
+      "investors": [
+        "Portugal Ventures",
+        "Faber Ventures",
+        "The Edge Group"
+      ],
+      "amount": "EUR 1.5 million",
+      "date": "2015-11-30",
+      "what": "Portuguese designer-dress rental startup Chic by Choice closed a financing round led by its existing shareholders, including Faber Ventures. This is older than 2022 and is kept only because it names Faber Ventures.",
+      "source_url": "https://dinheirovivo.dn.pt/fazedores/chic-by-choice-fecha-ronda-de-financiamento-de-15-milhoes-12862412.html",
+      "read_on": "2026-11-19",
+      "how_read": "WebFetch summary of the Dinheiro Vivo article; the date is the article's publication date, the round type is not stated, and the company's base city is not stated"
+    },
+    {
+      "name": "Delox Series A",
+      "kind": "round",
+      "section": "funding",
+      "place": "portugal",
+      "company": "Delox",
+      "investors": [
+        "Beta Capital",
+        "Banco Europeu de Investimento",
+        "Caixa Capital"
+      ],
+      "amount": "EUR 1.6 million",
+      "date": "2026-02-13",
+      "what": "Delox, a University of Lisbon spin-off that makes a bio-decontamination device for laboratory equipment, closed a Series A led by Beta Capital for certification, production and entry to European and North American markets.",
+      "source_url": "https://business-it.pt/2026/02/13/delox-fecha-ronda-serie-a-no-valor-de-16-milhoes-de-euros-para-apoiar-id-e-a-internacionalizacao/",
+      "read_on": "2026-11-19",
+      "how_read": "WebFetch summary of the Business-IT article; the date is the article's publication date; Lisbon is inferred from the team working at Tec Labs of the Faculty of Sciences of the University of Lisbon, the article does not name the city Place set to national by startups.b@ on review: the source does not name the company's city (it was inferred as lisboa)."
+    },
+    {
+      "name": "Azitek investment round",
+      "kind": "round",
+      "section": "funding",
+      "place": "portugal",
+      "company": "Azitek",
+      "investors": [
+        "Beta Capital",
+        "Portugal Ventures",
+        "Cedrus Capital"
+      ],
+      "amount": "EUR 750,000",
+      "date": "2024-06-20",
+      "what": "Azitek, which develops IoT asset-tracking technology for industry, raised a round led by Beta Capital to enter other European markets.",
+      "source_url": "https://business-it.pt/2024/06/20/chegar-a-novos-mercados-europeus-e-o-objectivo-da-azitek-apos-angariar-investimento-de-750-mil-euros/",
+      "read_on": "2026-11-19",
+      "how_read": "WebFetch summary of the Business-IT article; the date is the article's publication date and the round type is not stated; Porto is inferred from the company being incubated at UPTEC, the article does not name its base city Place set to national by startups.b@ on review: the source does not name the company's city (it was inferred as porto)."
+    },
+    {
+      "name": "Vawlt seed round",
+      "kind": "round",
+      "section": "funding",
+      "place": "portugal",
+      "company": "Vawlt",
+      "investors": [
+        "Lince Capital",
+        "Basinghall",
+        "Beta Capital",
+        "Armilar Venture Partners",
+        "Shilling VC"
+      ],
+      "amount": "EUR 2.15 million",
+      "date": "2024-03-12",
+      "what": "Vawlt, which builds a long-term data storage product on a cloud-of-clouds design, closed a seed round led by Lince Capital with Beta Capital taking part.",
+      "source_url": "https://business-it.pt/2024/03/12/vawlt-fecha-ronda-seed-de-215-milhoes-de-euros-e-aposta-na-internacionalizacao/",
+      "read_on": "2026-11-19",
+      "how_read": "WebFetch summary of the Business-IT article; the date is the article's publication date and the article does not state the company's base city"
+    },
+    {
+      "name": "Beta Capital",
+      "kind": "fund",
+      "section": "investors",
+      "place": "portugal",
+      "what": "Investor that led Azitek's 750,000-euro round in June 2024, with Portugal Ventures and Cedrus Capital, as the source reports it.",
+      "source_url": "https://business-it.pt/2024/06/20/chegar-a-novos-mercados-europeus-e-o-objectivo-da-azitek-apos-angariar-investimento-de-750-mil-euros/",
+      "read_on": "2026-11-19",
+      "how_read": "Raw HTML of the article re-read by startups.b@PrompTugal.dinis on 19 November 2026 (\"O financiamento foi liderado pela Beta Capital\")."
+    }
+  ],
+  "gaps": [
+    {
+      "what": "BY Venture Partners: no round in a Portuguese startup found naming the firm",
+      "url": "https://tech.eu/2026/10/29/by-venture-partners-closes-60m-fund-iii-and-opens-lisbon-office-to-deepen-european-push//",
+      "why": "Search results only showed the Fund III close and Lisbon office (October 2026); Granter's round (tech.eu, 2026-11-03) and the Augusta Labs article (24noticias, 2026-06-16) were read and do not name BY Venture Partners. Search snippets linking BY to Granter and Augusta Labs were not confirmed, so nothing is recorded."
+    },
+    {
+      "what": "Big Start Ventures (now Start Ventures): no round in a Portuguese-based startup found",
+      "url": "https://eco.sapo.pt/2026/01/14/portuguesa-start-ventures-entra-na-insurtech-weatherpromise/",
+      "why": "Only search snippets seen: WeatherPromise (a US insurtech, January 2026) and directory listings (Fraudio is Amsterdam-based). The Granter article does not name Big Start Ventures. Not fetched, so not recorded."
+    },
+    {
+      "what": "Hovione Capital (now Bionova Capital): no Portuguese round found naming Hovione Capital",
+      "url": "https://www.fct.unl.pt/en/news/2019/07/fct-nova-professor-founds-innovative-cancer-treatments-company-just-won-important-investment-round",
+      "why": "The 2019 CellmAbs article names only Portugal Ventures. The firm rebranded in February 2021 and its Vaxdyn deal is Spanish."
+    },
+    {
+      "what": "Sonae IM (now Bright Pixel): no round in a Portuguese-based startup found",
+      "url": "https://eco.sapo.pt/2021/03/23/sonae-im-lidera-investimento-de-quatro-milhoes-na-startup-finlandesa-sellforte/",
+      "why": "Sellforte (Finnish, EUR 4 million, 2021-03-23) was read and names Sonae IM, but it is not a Portuguese company, so it is left out. Recent Bright Pixel deals seen in search are in foreign companies. Jscrambler (Porto, 2018, led by Sonae IM) was seen only in snippets because the page refused."
+    },
+    {
+      "what": "Busy Angels: no round naming the old name found",
+      "url": "https://www.bynd.vc/en/ficha-de-projeto",
+      "why": "The firm has traded as Bynd Venture Capital since 2019. Reveni (Madrid) names Bynd but is Spanish, so it is left out. Fund III first investments Equall, CircuitLeap and Spot were seen in snippets without amounts or dates."
+    },
+    {
+      "what": "Bairro (Lisbon quick-commerce, EUR 1.2 million, led by Faber Ventures) and Zymvol, YPlasma, B'ZEOS (Faber deals in non-Portuguese companies)",
+      "url": "https://elreferente.es/?p=168967",
+      "why": "The El Referente page returned HTTP 403, so Bairro's investors could not be read. A separate EU-Startups page dated 2021-09 on Bairro (which would also be before 2022) did not name Faber in search results. Zymvol (Catalan), YPlasma (Spanish) and B'ZEOS (Norwegian) are not Portuguese companies."
+    },
+    {
+      "what": "El Referente pages for Granter, Delox and Azitek",
+      "url": "https://elreferente.es/?p=212314",
+      "why": "HTTP 403 for every El Referente URL tried; not worked around. Ecosistema Startup (Granter) also returned 403."
+    },
+    {
+      "what": "Jscrambler 2018 round on EU-Startups",
+      "url": "https://www.eu-startups.com/2018/03/porto-based-jscrambler-raises-e1-9-million-to-expand-worldwide/",
+      "why": "HTTP 403; not worked around."
+    },
+    {
+      "what": "Pollen's 2026 seed round (with Bynd, formerly Busy Angels) was found again here but is already in data/research/lisbon-porto-national.json, so it is not repeated",
+      "url": "https://techfundingnews.com/pollen-3-2m-seed-rui-bento-uber-universal-battery-swapping-europe/",
+      "why": "duplicate of an existing entry"
+    }
+  ]
+}
