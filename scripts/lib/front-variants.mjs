@@ -1,6 +1,7 @@
 // Three front pages from the same data (design pass 1, for Dinis to choose at /design/).
 // Each takes the generator's context and returns { name, idea, html, md }.
 // Written by startups@PrompTugal.dinis, 2026-11-17.
+import { mapSvg, legendHtml, VIEWS } from './map.mjs';
 const SITE = 'https://startups.promptugal.news';
 
 const statsHtml = (c, esc) => `<div class="stats"><div><b>${c.support}</b><span>incubators, programmes and desks</span></div><div><b>${c.funding}</b><span>rounds, grants and public money</span></div><div><b>${c.companies}</b><span>companies</span></div><div><b>${c.investors}</b><span>investors</span></div><div><b>${c.places}</b><span>places</span></div></div><p class="meta">Counts of facts on this site today, each with its source (generated from data/ on every push).</p>`;
@@ -26,16 +27,20 @@ ${callsBoxHtml(next5, 'Closing soon', placeName, true)}
   },
 
   b(ctx) {
-    const { entries, groups, counts, esc } = ctx;
+    const { entries, groups, counts, esc, placeName, algarveIds } = ctx;
     const n = (id, s) => entries.filter(e => e.place === id && (!s || e.section === s)).length;
+    const pt = mapSvg({ entries, placeName, esc, view: { ...VIEWS.portugal, noLabel: id => algarveIds.has(id) && id !== 'algarve' }, title: 'Map of mainland Portugal' });
+    const alg = mapSvg({ entries, placeName, esc, view: { ...VIEWS.algarve, include: id => algarveIds.has(id) }, title: 'Map of the Algarve' });
+    const maps = pt ? `<div class="maps"><figure><figcaption>Portugal: every fact on this site as a dot</figcaption>${pt.svg}</figure><figure><figcaption>The Algarve, closer</figcaption>${alg.svg}</figure></div>${legendHtml(counts)}<p class="meta">One dot per fact (${pt.placed} in all), placed around its town's seat; facts for a whole region or the whole country sit in a labelled cluster at sea. Each dot links to the fact and its source. Outlines: Natural Earth (public domain).</p>` : '';
     const card = (p, hot) => `<div class="card${hot ? ' hot' : ''}"><h3><a href="/places/${p.id}/">${esc(p.name)}</a></h3><p class="meta">${n(p.id, 'support')} support · ${n(p.id, 'funding')} money · ${n(p.id, 'companies')} companies</p></div>`;
     const html = `<p class="kicker">Place by place</p>
 <h1>Pick a place. See who helps founders there, and what money has arrived.</h1>
 <p class="lede">The Algarve first, then Lisbon and Porto. A place with nothing yet is a gap in our research, not a place with no startups.</p>
+${maps}
 ${groups.map((g, i) => `<h2>${esc(g.group)}</h2><div class="grid">${g.places.filter(p => i < 2 || n(p.id)).map(p => card(p, i === 0 && p.id === 'algarve')).join('')}</div>`).join('')}
 ${statsHtml(counts, esc)}`;
     const md = groups.map(g => `## ${g.group}\n\n${g.places.map(p => `- ${p.name} (${SITE}/places/${p.id}/): ${n(p.id, 'support')} support, ${n(p.id, 'funding')} money, ${n(p.id, 'companies')} companies`).join('\n')}`).join('\n\n') + `\n\n${statsMd(counts)}`;
-    return { name: 'The map of places', idea: 'Opens on the places themselves, as cards with counts, the Algarve first. For readers who start from where they live.', html, md };
+    return { name: 'The map of places', idea: 'Opens on a map with a dot for every fact, then the places as cards with counts, the Algarve first. For readers who start from where they live.', html, md };
   },
 
   c(ctx) {

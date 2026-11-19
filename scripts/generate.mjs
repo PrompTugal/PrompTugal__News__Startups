@@ -253,18 +253,29 @@ export function generate({ bar = '', entry = null } = {}) {
   const calls = classifyCalls(entries, today);
   const ctx = { calls, callsBoxHtml, callsBoxMd, entries, places, placeName, groups, counts, gaps, esc, nice, itemHtml, itemMd, sourceLine, algarveIds, byDate, web };
 
-  // Front page: the chosen variation (A until Dinis picks one at /design/).
-  const chosen = 'a';
-  const front = variants[chosen](ctx);
-  page({ path: '/', title: 'PrompTugal.news Startups: Portugal\'s startups and their funding, place by place', description: 'Incubators, accelerators, public programmes, rounds and grants across Portugal, starting with the Algarve, each fact with its source and the date read.', body: front.html, md: front.md });
+  // Front page: the three variations as views (Dinis, 19 November 2026: "actually all free are quite important,
+  // can we put them as 'views' for the home page?"). Tabs work without script (radio buttons and CSS); a few
+  // lines of script keep the chosen view in the address (#ledger, #places, #path) so a view can be linked.
+  const VIEW_SLUG = { a: 'ledger', b: 'places', c: 'path' };
+  const fv = Object.keys(variants).map(k => ({ k, slug: VIEW_SLUG[k] || k, ...variants[k](ctx) }));
+  const asView = h => h.replace(/<h1>/g, '<h2 class="vh">').replace(/<\/h1>/g, '</h2>').replace(/<li class="item" id="[^"]*"/g, '<li class="item"');
+  const frontHtml = `<h1 class="sr">PrompTugal.news Startups: Portugal's startups and their funding, place by place</h1>
+<div class="views">
+${fv.map((v, i) => `<input type="radio" name="view" id="view-${v.slug}" class="vr"${i === 0 ? ' checked' : ''}>`).join('')}
+<div class="vtabs"><span class="meta">View:</span>${fv.map(v => `<label for="view-${v.slug}" title="${esc(v.idea)}">${esc(v.name)}</label>`).join('')}</div>
+${fv.map(v => `<section class="view view-${v.slug}" aria-label="${esc(v.name)}">${asView(v.html)}</section>`).join('\n')}
+</div>
+<script>(function(){var v=${JSON.stringify(fv.map(v => v.slug))};function set(){var h=location.hash.slice(1);if(v.indexOf(h)>=0)document.getElementById('view-'+h).checked=true}set();addEventListener('hashchange',set);v.forEach(function(s){document.getElementById('view-'+s).addEventListener('change',function(){history.replaceState(null,'','#'+s)})})})();</script>`;
+  const frontMd = `Three views of the same data: ${fv.map(v => `${v.name} (${SITE}/#${v.slug})`).join(', ')}.\n\n${fv.map(v => `# View: ${v.name}\n\n${v.idea}\n\n${v.md}`).join('\n\n')}`;
+  page({ path: '/', title: 'PrompTugal.news Startups: Portugal\'s startups and their funding, place by place', description: 'Incubators, accelerators, public programmes, rounds and grants across Portugal, starting with the Algarve, each fact with its source and the date read.', body: frontHtml, md: frontMd });
 
   // Design: the three variations side by side.
   for (const k of Object.keys(variants)) {
     const v = variants[k](ctx);
-    page({ path: `/design/${k}/`, title: `Front page, variation ${k.toUpperCase()}: ${v.name}`, description: `Design variation ${k.toUpperCase()} of the front page (${v.name}), for Dinis to choose.`, body: `<p class="note">Design variation ${k.toUpperCase()}: ${esc(v.name)}. A proposal for Dinis to choose from; <a href="/design/">see all three</a>.</p>${v.html}`, md: `A proposal for Dinis to choose from.\n\n${v.md}` });
+    page({ path: `/design/${k}/`, title: `Front page, variation ${k.toUpperCase()}: ${v.name}`, description: `Design variation ${k.toUpperCase()} of the front page (${v.name}), for Dinis to choose.`, body: `<p class="note">Design variation ${k.toUpperCase()}: ${esc(v.name)}. Now one of the three views of the <a href="/">front page</a>; <a href="/design/">see all three</a>.</p>${v.html}`, md: `One of the three views of the front page.\n\n${v.md}` });
   }
   const vs = Object.keys(variants).map(k => [k, variants[k](ctx)]);
-  page({ path: '/design/', title: 'Three front pages to choose from', description: 'One design pass: three variations of the front page with the same real data, side by side, for Dinis to choose.', body: `<p class="kicker">Design pass 1 · a proposal</p><h1>Three front pages to choose from</h1><p class="lede">The same data, three ways to open the site. The live front page uses variation A until Dinis chooses.</p><div class="grid">${vs.map(([k, v]) => `<div class="card"><p class="kicker">Variation ${k.toUpperCase()}</p><h3><a href="/design/${k}/">${esc(v.name)}</a></h3><p>${esc(v.idea)}</p></div>`).join('')}</div><div class="cols" style="margin-top:1.5rem">${vs.map(([k]) => `<div><p class="meta">Variation ${k.toUpperCase()}</p><iframe src="/design/${k}/index.html" title="Variation ${k.toUpperCase()}" style="width:100%;height:70vh;border:1px solid var(--rule);background:var(--paper)" loading="lazy"></iframe></div>`).join('')}</div>`, md: vs.map(([k, v]) => `- Variation ${k.toUpperCase()}, ${v.name} (${SITE}/design/${k}/): ${v.idea}`).join('\n') });
+  page({ path: '/design/', title: 'The front page\'s three views', description: 'Three views of the front page with the same real data, side by side: the ledger, the map of places and the founder\'s path.', body: `<p class="kicker">Design pass 1 · chosen: all three</p><h1>The front page's three views</h1><p class="lede">The same data, three ways to open the site. At Dinis's word (19 November 2026) all three are now views of the front page, chosen with the tabs at its top.</p><div class="grid">${vs.map(([k, v]) => `<div class="card"><p class="kicker">Variation ${k.toUpperCase()}</p><h3><a href="/design/${k}/">${esc(v.name)}</a></h3><p>${esc(v.idea)}</p></div>`).join('')}</div><div class="cols" style="margin-top:1.5rem">${vs.map(([k]) => `<div><p class="meta">Variation ${k.toUpperCase()}</p><iframe src="/design/${k}/index.html" title="Variation ${k.toUpperCase()}" style="width:100%;height:70vh;border:1px solid var(--rule);background:var(--paper)" loading="lazy"></iframe></div>`).join('')}</div>`, md: vs.map(([k, v]) => `- Variation ${k.toUpperCase()}, ${v.name} (${SITE}/design/${k}/): ${v.idea}`).join('\n') });
 
   // Places
   const placeCounts = id => ['support', 'funding', 'companies', 'investors'].map(s => entries.filter(e => e.place === id && e.section === s).length);

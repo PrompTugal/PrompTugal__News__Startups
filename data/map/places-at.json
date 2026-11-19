@@ -1,0 +1,146 @@
+{
+ "about": "Each place's seat as [longitude, latitude], from data/by-place/places.json in PrompTugal__News__Website. Drawing only.",
+ "from": {
+  "repository": "PrompTugal/PrompTugal__News__Website",
+  "path": "data/by-place/places.json",
+  "commit": "50a7332448e64b599eb917eae884330d3ae4c88b"
+ },
+ "at": {
+  "faro": [
+   -7.935,
+   37.019
+  ],
+  "loule": [
+   -8.023,
+   37.138
+  ],
+  "quarteira": [
+   -8.103,
+   37.069
+  ],
+  "silves": [
+   -8.44,
+   37.189
+  ],
+  "tavira": [
+   -7.649,
+   37.127
+  ],
+  "vila-real-de-santo-antonio": [
+   -7.418,
+   37.195
+  ],
+  "portimao": [
+   -8.537,
+   37.138
+  ],
+  "lagos": [
+   -8.673,
+   37.102
+  ],
+  "olhao": [
+   -7.841,
+   37.026
+  ],
+  "albufeira": [
+   -8.25,
+   37.089
+  ],
+  "lagoa": [
+   -8.453,
+   37.135
+  ],
+  "monchique": [
+   -8.555,
+   37.317
+  ],
+  "aljezur": [
+   -8.803,
+   37.318
+  ],
+  "vila-do-bispo": [
+   -8.911,
+   37.083
+  ],
+  "castro-marim": [
+   -7.443,
+   37.218
+  ],
+  "alcoutim": [
+   -7.471,
+   37.471
+  ],
+  "sao-bras-de-alportel": [
+   -7.888,
+   37.153
+  ],
+  "lisboa": [
+   -9.139,
+   38.722
+  ],
+  "porto": [
+   -8.611,
+   41.15
+  ],
+  "vila-real": [
+   -7.745,
+   41.301
+  ],
+  "aveiro": [
+   -8.654,
+   40.64
+  ],
+  "braganca": [
+   -6.757,
+   41.806
+  ],
+  "viana-do-castelo": [
+   -8.832,
+   41.693
+  ],
+  "braga": [
+   -8.426,
+   41.551
+  ],
+  "coimbra": [
+   -8.429,
+   40.205
+  ],
+  "castelo-branco": [
+   -7.508,
+   39.822
+  ],
+  "guarda": [
+   -7.268,
+   40.538
+  ],
+  "viseu": [
+   -7.912,
+   40.661
+  ],
+  "leiria": [
+   -8.807,
+   39.744
+  ],
+  "santarem": [
+   -8.686,
+   39.236
+  ],
+  "portalegre": [
+   -7.431,
+   39.294
+  ],
+  "setubal": [
+   -8.893,
+   38.524
+  ],
+  "evora": [
+   -7.909,
+   38.571
+  ],
+  "beja": [
+   -7.863,
+   38.015
+  ]
+ }
+}

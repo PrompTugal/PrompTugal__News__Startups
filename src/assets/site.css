@@ -63,3 +63,28 @@ footer ul{margin:.3rem 0;padding-left:1.1rem}
 .mast .tools{margin-left:auto}
 .mast .tools .tool.free{display:inline-flex;align-items:center;padding:4px 10px;border:1px solid var(--rule,#d8d4cb);border-radius:999px;font:600 13px var(--sans);color:var(--green,#006600);text-decoration:none;white-space:nowrap}
 .mast .tools .tool.free:hover,.mast .tools .tool.free:focus-visible{background:var(--card,#e8f3e8)}
+/* Front page views (19 November 2026) */
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.vr{position:absolute;opacity:0;pointer-events:none}
+.vtabs{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:0 0 1.2rem;padding-bottom:.6rem;border-bottom:1px solid var(--rule)}
+.vtabs label{cursor:pointer;font:600 .92rem var(--sans);padding:.3rem .8rem;border:1px solid var(--rule);border-radius:2rem;background:var(--card)}
+.vtabs label:hover{border-color:var(--ink)}
+.view{display:none}
+#view-ledger:checked~.view-ledger,#view-places:checked~.view-places,#view-path:checked~.view-path{display:block}
+#view-ledger:checked~.vtabs label[for=view-ledger],#view-places:checked~.vtabs label[for=view-places],#view-path:checked~.vtabs label[for=view-path]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+#view-ledger:focus-visible~.vtabs label[for=view-ledger],#view-places:focus-visible~.vtabs label[for=view-places],#view-path:focus-visible~.vtabs label[for=view-path]{outline:2px solid var(--red);outline-offset:2px}
+h2.vh{font-size:clamp(1.9rem,4.5vw,2.8rem);margin:.2rem 0 .6rem;padding:0;border:0}
+/* Maps */
+.maps{display:grid;align-items:start;grid-template-columns:repeat(auto-fit,minmax(18rem,1fr));gap:1rem;margin:1rem 0 .4rem}
+.maps figure{margin:0;background:var(--card);border:1px solid var(--rule);padding:.6rem}
+.maps figcaption{font:600 12px var(--mono);text-transform:uppercase;color:var(--muted);margin-bottom:.3rem}
+.ptmap{width:100%;height:auto;display:block}
+.ptmap .pt{fill:var(--paper);stroke:var(--ink);stroke-width:.7}
+.ptmap .es{fill:var(--rule);stroke:var(--muted);stroke-width:.4;opacity:.5}
+.ptmap .plabel text{font:600 8.5px var(--sans);fill:var(--ink);paint-order:stroke;stroke:var(--card);stroke-width:2.5px}
+.ptmap .plabel tspan{font:400 7.5px var(--mono);fill:var(--muted)}
+.ptmap .dot circle{stroke:var(--card);stroke-width:.35}
+.ptmap .dot:hover circle,.ptmap .dot:focus circle{stroke:var(--ink);stroke-width:1}
+.s-support circle{fill:var(--green)}.s-funding circle{fill:var(--red)}.s-companies circle{fill:var(--ink)}.s-investors circle{fill:var(--card);stroke:var(--red)!important;stroke-width:1px!important}
+.maplegend{display:flex;flex-wrap:wrap;gap:.3rem 1rem;font-size:.85rem;margin:.3rem 0}
+.maplegend .key svg{vertical-align:-1px}
