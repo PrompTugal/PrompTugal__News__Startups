@@ -1,25 +1,28 @@
 // The shared time-zone-to-country table (dev@PrompTugal.dinis), vendored at src/assets/obs/tz-country.json. Checked at
-// build against the registry's obs_tz.integrity, never against a pin copied into this repository (security@'s ruling of
-// 19 Nov 2026, 04:51 UTC, option 1). The registry is the live one, or data/sites/registry.json when the live one cannot be
-// read; if the live registry has moved to a newer version than the one vendored here, the copy's pin for this version is
-// used and the build says an upgrade is due. The build stops if the file matches neither. Node built-ins only.
+// build against the registry (the live one, or data/sites/registry.json when the live one cannot be read), never against
+// a pin copied into this repository (security@'s ruling of 19 Nov 2026, 04:51 UTC, option 1). Version bumps, per
+// security@'s ruling (Website 1acd10498, 05:14 UTC):
+//   - the registry names this version: the file must match its pin, or the build stops;
+//   - the registry names a newer version: this version's own pin is used if the registry still keeps it
+//     (obs_tz.versions["<v>"].integrity); otherwise the table is left out of the site (never shipped unchecked), so no
+//     country is sent, and the build log says "obs_tz <v> off: the registry names <newer>".
+// Node built-ins only.
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
-import { SNAPSHOT } from './sites-bar.mjs';
 
 export const OBS_TZ_FILE = 'src/assets/obs/tz-country.json';
+export const OBS_TZ_SITE = 'assets/obs/tz-country.json';
 const SRI = /^sha(256|384|512)-[A-Za-z0-9+\/]{43,86}={0,2}$/;
+const digest = (algo, raw) => `${algo}-` + createHash(algo).update(raw).digest('base64');
 
-export function verifyObsTz(registry) {
-  const raw = readFileSync(OBS_TZ_FILE);
+// Returns { on: true, version } or { on: false, version, message }. Throws when a pin for this version does not match.
+export function checkObsTz(registry, raw = readFileSync(OBS_TZ_FILE)) {
   const version = JSON.parse(raw.toString('utf8')).version;
-  const copy = JSON.parse(readFileSync(SNAPSHOT, 'utf8')).registry;
-  const pick = r => (r && r.obs_tz && r.obs_tz.version === version && SRI.test(r.obs_tz.integrity || '')) ? r.obs_tz.integrity : null;
-  const want = pick(registry) || pick(copy);
-  if (!want) throw new Error(`obs tz table: no registry pin for version ${version}: not built`);
-  if (!pick(registry)) console.log(`obs tz table: the registry lists ${registry && registry.obs_tz ? registry.obs_tz.version : 'none'}, this site has ${version}; checked against ${SNAPSHOT}; an upgrade is due`);
-  const algo = want.split('-')[0];
-  const got = `${algo}-` + createHash(algo).update(raw).digest('base64');
-  if (got !== want) throw new Error(`obs tz table: ${OBS_TZ_FILE} does not match the registry's pin for version ${version}: not built`);
-  return { version, integrity: want };
+  const o = registry && registry.obs_tz;
+  if (!o) return { on: false, version, message: `obs_tz ${version} off: the registry names none` };
+  const pin = o.version === version ? o.integrity : (o.versions && o.versions[version] && o.versions[version].integrity);
+  if (!pin) return { on: false, version, message: `obs_tz ${version} off: the registry names ${o.version}` };
+  if (!SRI.test(pin)) throw new Error(`obs tz table: the registry's pin for ${version} is not an SRI string: not built`);
+  if (digest(pin.split('-')[0], raw) !== pin) throw new Error(`obs tz table: ${OBS_TZ_FILE} does not match the registry's pin for version ${version}: not built`);
+  return { on: true, version };
 }

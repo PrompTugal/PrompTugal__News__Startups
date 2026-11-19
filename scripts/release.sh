@@ -8,6 +8,7 @@ cd "$(dirname "$0")/.."
 [ -z "$(git status --porcelain)" ] || { echo "uncommitted changes: commit or stash them first" >&2; exit 1; }
 git fetch -q origin dev
 node scripts/test-leak-scan.mjs
+node scripts/test-obs-tz.mjs
 node scripts/build.mjs
 node scripts/validate.mjs
 node scripts/leak-scan.mjs
