@@ -77,6 +77,9 @@ const LONG = /[A-Za-z0-9+\/_-]{32,}={0,2}/g;
 function highEntropy(line) {
   for (const m of line.matchAll(LONG)) {
     const s = m[0].replace(/=+$/, '');
+    // A Subresource Integrity string is a public hash of a public file (security@'s ruling of 19 Nov 2026: exempt by exact
+    // pattern only): sha256-, sha384- or sha512- and base64 of exactly that digest's length, padding included.
+    if (/^sha256-[A-Za-z0-9+\/]{43}=$|^sha384-[A-Za-z0-9+\/]{64}$|^sha512-[A-Za-z0-9+\/]{86}==$/.test(m[0])) continue;
     if (/^[0-9a-f]+$/i.test(s)) { if (s.length >= 48 && entropy(s) >= 3.5) return true; continue; }
     if (s.includes('/') && !/[+=]/.test(m[0]) && s.split('/').some((seg) => /^[a-z][a-z.-]*$/.test(seg))) continue; // a path or URL
     const classes = [/[a-z]/, /[A-Z]/, /[0-9]/].filter((r) => r.test(s)).length;

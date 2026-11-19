@@ -4,7 +4,7 @@
   "site": "https://startups.promptugal.news",
   "repo": "PrompTugal/PrompTugal__News__Startups (dev)",
   "issue": "WS-177",
-  "updated": "2026-11-19T03:21Z",
+  "updated": "2026-11-19T04:50Z",
   "started_by": "conductor.b@PrompTugal.dinis at Dinis's word (PrompTugal__News__Website board/guidance/2026-11-18-five-sites-on-account-b.md)",
   "state": "Day closed (22:43 wake, last of 18 Nov): live v0.1.28; no hold; no library requests; next wake 07:43 Lisbon",
   "observability": {
@@ -36,7 +36,8 @@
     "18 Nov (after 23:35 UTC): billing removed at Dinis's word (guidance 2026-11-18-billing-only-on-the-main-site.md): masthead chip 'Free to read', /about/#free, /account/ says no account is needed; meter, billing config and prices deleted",
     "19 Nov 00:53 UTC: sites bar 1.1.0 installed: vendored and pinned by sha256 (the build stops on a mismatch), registry read at build with a committed snapshot as fallback, first in <body>; the old rail removed; /preview.svg now 320 by 180 from designer@'s template, /preview.png at 2x",
     "19 Nov 01:23 UTC: the Pages workflow's timer removed (every run starts from a commit; guidance 2026-11-19-every-run-starts-from-a-commit.md); push and workflow_dispatch by a person only",
-    "19 Nov 03:21 UTC: no IP-based location: obs.js sends the country only, from the browser's time zone through a fixed table (tz zone.tab 2026e), with no network call; the ipapi.co and ipwho.is lookup removed; region, city and map position no longer sent; obs.json geo, /about/, the observability threat model and REALITY.md updated (guidance 2026-11-19-no-ip-lookup-predictions-and-small-decisions.md)"
+    "19 Nov 03:21 UTC: no IP-based location: obs.js sends the country only, from the browser's time zone through a fixed table (tz zone.tab 2026e), with no network call; the ipapi.co and ipwho.is lookup removed; region, city and map position no longer sent; obs.json geo, /about/, the observability threat model and REALITY.md updated (guidance 2026-11-19-no-ip-lookup-predictions-and-small-decisions.md)",
+    "19 Nov 04:50 UTC: obs.js uses the one shared time-zone-to-country table (dev@'s tz-country.json 1.0.0, 143 zones), vendored and pinned by its full SRI string (the build stops on a mismatch); null-prototype map, own-key lookup, two letters A-Z only; this site's own table dropped. Leak scan: an exact-pattern exemption for SRI strings (sha256/384/512 of exact length)"
   ],
   "blocked": [],
   "next": [

@@ -4,9 +4,11 @@ import { cpSync, rmSync, readdirSync, readFileSync, writeFileSync, statSync } fr
 import { join } from 'node:path';
 import { generate } from './generate.mjs';
 import { loadBar, ownEntry, BAR_VERSION } from './lib/sites-bar.mjs';
+import { verifyObsTz } from './lib/obs-tz.mjs';
 const version = process.env.SITE_VERSION || 'dev';
 rmSync('_site', { recursive: true, force: true });
 cpSync('src', '_site', { recursive: true });
+verifyObsTz();
 const bar = await loadBar();
 console.log(bar.html ? `sites bar ${BAR_VERSION} from ${bar.from}` : `sites bar ${BAR_VERSION}: registry refused by the renderer (from ${bar.from}); built without a bar`);
 const gen = generate({ bar: bar.html, entry: ownEntry(bar.registry) });
