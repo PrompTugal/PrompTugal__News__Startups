@@ -133,9 +133,16 @@ try {
     expect('leak scan from a copy with --root', res, true, 'files');
     writeFileSync(join(r.dir, '_site/key.pem'), '-----BEGIN OPENSSH ' + 'PRIVATE KEY-----\n');
     expect('leak scan from a copy finds a leak under --root', spawnSync(process.execPath, [join(out, 'leak-scan.mjs'), '--root', r.dir], { cwd: r.dir, encoding: 'utf8' }), false);
+    rmSync(join(r.dir, '_site/key.pem'));
+    // LIB-2026-067: a file with a NUL byte is still scanned for key shapes, and a symlink is refused, never followed
+    writeFileSync(join(r.dir, '_site/blob.bin'), Buffer.concat([Buffer.from([0, 1, 2, 0]), Buffer.from('-----BEGIN RSA ' + 'PRIVATE KEY-----\n')]));
+    expect('leak scan finds a key header in a binary file', spawnSync(process.execPath, [join(out, 'leak-scan.mjs'), '--root', r.dir], { cwd: r.dir, encoding: 'utf8' }), false, 'blob.bin');
+    rmSync(join(r.dir, '_site/blob.bin'));
+    symlinkSync('/etc/hostname', join(r.dir, '_site/link.txt'));
+    expect('leak scan refuses a symlink in the built site', spawnSync(process.execPath, [join(out, 'leak-scan.mjs'), '--root', r.dir], { cwd: r.dir, encoding: 'utf8' }), false, 'a symlink');
   }
 } finally {
   rmSync(root, { recursive: true, force: true });
 }
-if (failed) { console.error(`FAILED (${failed} of 21 checks)`); process.exit(1); }
-console.log('OK (21 checks: controls 6 to 9 on the trailer check, the copy taken from the anchor A, and the --root of the leak scan)');
+if (failed) { console.error(`FAILED (${failed} of 23 checks)`); process.exit(1); }
+console.log('OK (23 checks: controls 6 to 9 on the trailer check, the copy taken from the anchor A, and the --root of the leak scan)');

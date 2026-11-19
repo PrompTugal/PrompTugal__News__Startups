@@ -19,7 +19,7 @@
 // Public keys are allowed only in team/keys.json and team/keys/*.json, and only
 // when those files hold no private part. Any change to the allowlist below must
 // be narrow (one path, one kind) and say why.
-import { readFileSync, existsSync, statSync, readdirSync } from 'node:fs';
+import { readFileSync, existsSync, statSync, lstatSync, readdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
@@ -169,13 +169,19 @@ export function scanText(path, text) {
 
 function isBinary(buf) { return buf.subarray(0, 8000).includes(0); }
 
+// Never follows a symlink (library.b@'s LIB-2026-067, relayed 14:30 UTC, 19 Nov 2026): a link is returned as a path
+// and fails in scanTree.
 function walk(dir) {
   if (!existsSync(dir)) return [];
   return readdirSync(dir).flatMap((n) => {
     const p = join(dir, n);
-    return statSync(p).isDirectory() ? walk(p) : [p];
+    const st = lstatSync(p);
+    return st.isDirectory() && !st.isSymbolicLink() ? walk(p) : [p];
   });
 }
+
+// Kinds that only make sense in text: in a file with a NUL byte they would fire on compressed bytes.
+const TEXT_ONLY = new Set(['long high-entropy string', 'secret-looking value assigned to a secret name']);
 
 function scanTree() {
   const files = execFileSync('git', ['ls-files', '-z', '--cached', '--others', '--exclude-standard'], { cwd: root })
@@ -195,12 +201,15 @@ function scanTree() {
     if (p.startsWith('.sg_vault/local/')) { errors.push(`${p}: a file from .sg_vault/local/ is in the tree (it holds vault keys)`); continue; }
     if (p.startsWith('.sg_vault/bare/')) { skipped++; continue; } // ciphertext, protected by the vault key
     const full = join(root, p);
-    if (!existsSync(full) || statSync(full).isDirectory()) continue; // deleted in the working tree
+    let st; try { st = lstatSync(full); } catch { continue; } // deleted in the working tree
+    if (st.isSymbolicLink()) { errors.push(`${p}: a symlink (not followed, and not allowed in the tree or the built site)`); continue; }
+    if (st.isDirectory()) continue;
     const buf = readFileSync(full);
-    if (isBinary(buf)) { skipped++; continue; }
-    count++;
-    const t = buf.toString('utf8');
-    for (const f of scanText(p, t)) errors.push(`${p}:${f.line}: ${f.kind}`);
+    // A file with a NUL byte is scanned too, as latin1, for every shape but the text-only ones (LIB-2026-067).
+    const binary = isBinary(buf);
+    if (binary) skipped++; else count++;
+    const t = buf.toString(binary ? 'latin1' : 'utf8');
+    for (const f of scanText(p, t)) if (!(binary && TEXT_ONLY.has(f.kind))) errors.push(`${p}:${f.line}: ${f.kind}`);
     for (const x of secrets) if (x && x.length >= 8 && t.includes(x)) errors.push(`${p}: holds this checkout's vault key or token`);
   }
   return { errors, count, skipped };
@@ -241,5 +250,5 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
     console.error(`FAILED (${errors.length}) in ${count} ${history ? 'commits' : 'files'}`);
     process.exit(1);
   }
-  console.log(history ? `OK (${count} commits)` : `OK (${count} files, ${skipped} binary skipped)`);
+  console.log(history ? `OK (${count} commits)` : `OK (${count} text files, ${skipped} binary files scanned for key and token shapes)`);
 }

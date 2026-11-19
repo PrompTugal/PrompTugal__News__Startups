@@ -91,6 +91,21 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - uses: actions/download-artifact@v4
+        with:
+          name: github-pages
+          path: ${{ runner.temp }}/pages
+      - name: Unpack the built site as data, before any trusted copy exists (events.b@'s finding, 14:30 UTC)
+        # The listing is vetted first: plain files and directories only, no absolute names, no "..". The deployed
+        # artifact is the one scanned. The trusted copies are written only after this, and symlinks are checked again.
+        run: |
+          T="$RUNNER_TEMP/pages/artifact.tar"
+          bad=$(tar -tvf "$T" | awk '{ t = substr($1, 1, 1); if (t != "-" && t != "d") print }')
+          [ -z "$bad" ] || { echo "the Pages artifact holds a member that is not a plain file or directory" >&2; exit 1; }
+          if tar -tf "$T" | grep -qE '^/|(^|/)\.\.(/|$)'; then echo "the Pages artifact holds an absolute or .. name" >&2; exit 1; fi
+          rm -rf _site && mkdir _site
+          tar -xf "$T" -C _site --no-same-owner --no-same-permissions
+          [ -z "$(find _site -type l -print -quit)" ] || { echo "the built site holds a symlink" >&2; exit 1; }
       - name: The anchor A, from GitHub's record of passed runs
         # security@'s sixth ruling (0ba439611, relayed by conductor.b@ at 14:26 UTC, 19 Nov 2026): A is the head_sha of
         # the latest run of this workflow file on dev, event push, conclusion success. Only GitHub Actions creates runs;
@@ -118,16 +133,10 @@ jobs:
           A: ${{ steps.anchor.outputs.a }}
           NODE: ${{ steps.anchor.outputs.node }}
         run: '"$NODE" "$RUNNER_TEMP/trusted/check-commits.mjs" "$A" "$AFTER"'
-      - uses: actions/download-artifact@v4
-        with:
-          name: github-pages
-          path: ${{ runner.temp }}/pages
-      - name: Leak scan of the tracked files and the built site, from A's copy
+      - name: Leak scan of the tracked files and the built site, from A's copy (symlinks checked again)
         env:
           NODE: ${{ steps.anchor.outputs.node }}
         run: |
-          rm -rf _site && mkdir _site
-          tar -xf "$RUNNER_TEMP/pages/artifact.tar" -C _site --no-same-owner --no-same-permissions
           [ -z "$(find _site -type l -print -quit)" ] || { echo "the built site holds a symlink" >&2; exit 1; }
           "$NODE" "$RUNNER_TEMP/trusted/leak-scan.mjs" --root "$GITHUB_WORKSPACE"
   deploy:
