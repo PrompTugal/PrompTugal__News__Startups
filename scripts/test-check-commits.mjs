@@ -138,12 +138,14 @@ try {
   { // 16. control 9: the leak scan, run from a copy outside the checkout, scans the checkout given by --root
     const LEAK = new URL('./leak-scan.mjs', import.meta.url).pathname;
     const out = join(root, 'leakcopy'); mkdirSync(out); writeFileSync(join(out, 'leak-scan.mjs'), readFileSync(LEAK));
-    const here = new URL('..', import.meta.url).pathname;
-    const res = spawnSync(process.execPath, [join(out, 'leak-scan.mjs'), '--root', here], { cwd: here, encoding: 'utf8' });
+    const r = repo(); mkdirSync(join(r.dir, '_site')); writeFileSync(join(r.dir, '_site/index.html'), '<p>built</p>\n');
+    const res = spawnSync(process.execPath, [join(out, 'leak-scan.mjs'), '--root', r.dir], { cwd: r.dir, encoding: 'utf8' });
     expect('leak scan from a copy with --root', res, true, 'files');
+    writeFileSync(join(r.dir, '_site/key.pem'), '-----BEGIN OPENSSH ' + 'PRIVATE KEY-----\n');
+    expect('leak scan from a copy finds a leak under --root', spawnSync(process.execPath, [join(out, 'leak-scan.mjs'), '--root', r.dir], { cwd: r.dir, encoding: 'utf8' }), false);
   }
 } finally {
   rmSync(root, { recursive: true, force: true });
 }
-if (failed) { console.error(`FAILED (${failed} of 22 checks)`); process.exit(1); }
-console.log('OK (22 checks: controls 6, 7 and 8 on the trailer check, the copy taken from the anchor A, and A itself)');
+if (failed) { console.error(`FAILED (${failed} of 23 checks)`); process.exit(1); }
+console.log('OK (23 checks: controls 6, 7 and 8 on the trailer check, the copy taken from the anchor A, and A itself)');
