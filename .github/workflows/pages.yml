@@ -57,6 +57,7 @@ jobs:
       - run: node scripts/test-obs-tz.mjs
       - run: node scripts/test-sites-bar.mjs
       - run: node scripts/test-svg-check.mjs
+      - run: node scripts/test-rounds.mjs
       - run: node scripts/build.mjs
         env:
           SITE_VERSION: ${{ steps.version.outputs.version }}

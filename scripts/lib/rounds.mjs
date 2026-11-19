@@ -35,11 +35,22 @@ export function parseAmount(a) {
 const isDay = d => /^\d{4}-\d{2}-\d{2}$/.test(d || '') && !isNaN(Date.parse(d));
 const days = (a, b) => Math.abs(Date.parse(a) - Date.parse(b)) / 864e5;
 
+// Dates that can name the same deal: equal, or one a shorter form of the other ("2025" and "2025-09-11", "2026-10" and
+// "2026-10"). Two full days that differ are not compatible here (rule b decides those).
+const compatible = (a, b) => { const x = String(a || ''), y = String(b || ''); if (!/^\d{4}(-\d{2}){0,2}$/.test(x) || !/^\d{4}(-\d{2}){0,2}$/.test(y)) return false; return x === y || (x.length !== y.length && (x.startsWith(y) || y.startsWith(x))); };
+const amountText = a => String(a || '').trim().toLowerCase().replace(/\s+/g, ' ');
+
 // Same deal? Rule a: equal company, same ISO day. Rule b: equal company, same amount in the same currency,
-// both dates ISO days at most 30 days apart.
+// both dates ISO days at most 30 days apart. Rule c (19 Nov 2026): equal company, the same source page, compatible
+// dates. Rule d (19 Nov 2026): equal company, the same amount text exactly (so "up to 11 million euros" too), compatible
+// dates. Rules c and d catch month-only and year-only dates, as Beyond Vision's and Brainr's were.
 export function sameDeal(a, b) {
   const ca = roundCompany(a);
   if (!ca || ca !== roundCompany(b)) return false;
+  if (compatible(a.date, b.date)) {
+    if (a.source_url && a.source_url === b.source_url) return true;
+    if (amountText(a.amount) && amountText(a.amount) === amountText(b.amount)) return true;
+  }
   if (!isDay(a.date) || !isDay(b.date)) return false;
   if (a.date === b.date) return true;
   const x = parseAmount(a.amount), y = parseAmount(b.amount);
