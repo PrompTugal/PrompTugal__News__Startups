@@ -4,7 +4,7 @@
   "site": "https://startups.promptugal.news",
   "repo": "PrompTugal/PrompTugal__News__Startups (dev)",
   "issue": "WS-177",
-  "updated": "2026-11-19T05:16Z",
+  "updated": "2026-11-19T07:17Z",
   "started_by": "conductor.b@PrompTugal.dinis at Dinis's word (PrompTugal__News__Website board/guidance/2026-11-18-five-sites-on-account-b.md)",
   "state": "Day closed (22:43 wake, last of 18 Nov): live v0.1.28; no hold; no library requests; next wake 07:43 Lisbon",
   "observability": {
@@ -42,11 +42,12 @@
     "19 Nov 05:10 UTC: shared tz table 1.1.0 (487 zones) vendored, matching the live registry's obs_tz.integrity in full; data/sites/registry.json refreshed. A newer registry version no longer fails the build (checked against the copy's pin for the vendored version, upgrade noted); same version with other bytes still stops it",
     "19 Nov 05:14 UTC: registry version bumps degrade per security@'s ruling (1acd10498): a newer obs_tz version turns the table off (left out of the site, no country sent; log: 'obs_tz <v> off: the registry names <newer>'), unless the registry keeps this version's pin in obs_tz.versions; same version with other bytes still stops the build. scripts/test-obs-tz.mjs (6 cases) in release.sh and CI",
     "19 Nov 05:15 UTC: leak scan key rules per security@'s ruling (1acd10498): every private-key header (OpenSSH, RSA, EC, DSA, encrypted, plain) fails everywhere, no allowance; an ssh-ed25519, ssh-rsa or ecdsa public key fails outside ssh_signing.public_key in team/keys.json; 23 new test cases in scripts/test-leak-scan.mjs (31 in all)",
-    "19 Nov 05:16 UTC: ssh public-key rule extended to the security-key forms (sk-ssh-ed25519@openssh.com, sk-ecdsa-sha2-nistp256@openssh.com) and tested for every type (ed25519, rsa, ecdsa nistp256/384/521, both sk- forms), in and outside the published field; 45 leak-scan test cases"
+    "19 Nov 05:16 UTC: ssh public-key rule extended to the security-key forms (sk-ssh-ed25519@openssh.com, sk-ecdsa-sha2-nistp256@openssh.com) and tested for every type (ed25519, rsa, ecdsa nistp256/384/521, both sk- forms), in and outside the published field; 45 leak-scan test cases",
+    "19 Nov 07:17 UTC: sites bar 1.2.0 installed (security@'s go, 055e6c1430): checked against the registry's pins, no pin in code; off and left out if the registry no longer lists 1.2.0; hex pins and their leak-scan allowance removed; scripts/test-sites-bar.mjs (9 cases) in release.sh and CI. Checked in Chromium at 1280 and 390 px"
   ],
   "blocked": [],
   "next": [
-    "07:43: sites bar 1.1.1, checked against the registry's bar.integrity (drop the hex pins in scripts/lib/sites-bar.mjs and their leak-scan file allowance); validator check on preview.svg (no script, foreignObject, event attributes or outside references)",
+    "Validator check on preview.svg: refuse a script, a foreignObject, an event attribute or an outside reference (the registry's install note says the gate carries this control)",
     "07:43 wake: signed commits on (guidance 2026-11-19-signed-commits-paid-search-and-free-embeds.md s2): SSH key with this session's ID in team/keys.json, gpg.ssh.program repo-local, scripts/check-signatures.mjs in release.sh and CI; each commit checked against the keys in its parent's team/keys.json; CI's commits exempt only by something a pusher cannot forge, never by a name or address",
     "Data in the browser (guidance 2026-11-19-load-the-data-in-the-browser.md): /api/v1/calls.json with data_read_at, licence and schema; a self-hosted script re-works open, closing and closed and days left on the reader's clock, textContent only, built list as fallback, read time and live or built shown. Needed now that there is no timed rebuild",
     "/about/ scrolls sideways on phones and desktops: long source URLs in the gaps list (there before the sites bar); wrap them",
@@ -73,5 +74,6 @@
     "open": 0,
     "note": "no file for this site yet (404); the index lists none addressed to startups.b@. Read at every wake (guidance 2026-11-18-the-pipeline-standard-and-the-fact-checker.md)."
   },
-  "observability_tz": "obs_tz 1.1.0 on (status line form for a bump: 'obs_tz <v> off: the registry names <newer>')"
+  "observability_tz": "obs_tz 1.1.0 on (status line form for a bump: 'obs_tz <v> off: the registry names <newer>')",
+  "sites_bar": "sites-bar 1.2.0 on"
 }

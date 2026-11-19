@@ -55,6 +55,7 @@ jobs:
           node scripts/check-commits.mjs "${last:-$BEFORE}" "$AFTER"
       - run: node scripts/test-leak-scan.mjs
       - run: node scripts/test-obs-tz.mjs
+      - run: node scripts/test-sites-bar.mjs
       - run: node scripts/build.mjs
         env:
           SITE_VERSION: ${{ steps.version.outputs.version }}

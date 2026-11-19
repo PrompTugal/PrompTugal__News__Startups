@@ -12,9 +12,10 @@ const reg = await loadRegistry();
 const tz = checkObsTz(reg.registry);
 console.log(tz.on ? `obs_tz ${tz.version} on (checked against ${reg.from.split(' ')[0]})` : tz.message);
 if (!tz.on) rmSync(join('_site', OBS_TZ_SITE), { force: true });   // left out, never shipped unchecked
-const bar = loadBar(reg);
-console.log(bar.html ? `sites bar ${BAR_VERSION} from ${bar.from}` : `sites bar ${BAR_VERSION}: registry refused by the renderer (from ${bar.from}); built without a bar`);
-const gen = generate({ bar: bar.html, entry: ownEntry(bar.registry) });
+const bar = await loadBar(reg);
+console.log(`${bar.message} (registry: ${reg.from.split(' ')[0]})`);
+if (!bar.on) rmSync(join('_site', 'assets', 'sites-bar', BAR_VERSION), { recursive: true, force: true });   // left out, never shipped unchecked
+const gen = generate({ bar: bar.html, entry: ownEntry(reg.registry) });
 console.log(`generated ${gen.pages} pages: ${JSON.stringify(gen.counts)}`);
 const walk = d => readdirSync(d).flatMap(f => { const p = join(d, f); return statSync(p).isDirectory() ? walk(p) : [p]; });
 for (const f of walk('_site')) {
