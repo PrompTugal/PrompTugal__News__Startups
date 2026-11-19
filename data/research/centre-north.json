@@ -1,5 +1,6 @@
 {
   "by": "startups.b.research@PrompTugal.dinis",
+  "country": "PT",
   "read_on": "2026-11-18",
   "area": "centre-north",
   "notes": "Gathered on 2026-11-18 with WebFetch (page text summarised by a small model) and WebSearch used only to find URLs. Every entry's source_url is a page that was fetched and read. Many local hosts did not resolve from the session network or returned 503; they are in gaps. No websummit.com, lu.ma, luma.com, meetup.com or eventbrite pages were fetched.",

@@ -10,19 +10,19 @@ const isOpen = e => /open|ongoing/i.test(e.status || '') || /\bopen\b|applicatio
 
 export const variants = {
   a(ctx) {
-    const { entries, counts, esc, itemHtml, itemMd, placeName, algarveIds, byDate, calls, callsBoxHtml, callsBoxMd } = ctx;
+    const { entries, counts, esc, itemHtml, itemMd, placeName, algarveIds, byDate, calls, callsBoxHtml, callsBoxMd, where } = ctx;
     const next5 = calls.open.slice(0, 5);
     const money = entries.filter(e => e.section === 'funding' && e.date).sort(byDate).slice(0, 8);
     const alg = entries.filter(e => algarveIds.has(e.place) && e.section === 'support').slice(0, 8);
-    const html = `<p class="kicker">Portugal's startups and their funding, place by place</p>
-<h1>Who backs founders in Portugal, and with what money</h1>
+    const html = `<p class="kicker">Startups and their funding in ${esc(where)}, place by place</p>
+<h1>Who backs founders in ${esc(where)}, and with what money</h1>
 <p class="lede">Incubators, accelerators, public programmes, rounds and grants, town by town, starting with the Algarve. Every fact links to the page it came from, with the date we read it.</p>
 ${statsHtml(counts, esc)}
 ${callsBoxHtml(next5, 'Closing soon', placeName, true)}
 <div class="cols"><section><h2>Latest money</h2><ul class="list">${money.map(e => itemHtml(e, placeName[e.place])).join('')}</ul><p><a href="/funding/">All rounds and grants</a></p></section>
 <section><h2>Start with the Algarve</h2><ul class="list">${alg.map(e => itemHtml(e, placeName[e.place])).join('')}</ul><p><a href="/places/algarve/">The Algarve</a> · <a href="/support/">all incubators and programmes</a></p></section></div>
-<h2>Investors</h2><p>A section for now: the funds and angel networks seen in Portuguese rounds. <a href="/investors/">${counts.investors} investors so far</a>.</p>`;
-    const md = `## Who backs founders in Portugal, and with what money\n\n${statsMd(counts)}\n\n${next5.length ? `## Closing soon\n\n${callsBoxMd(next5, placeName)}\n\n` : ''}## Latest money\n\n${money.map(e => itemMd(e, placeName[e.place])).join('\n')}\n\n## Start with the Algarve\n\n${alg.map(e => itemMd(e, placeName[e.place])).join('\n')}\n\nMore: ${SITE}/funding/ · ${SITE}/support/ · ${SITE}/investors/`;
+<h2>Investors</h2><p>A section for now: the funds and angel networks seen in rounds in ${esc(where)}. <a href="/investors/">${counts.investors} investors so far</a>.</p>`;
+    const md = `## Who backs founders in ${where}, and with what money\n\n${statsMd(counts)}\n\n${next5.length ? `## Closing soon\n\n${callsBoxMd(next5, placeName)}\n\n` : ''}## Latest money\n\n${money.map(e => itemMd(e, placeName[e.place])).join('\n')}\n\n## Start with the Algarve\n\n${alg.map(e => itemMd(e, placeName[e.place])).join('\n')}\n\nMore: ${SITE}/funding/ · ${SITE}/support/ · ${SITE}/investors/`;
     return { name: 'The ledger', idea: 'Leads with numbers and the latest money, then the Algarve. For readers who want news first.', html, md };
   },
 
@@ -44,18 +44,18 @@ ${statsHtml(counts, esc)}`;
   },
 
   c(ctx) {
-    const { entries, counts, esc, itemHtml, itemMd, placeName, byDate } = ctx;
+    const { entries, counts, esc, itemHtml, itemMd, placeName, byDate, where } = ctx;
     const open = entries.filter(e => e.section === 'support' && isOpen(e)).slice(0, 6);
     const support = open.length ? open : entries.filter(e => e.section === 'support' && /incubator|accelerator/.test(e.kind)).slice(0, 6);
     const grants = entries.filter(e => e.section === 'funding' && /grant|programme|call/.test(e.kind)).sort(byDate).slice(0, 5);
     const inv = entries.filter(e => e.section === 'investors').slice(0, 5);
     const step = (no, title, intro, list, more, href) => `<section><p class="kicker">Step ${no}</p><h2>${title}</h2><p>${intro}</p><ul class="list">${list.map(e => itemHtml(e, placeName[e.place])).join('')}</ul><p><a href="${href}">${more}</a></p></section>`;
     const html = `<p class="kicker">For founders</p>
-<h1>Starting a company in Portugal: where to go first</h1>
-<p class="lede">Three steps, with real places and programmes: find support near you, find public money, then meet the investors who have backed Portuguese startups. Every entry links to its source.</p>
+<h1>Starting a company in ${esc(where)}: where to go first</h1>
+<p class="lede">Three steps, with real places and programmes: find support near you, find public money, then meet the investors who have backed startups in ${esc(where)}. Every entry links to its source.</p>
 ${step(1, 'Find support near you', open.length ? 'Programmes with an open or recent call.' : 'Incubators and accelerators.', support, 'All incubators and programmes', '/support/')}
 ${step(2, 'Find public money', 'Grants and public programmes, newest first.', grants, 'All rounds and grants', '/funding/')}
-${step(3, 'Meet the investors', 'Funds and networks seen in Portuguese rounds. A section for now.', inv, 'All investors', '/investors/')}
+${step(3, 'Meet the investors', `Funds and networks seen in rounds in ${where}. A section for now.`, inv, 'All investors', '/investors/')}
 ${statsHtml(counts, esc)}`;
     const md = `## Step 1: find support near you\n\n${support.map(e => itemMd(e, placeName[e.place])).join('\n')}\n\n## Step 2: find public money\n\n${grants.map(e => itemMd(e, placeName[e.place])).join('\n')}\n\n## Step 3: meet the investors\n\n${inv.map(e => itemMd(e, placeName[e.place])).join('\n')}\n\n${statsMd(counts)}`;
     return { name: 'The founder\'s path', idea: 'Organised as three steps a founder takes: support, public money, investors. For readers who want to act.', html, md };

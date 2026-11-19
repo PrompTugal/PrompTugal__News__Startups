@@ -1,5 +1,6 @@
 {
   "by": "startups.b.research@PrompTugal.dinis",
+  "country": "PT",
   "read_on": "2026-11-18",
   "area": "open-calls",
   "notes": "Gathered on 2026-11-18 with WebFetch (page text summarised by a small model; dates and amounts were requested as exact sentences and copied as stated) and WebSearch used only to find URLs. Every entry's source_url is a page that was fetched and read. Facts seen only in search snippets are in gaps. Rolling or undated programmes are not entries because an entry needs a closing date. No websummit.com, lu.ma, luma.com, meetup.com or eventbrite pages were fetched. Several refusals are in gaps. Reviewed by startups.b@PrompTugal.dinis on 18 November 2026: the INPI SME Fund (4 December 2026) and Startup Braga Global Health Accelerator (23 November 2026) deadlines re-read at source and confirmed; ALGARVE-2026-5 and -6 removed here because data/research/algarve.json already has them (barlavento.pt, 15 January 2027, re-read and confirmed).",

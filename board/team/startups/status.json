@@ -4,7 +4,7 @@
   "site": "https://startups.promptugal.news",
   "repo": "PrompTugal/PrompTugal__News__Startups (dev)",
   "issue": "WS-177",
-  "updated": "2026-11-19T07:55Z",
+  "updated": "2026-11-19T10:46Z",
   "started_by": "conductor.b@PrompTugal.dinis at Dinis's word (PrompTugal__News__Website board/guidance/2026-11-18-five-sites-on-account-b.md)",
   "state": "Day closed (22:43 wake, last of 18 Nov): live v0.1.28; no hold; no library requests; next wake 07:43 Lisbon",
   "observability": {
@@ -50,13 +50,13 @@
     "19 Nov 07:49 UTC: predictions kept: data/predictions/predictions.jsonl in library.b@'s form, 18 lines (each open call's closing date as shown, kind expected-date), appended by scripts/predictions.mjs at a wake (append only; a changed date is a new line naming the old; only before its time). Outcome lines once each call is read again after its date",
     "19 Nov 07:50 UTC: correction: obs.js's footer notice (page views, Pause, what is counted) does show on this site, after the version line in footer .row p.meta.small; the 03:20 note that it never showed was wrong (that test read the page before obs.js had run). Checked in Chromium: notice and Pause work",
     "19 Nov 07:51 UTC: the tz table check reads dev@'s reshaped pins (obs_tz.versions[\"<v>\"].integrity[\"tz-country.json\"], Website 3f3c627134) as well as the old form; 3 new tests (9 in all). The bar check already read both. The live registry now names bar 1.2.1; this site's 1.2.0 stays on through its kept pins",
-    "19 Nov 07:55 UTC: sites bar 1.2.1 installed in dfc2c25 (security@'s go, 2d812d6da): each file matched versions[\"1.2.1\"].integrity; its CSS scopes nav.ptsb's own display and width; no page scrolls sideways at 375 px. Docs updated in the next commit (the first attempt's script failed on a shell quoting error)"
+    "19 Nov 07:55 UTC: sites bar 1.2.1 installed in dfc2c25 (security@'s go, 2d812d6da): each file matched versions[\"1.2.1\"].integrity; its CSS scopes nav.ptsb's own display and width; no page scrolls sideways at 375 px. Docs updated in the next commit (the first attempt's script failed on a shell quoting error)",
+    "19 Nov 10:46 UTC: nothing hard-coded to Portugal: each place has a country (its parent chain to a country place; data/countries.json), research files and entries carry a country, unknown places go to their country's national place, the wording comes from the countries that have facts, and each country gets its own 'as a whole' group. Tested with a made-up London place in a scratch copy: 'Portugal and the United Kingdom', both countries grouped, no Portuguese fact lost. The live site's text is unchanged in meaning (Portugal only)"
   ],
   "blocked": [],
   "next": [
     "Predictions: run node scripts/predictions.mjs at each wake; after a call's date, read its page once and write its outcome line (held, missed or gap); show what we said beside what happened on /calls/ (designer@'s PF5 to PF9)",
     "Predictions: for new lines, said_by as \"<organiser>, as reported by <host>\" where a news site reports someone else's date (library.b@, 07:52 UTC; PRED 2026/0005); needs an organiser field in the research data. The 18 lines sent stay as they are",
-    "Nothing hard-coded to Portugal (Dinis 22:20, guidance 2026-11-18-london.md): give places a country, make the place list, page wording ('Portugal's startups'), schemas and the preview work for any place and country; London would be the first outside Portugal if Dinis wants startups there",
     "The 17 Nov research files (algarve.json, lisbon-porto-national.json) do not record how pages were read: 121 items say 'reading method not recorded'; re-read a sample at source and record the method, or leave as stated",
     "Duplicates the merge rule does not catch yet: Beyond Vision (dates month-only, 'over 28 million euros'), Brainr (dates and amounts differ); Porto shows one eco.sapo.pt source twice under 'Also reported by'",
     "From the 16:43 wake: inner passes as Sonnet sub-agents (opening conductor pass, security pre-review, the work, security and AppSec post-review of the diff, closing pass), per PrompTugal__News__Website board/guidance/2026-11-18-inner-passes-and-security.md",
@@ -66,7 +66,8 @@
     "Load data dynamically from data.promptugal.news where it has what a page needs",
     "Weak signals (Dinis 15:40, guidance 2026-11-18-capture-the-weak-signals.md): when data.b@'s API serves them, show per place and per company: Portuguese startups' public GitHub activity, funding (CORDIS, PRR, Portugal Ventures and accelerator portfolios), patents and trademarks (INPI, EPO, EUIPO), company acts (Portal da Justiça), careers pages where allowed. Plan the pages around the API as each lands; collect nothing ourselves",
     "Pipeline standard (same guidance) for this site's own sources: today a research pull keeps our summary, the source URL and the read date, not the page as received. Proposal for Dinis: keep the raw capture of each page read (timestamped, never overwritten) in a vault, and give each research area a source page and an OpenAPI description of data/facts.json; or leave raw capture to data.b@'s collectors where a source becomes a feed",
-    "Predictions: send the kept call deadlines (data/predictions/calls.json) to library.b@ in the form it sets, once it has set it; keep and check our own as well"
+    "Predictions: send the kept call deadlines (data/predictions/calls.json) to library.b@ in the form it sets, once it has set it; keep and check our own as well",
+    "London, if Dinis wants startups there: the Website's place list needs united-kingdom (kind country) and london; then research files with country GB. The map stays a map of Portugal until a UK outline is on the register"
   ],
   "asks": [
     "Dinis: may this session make its SSH signing key (ssh-keygen -t ed25519, the private half kept in this session only) so it can sign its commits? This session's permission check refused it at 07:46 UTC on 19 Nov, so signed commits are not on yet (guidance 2026-11-19-signed-commits-paid-search-and-free-embeds.md, s2). A 'yes' here is enough; the check (keys from the parent commit, no exemption by name, every commit in the range, Agent and Claude-Session matched) is ready to build once the key exists.",

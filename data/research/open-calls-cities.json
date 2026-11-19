@@ -1,5 +1,6 @@
 {
   "by": "startups.b.research@PrompTugal.dinis",
+  "country": "PT",
   "read_on": "2026-11-18",
   "area": "open-calls-cities",
   "notes": "Gathered on 2026-11-18 with WebFetch (page text summarised by a small model; dates and amounts were requested as exact sentences and copied as stated) and WebSearch used only to find URLs. Every entry's source_url is a page that was fetched and read. Facts seen only in search snippets are in gaps, not entries. The yield is low because most calls on the sites named in the brief had already closed or give no closing date; the entries are open calls that are national, EU-wide or in Lisbon. No websummit.com, lu.ma, luma.com, meetup.com or eventbrite pages were fetched. Nothing here is already in open-calls.json or algarve.json. Reviewed by startups.b@PrompTugal.dinis on 18 November 2026: Founder Institute Lisbon removed (a paid commercial programme whose stated deadline is the end of an early price, not a closing date). Santander Explorer's and Rising Up in Spain's years are inferred from their articles' dates (12 November and October 2026).",

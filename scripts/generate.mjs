@@ -29,9 +29,18 @@ const SECTION_OF = {
 };
 export function loadData() {
   const web = JSON.parse(readFileSync('data/from-website.json', 'utf8'));
-  const places = web.places;
+  const places = web.places.map(p => ({ ...p }));
   const known = new Set(places.map(p => p.id));
-  const alias = { lisbon: 'lisboa', 'lisboa-city': 'lisboa', national: 'portugal' };
+  // Each place's country: follow its parent chain to a place of kind country (data/countries.json names them), so
+  // nothing below is hard-coded to one country. A research entry for an unknown place goes to its own country's place
+  // (its country field, a code or a country id), or to the only country there is when it names none.
+  const COUNTRIES = JSON.parse(readFileSync('data/countries.json', 'utf8')).countries;
+  const byId = new Map(places.map(p => [p.id, p]));
+  const countryOf = p => { const seen = new Set(); while (p && !seen.has(p.id)) { seen.add(p.id); if (p.kind === 'country') return p.id; p = byId.get(p.parent); } return ''; };
+  for (const p of places) { p.country = countryOf(p); p.country_code = (COUNTRIES[p.country] || {}).code || ''; }
+  const countryPlaces = places.filter(p => p.kind === 'country').map(p => p.id);
+  const countryFor = c => { if (!c) return countryPlaces.length === 1 ? countryPlaces[0] : ''; const k = String(c).toLowerCase(); return countryPlaces.find(id => id === k || (COUNTRIES[id] || {}).code === k.toUpperCase()) || ''; };
+  const alias = { lisbon: 'lisboa', 'lisboa-city': 'lisboa' };
   const research = [];
   const gaps = [];
   const metaOf = new Map([[WEBSITE_FILE, fileMeta(WEBSITE_FILE, web)]]);
@@ -41,7 +50,9 @@ export function loadData() {
     metaOf.set(`data/research/${f}`, fileMeta(`data/research/${f}`, d));
     for (const e of d.entries || []) {
       let place = alias[e.place] || e.place;
-      if (!known.has(place)) place = 'portugal';
+      if (place === 'national') place = countryFor(e.country || d.country);
+      if (!known.has(place)) place = countryFor(e.country || d.country);
+      if (!known.has(place)) { gaps.push({ what: `an entry for an unknown place and country (${String(e.place || '').slice(0, 40)}) was left out`, url: '', why: 'no place or country to put it in', file: `data/research/${f}` }); continue; }
       research.push({ ...e, place, section: e.section || SECTION_OF[e.kind] || 'support', file: `data/research/${f}`, from: { repository: 'PrompTugal/PrompTugal__News__Startups', path: `data/research/${f}`, by: d.by } });
     }
     for (const g of d.gaps || []) gaps.push({ ...g, file: `data/research/${f}` });
@@ -65,23 +76,23 @@ export function loadData() {
   }
   if (unsafeLinks) console.log(`links dropped (not http or https): ${unsafeLinks}`);
   // Second merge: the same funding round reported under different names or places (see scripts/lib/rounds.mjs).
-  const placeNames = Object.fromEntries(places.map(p => [p.id, p.id === 'portugal' ? 'National' : p.name]));
+  const placeNames = Object.fromEntries(places.map(p => [p.id, p.kind === 'country' ? (countryPlaces.length > 1 ? `National (${p.name})` : 'National') : p.name]));
   for (const e of entries) dedupeAlso(e);
   const merged = mergeRounds(entries, placeNames);
-  return { web, places, entries: merged.entries, gaps, researchFiles, roundMerges: merged.merges, roundsBefore: merged.before };
+  return { web, places, countries: COUNTRIES, entries: merged.entries, gaps, researchFiles, roundMerges: merged.merges, roundsBefore: merged.before };
 }
 
-// Place order: the Algarve and its towns first, then Lisbon, Porto, the other places, then national.
+// Place order: the Algarve and its towns first, then Lisbon, Porto, the other places, then each country as a whole.
 export function orderPlaces(places, entries) {
   const count = id => entries.filter(e => e.place === id).length;
   const alg = places.filter(p => p.parent === 'algarve').sort((a, b) => count(b.id) - count(a.id) || a.name.localeCompare(b.name));
-  const rest = places.filter(p => !['algarve', 'portugal', 'lisboa', 'porto'].includes(p.id) && p.parent !== 'algarve').sort((a, b) => a.name.localeCompare(b.name));
+  const rest = places.filter(p => !['algarve', 'lisboa', 'porto'].includes(p.id) && p.kind !== 'country' && p.parent !== 'algarve').sort((a, b) => a.name.localeCompare(b.name));
   const by = id => places.find(p => p.id === id);
   return [
     { group: 'The Algarve', places: [by('algarve'), ...alg].filter(Boolean) },
     { group: 'Lisbon and Porto', places: [by('lisboa'), by('porto')].filter(Boolean) },
     { group: 'Other places', places: rest },
-    { group: 'Portugal as a whole', places: [by('portugal')].filter(Boolean) },
+    ...places.filter(p => p.kind === 'country').map(c => ({ group: `${c.name} as a whole`, places: [c] })),
   ];
 }
 
@@ -91,6 +102,9 @@ const NAV = [['/', 'Front'], ['/places/', 'Places'], ['/support/', 'Incubators a
 // the front page, about, account and design pages are "site". Nothing here is priced: only promptugal.news bills
 // (Dinis, 18 November 2026; PrompTugal__News__Website board/guidance/2026-11-18-billing-only-on-the-main-site.md).
 const pageType = path => (path === '/account/' || path === '/' || path === '/about/' || path.startsWith('/design/') || path === '/404/') ? 'site' : 'evidence';
+// The countries this site covers, in words, from the places that have facts (set in generate()): "Portugal" today,
+// "Portugal and the United Kingdom" once London has facts. Nothing in the wording below names a country itself.
+let WHERE = '';
 let BAR = ''; // the sites bar's HTML, rendered at build by scripts/lib/sites-bar.mjs (empty: no bar)
 function frame({ path, title, description, body, made }) {
   const depth = path.split('/').filter(Boolean).length;
@@ -119,7 +133,7 @@ ${BAR ? '<link rel="stylesheet" href="/assets/sites-bar/1.2.1/sites-bar.css">\n<
 <body>
 ${BAR}
 <header class="top"><div class="wrap">
-<div class="strip"><span>Portugal, town by town · <a href="https://promptugal.news/">PrompTugal.news</a></span><span>version __VERSION__ · <a href="${path}index.md">markdown</a></span></div>
+<div class="strip"><span>${esc(WHERE.replace(/^the /, 'The '))}, town by town · <a href="https://promptugal.news/">PrompTugal.news</a></span><span>version __VERSION__ · <a href="${path}index.md">markdown</a></span></div>
 <div class="mast"><a href="/" aria-label="PrompTugal.news Startups, front page"><img class="wm-light" src="/assets/brand/promptugal-wordmark-light.svg" alt="PrompTugal.news" width="240" height="40"><img class="wm-dark" src="/assets/brand/promptugal-wordmark-dark.svg" alt="" width="240" height="40"></a><span class="sub">Startups</span><div class="tools" id="nr-tools"><a class="tool free" id="nr-free-chip" href="/about/#free">Free to read</a></div></div>
 <nav class="main" aria-label="Sections">${nav}</nav>
 </div></header>
@@ -239,6 +253,11 @@ export function callsBoxHtml(list, heading, placeName, showPlace) {
 // ---------- build ----------
 export function generate({ bar = '', entry = null } = {}) {
   BAR = bar;
+  {
+    const d0 = loadData(), used = new Set(d0.entries.map(e => (d0.places.find(p => p.id === e.place) || {}).country).filter(Boolean));
+    const names = [...used].sort((a, b) => a === 'portugal' ? -1 : b === 'portugal' ? 1 : a.localeCompare(b)).map(id => (d0.countries[id] || {}).name || id);
+    WHERE = names.length <= 1 ? (names[0] || 'Portugal') : `${names.slice(0, -1).join(', ')} and ${names[names.length - 1]}`;
+  }
   const { web, places, entries, gaps, researchFiles, roundMerges, roundsBefore } = loadData();
   const dropped = roundMerges.reduce((n, m) => n + m.names.length - 1, 0);
   console.log(`rounds merged: ${roundMerges.reduce((n, m) => n + m.names.length, 0)} entries into ${roundMerges.length} (${roundsBefore} round entries before, ${roundsBefore - dropped} after)`);
@@ -250,7 +269,7 @@ export function generate({ bar = '', entry = null } = {}) {
   const algarveIds = new Set(['algarve', ...places.filter(p => p.parent === 'algarve').map(p => p.id)]);
   const today = new Date().toISOString().slice(0, 10);
   const calls = classifyCalls(entries, today);
-  const ctx = { calls, callsBoxHtml, callsBoxMd, entries, places, placeName, groups, counts, gaps, esc, nice, itemHtml, itemMd, sourceLine, algarveIds, byDate, web };
+  const ctx = { calls, callsBoxHtml, callsBoxMd, entries, places, placeName, groups, counts, gaps, esc, nice, itemHtml, itemMd, sourceLine, algarveIds, byDate, web, where: WHERE };
 
   // Front page: the three variations as views (Dinis, 19 November 2026: "actually all free are quite important,
   // can we put them as 'views' for the home page?"). Tabs work without script (radio buttons and CSS); a few
@@ -258,7 +277,7 @@ export function generate({ bar = '', entry = null } = {}) {
   const VIEW_SLUG = { a: 'ledger', b: 'places', c: 'path' };
   const fv = Object.keys(variants).map(k => ({ k, slug: VIEW_SLUG[k] || k, ...variants[k](ctx) }));
   const asView = h => h.replace(/<h1>/g, '<h2 class="vh">').replace(/<\/h1>/g, '</h2>').replace(/<li class="item" id="[^"]*"/g, '<li class="item"');
-  const frontHtml = `<h1 class="sr">PrompTugal.news Startups: Portugal's startups and their funding, place by place</h1>
+  const frontHtml = `<h1 class="sr">PrompTugal.news Startups: startups and their funding in ${esc(WHERE)}, place by place</h1>
 <div class="views">
 ${fv.map((v, i) => `<input type="radio" name="view" id="view-${v.slug}" class="vr"${i === 0 ? ' checked' : ''}>`).join('')}
 <div class="vtabs"><span class="meta">View:</span>${fv.map(v => `<label for="view-${v.slug}" title="${esc(v.idea)}">${esc(v.name)}</label>`).join('')}</div>
@@ -266,7 +285,7 @@ ${fv.map(v => `<section class="view view-${v.slug}" aria-label="${esc(v.name)}">
 </div>
 <script>(function(){var v=${JSON.stringify(fv.map(v => v.slug))};function set(){var h=location.hash.slice(1);if(v.indexOf(h)>=0)document.getElementById('view-'+h).checked=true}set();addEventListener('hashchange',set);v.forEach(function(s){document.getElementById('view-'+s).addEventListener('change',function(){history.replaceState(null,'','#'+s)})})})();</script>`;
   const frontMd = `Three views of the same data: ${fv.map(v => `${v.name} (${SITE}/#${v.slug})`).join(', ')}.\n\n${fv.map(v => `# View: ${v.name}\n\n${v.idea}\n\n${v.md}`).join('\n\n')}`;
-  page({ path: '/', title: 'PrompTugal.news Startups: Portugal\'s startups and their funding, place by place', description: 'Incubators, accelerators, public programmes, rounds and grants across Portugal, starting with the Algarve, each fact with its source and the date read.', body: frontHtml, md: frontMd });
+  page({ path: '/', title: `PrompTugal.news Startups: startups and their funding in ${WHERE}, place by place`, description: `Incubators, accelerators, public programmes, rounds and grants across ${WHERE}, starting with the Algarve, each fact with its source and the date read.`, body: frontHtml, md: frontMd });
 
   // Design: the three variations side by side.
   for (const k of Object.keys(variants)) {
@@ -308,22 +327,22 @@ ${SECTIONS.map(([s, label]) => { const l = sorted(s); return `<h2>${label}</h2>$
   };
   const kindSort = (a, b) => kindRank(a.kind) - kindRank(b.kind) || a.name.localeCompare(b.name);
   let s = bySection('support', `<p class="kicker">Support</p><h1>Incubators, accelerators and programmes</h1><p class="lede">Where a founder can get space, mentoring, a programme or a public desk, place by place. Open calls carry their dates; check the organisation's own page before applying.</p>`, kindSort);
-  page({ path: '/support/', title: 'Incubators, accelerators and programmes in Portugal', description: 'Council incubators, university offices, accelerators and public programmes for founders across Portugal, starting with the Algarve.', body: s.html, md: s.md });
+  page({ path: '/support/', title: `Incubators, accelerators and programmes in ${WHERE}`, description: `Council incubators, university offices, accelerators and public programmes for founders across ${WHERE}, starting with the Algarve.`, body: s.html, md: s.md });
 
   // Open calls: what a founder can apply to now, soonest closing first. Built from the same merged entries.
   const grp = (title, list, empty) => `<h2>${title} <span class="meta">(${list.length})</span></h2>${list.length ? `<ul class="list">${list.map(c => callHtml(c, placeName)).join('')}</ul>` : `<p class="meta">${empty}</p>`}`;
   const grpMd = (title, list) => `## ${title} (${list.length})\n\n${list.length ? list.map(c => callMd(c, placeName)).join('\n') : 'None.'}`;
-  page({ path: '/calls/', title: 'Open calls for Portuguese startups', description: `${calls.open.length} calls open to applications on ${nice(today)}, soonest closing first, each with its source and the date read.`,
+  page({ path: '/calls/', title: `Open calls for startups in ${WHERE}`, description: `${calls.open.length} calls open to applications on ${nice(today)}, soonest closing first, each with its source and the date read.`,
     body: `<p class="kicker">Apply now</p><h1>Open calls: what you can apply to now</h1><p class="lede">Calls and programmes with a closing date on or after ${esc(nice(today))}, soonest first. Dates are as each source states them on the day we read it; check the source before applying, as dates move.</p><p class="meta" id="calls-asof" data-built="${esc(today)}">This list was built on ${esc(nice(today))}; the days left are as of that day.</p>
 ${grp('Closing within 14 days', calls.soon, 'None closing in the next 14 days.')}${grp('Closing later', calls.later, 'None.')}${grp('Opening soon', calls.opening, 'None announced in our sources.')}${grp('Recently closed', calls.recent, 'Nothing closed in the last 30 days.')}`,
     md: `Calls and programmes with a closing date on or after ${nice(today)}, soonest first. Dates are as each source states them on the day we read it; check the source before applying.\n\n${grpMd('Closing within 14 days', calls.soon)}\n\n${grpMd('Closing later', calls.later)}\n\n${grpMd('Opening soon', calls.opening)}\n\n${grpMd('Recently closed', calls.recent)}` });
 
   const funding = sec('funding').sort(byDate);
   s = bySection('funding', `<p class="kicker">Money</p><h1>Rounds, grants and public money</h1><p class="lede">Investment rounds, grants and public programmes as the press or the organisations reported them. Amounts are as the source states them; we do not convert or total them.</p><div class="note">Latest dated: ${funding.filter(e => e.date).slice(0, 3).map(e => `${esc(e.name)} (${esc(nice(e.date))})`).join('; ')}.</div>`, byDate);
-  page({ path: '/funding/', title: 'Startup rounds, grants and public money in Portugal', description: 'Investment rounds, grants and public funding programmes for Portuguese startups, place by place, each with its source.', body: s.html, md: s.md });
+  page({ path: '/funding/', title: `Startup rounds, grants and public money in ${WHERE}`, description: `Investment rounds, grants and public funding programmes for startups in ${WHERE}, place by place, each with its source.`, body: s.html, md: s.md });
 
   s = bySection('companies', `<p class="kicker">Companies</p><h1>Companies</h1><p class="lede">Startups named in our sources, by the place they are based. Being listed here is not an endorsement; it means a public source names them.</p>`, (a, b) => a.name.localeCompare(b.name));
-  page({ path: '/companies/', title: 'Startups in Portugal, place by place', description: 'Startups named in public sources, by the place in Portugal they are based, each with its source.', body: s.html, md: s.md });
+  page({ path: '/companies/', title: `Startups in ${WHERE}, place by place`, description: `Startups named in public sources, by the place in ${WHERE} they are based, each with its source.`, body: s.html, md: s.md });
 
   const inv = buildInvestors(entries);
   const eur = n => `EUR ${n.toLocaleString('en-GB')}`;
@@ -335,13 +354,13 @@ ${grp('Closing within 14 days', calls.soon, 'None closing in the next 14 days.')
   const summary = `${inv.groups.filter(g => g.rows.length).map(g => `${g.title}: ${g.rows.length}`).join('; ')}. ${inv.rows.length} investors in all, with ${inv.dealsLinked} named deals linked (${inv.distinctRounds} different round entries; one round names several investors).`;
   const thin = `The data is thin and growing: investors are listed only where a public page we read names them, and a deal is linked only where our own round entries name the investor. Nothing here is a full list. See the gaps on`;
   const tblNote = `Counts are round entries in our data that name the investor; one round counts for each investor it names. Entries for the same deal are merged when the company and the date, or the company and the amount within 30 days, match; a duplicate we could not match may remain. We do not total the amounts: a round's size is not the investor's own share.`;
-  s = { html: `<p class="kicker">Investors · a section for now</p><h1>Investors</h1><p class="lede">Venture funds, angel networks and public investors seen in Portuguese rounds. This data is still thin: we are collecting more, and it may get a site of its own.</p>
+  s = { html: `<p class="kicker">Investors · a section for now</p><h1>Investors</h1><p class="lede">Venture funds, angel networks and public investors seen in rounds in ${esc(WHERE)}. This data is still thin: we are collecting more, and it may get a site of its own.</p>
 <div class="note"><p>${esc(summary)}</p><p>${esc(thin)} <a href="/about/#gaps">How this is made</a>.</p></div>
 <p class="meta">Jump to: ${inv.groups.filter(g => g.rows.length).map((g, i) => `<a href="#g${GROUP_IDX(g.title)}">${esc(g.title)}</a>`).join(' · ')} · <a href="#by-investor">Deals by investor</a></p>
 ${inv.groups.filter(g => g.rows.length).map(g => `<h2 id="g${GROUP_IDX(g.title)}">${esc(g.title)} <span class="meta">(${g.rows.length})</span></h2><ul class="list">${g.rows.map(invCard).join('')}</ul>`).join('')}
 <h2 id="by-investor">Deals by investor</h2><p class="meta">${esc(tblNote)}</p><div class="tablewrap"><table><thead><tr><th>Investor</th><th>Named deals</th></tr></thead><tbody>${tableRows.map(r => `<tr><td>${esc(r.name)}</td><td>${r.deals.length}</td></tr>`).join('')}</tbody></table></div>`,
   md: `${summary}\n\n${thin} ${SITE}/about/\n\n${inv.groups.filter(g => g.rows.length).map(g => `## ${g.title} (${g.rows.length})\n\n${g.rows.map(invCardMd).join('\n')}`).join('\n\n')}\n\n## Deals by investor\n\n${tblNote}\n\n| Investor | Named deals |\n| --- | --- |\n${tableRows.map(r => `| ${mdEsc(r.name)} | ${r.deals.length} |`).join('\n')}` };
-  page({ path: '/investors/', title: 'Investors in Portuguese startups', description: 'Venture funds, angel networks and public investors active in Portuguese startups, with the deals in our data that name them, each with its source. A section for now.', body: s.html, md: s.md });
+  page({ path: '/investors/', title: `Investors backing startups in ${WHERE}`, description: `Venture funds, angel networks and public investors active in startups in ${WHERE}, with the deals in our data that name them, each with its source. A section for now.`, body: s.html, md: s.md });
 
   // How this is made
   const fromWeb = entries.filter(e => e.from?.repository?.endsWith('Website')).length;
@@ -394,7 +413,7 @@ ${inv.groups.filter(g => g.rows.length).map(g => `<h2 id="g${GROUP_IDX(g.title)}
   // 404, llms.txt, sitemap, data
   write('/404/', frame({ path: '/404/', title: 'Page not found', description: 'This page does not exist.', body: '<h1>Page not found</h1><p><a href="/">Back to the front page</a>.</p>' }), '# Page not found');
   writeFileSync(join(OUT, '404.html'), readFileSync(join(OUT, '404/index.html'), 'utf8').replaceAll('href="../', 'href="/').replaceAll('src="../', 'src="/'));
-  writeFileSync(join(OUT, 'llms.txt'), `# PrompTugal.news Startups\n\n> Portugal's startups and their funding, place by place: incubators, accelerators, public programmes, rounds and grants, companies and investors. Public facts only, each with its source and the date read. Every page has a markdown twin at index.md. Licences: our text and data are CC BY 4.0; facts taken from other sites stay under each source's licence or terms, linked on every item (fields license and source_license in facts.json). Version __VERSION__.\n\n## Pages\n\n${pages.filter(p => !p.path.startsWith('/design/')).map(p => `- [${p.title}](${SITE}${p.path}index.md): ${p.description}`).join('\n')}\n\n## Data\n\n- [All facts as JSON](${SITE}/data/facts.json): every entry with its source, read date and where it came from.\n\n## Optional\n\n${pages.filter(p => p.path.startsWith('/design/')).map(p => `- [${p.title}](${SITE}${p.path}index.md)`).join('\n')}\n`);
+  writeFileSync(join(OUT, 'llms.txt'), `# PrompTugal.news Startups\n\n> Startups and their funding in ${WHERE}, place by place: incubators, accelerators, public programmes, rounds and grants, companies and investors. Public facts only, each with its source and the date read. Every page has a markdown twin at index.md. Licences: our text and data are CC BY 4.0; facts taken from other sites stay under each source's licence or terms, linked on every item (fields license and source_license in facts.json). Version __VERSION__.\n\n## Pages\n\n${pages.filter(p => !p.path.startsWith('/design/')).map(p => `- [${p.title}](${SITE}${p.path}index.md): ${p.description}`).join('\n')}\n\n## Data\n\n- [All facts as JSON](${SITE}/data/facts.json): every entry with its source, read date and where it came from.\n\n## Optional\n\n${pages.filter(p => p.path.startsWith('/design/')).map(p => `- [${p.title}](${SITE}${p.path}index.md)`).join('\n')}\n`);
   // The site's preview for the shared sites bar and social cards (Dinis, 18 Nov 2026 ~22:00 UTC; PrompTugal__News__Website
   // board/guidance/2026-11-18-the-sites-bar.md; designer@'s spec SB6): /preview.svg, 320 by 180, from designer@'s template
   // (scripts/lib/sites-bar/preview-template.svg.txt), three live numbers from the same counts as the pages, every value

@@ -1,0 +1,7 @@
+{
+ "about": "The countries this site's places can belong to, by the id of the country's own place in the places list (a place of kind country). Each place's country is found by following its parent chain to one of these. Names are the English short names; codes are ISO 3166-1 alpha-2. Added by startups.b@PrompTugal.dinis on 19 November 2026 so that nothing in the build is hard-coded to Portugal (Dinis, 18 November 2026, guidance 2026-11-18-london.md).",
+ "countries": {
+  "portugal": { "code": "PT", "name": "Portugal" },
+  "united-kingdom": { "code": "GB", "name": "the United Kingdom" }
+ }
+}
