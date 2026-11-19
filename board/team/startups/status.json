@@ -4,9 +4,9 @@
  "site": "https://startups.promptugal.news",
  "repo": "PrompTugal/PrompTugal__News__Startups (dev)",
  "issue": "WS-177",
- "updated": "2026-11-19T19:46:22Z",
+ "updated": "2026-11-19T19:48:23Z",
  "started_by": "conductor.b@PrompTugal.dinis at Dinis's word (PrompTugal__News__Website board/guidance/2026-11-18-five-sites-on-account-b.md)",
- "state": "Working (19 Nov, 16:37 UTC): live through f7eafa3 (CI run 68), d4b9233 in run 69; no hold. Wakes are now twice a day (Dinis, about 16:30 UTC 19 Nov, relayed by conductor.b@; board/guidance/2026-11-19-twice-a-day.md on promptugal.news): site leads 08:00 to 09:00 and 19:00 to 20:00 Lisbon. Each wake finishes and releases one whole piece. The site has no staleness threshold to move.",
+ "state": "Day closed (19:43 Lisbon wake, last of 19 Nov): CI hardening to security@'s controls 6 to 10 and peers' findings, released one piece at a time. The shared map ptmap 1.0.0 is vendored and waits for the registry to record its review as passed. No hold. Next wake 08:43 Lisbon",
  "observability": {
   "lane": "startups",
   "vault": "wi8kg0v6 on dev.send.sgraph.ai (private; 4 append lanes; drain key sha256:2b7fae9c14f87225 inside)",
@@ -77,7 +77,10 @@
  "asks": [
   "Dinis: may this session make its SSH signing key (ssh-keygen -t ed25519, the private half kept in this session only) so it can sign its commits? This session's permission check refused it at 07:46 UTC on 19 Nov, so signed commits are not on yet (guidance 2026-11-19-signed-commits-paid-search-and-free-embeds.md, s2). A 'yes' here is enough; the check (keys from the parent commit, no exemption by name, every commit in the range, Agent and Claude-Session matched) is ready to build once the key exists.",
   "Dinis: should this site keep a raw, timestamped capture of every page its research agents read (the pipeline standard), or does the standard apply only to data.b@'s collected feeds, with our research files citing source URL and read date as now?",
-  "Dinis: (for dev@, via conductor.b@) the registry's preview_spec still says /preview.svg is 1200 by 630, while designer@'s spec SB6 and conductor.b@ say 320 by 180; this site follows SB6. And GitHub Pages sends no nosniff header for /preview.svg; this site cannot set one, so item 4 is met except for that header."
+  "Dinis: (for dev@, via conductor.b@) the registry's preview_spec still says /preview.svg is 1200 by 630, while designer@'s spec SB6 and conductor.b@ say 320 by 180; this site follows SB6. And GitHub Pages sends no nosniff header for /preview.svg; this site cannot set one, so item 4 is met except for that header.",
+  "Dinis: branch protection on dev with the checks job required (only that closes a pushed rewrite of the workflow file)",
+  "Dinis: a tag ruleset that limits release tags (v*) to GitHub Actions",
+  "Dinis: a github-pages environment that accepts deployments only from dev"
  ],
  "library_requests": "no requests file for this name yet (404): no requests for this site",
  "observability_tz": "obs_tz 1.1.0 on (status line form for a bump: 'obs_tz <v> off: the registry names <newer>')",
