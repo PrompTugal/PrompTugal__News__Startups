@@ -24,7 +24,10 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
 
-const root = join(dirname(fileURLToPath(import.meta.url)), '..');
+// The checkout to scan: --root <dir> when given (CI runs this file from a copy outside the checkout, security@'s
+// control 9, 19 Nov 2026), otherwise the folder above this file.
+const rootArg = process.argv.indexOf('--root');
+const root = rootArg > 0 && process.argv[rootArg + 1] ? process.argv[rootArg + 1] : join(dirname(fileURLToPath(import.meta.url)), '..');
 
 // Built from parts so that this file does not match its own patterns.
 const DASHES = '-'.repeat(5);

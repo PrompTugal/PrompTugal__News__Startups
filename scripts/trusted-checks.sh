@@ -13,10 +13,15 @@ fail() { echo "trusted-checks: $*" >&2; exit 1; }
 git rev-parse --verify --quiet "$anchor^{commit}" >/dev/null || fail "anchor $anchor is not in this history"
 git rev-parse --verify --quiet "$after^{commit}" >/dev/null || fail "AFTER $after is not in this history"
 git merge-base --is-ancestor "$anchor" "$after" || fail "anchor $anchor is not an ancestor of AFTER $after (a force push)"
+[ ! -L "$out" ] || fail "$out is a symlink"
 rm -rf "$out" && mkdir -p "$out"
 for f in check-commits.mjs leak-scan.mjs; do
   git cat-file -e "$anchor:scripts/$f" 2>/dev/null || fail "anchor $anchor has no scripts/$f"
+  [ "$(git ls-tree "$anchor" "scripts/$f" | cut -c1-6)" = "100644" ] || fail "anchor $anchor: scripts/$f is not a plain file (a symlink is refused)"
   git show "$anchor:scripts/$f" > "$out/$f"
 done
-if git cat-file -e "$anchor:scripts/commit-exemptions.json" 2>/dev/null; then git show "$anchor:scripts/commit-exemptions.json" > "$out/commit-exemptions.json"; fi
+if git cat-file -e "$anchor:scripts/commit-exemptions.json" 2>/dev/null; then
+  [ "$(git ls-tree "$anchor" scripts/commit-exemptions.json | cut -c1-6)" = "100644" ] || fail "anchor $anchor: scripts/commit-exemptions.json is not a plain file (a symlink is refused)"
+  git show "$anchor:scripts/commit-exemptions.json" > "$out/commit-exemptions.json"
+fi
 echo "security checks from the anchor $(git rev-parse "$anchor^{commit}")"

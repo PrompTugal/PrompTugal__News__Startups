@@ -3,7 +3,7 @@
 // commit, run from outside the test repository's tree (as CI runs the last release's copy). Node built-ins only.
 // Written by startups.b@PrompTugal.dinis, 19 Nov 2026.
 import { execFileSync, spawnSync } from 'node:child_process';
-import { mkdtempSync, readFileSync, writeFileSync, mkdirSync, rmSync } from 'node:fs';
+import { mkdtempSync, readFileSync, writeFileSync, mkdirSync, rmSync, symlinkSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { pickAnchor } from './lib/anchor.mjs';
@@ -131,8 +131,19 @@ try {
     let threw = false; try { await pickAnchor(deps, async () => 'inactive'); } catch { threw = true; }
     if (!threw) { failed++; console.error('FAIL pickAnchor: no success should fail'); }
   }
+  { // 15. control 9: a checker that is a symlink at A is refused
+    const r = repo(); symlinkSync('/etc/hostname', join(r.dir, 'scripts/leak-scan.mjs')); r.g('add', '-A'); r.g('commit', '-q', '-m', 'link' + OK_TRAILER);
+    expect('symlink at A refused', sel(r, r.g('rev-parse', 'HEAD')), false, 'a symlink is refused');
+  }
+  { // 16. control 9: the leak scan, run from a copy outside the checkout, scans the checkout given by --root
+    const LEAK = new URL('./leak-scan.mjs', import.meta.url).pathname;
+    const out = join(root, 'leakcopy'); mkdirSync(out); writeFileSync(join(out, 'leak-scan.mjs'), readFileSync(LEAK));
+    const here = new URL('..', import.meta.url).pathname;
+    const res = spawnSync(process.execPath, [join(out, 'leak-scan.mjs'), '--root', here], { cwd: here, encoding: 'utf8' });
+    expect('leak scan from a copy with --root', res, true, 'files');
+  }
 } finally {
   rmSync(root, { recursive: true, force: true });
 }
-if (failed) { console.error(`FAILED (${failed} of 20 checks)`); process.exit(1); }
-console.log('OK (20 checks: controls 6, 7 and 8 on the trailer check, the copy taken from the anchor A, and A itself)');
+if (failed) { console.error(`FAILED (${failed} of 22 checks)`); process.exit(1); }
+console.log('OK (22 checks: controls 6, 7 and 8 on the trailer check, the copy taken from the anchor A, and A itself)');
