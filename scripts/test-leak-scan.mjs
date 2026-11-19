@@ -23,5 +23,19 @@ expect('pin with text around it fails', kinds(REGISTRY_COPY, reg({ registry: { o
 expect('pin in any other file fails', kinds('scripts/lib/obs-tz.mjs', `const pin = '${PIN}';`), [HE]);
 expect('pin in a status file fails', kinds('board/team/startups/status.json', reg({ integrity: PIN })), [HE]);
 expect('token in an integrity field fails', kinds(REGISTRY_COPY, reg({ registry: { obs_tz: { integrity: FAKE } } })), [HE]);
+
+// OpenSSH key rules (security@'s ruling of 05:14 UTC). Sample keys are built here, so this file holds none.
+const D = '-'.repeat(5), b64 = n => createHash('sha512').update('k' + n).digest('base64').replace(/=+$/, '');
+const sshPub = (type) => `${type} AAAA` + b64(1) + b64(2);
+const priv = kind => `${D}BEGIN ${kind}PRIVATE KEY${D}`;
+const SSH = 'ssh public key outside its published field', PRIV = 'private key block';
+for (const k of ['OPENSSH ', 'RSA ', 'EC ', 'DSA ', 'ENCRYPTED ', ''])
+  for (const path of ['team/keys.json', REGISTRY_COPY, 'scripts/x.mjs'])
+    expect(`private key header '${k}' fails in ${path}`, kinds(path, priv(k)).includes(PRIV), true);
+expect('ssh-ed25519 key in its published field passes', kinds('team/keys.json', reg({ keys: [{ ssh_signing: { public_key: sshPub('ssh-ed25519') } }] })).filter(k => k === SSH), []);
+expect('ssh-ed25519 key in another field of team/keys.json fails', kinds('team/keys.json', reg({ keys: [{ note: sshPub('ssh-ed25519') }] })).includes(SSH), true);
+expect('ssh-rsa key in a script fails', kinds('scripts/x.mjs', `const k = '${sshPub('ssh-rsa')}'`).includes(SSH), true);
+expect('ecdsa key in the registry copy fails', kinds(REGISTRY_COPY, reg({ k: sshPub('ecdsa-sha2-nistp256') })).includes(SSH), true);
+expect('ssh key in a public_key field outside ssh_signing fails', kinds('team/keys.json', reg({ other: { public_key: sshPub('ssh-ed25519') } })).includes(SSH), true);
 if (fails) { console.error(`test-leak-scan: ${fails} failed`); process.exit(1); }
 console.log('test-leak-scan: OK');

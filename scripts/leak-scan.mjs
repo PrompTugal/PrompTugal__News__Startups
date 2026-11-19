@@ -118,6 +118,23 @@ function registryPins(text) {
 // A line of the registry copy that is exactly one "key": "<pin>" pair, the pin taken from an integrity field.
 const pinLine = (line, pins) => { const m = /^\s*"[A-Za-z0-9_.-]+":\s*"([^"]*)",?\s*$/.exec(line); return !!(m && pins.has(m[1])); };
 
+// OpenSSH public keys (security@'s ruling, Website 1acd10498, 05:14 UTC): an ssh-ed25519, ecdsa-sha2-* or ssh-rsa key is
+// flagged anywhere but its published field, ssh_signing.public_key in team/keys.json (the entropy rule alone missed about
+// 1 in 75). Private-key headers of every kind fail everywhere through PRIVATE_BLOCK, with no allowance. Tested by
+// scripts/test-leak-scan.mjs.
+const SSH_PUBLIC = /\b(?:ssh-ed25519|ssh-rsa|ecdsa-sha2-nistp(?:256|384|521))\s+AAAA[0-9A-Za-z+\/]{20,}={0,3}/;
+function sshPublished(path, text) {
+  const ok = new Set();
+  if (path !== 'team/keys.json') return ok;
+  let j; try { j = JSON.parse(text); } catch { return ok; }
+  const walkJ = (v, path2) => {
+    if (v && typeof v === 'object') { for (const k of Object.keys(v)) walkJ(v[k], [...path2, k]); return; }
+    if (typeof v === 'string' && path2[path2.length - 1] === 'public_key' && path2[path2.length - 2] === 'ssh_signing') ok.add(v.trim());
+  };
+  walkJ(j, []);
+  return ok;
+}
+
 const PUBLIC_KEY_FILES = (p) => p === 'team/keys.json' || /^team\/keys\/[a-z0-9-]+\.json$/.test(p);
 
 // Returns a list of {line, kind} for one file's text. Never returns the match.
@@ -126,6 +143,7 @@ export function scanText(path, text) {
   const add = (line, kind) => { if (!allowed(path, kind)) found.push({ line, kind }); };
   let body = text;
   const pins = path === REGISTRY_COPY ? registryPins(text) : null;
+  const sshOk = sshPublished(path, text);
   if (PUBLIC_KEY_FILES(path)) {
     if (/private|passphrase|secret|seed/i.test(text)) add(0, 'public key file mentions a private part');
     // Blank the allowed public key blocks, keeping line numbers.
@@ -135,6 +153,7 @@ export function scanText(path, text) {
     const n = i + 1;
     for (const [kind, re] of SHAPES) if (re.test(line)) add(n, kind);
     if (PUBLIC_BEGIN.test(line)) add(n, 'public key outside team/keys');
+    if (SSH_PUBLIC.test(line)) { const m = /^\s*"public_key":\s*"([^"]*)",?\s*$/.exec(line); if (!(m && sshOk.has(m[1].trim()))) add(n, 'ssh public key outside its published field'); }
     if (vaultPair(line)) add(n, 'sgit vault key shape (passphrase:vault_id)');
     for (const m of line.matchAll(ASSIGN)) {
       const v = m[1];
