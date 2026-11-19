@@ -113,7 +113,8 @@ function frame({ path, title, description, body, made }) {
 <meta property="og:image" content="${SITE}/preview.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/assets/site.css">
-${BAR ? '<link rel="stylesheet" href="/assets/sites-bar/1.2.0/sites-bar.css">\n<script defer src="/assets/sites-bar/1.2.0/sites-bar.js"></script>\n' : ''}<script defer src="/assets/obs/obs.js"></script>
+${BAR ? '<link rel="stylesheet" href="/assets/sites-bar/1.2.0/sites-bar.css">\n<script defer src="/assets/sites-bar/1.2.0/sites-bar.js"></script>\n' : ''}<script defer src="/assets/calls.js"></script>
+<script defer src="/assets/obs/obs.js"></script>
 </head>
 <body>
 ${BAR}
@@ -214,9 +215,9 @@ export function classifyCalls(entries, today) {
 const leftText = n => n === 0 ? 'closes today' : `${n} day${n === 1 ? '' : 's'} left`;
 export function callHtml(c, placeName) {
   const { e, d, left } = c;
-  const tags = `<span class="tag">${esc(e.kind)}</span><span class="tag"><a href="/places/${esc(e.place)}/">${esc(placeName[e.place])}</a></span>${d && left >= 0 && left <= 14 ? '<span class="tag money">closing within 14 days</span>' : ''}`;
+  const tags = `<span class="tag">${esc(e.kind)}</span><span class="tag"><a href="/places/${esc(e.place)}/">${esc(placeName[e.place])}</a></span>${d && left >= 0 && left <= 14 ? '<span class="tag money" data-soon>closing within 14 days</span>' : ''}`;
   const name = e.url ? `<a href="${esc(e.url)}" rel="nofollow">${esc(e.name)}</a>` : esc(e.name);
-  const when = d ? (left >= 0 ? `closes ${esc(closesText(d))} (${leftText(left)})` : `closed ${esc(closesText(d))}`) : esc(e.status || '');
+  const when = d ? `<span class="when" data-closes="${esc(d)}">${left >= 0 ? `closes ${esc(closesText(d))} (${leftText(left)})` : `closed ${esc(closesText(d))}`}</span>` : esc(e.status || '');
   const facts = [e.amount && `<span class="amount">${esc(e.amount)}</span>`, when].filter(Boolean).join(' · ');
   return `<li class="item" id="${esc(e.id)}"><h3>${name}</h3><p>${tags} ${facts}</p><p>${esc(e.what || '')}</p>${sourceLine(e)}</li>`;
 }
@@ -232,7 +233,7 @@ export function callsBoxMd(list, placeName) {
 }
 export function callsBoxHtml(list, heading, placeName, showPlace) {
   if (!list.length) return '';
-  return `<div class="note"><p><strong>${heading}</strong></p><ul class="list">${list.map(({ e, d, left }) => `<li>${esc(e.name)}${showPlace ? ` (${esc(placeName[e.place])})` : ''}: closes ${esc(closesText(d))}${left <= 14 ? ` (${esc(leftText(left))})` : ''}</li>`).join('')}</ul><p><a href="/calls/">All open calls</a></p></div>`;
+  return `<div class="note"><p><strong>${heading}</strong></p><ul class="list">${list.map(({ e, d, left }) => `<li>${esc(e.name)}${showPlace ? ` (${esc(placeName[e.place])})` : ''}: <span class="when" data-closes="${esc(d)}">closes ${esc(closesText(d))}${left <= 14 ? ` (${esc(leftText(left))})` : ''}</span></li>`).join('')}</ul><p><a href="/calls/">All open calls</a></p></div>`;
 }
 
 // ---------- build ----------
@@ -313,7 +314,7 @@ ${SECTIONS.map(([s, label]) => { const l = sorted(s); return `<h2>${label}</h2>$
   const grp = (title, list, empty) => `<h2>${title} <span class="meta">(${list.length})</span></h2>${list.length ? `<ul class="list">${list.map(c => callHtml(c, placeName)).join('')}</ul>` : `<p class="meta">${empty}</p>`}`;
   const grpMd = (title, list) => `## ${title} (${list.length})\n\n${list.length ? list.map(c => callMd(c, placeName)).join('\n') : 'None.'}`;
   page({ path: '/calls/', title: 'Open calls for Portuguese startups', description: `${calls.open.length} calls open to applications on ${nice(today)}, soonest closing first, each with its source and the date read.`,
-    body: `<p class="kicker">Apply now</p><h1>Open calls: what you can apply to now</h1><p class="lede">Calls and programmes with a closing date on or after ${esc(nice(today))}, soonest first. Dates are as each source states them on the day we read it; check the source before applying, as dates move.</p>
+    body: `<p class="kicker">Apply now</p><h1>Open calls: what you can apply to now</h1><p class="lede">Calls and programmes with a closing date on or after ${esc(nice(today))}, soonest first. Dates are as each source states them on the day we read it; check the source before applying, as dates move.</p><p class="meta" id="calls-asof" data-built="${esc(today)}">This list was built on ${esc(nice(today))}; the days left are as of that day.</p>
 ${grp('Closing within 14 days', calls.soon, 'None closing in the next 14 days.')}${grp('Closing later', calls.later, 'None.')}${grp('Opening soon', calls.opening, 'None announced in our sources.')}${grp('Recently closed', calls.recent, 'Nothing closed in the last 30 days.')}`,
     md: `Calls and programmes with a closing date on or after ${nice(today)}, soonest first. Dates are as each source states them on the day we read it; check the source before applying.\n\n${grpMd('Closing within 14 days', calls.soon)}\n\n${grpMd('Closing later', calls.later)}\n\n${grpMd('Opening soon', calls.opening)}\n\n${grpMd('Recently closed', calls.recent)}` });
 

@@ -91,3 +91,6 @@ h2.vh{font-size:clamp(1.9rem,4.5vw,2.8rem);margin:.2rem 0 .6rem;padding:0;border
 
 /* Long source URLs wrap instead of widening the page (gaps list on /about/ was 1276 px wide at 375 px, 19 Nov 2026) */
 .src,.src a,.item p{overflow-wrap:anywhere}
+
+/* A call whose date has passed since the page was built (assets/calls.js) */
+.call-closed{opacity:.6}
