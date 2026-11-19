@@ -75,6 +75,7 @@ jobs:
     # GITHUB_PATH written by the build job do not reach it: those files are per job, and it reads no build outputs.
     # Limit: this YAML comes from the pushed tree; only Dinis's branch protection with a required check closes that.
     needs: build
+    if: github.ref == 'refs/heads/dev'   # live.b@'s finding (16:15 UTC): a manual run on another branch never checks or deploys
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -95,17 +96,23 @@ jobs:
         with:
           name: github-pages
           path: ${{ runner.temp }}/pages
-      - name: Unpack the built site as data, before any trusted copy exists (events.b@'s finding, 14:30 UTC)
-        # The listing is vetted first: plain files and directories only, no absolute names, no "..". The deployed
-        # artifact is the one scanned. The trusted copies are written only after this, and symlinks are checked again.
+      - name: Unpack the built site as data, before any trusted copy exists (events.b@ and live.b@'s findings)
+        # The listing is vetted first: plain files and directories only, no absolute names, no "..". It is unpacked in
+        # RUNNER_TEMP, checked for symlinks there, and only then moved into place. A pushed _site path is refused (it
+        # could be a symlink into .git), and every pushed .gitattributes is removed from the working tree. The deployed
+        # artifact is the one scanned. The trusted copies are written only after this.
         run: |
+          if [ -n "$(git ls-tree --name-only "$AFTER" _site)" ]; then echo "the pushed tree holds a _site path" >&2; exit 1; fi
+          [ ! -e _site ] && [ ! -L _site ] || { echo "_site exists before the artifact is unpacked" >&2; exit 1; }
+          git ls-files -z -- '.gitattributes' '*/.gitattributes' | xargs -0 -r rm -f --
           T="$RUNNER_TEMP/pages/artifact.tar"
           bad=$(tar -tvf "$T" | awk '{ t = substr($1, 1, 1); if (t != "-" && t != "d") print }')
           [ -z "$bad" ] || { echo "the Pages artifact holds a member that is not a plain file or directory" >&2; exit 1; }
           if tar -tf "$T" | grep -qE '^/|(^|/)\.\.(/|$)'; then echo "the Pages artifact holds an absolute or .. name" >&2; exit 1; fi
-          rm -rf _site && mkdir _site
-          tar -xf "$T" -C _site --no-same-owner --no-same-permissions
-          [ -z "$(find _site -type l -print -quit)" ] || { echo "the built site holds a symlink" >&2; exit 1; }
+          U="$RUNNER_TEMP/site" && rm -rf "$U" && mkdir "$U"
+          tar -xf "$T" -C "$U" --no-same-owner --no-same-permissions
+          [ -z "$(find "$U" -type l -print -quit)" ] || { echo "the built site holds a symlink" >&2; exit 1; }
+          mv "$U" "$GITHUB_WORKSPACE/_site"
       - name: The anchor A, from GitHub's record of passed runs
         # security@'s sixth ruling (0ba439611, relayed by conductor.b@ at 14:26 UTC, 19 Nov 2026): A is the head_sha of
         # the latest run of this workflow file on dev, event push, conclusion success. Only GitHub Actions creates runs;
@@ -114,8 +121,14 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          A=$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/pages.yml/runs?branch=dev&event=push&status=success&per_page=20" \
-            --jq '[.workflow_runs[] | select(.path == ".github/workflows/pages.yml" and .head_branch == "dev" and .event == "push" and .conclusion == "success")][0].head_sha // ""')
+          # live.b@'s finding (16:15 UTC): the run must also have a job named "checks" that passed, so a pushed workflow
+          # that drops this job cannot become the anchor. One that keeps the name but weakens it needs branch protection.
+          A=""
+          for row in $(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/pages.yml/runs?branch=dev&event=push&status=success&per_page=30" \
+            --jq '.workflow_runs[] | select(.path == ".github/workflows/pages.yml" and .head_branch == "dev" and .event == "push" and .conclusion == "success") | "\(.id),\(.head_sha)"'); do
+            ok=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/${row%%,*}/jobs?per_page=50" --jq '[.jobs[] | select(.name == "checks" and .conclusion == "success")] | length')
+            if [ "$ok" = "1" ]; then A=${row#*,}; break; fi
+          done
           [[ "$A" =~ ^[0-9a-f]{40}$ ]] || { echo "no successful push run of this workflow on dev: no verified anchor" >&2; exit 1; }
           git merge-base --is-ancestor "$A" "$AFTER" || { echo "anchor $A is not an ancestor of $AFTER" >&2; exit 1; }
           echo "a=$A" >> "$GITHUB_OUTPUT"
@@ -141,7 +154,7 @@ jobs:
           "$NODE" "$RUNNER_TEMP/trusted/leak-scan.mjs" --root "$GITHUB_WORKSPACE"
   deploy:
     needs: [build, checks]
-    if: needs.build.outputs.deploy == 'true'
+    if: github.ref == 'refs/heads/dev' && needs.build.outputs.deploy == 'true'
     runs-on: ubuntu-latest
     permissions:
       pages: write
@@ -154,7 +167,7 @@ jobs:
         uses: actions/deploy-pages@v4
   tag:
     needs: [build, checks, deploy]
-    if: ${{ always() && needs.build.result == 'success' && needs.checks.result == 'success' && (needs.deploy.result == 'success' || needs.deploy.result == 'skipped') }}
+    if: ${{ always() && github.ref == 'refs/heads/dev' && needs.build.result == 'success' && needs.checks.result == 'success' && (needs.deploy.result == 'success' || needs.deploy.result == 'skipped') }}
     runs-on: ubuntu-latest
     permissions:
       contents: write

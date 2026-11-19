@@ -24,12 +24,17 @@ else {
   if (/\btags?\b.*describe|git describe/.test(checks)) problems.push('checks job reads a tag');
   if (!/actions\/workflows\/pages\.yml\/runs/.test(checks) || !/\.event == "push"/.test(checks) || !/\.conclusion == "success"/.test(checks) || !/\.head_branch == "dev"/.test(checks) || !/merge-base --is-ancestor "\$A" "\$AFTER"/.test(checks)) problems.push('checks job does not take A from the successful push runs of this workflow on dev and require it to be an ancestor');
   if (/deployments/.test(checks)) problems.push('checks job reads deployments: anyone with write access can make one (sixth ruling)');
-  if (!/find _site -type l/.test(checks)) problems.push('checks job does not refuse symlinks in the built site');
+  if (!/find "\$U" -type l/.test(checks) || !/mv "\$U" "\$GITHUB_WORKSPACE\/_site"/.test(checks)) problems.push('checks job does not unpack the site in RUNNER_TEMP, refuse symlinks there, then move it into place');
+  if (!/git ls-tree --name-only "\$AFTER" _site/.test(checks)) problems.push('checks job does not refuse a pushed _site path');
+  if (!/\.gitattributes/.test(checks) || !/xargs -0 -r rm -f/.test(checks)) problems.push('checks job does not remove pushed .gitattributes');
+  if (!/\.name == "checks" and \.conclusion == "success"/.test(checks) || !/actions\/runs\/\$\{row%%,\*\}\/jobs/.test(checks)) problems.push('checks job does not require the anchor run to have a passing checks job');
+  if (!/^    if: github\.ref == 'refs\/heads\/dev'/m.test(checks)) problems.push('checks job is not limited to refs/heads/dev');
   // events.b@'s finding: the artifact's listing is vetted and it is unpacked before the trusted copies are written
   const iUnpack = checks.indexOf('tar -xf'), iVet = checks.indexOf('tar -tvf'), iCopy = checks.indexOf('trusted-checks.sh" "$A"');
   if (iVet < 0 || iUnpack < 0 || iCopy < 0 || !(iVet < iUnpack && iUnpack < iCopy)) problems.push('checks job does not vet and unpack the artifact before writing the trusted copies');
 }
-if (!/^  deploy:\n    needs: \[build, checks\]/m.test(y)) problems.push('deploy does not need the checks job');
+if (!/^  deploy:\n    needs: \[build, checks\]\n    if: github\.ref == 'refs\/heads\/dev' && /m.test(y)) problems.push('deploy does not need the checks job, or is not limited to refs/heads/dev');
+if (!/github\.ref == 'refs\/heads\/dev'/.test(job('tag') || '')) problems.push('tag is not limited to refs/heads/dev');
 if (!/^  tag:\n    needs: \[build, checks, deploy\]/m.test(y) || !/needs\.checks\.result == 'success'/.test(job('tag') || '')) problems.push('tag does not need a passing checks job');
 if (/node \.trusted\/|scripts\/leak-scan\.mjs$|node scripts\/check-commits\.mjs/m.test(job('build') || '')) problems.push('the build job still runs a security check');
 if (problems.length) { console.error(problems.join('\n')); console.error(`FAILED (${problems.length})`); process.exit(1); }
