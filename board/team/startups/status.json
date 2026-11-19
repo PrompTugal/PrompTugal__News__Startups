@@ -4,9 +4,9 @@
  "site": "https://startups.promptugal.news",
  "repo": "PrompTugal/PrompTugal__News__Startups (dev)",
  "issue": "WS-177",
- "updated": "2026-11-19T14:27:01Z",
+ "updated": "2026-11-19T16:37:51Z",
  "started_by": "conductor.b@PrompTugal.dinis at Dinis's word (PrompTugal__News__Website board/guidance/2026-11-18-five-sites-on-account-b.md)",
- "state": "Day closed (22:43 wake, last of 18 Nov): live v0.1.28; no hold; no library requests; next wake 07:43 Lisbon",
+ "state": "Working (19 Nov, 16:37 UTC): live through f7eafa3 (CI run 68), d4b9233 in run 69; no hold. Wakes are now twice a day (Dinis, about 16:30 UTC 19 Nov, relayed by conductor.b@; board/guidance/2026-11-19-twice-a-day.md on promptugal.news): site leads 08:00 to 09:00 and 19:00 to 20:00 Lisbon. Each wake finishes and releases one whole piece. The site has no staleness threshold to move.",
  "observability": {
   "lane": "startups",
   "vault": "wi8kg0v6 on dev.send.sgraph.ai (private; 4 append lanes; drain key sha256:2b7fae9c14f87225 inside)",
