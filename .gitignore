@@ -232,3 +232,6 @@ _site/
 
 # This site keeps its build helpers in scripts/lib/ (startups@PrompTugal.dinis, 2026-11-17)
 !scripts/lib/
+
+# the security checks copied from the last release tag in CI (security@'s control 7, 19 Nov 2026)
+.trusted/

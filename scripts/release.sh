@@ -12,6 +12,7 @@ node scripts/test-obs-tz.mjs
 node scripts/test-sites-bar.mjs
 node scripts/test-svg-check.mjs
 node scripts/test-rounds.mjs
+node scripts/test-check-commits.mjs
 node scripts/build.mjs
 node scripts/validate.mjs
 node scripts/leak-scan.mjs

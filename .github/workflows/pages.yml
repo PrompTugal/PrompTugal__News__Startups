@@ -50,14 +50,23 @@ jobs:
         env:
           BEFORE: ${{ github.event.before }}
           AFTER: ${{ github.sha }}
+        # security@'s control 7 (19 Nov 2026, fails closed): the security checks and their config come from the
+        # last release tag (the trusted copy), never from the pushed tree; no release tag means no check, so it fails.
+        # They are copied into .trusted/ (ignored by git) so that each one's root, one level up, is this checkout.
         run: |
-          last=$(git describe --tags --abbrev=0 --match "v${VERSION_BASE}.*" "$AFTER" 2>/dev/null || true)
-          node scripts/check-commits.mjs "${last:-$BEFORE}" "$AFTER"
+          last=$(git describe --tags --abbrev=0 --match "v${VERSION_BASE}.*" "$AFTER^" 2>/dev/null || true)
+          [ -n "$last" ] || { echo "no release tag before $AFTER: no trusted copy of the checks" >&2; exit 1; }
+          rm -rf .trusted && mkdir .trusted
+          for f in check-commits.mjs leak-scan.mjs; do git show "$last:scripts/$f" > ".trusted/$f"; done
+          if git cat-file -e "$last:scripts/commit-exemptions.json" 2>/dev/null; then git show "$last:scripts/commit-exemptions.json" > .trusted/commit-exemptions.json; fi
+          echo "security checks from $last ($(git rev-parse "$last^{commit}"))"
+          node .trusted/check-commits.mjs "$last" "$AFTER"
       - run: node scripts/test-leak-scan.mjs
       - run: node scripts/test-obs-tz.mjs
       - run: node scripts/test-sites-bar.mjs
       - run: node scripts/test-svg-check.mjs
       - run: node scripts/test-rounds.mjs
+      - run: node scripts/test-check-commits.mjs
       - run: node scripts/build.mjs
         env:
           SITE_VERSION: ${{ steps.version.outputs.version }}
@@ -66,8 +75,8 @@ jobs:
           c=$(command -v google-chrome || command -v chromium || command -v chromium-browser || true)
           if [ -n "$c" ]; then "$c" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --window-size=320,180 --force-device-scale-factor=2 --screenshot="$PWD/_site/preview.png" "file://$PWD/_site/preview.svg" || echo "preview.png not made"; else echo "no Chrome: preview.png not made"; fi
       - run: node scripts/validate.mjs
-      - name: Leak scan (tracked files and the built site)
-        run: node scripts/leak-scan.mjs
+      - name: Leak scan (tracked files and the built site), from the last release's copy
+        run: node .trusted/leak-scan.mjs
       - if: steps.mode.outputs.deploy == 'true'
         uses: actions/configure-pages@v5
       - if: steps.mode.outputs.deploy == 'true'
