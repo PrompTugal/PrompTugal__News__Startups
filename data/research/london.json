@@ -1,0 +1,287 @@
+{
+  "by": "startups.b.research@PrompTugal.dinis",
+  "country": "GB",
+  "read_on": "2026-11-20",
+  "area": "london",
+  "notes": "Gathered on 2026-11-20 with WebFetch (page text summarised by a small model); WebSearch used only to find URLs. Several funding pages are roundups that give a week or month, not a day. Investor and company locations are as the pages state; where a page did not state London it is noted. No websummit.com, lu.ma, luma.com, meetup.com or eventbrite pages were fetched.",
+  "entries": [
+    {
+      "place": "london",
+      "read_on": "2026-11-20",
+      "name": "Techstars London Accelerator",
+      "kind": "accelerator",
+      "what": "A three-month, mentorship-driven programme for early-stage founders from anywhere, in all sectors, with help navigating London's capital, talent and markets. The page gives no investment figures.",
+      "url": "https://www.techstars.com/accelerators/london",
+      "source_url": "https://www.techstars.com/accelerators/london",
+      "date": "2027-03-08",
+      "status": "applications open; deadline 2026-11-18 as stated; starts 8 March 2027; Demo Day 3 June 2027"
+    },
+    {
+      "place": "london",
+      "read_on": "2026-11-20",
+      "name": "Entrepreneurs First (London office)",
+      "kind": "accelerator",
+      "what": "Helps individuals find cofounders and gives early funding. The page lists nine months of office space in central London, an equity-free grant while ideating, up to $250K investment once a company is formed and up to $5M follow-on.",
+      "url": "https://www.joinef.com/",
+      "source_url": "https://www.joinef.com/"
+    },
+    {
+      "place": "london",
+      "read_on": "2026-11-20",
+      "name": "Grow London (London & Partners)",
+      "kind": "programme",
+      "what": "Business support offer announced by the Mayor of London and delivered by London & Partners, with programmes for London startups, an export programme for scaleups and an Innovation Fellowship. Funded with £12 million through the UK Shared Prosperity Fund, as stated on the 10 May 2023 page; current terms not checked.",
+      "url": "https://www.londonandpartners.com/newsroom/news-and-communications/mayor-announces-renewed-support-for-companies-in-londons-high-growth-sectors",
+      "source_url": "https://startupsmagazine.co.uk/article-mayor-announces-renewed-support-companies-londons-high-growth-sectors",
+      "date": "2023-05-10",
+      "amount": "£12 million"
+    },
+    {
+      "place": "london",
+      "read_on": "2026-11-20",
+      "name": "London & Partners Business Growth Programme",
+      "kind": "programme",
+      "what": "Offered up to £5,000 worth of specialist support and advice, a business growth advisor and workshops in London, for businesses with fewer than 250 employees and turnover below £40m. The page is dated 26 November 2018, so it may be out of date.",
+      "url": "https://startups.co.uk/blog/london-business-growth-programme/",
+      "source_url": "https://startups.co.uk/blog/london-business-growth-programme/",
+      "date": "2018-11-26",
+      "status": "source dated 2018; current status not checked"
+    },
+    {
+      "place": "london",
+      "read_on": "2026-11-20",
+      "name": "Gradient Labs Series A (upsized)",
+      "kind": "round",
+      "what": "Upsized Series A of $26M after an initial $13M close. The top-up was led by Octopus Ventures and CommerzVentures, with Redpoint Ventures and Exceptional Capital. The funding is for US growth and product development.",
+      "url": "https://www.winstontaylor.com/insights/advising-gradient-labs-on-its-upsized-usd26m-series-a-funding-round",
+      "source_url": "https://www.winstontaylor.com/insights/advising-gradient-labs-on-its-upsized-usd26m-series-a-funding-round",
+      "date": "2026-06",
+      "amount": "$26M",
+      "company": "Gradient Labs",
+      "investors": [
+        "Octopus Ventures",
+        "CommerzVentures",
+        "Redpoint Ventures",
+        "Exceptional Capital"
+      ]
+    },
+    {
+      "place": "london",
+      "read_on": "2026-11-20",
+      "name": "Airspeed Series A",
+      "kind": "round",
+      "what": "Series A of $20M (€17.2M) led by DN Capital, with Vi Partners, Framework Venture Partners and Atlassian Ventures. The two weekly roundups give different weeks (1 to 8 and 15 to 22 June 2026).",
+      "url": "https://qubit.capital/blog/uk-series-a-weekly-funding-roundup-week-2-june-2026",
+      "source_url": "https://qubit.capital/blog/uk-series-a-weekly-funding-roundup-week-2-june-2026",
+      "date": "2026-06",
+      "amount": "$20M",
+      "company": "Airspeed",
+      "investors": [
+        "DN Capital",
+        "Vi Partners",
+        "Framework Venture Partners",
+        "Atlassian Ventures"
+      ]
+    },
+    {
+      "place": "london",
+      "read_on": "2026-11-20",
+      "name": "Braid Series A",
+      "kind": "round",
+      "what": "Series A of $38M from Octopus Ventures and KPN Ventures for enterprise connectivity technology. The page lists it among London-based rounds closed in October 2026.",
+      "url": "https://vestbee.com/insights/articles/top-european-funding-rounds-closed-in-october-2026",
+      "source_url": "https://vestbee.com/insights/articles/top-european-funding-rounds-closed-in-october-2026",
+      "date": "2026-10",
+      "amount": "$38M",
+      "company": "Braid",
+      "investors": [
+        "Octopus Ventures",
+        "KPN Ventures"
+      ]
+    },
+    {
+      "place": "london",
+      "read_on": "2026-11-20",
+      "name": "Hyperlayer Series A",
+      "kind": "round",
+      "what": "Series A of £19.5M for a programmable banking platform. The page lists it among London-based rounds closed in October 2026.",
+      "url": "https://vestbee.com/insights/articles/top-european-funding-rounds-closed-in-october-2026",
+      "source_url": "https://vestbee.com/insights/articles/top-european-funding-rounds-closed-in-october-2026",
+      "date": "2026-10",
+      "amount": "£19.5M",
+      "company": "Hyperlayer",
+      "investors": [
+        "Susquehanna International Group",
+        "Mouro Capital",
+        "Iona Star",
+        "Flintlock Capital",
+        "CDAM"
+      ]
+    },
+    {
+      "place": "london",
+      "read_on": "2026-11-20",
+      "name": "Easol Series A",
+      "kind": "round",
+      "what": "Series A of $20M led by Y Combinator, for a platform for experience businesses with an agentic AI tool for sales, support and operations. Listed among London-based rounds closed in October 2026.",
+      "url": "https://vestbee.com/insights/articles/top-european-funding-rounds-closed-in-october-2026",
+      "source_url": "https://vestbee.com/insights/articles/top-european-funding-rounds-closed-in-october-2026",
+      "date": "2026-10",
+      "amount": "$20M",
+      "company": "Easol",
+      "investors": [
+        "Y Combinator",
+        "Foundation Capital",
+        "Tiger Global",
+        "Slow Ventures",
+        "Notion Capital"
+      ]
+    },
+    {
+      "place": "london",
+      "read_on": "2026-11-20",
+      "name": "Machenta seed round",
+      "kind": "round",
+      "what": "Seed round of $40M from Union Square Ventures and Creandum for a robotics AI model that lets robots learn new tasks from a single demonstration. Listed among London-based rounds closed in October 2026.",
+      "url": "https://vestbee.com/insights/articles/top-european-funding-rounds-closed-in-october-2026",
+      "source_url": "https://vestbee.com/insights/articles/top-european-funding-rounds-closed-in-october-2026",
+      "date": "2026-10",
+      "amount": "$40M",
+      "company": "Machenta",
+      "investors": [
+        "Union Square Ventures",
+        "Creandum"
+      ]
+    },
+    {
+      "place": "london",
+      "read_on": "2026-11-20",
+      "name": "Gradient Labs",
+      "kind": "startup",
+      "what": "London AI startup founded in 2023 by former Monzo engineers. It builds vertical AI agents that automate customer service operations for financial services firms.",
+      "url": "https://www.winstontaylor.com/insights/advising-gradient-labs-on-its-upsized-usd26m-series-a-funding-round",
+      "source_url": "https://www.winstontaylor.com/insights/advising-gradient-labs-on-its-upsized-usd26m-series-a-funding-round"
+    },
+    {
+      "place": "london",
+      "read_on": "2026-11-20",
+      "name": "Airspeed",
+      "kind": "startup",
+      "what": "AI go-to-market platform whose agents update CRM records, flag deal risks and draft follow-ups for revenue teams. One roundup says it is London-based with a New York office.",
+      "url": "https://qubit.capital/blog/uk-series-a-weekly-funding-roundup-week-2-june-2026",
+      "source_url": "https://qubit.capital/blog/uk-series-a-weekly-funding-roundup-week-2-june-2026"
+    },
+    {
+      "place": "london",
+      "read_on": "2026-11-20",
+      "name": "Easol",
+      "kind": "startup",
+      "what": "Platform for experience businesses, with an agentic AI tool for sales, support and operations.",
+      "url": "https://vestbee.com/insights/articles/top-european-funding-rounds-closed-in-october-2026",
+      "source_url": "https://vestbee.com/insights/articles/top-european-funding-rounds-closed-in-october-2026"
+    },
+    {
+      "place": "london",
+      "read_on": "2026-11-20",
+      "name": "Hyperlayer",
+      "kind": "startup",
+      "what": "Programmable banking platform.",
+      "url": "https://vestbee.com/insights/articles/top-european-funding-rounds-closed-in-october-2026",
+      "source_url": "https://vestbee.com/insights/articles/top-european-funding-rounds-closed-in-october-2026"
+    },
+    {
+      "place": "london",
+      "read_on": "2026-11-20",
+      "name": "Braid",
+      "kind": "startup",
+      "what": "Enterprise connectivity technology and embedded connectivity infrastructure.",
+      "url": "https://vestbee.com/insights/articles/top-european-funding-rounds-closed-in-october-2026",
+      "source_url": "https://vestbee.com/insights/articles/top-european-funding-rounds-closed-in-october-2026"
+    },
+    {
+      "place": "london",
+      "read_on": "2026-11-20",
+      "name": "Machenta",
+      "kind": "startup",
+      "what": "Robotics AI model that lets robots learn new tasks from a single demonstration.",
+      "url": "https://vestbee.com/insights/articles/top-european-funding-rounds-closed-in-october-2026",
+      "source_url": "https://vestbee.com/insights/articles/top-european-funding-rounds-closed-in-october-2026"
+    },
+    {
+      "place": "london",
+      "read_on": "2026-11-20",
+      "name": "Dawn Capital",
+      "kind": "investor",
+      "what": "Venture investor focused on B2B for two decades, with a London address on its site. Its site features Flatpay, Runware, Blackwall, Dataiku and Mimecast. No fund sizes stated.",
+      "url": "https://www.dawncapital.com/",
+      "source_url": "https://www.dawncapital.com/"
+    },
+    {
+      "place": "london",
+      "read_on": "2026-11-20",
+      "name": "Notion Capital",
+      "kind": "investor",
+      "what": "Early-stage business software investor with a registered address in London. The page states $2bn assets under management and 200+ companies invested in.",
+      "url": "https://www.notioncapital.com/",
+      "source_url": "https://www.notioncapital.com/",
+      "amount": "$2bn assets under management"
+    }
+  ],
+  "gaps": [
+    {
+      "url": "https://www.grow.london/about-us/about",
+      "what": "Grow London programme pages",
+      "why": "HTTP 403; not worked around"
+    },
+    {
+      "url": "https://www.londonandpartners.com/newsroom/news-and-communications/grow-london-global-launches-biggest-ever-cohort-of-scaling-businesses",
+      "what": "Grow London Global cohort news",
+      "why": "HTTP 403; not worked around"
+    },
+    {
+      "url": "https://www.imperial.ac.uk/enterprise/",
+      "what": "Imperial enterprise support",
+      "why": "HTTP 403; not worked around"
+    },
+    {
+      "url": "https://www.ucl.ac.uk/innovation-enterprise/",
+      "what": "UCL Innovation & Enterprise",
+      "why": "HTTP 403; not worked around"
+    },
+    {
+      "url": "https://www.balderton.com/",
+      "what": "Balderton Capital",
+      "why": "HTTP 403; not worked around"
+    },
+    {
+      "url": "https://www.london.gov.uk/programmes-strategies/business-and-economy",
+      "what": "Mayor of London business programmes",
+      "why": "HTTP 403; not worked around"
+    },
+    {
+      "url": "https://www.british-business-bank.co.uk/finance-hub/",
+      "what": "British Business Bank startup finance",
+      "why": "HTTP 403; not worked around"
+    },
+    {
+      "url": "https://www.londonbusinessangels.com/",
+      "what": "London Business Angels",
+      "why": "HTTP 503"
+    },
+    {
+      "url": "https://eaglelabs.barclays/",
+      "what": "Barclays Eagle Labs",
+      "why": "HTTP 503"
+    },
+    {
+      "url": "https://www.antler.co/location/london",
+      "what": "Antler London",
+      "why": "HTTP 404"
+    },
+    {
+      "url": "https://qubit.capital/blog/uk-series-a-weekly-funding-roundup-week-4-june-2026",
+      "what": "Conduct Series A",
+      "why": "the page does not say the company is in London, so it is left out (startups.b@PrompTugal.dinis, 2026-11-20)"
+    }
+  ]
+}

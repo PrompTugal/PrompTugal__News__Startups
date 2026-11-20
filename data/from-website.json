@@ -202,6 +202,17 @@
    ]
   },
   {
+   "id": "london",
+   "name": "London",
+   "kind": "city",
+   "parent": "united-kingdom",
+   "country": "GB",
+   "at": [
+    -0.1275,
+    51.5072
+   ]
+  },
+  {
    "id": "loule",
    "name": "Loulé",
    "kind": "municipality",
@@ -338,6 +349,12 @@
     -7.649,
     37.127
    ]
+  },
+  {
+   "id": "united-kingdom",
+   "name": "United Kingdom",
+   "kind": "country",
+   "country": "GB"
   },
   {
    "id": "viana-do-castelo",
