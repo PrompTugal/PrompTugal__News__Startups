@@ -4,9 +4,9 @@
  "site": "https://startups.promptugal.news",
  "repo": "PrompTugal/PrompTugal__News__Startups (dev)",
  "issue": "WS-177",
- "updated": "2026-11-20T08:50:27Z",
+ "updated": "2026-11-20T19:47:11Z",
  "started_by": "conductor.b@PrompTugal.dinis at Dinis's word (PrompTugal__News__Website board/guidance/2026-11-18-five-sites-on-account-b.md)",
- "state": "Morning (08:43 Lisbon wake, 20 Nov): the import now reads ontologist@'s places registry (56cb493), and London is on the site: data/research/london.json (18 public facts), its own place page and the map's London inset. No hold. Next wake 19:43 Lisbon",
+ "state": "Day closed (19:43 Lisbon wake, 20 Nov): London deepened to 28 facts (c0568b8) and three more Portuguese investor deals; 560 facts in 36 places. No hold. Next wake 08:43 Lisbon",
  "observability": {
   "lane": "startups",
   "vault": "wi8kg0v6 on dev.send.sgraph.ai (private; 4 append lanes; drain key sha256:2b7fae9c14f87225 inside)",
@@ -15,6 +15,7 @@
   "made_by": "scripts/obs-setup.py"
  },
  "done": [
+  "20 Nov evening: London +10 facts (c0568b8), investor deals +3; predictions line (8d05e59)",
   "20 Nov: the import reads data/site/places-registry.json (56cb493; Lisboa shown as Lisbon, The Algarve as Algarve; counts unchanged). London research and the London inset (this commit): 547 facts in 36 places",
   "18 Nov: masthead chip 'Pay for what you read · £balance' (removed later that night: this site carries no billing) (this site's own meter, sg-meter v1.5.0 vendored), /account/ with the reading graph, the sites rail at the right edge, page-view counting with the lane startups (commit cda5ed8)",
   "18 Nov: IPMA checked: no page here is built on IPMA data, so none is kept outside the meter",
@@ -60,14 +61,14 @@
  ],
  "blocked": [],
  "next": [
-  "London: deepen data/research/london.json (18 facts, read 20 Nov through a summarising fetch; 10 pages refused or missing, in its gaps); re-read the two older support sources (2018, 2023) for current status. The EU inset at Brussels only once this site has EU data",
+  "London: 28 facts in data/research/london.json; the Business Growth Programme's current status is not confirmed; Faber's Ponda round (London) found by the deals pass could go in london.json after a read. The EU inset at Brussels only once this site has EU data",
   "The map: ptmap 1.0.2 on /places/ draws Portugal's places as dots (the registry's seat first, data/map/places-at.json second) and London as the inset",
   "Predictions: run node scripts/predictions.mjs at each wake; after a call's date, read its page once and write its outcome line (held, missed or gap); show what we said beside what happened on /calls/ (designer@'s PF5 to PF9)",
   "The 17 Nov research files (algarve.json, lisbon-porto-national.json) do not record how pages were read: 121 items say 'reading method not recorded'; re-read a sample at source and record the method, or leave as stated",
   "From the 16:43 wake: inner passes as Sonnet sub-agents (opening conductor pass, security pre-review, the work, security and AppSec post-review of the diff, closing pass), per PrompTugal__News__Website board/guidance/2026-11-18-inner-passes-and-security.md",
   "security@: review the three threat models in docs/threat-models/",
   "Terms pages for the 104 hosts not found yet (councils that reset connections; observador.pt, publico.pt, rtp.pt, gov.pt)",
-  "Investors: Faber and BY Venture Partners deals; Busy Angels, Hovione Capital, Sonae IM, Big Start Ventures, Beta Capital",
+  "Investors: the 20 Nov deals pass found no 2025-26 deal in a Portuguese company for Faber, BY Venture Partners, Hovione Capital, Sonae IM (Bright Pixel) or Big Start Ventures (gaps in investor-deals.json); re-read LoopOS's city (Coimbra in a search snippet only)",
   "Load data dynamically from data.promptugal.news where it has what a page needs",
   "Weak signals (Dinis 15:40, guidance 2026-11-18-capture-the-weak-signals.md): when data.b@'s API serves them, show per place and per company: Portuguese startups' public GitHub activity, funding (CORDIS, PRR, Portugal Ventures and accelerator portfolios), patents and trademarks (INPI, EPO, EUIPO), company acts (Portal da Justiça), careers pages where allowed. Plan the pages around the API as each lands; collect nothing ourselves",
   "Pipeline standard (same guidance) for this site's own sources: today a research pull keeps our summary, the source URL and the read date, not the page as received. Proposal for Dinis: keep the raw capture of each page read (timestamped, never overwritten) in a vault, and give each research area a source page and an OpenAPI description of data/facts.json; or leave raw capture to data.b@'s collectors where a source becomes a feed",
