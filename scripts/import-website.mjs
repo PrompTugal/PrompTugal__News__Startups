@@ -1,4 +1,4 @@
-// Import: read the public by-place research and the mapped companies from a checkout of
+// Import: read the places registry, the public by-place research and the mapped companies from a checkout of
 // PrompTugal/PrompTugal__News__Website and write data/from-website.json, public fields only.
 // Written by startups@PrompTugal.dinis, 2026-11-17. Node built-ins only.
 //
@@ -13,7 +13,8 @@ import { join } from 'node:path';
 import { execFileSync } from 'node:child_process';
 
 const src = process.argv[2] || '../PrompTugal__News__Website';
-if (!existsSync(join(src, 'data/by-place/places.json'))) { console.error(`import: no data/by-place/places.json under ${src}`); process.exit(1); }
+const REG = 'data/site/places-registry.json';   // ontologist@'s registry of places every site reads (conductor.b@, 19 Nov 2026)
+if (!existsSync(join(src, REG))) { console.error(`import: no ${REG} under ${src}`); process.exit(1); }
 const commit = execFileSync('git', ['-C', src, 'rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
 const read = p => JSON.parse(readFileSync(join(src, p), 'utf8'));
 const clean = s => (typeof s === 'string' ? s.replaceAll('—', ', ').replace(/\s+/g, ' ').trim() : undefined);
@@ -23,7 +24,27 @@ const pick = (o, keys) => Object.fromEntries(keys.filter(k => clean(o[k])).map(k
 const SUPPORT = { 'public desk': 'public desk', incubator: 'incubator', accelerator: 'accelerator', space: 'space', community: 'community', mentoring: 'mentoring', programme: 'programme', funding: 'funding programme' };
 const MONEY = { grant: 'grant', investment: 'round', programme: 'programme', fund: 'fund', investor: 'investor' };
 
-const places = read('data/by-place/places.json').places.map(p => pick(p, ['id', 'name', 'kind', 'parent']));
+// Places from the registry (one source, not a file of our own). A place's id here is the one its by-place file uses
+// (the registry's id or one of its aliases, so Lisbon stays "lisboa" and its URL is unchanged); parent "place:<id>"
+// maps the same way. Kept: places with a by-place file or used by this site's own research files, and their ancestors.
+const reg = read(REG).places;
+const regById = new Map(reg.map(p => [p.id, p]));
+const hasFile = id => existsSync(join(src, `data/by-place/${id}.json`));
+const ownId = p => [p.id, ...(p.aliases || [])].find(hasFile) || p.id;
+const used = new Set();
+for (const f of existsSync('data/research') ? readdirSync('data/research').filter(f => f.endsWith('.json')) : []) {
+  const d = JSON.parse(readFileSync(join('data/research', f), 'utf8'));
+  for (const e of d.entries || []) if (e.place) used.add(e.place);
+}
+const wanted = p => [p.id, ...(p.aliases || [])].some(id => hasFile(id) || used.has(id));
+const keep = new Set();
+for (const p of reg) if (wanted(p)) for (let q = p, seen = new Set(); q && !seen.has(q.id); q = q.parent ? regById.get(String(q.parent).replace(/^place:/, '')) : null) { seen.add(q.id); keep.add(q.id); }
+const places = reg.filter(p => keep.has(p.id)).map(p => {
+  const parent = p.parent ? regById.get(String(p.parent).replace(/^place:/, '')) : null;
+  const o = { ...pick({ ...p, id: ownId(p), parent: parent ? ownId(parent) : undefined }, ['id', 'name', 'kind', 'parent', 'country']) };
+  if (Array.isArray(p.at) && p.at.length === 2 && p.at.every(Number.isFinite)) o.at = p.at;
+  return o;
+});
 const entries = [];
 for (const p of places) {
   const file = `data/by-place/${p.id}.json`;

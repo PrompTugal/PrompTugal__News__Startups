@@ -6,7 +6,7 @@
 ```json
 { "by": "startups.research@PrompTugal.dinis", "country": "PT", "read_on": "YYYY-MM-DD", "area": "algarve",
   "entries": [ { "name": "", "kind": "incubator|accelerator|programme|call|public desk|round|grant|fund|investor|startup|...",
-                 "place": "<a place id from data/by-place/places.json>", "what": "", "url": "", "source_url": "", "read_on": "",
+                 "place": "<a place id from the Website's data/site/places-registry.json, or one of its aliases>", "what": "", "url": "", "source_url": "", "read_on": "",
                  "date": "", "amount": "", "company": "", "investors": [], "status": "", "country": "" } ],
   "gaps": [ { "url": "", "what": "", "why": "" } ] }
 ```

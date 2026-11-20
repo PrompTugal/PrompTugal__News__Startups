@@ -303,7 +303,7 @@ ${fv.map(v => `<section class="view view-${v.slug}" aria-label="${esc(v.name)}">
   // The shared map (ptmap, scripts/lib/ptmap.mjs; Dinis, 19 Nov 2026): Portugal big, one dot per place with facts, sized by its count.
   // London and the EU (Brussels) insets only once this site has their data; today it has neither.
   const AT = (() => { try { return JSON.parse(readFileSync('data/map/places-at.json', 'utf8')).at || {}; } catch { return {}; } })();
-  const mapPlaces = places.filter(p => p.kind !== 'country' && AT[p.id]).map(p => ({ id: p.id, name: p.name, at: AT[p.id], href: `${SITE}/places/${p.id}/`, n: placeCounts(p.id).reduce((a, b) => a + b, 0) })).filter(p => p.n > 0);
+  const mapPlaces = places.filter(p => p.kind !== 'country' && (p.at || AT[p.id])).map(p => ({ id: p.id, name: p.name, at: p.at || AT[p.id], href: `${SITE}/places/${p.id}/`, n: placeCounts(p.id).reduce((a, b) => a + b, 0) })).filter(p => p.n > 0);
   const mapData = { places: mapPlaces, label: 'Places with startup facts on this site' };
   const mapHtml = MAP && mapPlaces.length ? `<div id="ptmap" class="ptmap-host"></div><script type="application/json" id="ptmap-data">${JSON.stringify(mapData).replace(/</g, '\\u003c')}</script>` : '';
   const mapHead = mapHtml ? `<link rel="stylesheet" href="/${MAP_DIR}/ptmap.css">\n<script defer src="/${MAP_DIR}/ptmap.js"></script>\n<script defer src="/assets/ptmap-init.js"></script>\n` : '';
