@@ -127,6 +127,63 @@
       "source_url": "https://business-it.pt/2024/06/20/chegar-a-novos-mercados-europeus-e-o-objectivo-da-azitek-apos-angariar-investimento-de-750-mil-euros/",
       "read_on": "2026-11-19",
       "how_read": "Raw HTML of the article re-read by startups.b@PrompTugal.dinis on 19 November 2026 (\"O financiamento foi liderado pela Beta Capital\")."
+    },
+    {
+      "name": "Bynd into Relive",
+      "kind": "round",
+      "section": "funding",
+      "place": "lisboa",
+      "company": "Relive",
+      "investors": [
+        "Indico Capital Partners (lead)",
+        "Shilling",
+        "Bynd"
+      ],
+      "amount": "USD 5.5 million",
+      "date": "2025-02-17",
+      "what": "Relive, a proptech platform with tools for estate agents to rent, buy and sell homes, closed a Series A led by Indico Capital Partners with Shilling and Bynd taking part. The money is for hiring, the platform and expansion from Texas into more US states.",
+      "url": "https://portugalglobal.pt/en/news/2025/february/portuguese-proptech-relive-secures-55m",
+      "source_url": "https://portugalglobal.pt/en/news/2025/february/portuguese-proptech-relive-secures-55m",
+      "read_on": "2026-11-20",
+      "how_read": "WebFetch summary of the Portugal Global article (date as listed on the page); the page names the Lisbon-based team; Bynd was formerly Busy Angels; Relive's money is mainly for the US business."
+    },
+    {
+      "name": "Beta Capital into LoopOS",
+      "kind": "round",
+      "section": "funding",
+      "place": "portugal",
+      "company": "LoopOS",
+      "investors": [
+        "Impact Innovation Fund of 3XP Global (lead)",
+        "Beta Capital",
+        "FundBox"
+      ],
+      "amount": "EUR 3 million",
+      "date": "2025-02-17",
+      "what": "LoopOS, which offers a no-code platform for companies to run circular-economy channels such as returns, repairs, trade-ins and resale, closed a round led by the Impact Innovation Fund of 3XP Global, with Beta Capital and FundBox taking part. The money is for the technology tools and for the Portuguese, Spanish and French markets.",
+      "url": "https://jornaleconomico.sapo.pt/?p=1269193",
+      "source_url": "https://jornaleconomico.sapo.pt/?p=1269193",
+      "read_on": "2026-11-20",
+      "how_read": "WebFetch summary of the Jornal Economico article; the page does not name the company's city; the round type is not stated there (a Nordic9 page tags it seed)."
+    },
+    {
+      "name": "Beta Capital into PFx Biotech",
+      "kind": "round",
+      "section": "funding",
+      "place": "porto",
+      "company": "PFx Biotech",
+      "investors": [
+        "Buenavista Equity Partners (lead)",
+        "EIT Food",
+        "Beta Capital"
+      ],
+      "amount": "EUR 2.5 million",
+      "date": "2025-06-06",
+      "what": "PFx Biotech, which uses precision fermentation to make bioidentical human milk proteins such as lactoferrin, closed a seed round led by Buenavista Equity Partners with EIT Food and Beta Capital. A separate EUR 2.5 million EIC Accelerator grant came with it; the money is for scaling production, labs and the team.",
+      "url": "https://startuprise.co.uk/portuguese-based-pfx-biotech-secures-e2-5m-in-seed-round/",
+      "source_url": "https://startuprise.co.uk/portuguese-based-pfx-biotech-secures-e2-5m-in-seed-round/",
+      "read_on": "2026-11-20",
+      "how_read": "WebFetch summary of the Startup Rise article, which gives Porto as the base; the date is the page's announcement date; a Vegconomist page dates it 9 June 2025 and does not name a city."
     }
   ],
   "gaps": [
@@ -174,6 +231,41 @@
       "what": "Pollen's 2026 seed round (with Bynd, formerly Busy Angels) was found again here but is already in data/research/lisbon-porto-national.json, so it is not repeated",
       "url": "https://techfundingnews.com/pollen-3-2m-seed-rui-bento-uber-universal-battery-swapping-europe/",
       "why": "duplicate of an existing entry"
+    },
+    {
+      "url": "https://eco.sapo.pt/2025/11/25/portuguesa-faber-colidera-ronda-de-24-milhoes-em-empresa-britanica-de-termicos-para-roupa-e-edredoes/",
+      "what": "Faber 2025 to 2026 deals found are all in non-Portuguese companies: Ponda (London, USD 2.4 million, co-led with Counteract, 2025-11-25) and Zymvol (Barcelona, EUR 3 million seed led by Faber, 2025-02-12, eco.sapo.pt)",
+      "why": "No Faber round in a Portugal-based startup in 2025 or 2026 was found. Ponda and Zymvol are left out as not Portuguese (Ponda may belong in london.json)."
+    },
+    {
+      "url": "https://eco.sapo.pt/2026/04/21/portuguesa-bynd-venture-capital-em-ronda-de-18-milhoes-da-spacebackend/",
+      "what": "Bynd (formerly Busy Angels) in Spacebackend, EUR 1.8 million pre-seed, 2026-04-21, and in Wio (EUR 1.2 million, 2026-05, led by Next Tier Ventures)",
+      "why": "Spacebackend is described as Spanish-Luxembourgish and Wio as Madrid-based (search results only), so neither is a Portuguese company and both are left out."
+    },
+    {
+      "url": "https://eco.sapo.pt/2025/10/13/portuguesa-start-ventures-investe-na-claimsorted-para-revolucionar-gestao-de-sinistros/",
+      "what": "Start Ventures (formerly Big Start Ventures): ClaimSorted (New York and London, USD 13.3 million seed led by Atomico, 2025-10-13) and WeatherPromise (Delaware and Berlin, USD 12.8 million Series A led by Maveron, 2026-01-14) were read",
+      "why": "Both are non-Portuguese companies, so left out. No 2025 or 2026 Start Ventures round in a Portugal-based startup was found."
+    },
+    {
+      "url": "https://eco.sapo.pt/2026/06/11/bright-pixel-participa-em-ronda-de-85-milhoes-da-startup-de-ciberseguranca-theker/",
+      "what": "Bright Pixel (formerly Sonae IM) 2025 to 2026 deals seen in search: Brij (US, 2025-06-24, read), Theker (Barcelona), Mesh Security (US), Encord (London), Huskeys (Israel)",
+      "why": "All foreign; no round in a Portugal-based startup found. Only Brij was read; the rest are search snippets and not recorded."
+    },
+    {
+      "url": "https://www.srslegal.pt/en/communication/news/srs-advogados-advises-bionova-on-investment-in-spanish-vaxdyn/4929",
+      "what": "Hovione Capital (now Bionova Capital): no 2025 or 2026 deal in a Portuguese company found",
+      "why": "Search results say new investing moved to Biovance Capital Partners; the Vaxdyn deal is Spanish. Search snippets only, not fetched."
+    },
+    {
+      "url": "https://tech.eu/2026/10/29/by-venture-partners-closes-60m-fund-iii-and-opens-lisbon-office-to-deepen-european-push//",
+      "what": "BY Venture Partners: second search found again only the Fund III close and Lisbon office, no named deal in a Portuguese startup",
+      "why": "Nothing further recorded."
+    },
+    {
+      "url": "https://elreferente.es/?p=177616",
+      "what": "El Referente LoopOS article and uptec.up.pt/?p=22542 (PFx Biotech)",
+      "why": "El Referente returned HTTP 403, not worked around; the UPTEC page did not mention PFx Biotech or Beta Capital in the text read. The bebeez.eu PFx page returned 404."
     }
   ]
 }
