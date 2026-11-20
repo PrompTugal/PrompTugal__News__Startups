@@ -3,7 +3,7 @@
   "country": "GB",
   "read_on": "2026-11-20",
   "area": "london",
-  "notes": "Gathered on 2026-11-20 with WebFetch (page text summarised by a small model); WebSearch used only to find URLs. Several funding pages are roundups that give a week or month, not a day. Investor and company locations are as the pages state; where a page did not state London it is noted. No websummit.com, lu.ma, luma.com, meetup.com or eventbrite pages were fetched.",
+  "notes": "Gathered on 2026-11-20 with WebFetch (page text summarised by a small model); WebSearch used only to find URLs. Several funding pages are roundups that give a week or month, not a day. Investor and company locations are as the pages state; where a page did not state London it is noted. No websummit.com, lu.ma, luma.com, meetup.com or eventbrite pages were fetched. Second pass (2026-11-20): Grow London entry updated from a 11 September 2026 London Stock Exchange page; no current page for the Business Growth Programme could be read.",
   "entries": [
     {
       "place": "london",
@@ -30,11 +30,11 @@
       "read_on": "2026-11-20",
       "name": "Grow London (London & Partners)",
       "kind": "programme",
-      "what": "Business support offer announced by the Mayor of London and delivered by London & Partners, with programmes for London startups, an export programme for scaleups and an Innovation Fellowship. Funded with £12 million through the UK Shared Prosperity Fund, as stated on the 10 May 2023 page; current terms not checked.",
+      "what": "London & Partners' Grow London programmes. The page, dated 11 September 2026, says Grow London Global supported 265 London scale-up businesses to expand internationally, and that Grow London overall (since 2011) has supported 108,000 additional jobs in London. The page does not say whether the programmes are open to applications.",
       "url": "https://www.londonandpartners.com/newsroom/news-and-communications/mayor-announces-renewed-support-for-companies-in-londons-high-growth-sectors",
-      "source_url": "https://startupsmagazine.co.uk/article-mayor-announces-renewed-support-companies-londons-high-growth-sectors",
-      "date": "2023-05-10",
-      "amount": "£12 million"
+      "source_url": "https://www.londonstockexchange.com/en/news/market-celebrations/2026/london-partners-celebrates-record-year-results-their-work-supporting-global-scale-ups",
+      "date": "2026-09-11",
+      "status": "reported active as of 11 September 2026 (page gives results, not application status)"
     },
     {
       "place": "london",
@@ -45,7 +45,7 @@
       "url": "https://startups.co.uk/blog/london-business-growth-programme/",
       "source_url": "https://startups.co.uk/blog/london-business-growth-programme/",
       "date": "2018-11-26",
-      "status": "source dated 2018; current status not checked"
+      "status": "current status not confirmed"
     },
     {
       "place": "london",
@@ -225,6 +225,116 @@
       "url": "https://www.notioncapital.com/",
       "source_url": "https://www.notioncapital.com/",
       "amount": "$2bn assets under management"
+    },
+    {
+      "place": "london",
+      "read_on": "2026-11-20",
+      "name": "Hoxton Ventures",
+      "kind": "investor",
+      "what": "Venture firm that invests early in startups. Its footer lists an office at 55 New Oxford Street, London. The page states $369M total capital raised and 90 portfolio companies.",
+      "url": "https://www.hoxtonventures.com/",
+      "source_url": "https://www.hoxtonventures.com/",
+      "amount": "$369M total capital raised"
+    },
+    {
+      "place": "london",
+      "read_on": "2026-11-20",
+      "name": "LocalGlobe",
+      "kind": "investor",
+      "what": "Early-stage fund that backs founders, listed as generalist. The page lists an address at 2 Brill Place, London NW1 1DX. No fund size is stated.",
+      "url": "https://www.phoenixcourt.vc/funds/localglobe/",
+      "source_url": "https://www.phoenixcourt.vc/funds/localglobe/"
+    },
+    {
+      "place": "london",
+      "read_on": "2026-11-20",
+      "name": "Episode 1 Ventures",
+      "kind": "investor",
+      "what": "Early-stage investor in B2B software companies raising pre-seed or seed rounds. The footer gives a London office at 112-116 New Oxford Street. The page states £170m total funds raised.",
+      "url": "https://www.episode1.com/",
+      "source_url": "https://www.episode1.com/",
+      "amount": "£170m total funds raised"
+    },
+    {
+      "place": "london",
+      "read_on": "2026-11-20",
+      "name": "Index Ventures",
+      "kind": "investor",
+      "what": "Investment firm that backs founders. The footer lists offices in San Francisco, New York and London. No fund size is stated.",
+      "url": "https://www.indexventures.com/",
+      "source_url": "https://www.indexventures.com/"
+    },
+    {
+      "place": "london",
+      "read_on": "2026-11-20",
+      "name": "Connect Ventures",
+      "kind": "investor",
+      "what": "Pre-seed and seed investor since 2012, backing technical founders in AI, hardware and automation. The page says it invests across Europe from its home in London and leads or co-leads rounds of $500k to $5m.",
+      "url": "https://www.connectventures.co/",
+      "source_url": "https://www.connectventures.co/",
+      "amount": "$500k-$5m rounds"
+    },
+    {
+      "place": "london",
+      "read_on": "2026-11-20",
+      "name": "firstminute capital",
+      "kind": "investor",
+      "what": "Early-stage fund investing in European founders across AI and deep tech. The footer gives an address at 180 Strand, London. The page states £1m to £3m tickets and $500m AUM.",
+      "url": "https://www.firstminute.capital/",
+      "source_url": "https://www.firstminute.capital/",
+      "amount": "$500m AUM; £1m-£3m tickets"
+    },
+    {
+      "place": "london",
+      "read_on": "2026-11-20",
+      "name": "King's Start-up Accelerator (King's College London)",
+      "kind": "accelerator",
+      "what": "Six-month programme of workshops and sprints plus three months of follow-on support, open to King's students and alumni. It lists grant funding worth £65K in total and office space in Bush House. Ventures pledge 3% of shares if they reach stated success criteria within five years.",
+      "url": "https://www.kcl.ac.uk/entrepreneurship/scale-your-venture/start-ups",
+      "source_url": "https://www.kcl.ac.uk/entrepreneurship/scale-your-venture/start-ups",
+      "date": "2026-06-17",
+      "amount": "£65K grant funding in total",
+      "status": "applications for the 2026-27 cohort closed; next window not stated"
+    },
+    {
+      "place": "london",
+      "read_on": "2026-11-20",
+      "name": "London Business School Incubator Programme",
+      "kind": "incubator",
+      "what": "Incubator for LBS alumni start-up founders, run by the Institute of Entrepreneurship and Private Capital. It lists mentorship, workshops, office hours and bursaries. No fee is stated.",
+      "url": "https://www.london.edu/faculty-and-research/institute-of-entrepreneurship-and-private-capital/opportunities-and-resources/scale/incubator-programme",
+      "source_url": "https://www.london.edu/faculty-and-research/institute-of-entrepreneurship-and-private-capital/opportunities-and-resources/scale/incubator-programme",
+      "status": "2026 applications closed 28 April 2026; wildcard entry before 1 September as stated"
+    },
+    {
+      "place": "london",
+      "read_on": "2026-11-20",
+      "name": "Roehampton Startup Incubator & Accelerator",
+      "kind": "accelerator",
+      "what": "Free programme for University of Roehampton graduates with a business idea or early-stage venture, with workshops, coaching, mentors and demo days. The page says it is in London.",
+      "url": "https://www.roehampton.ac.uk/roehampton-startup-accelerator/",
+      "source_url": "https://www.roehampton.ac.uk/roehampton-startup-accelerator/",
+      "status": "next cohort late August to October 2026 as stated; page said open for applications"
+    },
+    {
+      "place": "london",
+      "read_on": "2026-11-20",
+      "name": "Capsa AI Series A",
+      "kind": "round",
+      "what": "Series A of $18m, co-led by TX Ventures and Pivot Investment Partners, with Bek Ventures. The article calls Capsa AI a London and New York-based startup building an AI operating system for private capital.",
+      "url": "https://fintech.global/2026/06/10/capsa-ai-raises-18m-series-a-for-private-capital-ai/",
+      "source_url": "https://fintech.global/2026/06/10/capsa-ai-raises-18m-series-a-for-private-capital-ai/",
+      "date": "2026-06-10",
+      "amount": "$18m",
+      "company": "Capsa AI",
+      "investors": [
+        "TX Ventures",
+        "Pivot Investment Partners",
+        "Bek Ventures",
+        "Antler",
+        "Outward VC",
+        "Cornerstone VC"
+      ]
     }
   ],
   "gaps": [
@@ -282,6 +392,31 @@
       "url": "https://qubit.capital/blog/uk-series-a-weekly-funding-roundup-week-4-june-2026",
       "what": "Conduct Series A",
       "why": "the page does not say the company is in London, so it is left out (startups.b@PrompTugal.dinis, 2026-11-20)"
+    },
+    {
+      "url": "https://www.croydon.gov.uk/business-licences-and-tenders/running-business/business-support-and-advice/business-directory/search-directory/london-partners-business-growth-programme",
+      "what": "Croydon directory page on the Business Growth Programme",
+      "why": "HTTP 403; not worked around"
+    },
+    {
+      "url": "https://www.citystgeorges.ac.uk/cityventures",
+      "what": "City Ventures / City Launch Lab",
+      "why": "HTTP 403; not worked around"
+    },
+    {
+      "url": "https://lsbu.ac.uk/business/entrepreneurship/southbank-starters/south-bank-works",
+      "what": "LSBU South Bank Works",
+      "why": "HTTP 403; not worked around"
+    },
+    {
+      "url": "https://www.atomico.com/",
+      "what": "Atomico",
+      "why": "HTTP 429; not retried"
+    },
+    {
+      "url": "https://www.seedcamp.com/",
+      "what": "Seedcamp",
+      "why": "fetched, but the page does not state a London base or office (only a London job listing), so it is left out"
     }
   ]
 }
