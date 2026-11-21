@@ -417,6 +417,11 @@
       "url": "https://www.seedcamp.com/",
       "what": "Seedcamp",
       "why": "fetched, but the page does not state a London base or office (only a London job listing), so it is left out"
+    },
+    {
+      "url": "https://startuprise.co.uk/uk-fashiontech-startup-ponda-secures-e2m-to-advance-sustainable-fashion-innovation/",
+      "what": "Ponda seed round co-led by Faber (Lisbon) and Counteract (London), EUR 2.09 million, page dated 24 November 2025, read 2026-11-21",
+      "why": "The page describes Ponda as the Bristol-based biomaterials company, not London-based, so no London entry was added. Counteract, a co-lead, is described as London. The eu-startups.com article returned HTTP 403, not worked around."
     }
   ]
 }

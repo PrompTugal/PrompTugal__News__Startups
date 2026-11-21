@@ -37,7 +37,7 @@ export function loadData() {
   // (its country field, a code or a country id), or to the only country there is when it names none.
   const COUNTRIES = JSON.parse(readFileSync('data/countries.json', 'utf8')).countries;
   const byId = new Map(places.map(p => [p.id, p]));
-  const countryOf = p => { const seen = new Set(); while (p && !seen.has(p.id)) { seen.add(p.id); if (p.kind === 'country') return p.id; p = byId.get(p.parent); } return ''; };
+  const countryOf = p => { const seen = new Set(); while (p && !seen.has(p.id)) { seen.add(p.id); if (p.kind === 'country' || (!p.parent && COUNTRIES[p.id])) return p.id; p = byId.get(p.parent); } return ''; };
   for (const p of places) { p.country = countryOf(p); p.country_code = (COUNTRIES[p.country] || {}).code || ''; }
   const countryPlaces = places.filter(p => p.kind === 'country').map(p => p.id);
   const countryFor = c => { if (!c) return countryPlaces.length === 1 ? countryPlaces[0] : ''; const k = String(c).toLowerCase(); return countryPlaces.find(id => id === k || (COUNTRIES[id] || {}).code === k.toUpperCase()) || ''; };
@@ -87,12 +87,16 @@ export function loadData() {
 export function orderPlaces(places, entries) {
   const count = id => entries.filter(e => e.place === id).length;
   const alg = places.filter(p => p.parent === 'algarve').sort((a, b) => count(b.id) - count(a.id) || a.name.localeCompare(b.name));
-  const rest = places.filter(p => !['algarve', 'lisboa', 'porto'].includes(p.id) && p.kind !== 'country' && p.parent !== 'algarve').sort((a, b) => a.name.localeCompare(b.name));
+  const home = p => (p.country_code || 'PT') === 'PT';
+  const rest = places.filter(p => home(p) && !['algarve', 'lisboa', 'porto'].includes(p.id) && p.kind !== 'country' && p.parent !== 'algarve').sort((a, b) => a.name.localeCompare(b.name));
+  // Beyond Portugal (Dinis, 18 Nov 2026, "Beyond Portugal: London"): London, then the EU as a whole, then any other place outside Portugal.
+  const beyond = places.filter(p => !home(p) && p.kind !== 'country').sort((a, b) => (a.id === 'london' ? -1 : b.id === 'london' ? 1 : 0) || (a.id === 'european-union' ? -1 : b.id === 'european-union' ? 1 : 0) || a.name.localeCompare(b.name));
   const by = id => places.find(p => p.id === id);
   return [
     { group: 'The Algarve', places: [by('algarve'), ...alg].filter(Boolean) },
     { group: 'Lisbon and Porto', places: [by('lisboa'), by('porto')].filter(Boolean) },
     { group: 'Other places', places: rest },
+    ...(beyond.length ? [{ group: 'Beyond Portugal', places: beyond }] : []),
     ...places.filter(p => p.kind === 'country').map(c => ({ group: `${c.name} as a whole`, places: [c] })),
   ];
 }
@@ -302,11 +306,12 @@ ${fv.map(v => `<section class="view view-${v.slug}" aria-label="${esc(v.name)}">
   const placeCounts = id => ['support', 'funding', 'companies', 'investors'].map(s => entries.filter(e => e.place === id && e.section === s).length);
   // The shared map (ptmap, scripts/lib/ptmap.mjs; Dinis, 19 Nov 2026): Portugal big, one dot per place with facts, sized by its count.
   // Portugal's places are dots; London is the small inset once it has facts (data/research/london.json, 20 Nov 2026).
-  // The EU (Brussels) inset only once this site has EU data; today it has none.
+  // The EU is the Brussels inset once it has facts (data/research/eu.json, 21 Nov 2026).
   const AT = (() => { try { return JSON.parse(readFileSync('data/map/places-at.json', 'utf8')).at || {}; } catch { return {}; } })();
   const mapPlaces = places.filter(p => p.kind !== 'country' && (p.country_code || 'PT') === 'PT' && (p.at || AT[p.id])).map(p => ({ id: p.id, name: p.name, at: p.at || AT[p.id], href: `${SITE}/places/${p.id}/`, n: placeCounts(p.id).reduce((a, b) => a + b, 0) })).filter(p => p.n > 0);
   const londonN = places.some(p => p.id === 'london') ? placeCounts('london').reduce((a, b) => a + b, 0) : 0;
-  const mapData = { places: mapPlaces, label: 'Places with startup facts on this site', ...(londonN ? { london: { href: `${SITE}/places/london/`, n: londonN } } : {}) };
+  const euN = places.some(p => p.id === 'european-union') ? placeCounts('european-union').reduce((a, b) => a + b, 0) : 0;
+  const mapData = { places: mapPlaces, label: 'Places with startup facts on this site', ...(londonN ? { london: { href: `${SITE}/places/london/`, n: londonN } } : {}), ...(euN ? { eu: { href: `${SITE}/places/european-union/`, n: euN } } : {}) };
   const mapHtml = MAP && mapPlaces.length ? `<div id="ptmap" class="ptmap-host"></div><script type="application/json" id="ptmap-data">${JSON.stringify(mapData).replace(/</g, '\\u003c')}</script>` : '';
   const mapHead = mapHtml ? `<link rel="stylesheet" href="/${MAP_DIR}/ptmap.css">\n<script defer src="/${MAP_DIR}/ptmap.js"></script>\n<script defer src="/assets/ptmap-init.js"></script>\n` : '';
   page({ path: '/places/', head: mapHead, title: 'Places', description: 'Each place\'s incubators, programmes, rounds, grants, companies and investors, starting with the Algarve.', body: `<p class="kicker">Place by place</p><h1>Places</h1><p class="lede">Start with the Algarve, then Lisbon and Porto. A place with nothing yet is a gap we have not filled, not a place with no startups.</p>${mapHtml}${groups.map(g => `<h2>${esc(g.group)}</h2><div class="tablewrap"><table><thead><tr><th>Place</th><th>Support</th><th>Rounds and grants</th><th>Companies</th><th>Investors</th></tr></thead><tbody>${g.places.map(p => { const c = placeCounts(p.id); return `<tr><td><a href="/places/${p.id}/">${esc(p.name)}</a></td>${c.map(n => `<td>${n || '<span class="meta">none yet</span>'}</td>`).join('')}</tr>`; }).join('')}</tbody></table></div>`).join('')}`, md: groups.map(g => `## ${g.group}\n\n${g.places.map(p => { const c = placeCounts(p.id); return `- ${p.name} (${SITE}/places/${p.id}/): ${c[0]} support, ${c[1]} rounds and grants, ${c[2]} companies, ${c[3]} investors`; }).join('\n')}`).join('\n\n') });

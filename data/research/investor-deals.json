@@ -151,7 +151,7 @@
       "name": "Beta Capital into LoopOS",
       "kind": "round",
       "section": "funding",
-      "place": "portugal",
+      "place": "coimbra",
       "company": "LoopOS",
       "investors": [
         "Impact Innovation Fund of 3XP Global (lead)",
@@ -160,7 +160,7 @@
       ],
       "amount": "EUR 3 million",
       "date": "2025-02-17",
-      "what": "LoopOS, which offers a no-code platform for companies to run circular-economy channels such as returns, repairs, trade-ins and resale, closed a round led by the Impact Innovation Fund of 3XP Global, with Beta Capital and FundBox taking part. The money is for the technology tools and for the Portuguese, Spanish and French markets.",
+      "what": "LoopOS, which offers a no-code platform for companies to run circular-economy channels such as returns, repairs, trade-ins and resale, closed a round led by the Impact Innovation Fund of 3XP Global, with Beta Capital and FundBox taking part. The money is for the technology tools and for the Portuguese, Spanish and French markets. The EIB page https://www.eib.org/en/stories/portugal-circular-economy, read on 2026-11-21, says The Loop offers LoopOS and is in a building in central Coimbra, so the city is taken from that page (the Jornal Economico source gave none).",
       "url": "https://jornaleconomico.sapo.pt/?p=1269193",
       "source_url": "https://jornaleconomico.sapo.pt/?p=1269193",
       "read_on": "2026-11-20",
@@ -266,6 +266,11 @@
       "url": "https://elreferente.es/?p=177616",
       "what": "El Referente LoopOS article and uptec.up.pt/?p=22542 (PFx Biotech)",
       "why": "El Referente returned HTTP 403, not worked around; the UPTEC page did not mention PFx Biotech or Beta Capital in the text read. The bebeez.eu PFx page returned 404."
+    },
+    {
+      "url": "https://www.loop-os.com/",
+      "what": "LoopOS's own site, to confirm its city",
+      "why": "Returned HTTP 503 on 2026-11-21, not worked around; the Coimbra place rests on the EIB page, which names The Loop as the provider of LoopOS."
     }
   ]
 }

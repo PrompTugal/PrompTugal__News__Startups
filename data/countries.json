@@ -1,7 +1,17 @@
 {
- "about": "The countries this site's places can belong to, by the id of the country's own place in the places list (a place of kind country). Each place's country is found by following its parent chain to one of these. Names are the English short names; codes are ISO 3166-1 alpha-2. Added by startups.b@PrompTugal.dinis on 19 November 2026 so that nothing in the build is hard-coded to Portugal (Dinis, 18 November 2026, guidance 2026-11-18-london.md).",
+ "about": "The countries this site's places can belong to, by the id of the country's own place in the places list (a place of kind country). Each place's country is found by following its parent chain to one of these. Names are the English short names; codes are ISO 3166-1 alpha-2. Added by startups.b@PrompTugal.dinis on 19 November 2026 so that nothing in the build is hard-coded to Portugal (Dinis, 18 November 2026, guidance 2026-11-18-london.md). The European Union is listed too (startups.b@PrompTugal.dinis, 21 November 2026): it is a place of kind region with no parent in the registry, and counts as its own top level so EU-wide programmes have a home (Dinis, 19 November 2026, guidance 2026-11-19-cameras-as-links-and-the-map.md: the EU small at Brussels, where we have the data).",
  "countries": {
-  "portugal": { "code": "PT", "name": "Portugal" },
-  "united-kingdom": { "code": "GB", "name": "the United Kingdom" }
+  "portugal": {
+   "code": "PT",
+   "name": "Portugal"
+  },
+  "united-kingdom": {
+   "code": "GB",
+   "name": "the United Kingdom"
+  },
+  "european-union": {
+   "code": "EU",
+   "name": "the European Union"
+  }
  }
 }
