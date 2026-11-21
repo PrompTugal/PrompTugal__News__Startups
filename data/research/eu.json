@@ -1,0 +1,237 @@
+{
+  "by": "startups.b.eu@PrompTugal.dinis",
+  "country": "EU",
+  "read_on": "2026-11-21",
+  "area": "eu",
+  "notes": "Gathered on 2026-11-21 with WebFetch (page text summarised by a small model) and WebSearch used only to find URLs. Official EU pages were read where possible; EIT Climate-KIC, EIT Health and EIT Food pages are the innovation communities' own. Dates and amounts are as each page states them and several pages give 2027 figures, so check the page before applying. EIC Accelerator, Pathfinder, Transition and Pre-Accelerator list next cut-offs from the page, not from the Funding and Tenders Portal. The UK is not an EU Member State; UK start-ups are not covered here because no page read stated UK eligibility. No websummit.com, lu.ma, luma.com, meetup.com or eventbrite pages were fetched. No contact details recorded.",
+  "entries": [
+    {
+      "name": "EIC Accelerator",
+      "kind": "programme",
+      "place": "european-union",
+      "what": "Horizon Europe support for start-ups and SMEs with innovations that could create new markets (TRL 6 to 8), combining a grant of up to EUR 2.5 million with equity or quasi-equity of EUR 1 million to EUR 10 million. Short proposals may be submitted at any time. The page lists 2027 full-proposal batching dates of 20 January, 17 March, 1 September and 4 November 2027, and 2027 budgets of EUR 428 million (Open) and EUR 150 million (Challenges).",
+      "url": "https://eic.ec.europa.eu/eic-funding-opportunities/eic-accelerator_en",
+      "source_url": "https://eic.ec.europa.eu/eic-funding-opportunities/eic-accelerator_en",
+      "read_on": "2026-11-21",
+      "status": "open; next stated full-proposal batching date 2027-01-20",
+      "amount": "EUR 2.5 million grant plus EUR 1 million to EUR 10 million investment, per page",
+      "country": "EU"
+    },
+    {
+      "name": "EIC Pathfinder",
+      "kind": "call",
+      "place": "european-union",
+      "what": "Funding for research teams building the scientific basis of breakthrough technologies at the earliest stages (TRL 1 to 4). The page states 2027 budgets of EUR 166 million (Open) and EUR 82 million (Challenges). Pathfinder Open stage 1 is 25 February 2027 and stage 2 is 16 September 2027; Challenges is 29 September 2027.",
+      "url": "https://eic.ec.europa.eu/eic-funding-opportunities/eic-pathfinder_en",
+      "source_url": "https://eic.ec.europa.eu/eic-funding-opportunities/eic-pathfinder_en",
+      "read_on": "2026-11-21",
+      "status": "open until 2027-02-25 (Pathfinder Open stage 1)"
+    },
+    {
+      "name": "EIC Transition",
+      "kind": "call",
+      "place": "european-union",
+      "what": "Grants to mature and validate technology from EU-funded research results towards market readiness, up to EUR 2.5 million per project, with booster grants of up to EUR 50,000. The 2027 budget is stated as EUR 92 million and the submission deadline as 14 September 2027, 17:00 Brussels time.",
+      "url": "https://eic.ec.europa.eu/eic-funding-opportunities/eic-transition_en",
+      "source_url": "https://eic.ec.europa.eu/eic-funding-opportunities/eic-transition_en",
+      "read_on": "2026-11-21",
+      "status": "open until 2027-09-14",
+      "amount": "up to EUR 2.5 million per project"
+    },
+    {
+      "name": "EIC Pre-Accelerator",
+      "kind": "call",
+      "place": "european-union",
+      "what": "Joint EIC and WIDERA scheme for early-stage deep-tech start-ups (TRL 4 to 6) in Horizon Europe widening countries; Portugal is listed as eligible. The page states a 2027 lump sum of EUR 500,000 to EUR 1 million covering 70 per cent of eligible costs, opening 5 May 2027 and closing 18 November 2027. The page gives two different total budgets (EUR 20 million and EUR 40 million).",
+      "url": "https://eic.ec.europa.eu/eic-funding-opportunities/eic-pre-accelerator_en",
+      "source_url": "https://eic.ec.europa.eu/eic-funding-opportunities/eic-pre-accelerator_en",
+      "read_on": "2026-11-21",
+      "status": "2027 call opens 2027-05-05, closes 2027-11-18"
+    },
+    {
+      "name": "Women TechEU 2 (EIC)",
+      "kind": "programme",
+      "place": "european-union",
+      "what": "Grants of EUR 75,000 per company for women-led deep-tech start-ups, with business development support. The EISMEA page says the call is open, with weekly eligibility cut-offs on Tuesdays at 17:00 Brussels time since 1 June 2026, and four full-proposal deadlines whose dates it does not list. The EIC news item of 12 June 2026 says EUR 12 million for 160 start-ups, 40 per cent reserved for widening areas, and a final eligibility cut-off of 13 July 2027, while the EISMEA page says 15 June 2027.",
+      "url": "https://eismea.ec.europa.eu/programmes/european-innovation-ecosystems/women-techeu_en",
+      "source_url": "https://eismea.ec.europa.eu/programmes/european-innovation-ecosystems/women-techeu_en",
+      "read_on": "2026-11-21",
+      "status": "open; weekly eligibility cut-offs (final date stated differently on two pages)",
+      "amount": "EUR 75,000 per company"
+    },
+    {
+      "name": "Startup Europe",
+      "kind": "programme",
+      "place": "european-union",
+      "what": "European Commission initiative connecting start-ups, scale-ups, investors, accelerators, corporates and universities. Its components include the EU Startup Nation Standard (2020), the Europe Startup Nations Alliance (December 2021), Innovation Radar, StepUp StartUps and the Digital Innovation and Scale-up Initiative (2019). It is a network and policy page, not a funding call.",
+      "url": "https://digital-strategy.ec.europa.eu/en/policies/startup-europe",
+      "source_url": "https://digital-strategy.ec.europa.eu/en/policies/startup-europe",
+      "read_on": "2026-11-21"
+    },
+    {
+      "name": "EIT Community New European Bauhaus: Catalyse NEB",
+      "kind": "call",
+      "place": "european-union",
+      "what": "Start-up accelerator run by the EIT Community New European Bauhaus. The 2026 edition page gives EUR 22,000 cash plus workshops and mentoring for 20 ventures, open to companies in EU Member States or Horizon Europe associated countries. The EIT Climate-KIC open calls page lists a 2027 Catalyse NEB call with a deadline of 15 January 2027, 17:00 CET, with no description; 2027 terms were not read.",
+      "url": "https://www.climate-kic.org/get-involved/open-calls/",
+      "source_url": "https://www.climate-kic.org/get-involved/open-calls/",
+      "read_on": "2026-11-21",
+      "status": "open until 2027-01-15 (listing only; 2027 terms not read)",
+      "date": "2027-01-15"
+    },
+    {
+      "name": "EIT Health Catapult",
+      "kind": "programme",
+      "place": "european-union",
+      "what": "Competition and training programme for life-sciences and health-tech start-ups, with cash prizes of EUR 30,000 for each of two category winners. The page says the application phase has been closed, gives no new deadline, and sets eligibility at fewer than 50 employees, incorporated within 10 years, and at least EUR 500,000 private investment or revenue.",
+      "url": "https://eithealth.eu/programmes/catapult/",
+      "source_url": "https://eithealth.eu/programmes/catapult/",
+      "read_on": "2026-11-21",
+      "status": "applications closed; no new deadline stated"
+    },
+    {
+      "name": "EIT Urban Mobility: financial support to start-ups",
+      "kind": "programme",
+      "place": "european-union",
+      "what": "Co-investment of up to EUR 2.5 million per company for pre-seed, seed and Series A urban-mobility start-ups already in a funding round, in EU Member States or Horizon Europe associated countries. The EIT page lists 2026 cut-offs of 23 February, 18 May, 31 August and 16 November, and says 2027 and 2028 dates are in the call manual.",
+      "url": "https://www.eit.europa.eu/our-activities/opportunities/financial-support-startups-open-call-2026",
+      "source_url": "https://www.eit.europa.eu/our-activities/opportunities/financial-support-startups-open-call-2026",
+      "read_on": "2026-11-21",
+      "status": "2026 cut-offs listed; last stated cut-off 2026-11-16; 2027 dates not read",
+      "amount": "up to EUR 2.5 million per company"
+    },
+    {
+      "name": "EIC Fund",
+      "kind": "fund",
+      "place": "european-union",
+      "what": "Venture capital arm of the European Innovation Council, set up in 2020 and financed by the European Commission with investment advice from the EIB. The page states capitalisation of over EUR 4 billion, more than 300 companies in 25 countries invested in, and agreements signed worth more than EUR 1.4 billion. It gives no typical ticket size.",
+      "url": "https://eic.ec.europa.eu/eic-fund_en",
+      "source_url": "https://eic.ec.europa.eu/eic-fund_en",
+      "read_on": "2026-11-21"
+    },
+    {
+      "name": "Scaleup Europe Fund",
+      "kind": "fund",
+      "place": "european-union",
+      "what": "New late-stage and growth fund for European companies in strategic technologies, targeting about EUR 5 billion with a EUR 1 billion European Commission commitment. The page says EQT was confirmed as fund manager on 18 May 2026 and that it was presented at the EIC Summit on 3 June 2026. It is silent or inconsistent on when first investments are made.",
+      "url": "https://eic.ec.europa.eu/eic-fund/scaleup-europe-fund_en",
+      "source_url": "https://eic.ec.europa.eu/eic-fund/scaleup-europe-fund_en",
+      "read_on": "2026-11-21",
+      "date": "2026-06-03",
+      "amount": "target about EUR 5 billion"
+    },
+    {
+      "name": "Seamoretech (EIC Accelerator selection, November 2026)",
+      "kind": "grant",
+      "place": "european-union",
+      "what": "Portuguese company named among the 35 companies selected for EIC Accelerator support, developing desalination technology that raises freshwater output and recovers minerals from brine. The page states EUR 84 million proposed grant funding for the 35 companies and that 32 will be assessed for EIC Fund equity of up to EUR 10 million each; it gives no amount for Seamoretech and no completed investment.",
+      "url": "https://eic.ec.europa.eu/news/european-innovation-council-selects-35-deep-tech-companies-its-accelerator-support-2026-11-16_en",
+      "source_url": "https://eic.ec.europa.eu/news/european-innovation-council-selects-35-deep-tech-companies-its-accelerator-support-2026-11-16_en",
+      "read_on": "2026-11-21",
+      "date": "2026-11-16",
+      "company": "Seamoretech",
+      "status": "selected; amount for this company not stated",
+      "country": "PT"
+    },
+    {
+      "name": "Frenesim das Ondas (EIC Pre-Accelerator selection, April 2026)",
+      "kind": "grant",
+      "place": "european-union",
+      "what": "Portuguese company named among 70 early-stage deep-tech companies selected under the EIC Pre-Accelerator, developing wave energy technology. The page states around EUR 32.5 million for all 70 and up to EUR 500,000 per company, with no individual amount for this company.",
+      "url": "https://eic.ec.europa.eu/news/eic-pre-accelerator-supports-70-early-stage-deep-tech-companies-countries-lower-innovation-2026-04-23_en",
+      "source_url": "https://eic.ec.europa.eu/news/eic-pre-accelerator-supports-70-early-stage-deep-tech-companies-countries-lower-innovation-2026-04-23_en",
+      "read_on": "2026-11-21",
+      "date": "2026-04-23",
+      "company": "Frenesim das Ondas",
+      "status": "selected; individual amount not stated",
+      "country": "PT"
+    },
+    {
+      "name": "Delox (EIC support)",
+      "kind": "grant",
+      "place": "european-union",
+      "what": "Commission news item of 17 July 2026 says Delox, a university spin-off, recently secured EUR 1.6 million in European Innovation Council support. The page does not say whether this is grant or equity, or give the date of the award.",
+      "url": "https://research-and-innovation.ec.europa.eu/news/all-research-and-innovation-news/eu-and-portugal-team-keep-brightest-tech-talents-home-2026-07-17_en",
+      "source_url": "https://research-and-innovation.ec.europa.eu/news/all-research-and-innovation-news/eu-and-portugal-team-keep-brightest-tech-talents-home-2026-07-17_en",
+      "read_on": "2026-11-21",
+      "date": "2026-07-17",
+      "amount": "EUR 1.6 million",
+      "company": "Delox",
+      "country": "PT"
+    },
+    {
+      "name": "EIF commitment to Indico VC Fund III",
+      "kind": "fund",
+      "place": "european-union",
+      "what": "EIF press release of 28 November 2025: EUR 30 million committed to Indico VC Fund III, managed by Portuguese manager Indico Capital Partners, with a target size of EUR 125 million. It invests from seed to Series B in enterprise SaaS, AI, deep tech, spacetech and oceantech, mainly in Portugal, Spain and Italy.",
+      "url": "https://www.eif.org/press/all/eif-commits-eur30m-to-indico-capital-partners-new-eur125m-vc-fund-to-drive-tech-innovation",
+      "source_url": "https://www.eif.org/press/all/eif-commits-eur30m-to-indico-capital-partners-new-eur125m-vc-fund-to-drive-tech-innovation",
+      "read_on": "2026-11-21",
+      "date": "2025-11-28",
+      "amount": "EUR 30 million committed; fund target EUR 125 million",
+      "investors": [
+        "European Investment Fund"
+      ],
+      "company": "Indico Capital Partners",
+      "country": "PT"
+    },
+    {
+      "name": "InvestEU Fomento-FEI",
+      "kind": "fund",
+      "place": "european-union",
+      "what": "EIF press release of 11 July 2025: a partnership of the Portuguese Government, the European Commission and the EIF, expected to mobilise over EUR 6.5 billion for more than 40,000 SMEs, small mid-caps and individuals through partner banks. It rests on EUR 450 million from the Recovery and Resilience Plan, a EUR 50 million State Budget guarantee and EUR 490 million of EIF resources. It is bank-lending support, not venture capital.",
+      "url": "https://www.eif.org/press/all/portugal-unlocks-eur6-5-billion-in-lending-to-finance-over-forty-thousand-companies",
+      "source_url": "https://www.eif.org/press/all/portugal-unlocks-eur6-5-billion-in-lending-to-finance-over-forty-thousand-companies",
+      "read_on": "2026-11-21",
+      "date": "2025-07-11",
+      "amount": "over EUR 6.5 billion to be mobilised",
+      "investors": [
+        "European Investment Fund",
+        "Banco Português de Fomento"
+      ],
+      "country": "PT"
+    },
+    {
+      "name": "EIF in Portugal: venture capital programmes",
+      "kind": "programme",
+      "place": "european-union",
+      "what": "EIF page describing its Portugal activity: the Portugal Venture Capital Initiative (2008), Fomento Portugal Tech (EUR 100 million partnership with Banco Português de Fomento, 2018, early-stage and tech transfer) and Portugal Growth (three equity partnerships expected to mobilise almost EUR 1 billion). Figures are as at end-2025.",
+      "url": "https://www.eif.org/supporting-smes/eif-near-me/portugal",
+      "source_url": "https://www.eif.org/supporting-smes/eif-near-me/portugal",
+      "read_on": "2026-11-21",
+      "country": "PT"
+    }
+  ],
+  "gaps": [
+    {
+      "url": "https://eit.europa.eu/our-activities/innovation-communities",
+      "what": "EIT innovation communities overview",
+      "why": "404 Not Found"
+    },
+    {
+      "url": "https://www.eitdigital.eu/startups/",
+      "what": "EIT Digital start-up programmes",
+      "why": "301 redirect to a different domain (28digital.eu); not followed, so no EIT Digital entry"
+    },
+    {
+      "url": "https://eic.ec.europa.eu/eic-funding-opportunities/women-techeu_en",
+      "what": "Women TechEU on the EIC site",
+      "why": "page returned only a title with no description; the EISMEA page was used instead"
+    },
+    {
+      "url": "",
+      "what": "EIT InnoEnergy start-up programmes",
+      "why": "no current call page found by search; not read, so no entry"
+    },
+    {
+      "url": "https://eic.ec.europa.eu/news/eic-pre-accelerator-supports-70-early-stage-deep-tech-companies-countries-lower-innovation-2026-04-23_en",
+      "what": "Full list of the 70 Pre-Accelerator companies",
+      "why": "linked PDF not accessible, so only the one Portuguese company named on the page is recorded"
+    },
+    {
+      "url": "https://www.eif.org/press/all/eif-investments-leverage-more-than-eur400-million-boosting-the-deep-technology-and-cybersecurity-sector-in-portugal",
+      "what": "EIF commitments to Armilar IV, Faber Tech III and 33N (12 November 2024)",
+      "why": "outside the 2025 to 2026 window, so left out"
+    }
+  ]
+}
