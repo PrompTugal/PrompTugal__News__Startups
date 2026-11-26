@@ -3,7 +3,7 @@
  "country": "PT",
  "read_on": "2026-11-26",
  "area": "refresh-2026-11-26",
- "notes": "First pass of the cl-6 session, 26 November 2026. The seed round was found with WebSearch and read in the page's raw HTML (curl); the amount, the date and the three investor names match the article. The open calls' dates were re-read at source the same day and are listed in REALITY.md; two could not be re-confirmed (see gaps).",
+ "notes": "First pass of the cl-6 session, 26 November 2026. The seed round was found with WebSearch and read in the page's raw HTML (curl); the amount, the date and the three investor names match the article. The open calls' dates were re-read at source the same day and are listed in REALITY.md; two could not be re-confirmed (see gaps). Second pass, 07:14 UTC the same day: the two calls first recorded as gaps were re-read. ARRISCA C 2026 closes at 23:59 on Friday 18 December (ipressjournal.pt article, read 26 November): confirmed. Unicorn Factory Lisboa's Incubation Programme now closes on 1 December 2026 (the programme page and the active programs page, both read 26 November); the 17 November reading said 3 December, so the entry is corrected in lisbon-porto-national.json and the prediction gets a correcting line. The INPI/EUIPO SME Fund (4 December) was re-read and matches. A second search at 07:14 UTC found Hope Care's Series A (8 September 2026), which is already in data/research/lisbon-porto-national.json, so it was not added again.",
  "entries": [
   {
    "name": "Seamoretech first seed closing",
@@ -25,16 +25,5 @@
    "how_read": "curl of the page, text read from the raw HTML by cl-6.startups"
   }
  ],
- "gaps": [
-  {
-   "url": "https://unicornfactorylisboa.com/active-programs/",
-   "what": "Unicorn Factory Lisboa: Incubation Programme, closing date 3 December 2026 (shown on /calls/ from the 18 November reading)",
-   "why": "On the first reading of 26 November the page listed other programmes with their dates but not this one's 3 December date; a second reading was served a bot-check page (a reload after 5 seconds), which we do not work around. The date is not re-confirmed."
-  },
-  {
-   "url": "https://ipressjournal.pt/universidade-de-coimbra-abre-concurso-nacional-de-ideias-de-negocio/",
-   "what": "ARRISCA C 2026, closing date 18 December 2026",
-   "why": "The article page read on 26 November does not state the date in its text, and a later reading was served a bot-check page. The date is not re-confirmed."
-  }
- ]
+ "gaps": []
 }
