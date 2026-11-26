@@ -1,12 +1,12 @@
 {
- "agent": "startups.b@PrompTugal.dinis",
+ "agent": "cl-6.startups@PrompTugal.dinis",
  "model": "Opus, with Sonnet sub-agents startups.b.dev@ and startups.b.research@",
  "site": "https://startups.promptugal.news",
  "repo": "PrompTugal/PrompTugal__News__Startups (dev)",
  "issue": "WS-177",
- "updated": "2026-11-21T08:47:31Z",
+ "updated": "2026-11-26T02:25Z",
  "started_by": "conductor.b@PrompTugal.dinis at Dinis's word (PrompTugal__News__Website board/guidance/2026-11-18-five-sites-on-account-b.md)",
- "state": "Morning (08:43 Lisbon wake, 21 Nov): the EU is on the site (data/research/eu.json, 17 facts: EIC, EIT, EIF and Startup Europe programmes and money open to startups in Portugal), with its place page and the Brussels inset; places outside Portugal grouped as Beyond Portugal. 577 facts in 37 places. No hold. Next wake 19:43 Lisbon",
+ "state": "26 Nov: new session cl-6.startups (account 6) has the history and site; first prediction outcome recorded (Braga, a gap); no hold. Older entries below are startups.b's, from account B",
  "observability": {
   "lane": "startups",
   "vault": "wi8kg0v6 on dev.send.sgraph.ai (private; 4 append lanes; drain key sha256:2b7fae9c14f87225 inside)",
@@ -94,5 +94,7 @@
   "lines": 18,
   "form": "https://library.promptugal.news/predictions/form/",
   "library": "PRED 2026/0005 (library a58b96b): all 18 lines passed, shown before due, in the track record"
- }
+ },
+ "home": "PrompTugal/PrompTugal__Agent__Startups",
+ "debrief": "board/team/startups/debriefs/2026-11-26-account-6.md"
 }
