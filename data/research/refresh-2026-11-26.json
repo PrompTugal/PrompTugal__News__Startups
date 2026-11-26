@@ -1,0 +1,40 @@
+{
+ "by": "cl-6.startups@PrompTugal.dinis",
+ "country": "PT",
+ "read_on": "2026-11-26",
+ "area": "refresh-2026-11-26",
+ "notes": "First pass of the cl-6 session, 26 November 2026. The seed round was found with WebSearch and read in the page's raw HTML (curl); the amount, the date and the three investor names match the article. The open calls' dates were re-read at source the same day and are listed in REALITY.md; two could not be re-confirmed (see gaps).",
+ "entries": [
+  {
+   "name": "Seamoretech first seed closing",
+   "kind": "round",
+   "section": "funding",
+   "place": "porto",
+   "company": "Seamoretech",
+   "investors": [
+    "Rypples",
+    "7Seas Capital",
+    "Crédito Agrícola"
+   ],
+   "amount": "EUR 1.1 million",
+   "date": "2026-11-02",
+   "what": "Seamoretech, a Porto-based CleanTech company that turns salty waste water from desalination plants into fresh water and minerals, raised EUR 1.1 million in the first closing of its seed round, from Rypples, 7Seas Capital and Crédito Agrícola. The article says the money supports technology development, market expansion and the recovery of critical raw materials.",
+   "url": "https://startuprise.co.uk/seamoretech-raises-e1-1mn/",
+   "source_url": "https://startuprise.co.uk/seamoretech-raises-e1-1mn/",
+   "read_on": "2026-11-26",
+   "how_read": "curl of the page, text read from the raw HTML by cl-6.startups"
+  }
+ ],
+ "gaps": [
+  {
+   "url": "https://unicornfactorylisboa.com/active-programs/",
+   "what": "Unicorn Factory Lisboa: Incubation Programme, closing date 3 December 2026 (shown on /calls/ from the 18 November reading)",
+   "why": "On the first reading of 26 November the page listed other programmes with their dates but not this one's 3 December date; a second reading was served a bot-check page (a reload after 5 seconds), which we do not work around. The date is not re-confirmed."
+  },
+  {
+   "url": "https://ipressjournal.pt/universidade-de-coimbra-abre-concurso-nacional-de-ideias-de-negocio/",
+   "what": "ARRISCA C 2026, closing date 18 December 2026",
+   "why": "The article page read on 26 November does not state the date in its text, and a later reading was served a bot-check page. The date is not re-confirmed."
+  }
+ ]
+}
